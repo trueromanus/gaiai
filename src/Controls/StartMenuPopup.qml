@@ -3,7 +3,7 @@ import gaiai
 
 InGameStartMenu {
     id: root
-    width: 300
+    width: 290
     height: 336
 
     MenuPanel {
@@ -35,7 +35,7 @@ InGameStartMenu {
         Column {
             id: itemsColumn
             anchors.left: mainMenuTitle.right
-            width: 256
+            width: root.width - 42
 
             Repeater {
                 width: parent.width
@@ -61,10 +61,17 @@ InGameStartMenu {
                         color: "#FAF9FF"
                     }
 
+                    Rectangle {
+                        id: selectedRectangle
+                        visible: false
+                        anchors.fill: parent
+                        color: "#00007F"
+                    }
+
                     Image {
                         id: icon
                         anchors.left: parent.left
-                        anchors.leftMargin: 18
+                        anchors.leftMargin: 17
                         anchors.verticalCenter: parent.verticalCenter
                         source: assetsLocation.imagedPath + modelData.image
                         width: 40
@@ -76,6 +83,20 @@ InGameStartMenu {
                         anchors.leftMargin: 18
                         anchors.verticalCenter: parent.verticalCenter
                         text: modelData.title
+                        color: selectedRectangle.visible ? "white" : "black"
+                        fontSize: 15
+                    }
+
+                    MouseArea {
+                        anchors.fill: parent
+                        acceptedButtons: Qt.NoButton
+                        hoverEnabled: true
+                        onEntered: {
+                            selectedRectangle.visible = true;
+                        }
+                        onExited: {
+                            selectedRectangle.visible = false;
+                        }
                     }
                 }
             }
