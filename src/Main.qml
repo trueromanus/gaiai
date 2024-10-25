@@ -19,6 +19,19 @@ Window {
         anchors.fill: parent
     }
 
+    Item {
+        anchors.fill: parent
+
+        MouseArea {
+            anchors.fill: parent
+            enabled: startMenuPopup.visible
+            acceptedButtons: Qt.LeftButton | Qt.RightButton
+            onPressed: {
+                if (startMenuPopup.visible) taskBar.toggleStartMenuButton();
+            }
+        }
+    }
+
     TaskBar {
         id: taskBar
         anchors.right: parent.right
@@ -26,6 +39,7 @@ Window {
     }
 
     StartMenuPopup {
+        id: startMenuPopup
         visible: taskBar.startMenuOpened
         y: taskBar.y - (height - 5)
     }

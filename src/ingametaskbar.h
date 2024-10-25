@@ -12,6 +12,7 @@ class InGameTaskBar : public QQuickItem
     Q_PROPERTY(QVariantList visibleItems READ visibleItems NOTIFY visibleItemsChanged FINAL)
     Q_PROPERTY(bool hasLeftItems READ hasLeftItems NOTIFY hasLeftItemsChanged FINAL)
     Q_PROPERTY(bool hasRightItems READ hasRightItems NOTIFY hasRightItemsChanged FINAL)
+    Q_PROPERTY(bool startMenuOpened READ startMenuOpened WRITE setStartMenuOpened NOTIFY startMenuOpenedChanged FINAL)
     QML_ELEMENT
 
 private:
@@ -21,6 +22,7 @@ private:
     bool m_hasLeftItems { false };
     bool m_hasRightItems { false };
     int m_startActiveWindows { -1 };
+    bool m_startMenuOpened { false };
 
 public:
     InGameTaskBar();
@@ -32,6 +34,9 @@ public:
     bool hasLeftItems() const noexcept { return m_hasLeftItems; }
     bool hasRightItems() const noexcept { return m_hasRightItems; }
 
+    bool startMenuOpened() const noexcept { return m_startMenuOpened; }
+    void setStartMenuOpened(bool startMenuOpened) noexcept;
+
     Q_INVOKABLE void showPreviousVisibleItems();
     Q_INVOKABLE void showNextVisibleItems();
     Q_INVOKABLE void refreshVisibleItems();
@@ -42,6 +47,7 @@ signals:
     void visibleItemsChanged();
     void hasLeftItemsChanged();
     void hasRightItemsChanged();
+    void startMenuOpenedChanged();
 
 };
 

@@ -2,10 +2,19 @@ import QtQuick
 import gaiai
 
 InGameTaskBar {
+    id: root
     width: desktop.width
     height: 32
+    startMenuOpened: smartButton.pressed
 
-    readonly property bool startMenuOpened: smartButton.pressed
+    signal toggleStartMenuButton()
+    onToggleStartMenuButton: {
+        if (root.startMenuOpened) {
+            smartButton.release();
+        } else {
+            smartButton.press();
+        }
+    }
 
     Rectangle {
         anchors.fill: parent

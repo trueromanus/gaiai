@@ -11,6 +11,14 @@ void InGameTaskBar::setActiveWindow(int activeWindow) noexcept
     emit activeWindowChanged();
 }
 
+void InGameTaskBar::setStartMenuOpened(bool startMenuOpened) noexcept
+{
+    if (m_startMenuOpened == startMenuOpened) return;
+
+    m_startMenuOpened = startMenuOpened;
+    emit startMenuOpenedChanged();
+}
+
 void InGameTaskBar::showPreviousVisibleItems()
 {
 
