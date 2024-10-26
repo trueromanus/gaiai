@@ -89,13 +89,17 @@ InGameStartMenu {
 
                     MouseArea {
                         anchors.fill: parent
-                        acceptedButtons: Qt.NoButton
+                        acceptedButtons: Qt.LeftButton
                         hoverEnabled: true
                         onEntered: {
                             selectedRectangle.visible = true;
                         }
                         onExited: {
                             selectedRectangle.visible = false;
+                        }
+                        onPressed: function (mouse) {
+                            mouse.accepted = true;
+                            if (modelData.command) root.commandRunned(modelData.command)
                         }
                     }
                 }

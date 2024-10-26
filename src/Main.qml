@@ -36,12 +36,20 @@ Window {
         id: taskBar
         anchors.right: parent.right
         anchors.bottom: parent.bottom
+        windowsContainer: desktopWindows
     }
 
     StartMenuPopup {
         id: startMenuPopup
         visible: taskBar.startMenuOpened
         y: taskBar.y - (height - 5)
+        onCommandRunned: function (command){
+            if (command === "") return;
+
+            taskBar.toggleStartMenuButton();
+
+            taskBar.createDefaultWindow(command);
+        }
     }
 
     SystemSettings {

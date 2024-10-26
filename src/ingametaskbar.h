@@ -13,6 +13,7 @@ class InGameTaskBar : public QQuickItem
     Q_PROPERTY(bool hasLeftItems READ hasLeftItems NOTIFY hasLeftItemsChanged FINAL)
     Q_PROPERTY(bool hasRightItems READ hasRightItems NOTIFY hasRightItemsChanged FINAL)
     Q_PROPERTY(bool startMenuOpened READ startMenuOpened WRITE setStartMenuOpened NOTIFY startMenuOpenedChanged FINAL)
+    Q_PROPERTY(QQuickItem* windowsContainer READ windowsContainer WRITE setWindowsContainer NOTIFY windowsContainerChanged FINAL)
     QML_ELEMENT
 
 private:
@@ -23,6 +24,9 @@ private:
     bool m_hasRightItems { false };
     int m_startActiveWindows { -1 };
     bool m_startMenuOpened { false };
+    QQuickItem* m_windowsContainer { nullptr };
+    QMap<QString, QString> m_defaultNamesOfWindows { QMap<QString, QString>() };
+    QSet<QString> m_uniqueWindows { QSet<QString>() };
 
 public:
     InGameTaskBar();
@@ -37,10 +41,16 @@ public:
     bool startMenuOpened() const noexcept { return m_startMenuOpened; }
     void setStartMenuOpened(bool startMenuOpened) noexcept;
 
+    QQuickItem* windowsContainer() const noexcept { return m_windowsContainer; }
+    void setWindowsContainer(const QQuickItem* windowsContainer) noexcept;
+
     Q_INVOKABLE void showPreviousVisibleItems();
     Q_INVOKABLE void showNextVisibleItems();
     Q_INVOKABLE void refreshVisibleItems();
-    Q_INVOKABLE void createDefaultWindow(const QString& title, int mode, QQuickItem* parent);
+    Q_INVOKABLE void createDefaultWindow(const QString& command);
+
+private:
+    bool alreadyOpenedUniqueWindow(const QString& command);
 
 signals:
     void activeWindowChanged();
@@ -48,6 +58,7 @@ signals:
     void hasLeftItemsChanged();
     void hasRightItemsChanged();
     void startMenuOpenedChanged();
+    void windowsContainerChanged();
 
 };
 

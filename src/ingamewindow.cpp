@@ -31,6 +31,14 @@ void InGameWindow::setWindowHeight(int windowHeight) noexcept
     refreshWindowHeight();
 }
 
+void InGameWindow::setUniqueId(const QString &uniqueId) noexcept
+{
+    if (m_uniqueId == uniqueId) return;
+
+    m_uniqueId = uniqueId;
+    emit uniqueIdChanged();
+}
+
 void InGameWindow::componentComplete()
 {
     auto childrens = children();

@@ -19,6 +19,7 @@ public:
 
 signals:
     void menuChanged();
+    void commandRunned(const QString& command);
 
 };
 
