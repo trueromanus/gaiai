@@ -3,15 +3,8 @@
 
 InGameTaskBar::InGameTaskBar() {
     m_defaultNamesOfWindows.insert("shutdown", "Shut Down SmartCityOS");
+    m_windowSizes.insert("shutdown", std::make_tuple(400, 180));
     m_uniqueWindows.insert("shutdown");
-}
-
-void InGameTaskBar::setActiveWindow(int activeWindow) noexcept
-{
-    if (m_activeWindow == activeWindow) return;
-
-    m_activeWindow = activeWindow;
-    emit activeWindowChanged();
 }
 
 void InGameTaskBar::setStartMenuOpened(bool startMenuOpened) noexcept
@@ -48,7 +41,7 @@ void InGameTaskBar::refreshVisibleItems()
 void InGameTaskBar::createDefaultWindow(const QString& command)
 {
     if (alreadyOpenedUniqueWindow(command)) {
-        //TODO:activate opened window
+        activateWindowByCommand(command);
         return;
     }
 
@@ -62,8 +55,14 @@ void InGameTaskBar::createDefaultWindow(const QString& command)
     auto window = qobject_cast<InGameWindow*>(object);
 
     window->setTitle(m_defaultNamesOfWindows.value(command));
-    window->setWindowWidth(200);
-    window->setWindowHeight(100);
+    if (m_windowSizes.contains(command)) {
+        auto sizeTuple = m_windowSizes.value(command);
+        window->setWindowWidth(std::get<0>(sizeTuple));
+        window->setWindowHeight(std::get<1>(sizeTuple));
+    } else {
+        window->setWindowWidth(100);
+        window->setWindowHeight(100);
+    }
     window->setX(100);
     window->setY(100);
     window->setParentItem(m_windowsContainer);
@@ -72,10 +71,38 @@ void InGameTaskBar::createDefaultWindow(const QString& command)
     m_windows.append(window);
 }
 
+void InGameTaskBar::activateWindow(InGameWindow *window)
+{
+    if (m_activeWindow == window) return;
+
+    if (m_activeWindow != nullptr) m_activeWindow->setActivated(false);
+
+    window->setActivated(true);
+    m_activeWindow = window;
+}
+
+void InGameTaskBar::activateWindowByCommand(const QString &command)
+{
+    auto window = getWindowByUnique(command);
+    if (window == nullptr) return;
+
+    activateWindow(window);
+}
+
 bool InGameTaskBar::alreadyOpenedUniqueWindow(const QString &command)
 {
     auto iterator = std::find_if(m_windows.cbegin(), m_windows.cend(), [command](InGameWindow* item){
         return item->uniqueId() == command;
     });
     return iterator != m_windows.cend();
+}
+
+InGameWindow *InGameTaskBar::getWindowByUnique(const QString &command)
+{
+    auto iterator = std::find_if(m_windows.cbegin(), m_windows.cend(), [command](InGameWindow* item){
+        return item->uniqueId() == command;
+    });
+    if (iterator != m_windows.cend()) return nullptr;
+
+    return *iterator;
 }

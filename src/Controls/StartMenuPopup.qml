@@ -73,9 +73,9 @@ InGameStartMenu {
                         anchors.left: parent.left
                         anchors.leftMargin: 17
                         anchors.verticalCenter: parent.verticalCenter
-                        source: assetsLocation.imagedPath + modelData.image
                         width: 40
                         height: 40
+                        source: assetsLocation.imagedPath + modelData.image
                     }
 
                     PlainText {

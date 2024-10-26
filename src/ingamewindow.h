@@ -11,7 +11,7 @@ class InGameWindow : public QQuickItem
     Q_PROPERTY(QString title READ title WRITE setTitle NOTIFY titleChanged FINAL)
     Q_PROPERTY(int windowWidth READ windowWidth WRITE setWindowWidth NOTIFY windowWidthChanged FINAL)
     Q_PROPERTY(int windowHeight READ windowHeight WRITE setWindowHeight NOTIFY windowHeightChanged FINAL)
-    Q_PROPERTY(bool activated READ activated NOTIFY activatedChanged FINAL)
+    Q_PROPERTY(bool activated READ activated WRITE setActivated NOTIFY activatedChanged FINAL)
     Q_PROPERTY(QString uniqueId READ uniqueId WRITE setUniqueId NOTIFY uniqueIdChanged FINAL)
     QML_ELEMENT
 private:
@@ -35,6 +35,7 @@ public:
     void setWindowHeight(int windowHeight) noexcept;
 
     bool activated() const noexcept { return m_activated; }
+    void setActivated(bool activated) noexcept;
 
     QString uniqueId() const noexcept { return m_uniqueId; }
     void setUniqueId(const QString& uniqueId) noexcept;

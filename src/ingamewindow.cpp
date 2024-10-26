@@ -31,6 +31,14 @@ void InGameWindow::setWindowHeight(int windowHeight) noexcept
     refreshWindowHeight();
 }
 
+void InGameWindow::setActivated(bool activated) noexcept
+{
+    if (m_activated == activated) return;
+
+    m_activated = activated;
+    emit activatedChanged();
+}
+
 void InGameWindow::setUniqueId(const QString &uniqueId) noexcept
 {
     if (m_uniqueId == uniqueId) return;

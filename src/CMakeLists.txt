@@ -33,9 +33,10 @@ qt_add_qml_module(appgaiai
         RESOURCES Icons/WindowToolbarIcons/close.svg        
         RESOURCES Images/disablesound.png Images/enablesound.png
         QML_FILES Controls/PlainText.qml Controls/ContentButton.qml Controls/ToggleButton.qml Controls/StartMenuPopup.qml Controls/MenuPanel.qml
+        QML_FILES Pages/ShutDownPage.qml
         RESOURCES Images/keys.png
         RESOURCES Images/menuhelp.png Images/menusettings.png Images/menushutdown.png        
-        RESOURCES Images/menudocuments.png Images/menuprograms.png Images/menurun.png
+        RESOURCES Images/menudocuments.png Images/menuprograms.png Images/menurun.png        
 )
 
 set_target_properties(appgaiai PROPERTIES
