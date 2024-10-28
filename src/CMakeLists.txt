@@ -23,6 +23,7 @@ qt_add_qml_module(appgaiai
         SOURCES ingamebutton.h ingamebutton.cpp
         SOURCES ingamestartmenu.h ingamestartmenu.cpp
         SOURCES systemsettings.h systemsettings.cpp
+        SOURCES ingameradiobutton.h ingameradiobutton.cpp
         QML_FILES Controls/DefaultHeaderWindow.qml
         QML_FILES Controls/IconButton.qml
         QML_FILES Controls/DefaultWindow.qml
@@ -33,10 +34,12 @@ qt_add_qml_module(appgaiai
         RESOURCES Icons/WindowToolbarIcons/close.svg        
         RESOURCES Images/disablesound.png Images/enablesound.png
         QML_FILES Controls/PlainText.qml Controls/ContentButton.qml Controls/ToggleButton.qml Controls/StartMenuPopup.qml Controls/MenuPanel.qml
-        QML_FILES Pages/ShutDownPage.qml
+        QML_FILES Pages/ShutDownPage.qml Pages/OnboardingPage.qml
+        QML_FILES Controls/WindowPanel.qml Controls/RadioButton.qml
         RESOURCES Images/keys.png
         RESOURCES Images/menuhelp.png Images/menusettings.png Images/menushutdown.png        
-        RESOURCES Images/menudocuments.png Images/menuprograms.png Images/menurun.png        
+        RESOURCES Images/menudocuments.png Images/menuprograms.png Images/menurun.png
+        RESOURCES Images/disabledradio.png
 )
 
 set_target_properties(appgaiai PROPERTIES

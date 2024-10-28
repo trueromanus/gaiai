@@ -1,10 +1,11 @@
-#include <QQmlContext>
 #include "ingametaskbar.h"
 
 InGameTaskBar::InGameTaskBar() {
     m_defaultNamesOfWindows.insert("shutdown", "Shut Down SmartCityOS");
-    m_windowSizes.insert("shutdown", std::make_tuple(400, 180));
+    m_windowSizes.insert("shutdown", std::make_tuple(400, 210));
     m_uniqueWindows.insert("shutdown");
+
+    m_commandToPageMapping.insert("shutdown", "Pages/ShutDownPage.qml");
 }
 
 void InGameTaskBar::setStartMenuOpened(bool startMenuOpened) noexcept
@@ -68,6 +69,9 @@ void InGameTaskBar::createDefaultWindow(const QString& command)
     window->setParentItem(m_windowsContainer);
     if (m_uniqueWindows.contains(command)) window->setUniqueId(command);
 
+    // create page (page it is content of window) inside window
+    if (m_commandToPageMapping.contains(command)) createPageInsideWindow(m_commandToPageMapping.value(command), window, context, engine);
+
     m_windows.append(window);
 }
 
@@ -105,4 +109,21 @@ InGameWindow *InGameTaskBar::getWindowByUnique(const QString &command)
     if (iterator != m_windows.cend()) return nullptr;
 
     return *iterator;
+}
+
+QQuickItem* InGameTaskBar::createPageInsideWindow(const QString &path, InGameWindow *window, QQmlContext *context, QQmlEngine *engine)
+{
+    QUrl relativeUrl(path);
+    auto fullUrl = context->resolvedUrl(relativeUrl);
+
+    QQmlComponent component(engine, fullUrl, this);
+    auto object = component.create(context);
+    auto page = qobject_cast<QQuickItem*>(object);
+
+    auto childrens = window->childItems();
+    auto containerChildren = childrens.last();
+
+    page->setParentItem(containerChildren);
+
+    return page;
 }

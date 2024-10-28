@@ -8,37 +8,8 @@ InGameWindow {
     windowHeight: 100
     default property alias content: contentContainer.children
 
-    Rectangle {
-        color: "#BFB8BF"
+    WindowPanel {
         anchors.fill: parent
-    }
-
-    Rectangle {
-        color: "white"
-        anchors.left: parent.left
-        width: 1
-        height: parent.height
-    }
-
-    Rectangle {
-        color: "white"
-        anchors.top: parent.top
-        width: parent.width
-        height: 1
-    }
-
-    Rectangle {
-        color: "black"
-        anchors.right: parent.right
-        width: 1
-        height: parent.height
-    }
-
-    Rectangle {
-        color: "black"
-        anchors.bottom: parent.bottom
-        width: parent.width
-        height: 1
     }
 
     DefaultHeaderWindow {

@@ -3,6 +3,7 @@
 
 #include <QQuickItem>
 #include <QQmlPropertyMap>
+#include <QQmlContext>
 #include "ingamewindow.h"
 
 class InGameTaskBar : public QQuickItem
@@ -26,6 +27,7 @@ private:
     QMap<QString, QString> m_defaultNamesOfWindows { QMap<QString, QString>() };
     QMap<QString, std::tuple<int, int>> m_windowSizes { QMap<QString, std::tuple<int, int>>() };
     QSet<QString> m_uniqueWindows { QSet<QString>() };
+    QMap<QString, QString> m_commandToPageMapping { QMap<QString, QString>() };
     InGameWindow* m_activeWindow { nullptr };
 
 public:
@@ -51,6 +53,7 @@ public:
 private:
     bool alreadyOpenedUniqueWindow(const QString& command);
     InGameWindow* getWindowByUnique(const QString& command);
+    QQuickItem* createPageInsideWindow(const QString& path, InGameWindow* window, QQmlContext* context, QQmlEngine* engine);
 
 signals:
     void activeWindowChanged();

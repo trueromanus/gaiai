@@ -23,6 +23,7 @@ InGameButton {
     }
 
     MouseArea {
+        id: mouseArea
         anchors.fill: parent
         onPressed: {
             root.press();
