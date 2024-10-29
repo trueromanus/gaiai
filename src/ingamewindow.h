@@ -46,12 +46,16 @@ protected:
 private:
     void refreshWindowHeight();
 
+public slots:
+    void closeWindow();
+
 signals:
     void titleChanged();
     void windowWidthChanged();
     void windowHeightChanged();
     void activatedChanged();
     void uniqueIdChanged();
+    void windowClosed(InGameWindow* window);
 
 };
 

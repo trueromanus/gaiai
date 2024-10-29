@@ -1,7 +1,8 @@
 import QtQuick
+import gaiai
 import "../Controls"
 
-Item {
+InGameWindowPage {
     id: root
     anchors.fill: parent
 
@@ -61,6 +62,9 @@ Item {
         width: 100
         height: 30
         title: "Help"
+        onPressedChanged: {
+            root.closeContainerWindow();
+        }
     }
 
     DefaultButton {
@@ -72,6 +76,9 @@ Item {
         width: 100
         height: 30
         title: "No"
+        onPressedChanged: {
+            root.closeContainerWindow();
+        }
     }
 
     DefaultButton {
@@ -83,6 +90,8 @@ Item {
         width: 100
         height: 30
         title: "Yes"
+        onPressedChanged: {
+            //root.closeContainerWindow();
+        }
     }
-
 }

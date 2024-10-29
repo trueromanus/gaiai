@@ -69,3 +69,8 @@ void InGameWindow::refreshWindowHeight()
     auto newHeight = m_windowHeight + (m_header != nullptr ? m_header->height() : 0);
     setHeight(newHeight);
 }
+
+void InGameWindow::closeWindow()
+{
+    emit windowClosed(this);
+}

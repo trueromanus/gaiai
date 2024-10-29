@@ -24,6 +24,7 @@ qt_add_qml_module(appgaiai
         SOURCES ingamestartmenu.h ingamestartmenu.cpp
         SOURCES systemsettings.h systemsettings.cpp
         SOURCES ingameradiobutton.h ingameradiobutton.cpp
+        SOURCES ingamewindowpage.h ingamewindowpage.cpp
         QML_FILES Controls/DefaultHeaderWindow.qml
         QML_FILES Controls/IconButton.qml
         QML_FILES Controls/DefaultWindow.qml

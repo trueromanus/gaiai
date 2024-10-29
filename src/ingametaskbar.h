@@ -17,7 +17,7 @@ class InGameTaskBar : public QQuickItem
     QML_ELEMENT
 
 private:
-    QList<InGameWindow*> m_windows { QList<InGameWindow*>() };
+    QMap<InGameWindow*, QQmlComponent*> m_windows { QMap<InGameWindow*, QQmlComponent*>() };
     QVariantList m_visibleItems { QVariantList() };
     bool m_hasLeftItems { false };
     bool m_hasRightItems { false };
@@ -54,6 +54,10 @@ private:
     bool alreadyOpenedUniqueWindow(const QString& command);
     InGameWindow* getWindowByUnique(const QString& command);
     QQuickItem* createPageInsideWindow(const QString& path, InGameWindow* window, QQmlContext* context, QQmlEngine* engine);
+    void refreshVisibleWindows();
+
+private slots:
+    void removeWindow(InGameWindow* window);
 
 signals:
     void activeWindowChanged();
