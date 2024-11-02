@@ -2,11 +2,8 @@
 #include "ingamewindowpage.h"
 
 InGameTaskBar::InGameTaskBar() {
-    m_defaultNamesOfWindows.insert("shutdown", "Shut Down SmartCityOS");
-    m_windowSizes.insert("shutdown", std::make_tuple(400, 210));
-    m_uniqueWindows.insert("shutdown");
-
-    m_commandToPageMapping.insert("shutdown", "Pages/ShutDownPage.qml");
+    adjustShutDownPage();
+    adjustOnboardingPage();
 }
 
 void InGameTaskBar::setStartMenuOpened(bool startMenuOpened) noexcept
@@ -40,7 +37,7 @@ void InGameTaskBar::refreshVisibleItems()
 
 }
 
-void InGameTaskBar::createDefaultWindow(const QString& command)
+void InGameTaskBar::createDefaultWindow(const QString& command, int position)
 {
     if (alreadyOpenedUniqueWindow(command)) {
         activateWindowByCommand(command);
@@ -65,8 +62,14 @@ void InGameTaskBar::createDefaultWindow(const QString& command)
         window->setWindowWidth(100);
         window->setWindowHeight(100);
     }
-    window->setX(640 - (window->width() / 2));
-    window->setY(360 - (window->height() / 2));
+    if (position == 0) {
+        window->setX(0);
+        window->setY(0);
+    }
+    if (position == 1) {
+        window->setX(640 - (window->width() / 2));
+        window->setY(360 - (window->height() / 2));
+    }
     window->setParent(m_windowsContainer);
     window->setParentItem(m_windowsContainer);
     if (m_uniqueWindows.contains(command)) window->setUniqueId(command);
@@ -140,6 +143,22 @@ QQuickItem* InGameTaskBar::createPageInsideWindow(const QString &path, InGameWin
 void InGameTaskBar::refreshVisibleWindows()
 {
 
+}
+
+void InGameTaskBar::adjustShutDownPage()
+{
+    m_defaultNamesOfWindows.insert(m_shutDownPage, "Shut Down SmartCityOS");
+    m_windowSizes.insert(m_shutDownPage, std::make_tuple(400, 195));
+    m_uniqueWindows.insert(m_shutDownPage);
+    m_commandToPageMapping.insert(m_shutDownPage, "Pages/ShutDownPage.qml");
+}
+
+void InGameTaskBar::adjustOnboardingPage()
+{
+    m_defaultNamesOfWindows.insert(m_onboardingPage, "Welcome");
+    m_windowSizes.insert(m_onboardingPage, std::make_tuple(488, 355));
+    m_uniqueWindows.insert(m_onboardingPage);
+    m_commandToPageMapping.insert(m_onboardingPage, "Pages/OnboardingPage.qml");
 }
 
 void InGameTaskBar::removeWindow(InGameWindow *window)

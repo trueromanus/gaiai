@@ -32,6 +32,7 @@ signals:
     void actualValueChanged();
     void radioValueChanged();
     void titleChanged();
+    void selected();
 
 };
 

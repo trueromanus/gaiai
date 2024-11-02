@@ -44,21 +44,10 @@ InGameStartMenu {
                     width: itemsColumn.width
                     height: 55
 
-                    Rectangle {
-                        id: topLine
-                        visible: modelData.topLine
+                    HorizontalLine {
                         anchors.top: parent.top
-                        height: 1
-                        width: parent.width
-                        color: "#85858D"
-                    }
-
-                    Rectangle {
                         visible: modelData.topLine
-                        anchors.top: topLine.bottom
-                        height: 1
                         width: parent.width
-                        color: "#FAF9FF"
                     }
 
                     Rectangle {

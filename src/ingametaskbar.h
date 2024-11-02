@@ -17,6 +17,9 @@ class InGameTaskBar : public QQuickItem
     QML_ELEMENT
 
 private:
+    const QString m_shutDownPage { "shutdown" };
+    const QString m_onboardingPage { "onboarding" };
+
     QMap<InGameWindow*, QQmlComponent*> m_windows { QMap<InGameWindow*, QQmlComponent*>() };
     QVariantList m_visibleItems { QVariantList() };
     bool m_hasLeftItems { false };
@@ -46,7 +49,7 @@ public:
     Q_INVOKABLE void showPreviousVisibleItems();
     Q_INVOKABLE void showNextVisibleItems();
     Q_INVOKABLE void refreshVisibleItems();
-    Q_INVOKABLE void createDefaultWindow(const QString& command);
+    Q_INVOKABLE void createDefaultWindow(const QString& command, int position);
     Q_INVOKABLE void activateWindow(InGameWindow* window);
     Q_INVOKABLE void activateWindowByCommand(const QString& command);
 
@@ -55,6 +58,8 @@ private:
     InGameWindow* getWindowByUnique(const QString& command);
     QQuickItem* createPageInsideWindow(const QString& path, InGameWindow* window, QQmlContext* context, QQmlEngine* engine);
     void refreshVisibleWindows();
+    void adjustShutDownPage();
+    void adjustOnboardingPage();
 
 private slots:
     void removeWindow(InGameWindow* window);

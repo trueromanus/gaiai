@@ -30,13 +30,13 @@ qt_add_qml_module(appgaiai
         QML_FILES Controls/DefaultWindow.qml
         QML_FILES Controls/Panel.qml
         QML_FILES Controls/TaskBar.qml
-        QML_FILES Controls/ButtonPanel.qml
+        QML_FILES Controls/ButtonPanel.qml Controls/InformationPanel.qml
         QML_FILES Controls/DefaultButton.qml
         RESOURCES Icons/WindowToolbarIcons/close.svg        
         RESOURCES Images/disablesound.png Images/enablesound.png
         QML_FILES Controls/PlainText.qml Controls/ContentButton.qml Controls/ToggleButton.qml Controls/StartMenuPopup.qml Controls/MenuPanel.qml
         QML_FILES Pages/ShutDownPage.qml Pages/OnboardingPage.qml
-        QML_FILES Controls/WindowPanel.qml Controls/RadioButton.qml
+        QML_FILES Controls/WindowPanel.qml Controls/RadioButton.qml Controls/HorizontalLine.qml
         RESOURCES Images/keys.png
         RESOURCES Images/menuhelp.png Images/menusettings.png Images/menushutdown.png        
         RESOURCES Images/menudocuments.png Images/menuprograms.png Images/menurun.png

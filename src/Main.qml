@@ -48,7 +48,7 @@ Window {
 
             taskBar.toggleStartMenuButton();
 
-            taskBar.createDefaultWindow(command);
+            taskBar.createDefaultWindow(command, 1);
         }
     }
 

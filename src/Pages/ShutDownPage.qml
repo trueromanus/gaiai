@@ -6,6 +6,8 @@ InGameWindowPage {
     id: root
     anchors.fill: parent
 
+    property int selectedOption: 1
+
     Image {
         id: iconShutDown
         anchors.left: parent.left
@@ -33,6 +35,11 @@ InGameWindowPage {
         anchors.left: iconShutDown.right
         anchors.leftMargin: 20
         title: "Shut down the computer?"
+        radioValue: 1
+        actualValue: root.selectedOption
+        onSelected: {
+            root.selectedOption = radioValue;
+        }
     }
 
     RadioButton {
@@ -42,6 +49,11 @@ InGameWindowPage {
         anchors.left: iconShutDown.right
         anchors.leftMargin: 20
         title: "Restart the computer?"
+        radioValue: 2
+        actualValue: root.selectedOption
+        onSelected: {
+            root.selectedOption = radioValue;
+        }
     }
 
     RadioButton {
@@ -51,6 +63,11 @@ InGameWindowPage {
         anchors.left: iconShutDown.right
         anchors.leftMargin: 20
         title: "Restart the computer in M_-SOS mode?"
+        radioValue: 3
+        actualValue: root.selectedOption
+        onSelected: {
+            root.selectedOption = radioValue;
+        }
     }
 
     DefaultButton {
@@ -62,7 +79,7 @@ InGameWindowPage {
         width: 100
         height: 30
         title: "Help"
-        onPressedChanged: {
+        onClicked: {
             root.closeContainerWindow();
         }
     }
@@ -76,7 +93,7 @@ InGameWindowPage {
         width: 100
         height: 30
         title: "No"
-        onPressedChanged: {
+        onClicked: {
             root.closeContainerWindow();
         }
     }
@@ -90,7 +107,7 @@ InGameWindowPage {
         width: 100
         height: 30
         title: "Yes"
-        onPressedChanged: {
+        onClicked: {
             //root.closeContainerWindow();
         }
     }

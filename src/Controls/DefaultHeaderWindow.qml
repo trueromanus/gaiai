@@ -27,6 +27,7 @@ InGameWindowDefaultHeader {
         wrapMode: Text.Wrap
         elide: Text.ElideRight
         color: "white"
+        font.bold: true
         text: root.title
     }
 

@@ -3,6 +3,7 @@ import gaiai
 
 InGameButton {
     id: root
+    height: 30
 
     ButtonPanel {
         anchors.fill: parent
@@ -15,6 +16,7 @@ InGameButton {
             anchors.leftMargin: 4
             anchors.verticalCenter: parent.verticalCenter
             horizontalAlignment: Text.AlignHCenter
+            color: root.disabled ? "#818181" : "black"
             text: root.title
             maximumLineCount: 1
             wrapMode: Text.NoWrap

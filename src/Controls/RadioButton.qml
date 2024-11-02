@@ -4,7 +4,7 @@ import gaiai
 InGameRadioButton {
     id: root
     width: parent.width
-    height: 24
+    height: 20
 
     Image {
         id: checkboxIcon
@@ -13,6 +13,15 @@ InGameRadioButton {
         width: 16
         height: 16
         source: assetsLocation.imagedPath + "disabledradio.png"
+
+        Rectangle {
+            visible: root.actualValue === root.radioValue
+            anchors.centerIn: parent
+            width: 4
+            height: 4
+            radius: 4
+            color: "black"
+        }
     }
 
     Text {
@@ -25,7 +34,7 @@ InGameRadioButton {
     MouseArea {
         anchors.fill: parent
         onPressed: {
-
+            root.selected();
         }
     }
 }

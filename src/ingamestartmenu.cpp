@@ -26,7 +26,8 @@ InGameStartMenu::InGameStartMenu() {
     QVariantMap helpMap;
     helpMap["title"] = "Help";
     helpMap["image"] = "menuhelp.png";
-    helpMap["command"] = "help";
+    //TODO: restore help command!
+    helpMap["command"] = "onboarding";
     helpMap["topLine"] = false;
     m_menu.append(helpMap);
 
