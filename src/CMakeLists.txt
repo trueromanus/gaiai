@@ -15,32 +15,35 @@ qt_add_executable(appgaiai
 qt_add_qml_module(appgaiai
     URI gaiai
     VERSION 1.0
-    QML_FILES
-        Main.qml
-        SOURCES ingamewindow.h ingamewindow.cpp
-        SOURCES ingamewindowdefaultheader.h ingamewindowdefaultheader.cpp
-        SOURCES ingametaskbar.h ingametaskbar.cpp
-        SOURCES ingamebutton.h ingamebutton.cpp
-        SOURCES ingamestartmenu.h ingamestartmenu.cpp
-        SOURCES systemsettings.h systemsettings.cpp
-        SOURCES ingameradiobutton.h ingameradiobutton.cpp
-        SOURCES ingamewindowpage.h ingamewindowpage.cpp
-        QML_FILES Controls/DefaultHeaderWindow.qml
-        QML_FILES Controls/IconButton.qml
-        QML_FILES Controls/DefaultWindow.qml
-        QML_FILES Controls/Panel.qml
-        QML_FILES Controls/TaskBar.qml
-        QML_FILES Controls/ButtonPanel.qml Controls/InformationPanel.qml
-        QML_FILES Controls/DefaultButton.qml
-        RESOURCES Icons/WindowToolbarIcons/close.svg        
-        RESOURCES Images/disablesound.png Images/enablesound.png
-        QML_FILES Controls/PlainText.qml Controls/ContentButton.qml Controls/ToggleButton.qml Controls/StartMenuPopup.qml Controls/MenuPanel.qml
-        QML_FILES Pages/ShutDownPage.qml Pages/OnboardingPage.qml
-        QML_FILES Controls/WindowPanel.qml Controls/RadioButton.qml Controls/HorizontalLine.qml
-        RESOURCES Images/keys.png
-        RESOURCES Images/menuhelp.png Images/menusettings.png Images/menushutdown.png        
-        RESOURCES Images/menudocuments.png Images/menuprograms.png Images/menurun.png
-        RESOURCES Images/disabledradio.png
+    QML_FILES Main.qml
+    QML_FILES Controls/DefaultHeaderWindow.qml
+    QML_FILES Controls/IconButton.qml
+    QML_FILES Controls/DefaultWindow.qml
+    QML_FILES Controls/Panel.qml
+    QML_FILES Controls/TaskBar.qml
+    QML_FILES Controls/ButtonPanel.qml Controls/InformationPanel.qml
+    QML_FILES Controls/DefaultButton.qml
+    QML_FILES Controls/PlainText.qml Controls/ContentButton.qml Controls/ToggleButton.qml Controls/StartMenuPopup.qml Controls/MenuPanel.qml
+    QML_FILES Pages/ShutDownPage.qml Pages/OnboardingPage.qml
+    QML_FILES Controls/WindowPanel.qml Controls/RadioButton.qml Controls/HorizontalLine.qml
+
+    SOURCES ingamewindow.h ingamewindow.cpp
+    SOURCES ingamewindowdefaultheader.h ingamewindowdefaultheader.cpp
+    SOURCES ingametaskbar.h ingametaskbar.cpp
+    SOURCES ingamebutton.h ingamebutton.cpp
+    SOURCES ingamestartmenu.h ingamestartmenu.cpp
+    SOURCES systemsettings.h systemsettings.cpp
+    SOURCES ingameradiobutton.h ingameradiobutton.cpp
+    SOURCES ingamewindowpage.h ingamewindowpage.cpp
+    SOURCES ingamedesktop.h ingamedesktop.cpp
+    SOURCES framepaginator.cpp framepaginator.h
+
+    RESOURCES Icons/WindowToolbarIcons/close.svg
+    RESOURCES Images/disablesound.png Images/enablesound.png
+    RESOURCES Images/keys.png
+    RESOURCES Images/menuhelp.png Images/menusettings.png Images/menushutdown.png
+    RESOURCES Images/menudocuments.png Images/menuprograms.png Images/menurun.png
+    RESOURCES Images/disabledradio.png Images/smarttracker.png
 )
 
 set_target_properties(appgaiai PROPERTIES
@@ -61,3 +64,12 @@ install(TARGETS appgaiai
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
     RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
 )
+
+#add_subdirectory(LogicHelpers)
+#target_link_libraries(appgaiai
+#    PRIVATE Qt6::Quick
+#    logichelpersplugin
+#)
+#install(TARGETS appgaiai
+#    BUNDLE DESTINATION .
+#    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR})

@@ -67,8 +67,11 @@ void InGameTaskBar::createDefaultWindow(const QString& command, int position)
         window->setY(0);
     }
     if (position == 1) {
-        window->setX(640 - (window->width() / 2));
-        window->setY(360 - (window->height() / 2));
+        auto parentItem = qobject_cast<QQuickItem*>(parent());
+        auto parentWidth = parentItem->width() / 2;
+        auto parentHeight = parentItem->height() / 2;
+        window->setX(parentWidth - (window->width() / 2));
+        window->setY(parentHeight - (window->height() / 2));
     }
     window->setParent(m_windowsContainer);
     window->setParentItem(m_windowsContainer);
