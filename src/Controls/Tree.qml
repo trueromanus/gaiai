@@ -15,6 +15,7 @@ Item {
                 width: root.width
                 title: modelData.title
                 hasChildren: modelData.hasChildrens
+                isEndItem: modelData.isEndItem
             }
         }
     }
