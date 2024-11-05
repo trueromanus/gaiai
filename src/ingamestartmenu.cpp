@@ -27,7 +27,7 @@ InGameStartMenu::InGameStartMenu() {
     helpMap["title"] = "Help";
     helpMap["image"] = "menuhelp.png";
     //TODO: restore help command!
-    helpMap["command"] = "onboarding";
+    helpMap["command"] = "smarttracker";
     helpMap["topLine"] = false;
     m_menu.append(helpMap);
 

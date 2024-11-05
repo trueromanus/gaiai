@@ -19,6 +19,7 @@ class InGameTaskBar : public QQuickItem
 private:
     const QString m_shutDownPage { "shutdown" };
     const QString m_onboardingPage { "onboarding" };
+    const QString m_smartTrackerPage { "smarttracker" };
 
     QMap<InGameWindow*, QQmlComponent*> m_windows { QMap<InGameWindow*, QQmlComponent*>() };
     QVariantList m_visibleItems { QVariantList() };
@@ -60,6 +61,7 @@ private:
     void refreshVisibleWindows();
     void adjustShutDownPage();
     void adjustOnboardingPage();
+    void adjustSmartTrackerPage();
 
 private slots:
     void removeWindow(InGameWindow* window);

@@ -24,8 +24,10 @@ qt_add_qml_module(appgaiai
     QML_FILES Controls/ButtonPanel.qml Controls/InformationPanel.qml
     QML_FILES Controls/DefaultButton.qml
     QML_FILES Controls/PlainText.qml Controls/ContentButton.qml Controls/ToggleButton.qml Controls/StartMenuPopup.qml Controls/MenuPanel.qml
-    QML_FILES Pages/ShutDownPage.qml Pages/OnboardingPage.qml
+    QML_FILES Pages/ShutDownPage.qml Pages/OnboardingPage.qml Pages/SmartTrackerPage.qml
     QML_FILES Controls/WindowPanel.qml Controls/RadioButton.qml Controls/HorizontalLine.qml
+    QML_FILES Controls/Tree.qml Controls/TreeItem.qml
+    QML_FILES Controls/VerticalDashLine.qml Controls/HorizontalDashLine.qml
 
     SOURCES ingamewindow.h ingamewindow.cpp
     SOURCES ingamewindowdefaultheader.h ingamewindowdefaultheader.cpp
@@ -37,6 +39,7 @@ qt_add_qml_module(appgaiai
     SOURCES ingamewindowpage.h ingamewindowpage.cpp
     SOURCES ingamedesktop.h ingamedesktop.cpp
     SOURCES framepaginator.cpp framepaginator.h
+    SOURCES gamebackend.h gamebackend.cpp
 
     RESOURCES Icons/WindowToolbarIcons/close.svg
     RESOURCES Images/disablesound.png Images/enablesound.png

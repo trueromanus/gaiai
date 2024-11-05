@@ -4,6 +4,7 @@
 InGameTaskBar::InGameTaskBar() {
     adjustShutDownPage();
     adjustOnboardingPage();
+    adjustSmartTrackerPage();
 }
 
 void InGameTaskBar::setStartMenuOpened(bool startMenuOpened) noexcept
@@ -162,6 +163,14 @@ void InGameTaskBar::adjustOnboardingPage()
     m_windowSizes.insert(m_onboardingPage, std::make_tuple(488, 355));
     m_uniqueWindows.insert(m_onboardingPage);
     m_commandToPageMapping.insert(m_onboardingPage, "Pages/OnboardingPage.qml");
+}
+
+void InGameTaskBar::adjustSmartTrackerPage()
+{
+    m_defaultNamesOfWindows.insert(m_smartTrackerPage, "SmartTracker");
+    m_windowSizes.insert(m_smartTrackerPage, std::make_tuple(488, 355));
+    m_uniqueWindows.insert(m_smartTrackerPage);
+    m_commandToPageMapping.insert(m_smartTrackerPage, "Pages/SmartTrackerPage.qml");
 }
 
 void InGameTaskBar::removeWindow(InGameWindow *window)

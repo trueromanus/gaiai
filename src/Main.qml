@@ -62,6 +62,10 @@ Window {
         }
     }
 
+    GameBackend {
+        id: gameBackend
+    }
+
     Item {
         id: assetsLocation
         property string iconsPath: Qt.resolvedUrl("Icons/")
