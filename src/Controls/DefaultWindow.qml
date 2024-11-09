@@ -19,6 +19,9 @@ InGameWindow {
         width: parent.width
         height: 24
         anchors.top: parent.top
+        onNeedCloseWindow: {
+            root.closeWindow();
+        }
     }
 
     Item {

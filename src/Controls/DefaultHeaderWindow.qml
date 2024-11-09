@@ -70,16 +70,18 @@ InGameWindowDefaultHeader {
 
     IconButton {
         anchors.top: root.top
-        anchors.topMargin: 6
+        anchors.topMargin: 5
         anchors.right: root.right
         anchors.rightMargin: 6
-        width: 14
-        height: 14
-        iconWidth: 7
-        iconHeight: 7
-        iconSource: assetsLocation.iconsPath + "WindowToolbarIcons/close.svg"
+        width: 16
+        height: 16
+        iconWidth: 10
+        iconHeight: 8
+        iconX: 3
+        iconY: 3
+        iconSource: assetsLocation.imagedPath + "closewindowicon.png"
         onPressed: {
-            console.log(assetsLocation.iconsPath + "WindowToolbarIcons/close.svg");
+            root.needCloseWindow();
         }
     }
 }

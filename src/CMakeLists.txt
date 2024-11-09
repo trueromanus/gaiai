@@ -9,6 +9,7 @@ find_package(Qt6 6.7 REQUIRED COMPONENTS Quick)
 qt_standard_project_setup(REQUIRES 6.7)
 
 qt_add_executable(appgaiai
+    Models/gametaskmodel.h Models/gametaskmodel.cpp
     main.cpp
 )
 
@@ -41,12 +42,11 @@ qt_add_qml_module(appgaiai
     SOURCES framepaginator.cpp framepaginator.h
     SOURCES gamebackend.h gamebackend.cpp
 
-    RESOURCES Icons/WindowToolbarIcons/close.svg
     RESOURCES Images/disablesound.png Images/enablesound.png
     RESOURCES Images/keys.png
     RESOURCES Images/menuhelp.png Images/menusettings.png Images/menushutdown.png
     RESOURCES Images/menudocuments.png Images/menuprograms.png Images/menurun.png
-    RESOURCES Images/disabledradio.png Images/smarttracker.png
+    RESOURCES Images/disabledradio.png Images/smarttracker.png Images/closewindowicon.png
 )
 
 set_target_properties(appgaiai PROPERTIES

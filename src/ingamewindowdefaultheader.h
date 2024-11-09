@@ -29,6 +29,7 @@ protected:
 signals:
     void titleChanged();
     void activatedChanged();
+    void needCloseWindow();
 
 };
 

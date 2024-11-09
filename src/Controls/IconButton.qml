@@ -4,6 +4,8 @@ Item {
     id: root
     property alias iconWidth: iconImage.width
     property alias iconHeight: iconImage.height
+    property alias iconX: iconImage.x
+    property alias iconY: iconImage.y
     property alias iconSource: iconImage.source
 
     signal pressed()
@@ -63,8 +65,6 @@ Item {
 
     Image {
         id: iconImage
-        anchors.verticalCenter: parent.verticalCenter
-        anchors.horizontalCenter: parent.horizontalCenter
     }
 
     MouseArea {
