@@ -11,6 +11,7 @@ class GameTaskModel : public QObject
     Q_PROPERTY(bool completed READ completed WRITE setCompleted NOTIFY completedChanged FINAL)
     Q_PROPERTY(bool isMandatory READ isMandatory NOTIFY isMandatoryChanged FINAL)
     Q_PROPERTY(int day READ day NOTIFY dayChanged FINAL)
+    Q_PROPERTY(bool hasChildrens READ hasChildrens NOTIFY hasChildrensChanged FINAL)
 
 private:
     QString m_title { "" };
@@ -36,12 +37,15 @@ public:
 
     void checkCompleted() noexcept;
 
+    bool hasChildrens() const noexcept { return false; }
+
 signals:
     void titleChanged();
     void parentIdChanged();
     void completedChanged();
     void isMandatoryChanged();
     void dayChanged();
+    void hasChildrensChanged();
 
 };
 

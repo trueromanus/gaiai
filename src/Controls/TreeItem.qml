@@ -25,14 +25,16 @@ Item {
         anchors.left: verticalDash.left
         anchors.right: textTitle.left
         anchors.rightMargin: 1
-        anchors.verticalCenter: parent.verticalCenter
+        anchors.top: parent.top
+        anchors.topMargin: 10
         dashColor: "#BFBFBF"
     }
 
     Rectangle {
         id: iconContainer
         visible: root.hasChildren
-        anchors.verticalCenter: parent.verticalCenter
+        anchors.top: parent.top
+        anchors.topMargin: 5
         width: 11
         height: 11
         color: "white"
@@ -48,12 +50,19 @@ Item {
         }
 
         Rectangle {
-            visible: root.expanded
+            visible: !root.expanded
             x: 5
             y: 2
             width: 1
             height: 7
             color: "black"
+        }
+
+        MouseArea {
+            anchors.fill: parent
+            onPressed: {
+                root.expanded = !root.expanded;
+            }
         }
     }
 

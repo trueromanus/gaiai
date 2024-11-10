@@ -11,6 +11,7 @@ qt_standard_project_setup(REQUIRES 6.7)
 qt_add_executable(appgaiai
     Models/gametaskmodel.h Models/gametaskmodel.cpp
     Models/gametrafficlightmodel.h Models/gametrafficlightmodel.cpp
+    Models/gametasksectionmodel.h Models/gametasksectionmodel.cpp
     main.cpp
 )
 

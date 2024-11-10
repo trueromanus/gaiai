@@ -3,28 +3,22 @@
 GameBackend::GameBackend(QObject *parent)
     : QObject{parent}
 {
-    QVariantMap onboarding;
-    onboarding["title"] = "Onboarding";
-    onboarding["hasChildrens"] = true;
-    onboarding["isEndItem"] = false;
-    m_tasks.append(onboarding);
+    auto onboardingSection = new GameTaskSectionModel(this);
+    onboardingSection->setTitle("Onboarding");
+    m_tasksSections.append(onboardingSection);
 
-    QVariantMap streets;
-    streets["title"] = "Streets";
-    streets["hasChildrens"] = false;
-    streets["isEndItem"] = true;
-    m_tasks.append(streets);
+    auto streetsSection = new GameTaskSectionModel(this);
+    streetsSection->setTitle("Streets");
+    m_tasksSections.append(streetsSection);
+
+    m_tasksSectionMap.insert(m_onboardingTasks, onboardingSection);
+    m_tasksSectionMap.insert(m_streetsTasks, streetsSection);
 
     createTrafficLights();
 
     createDay1Tasks();
-    createDay2Tasks();
-    createDay3Tasks();
-    createDay4Tasks();
-    createDay5Tasks();
-    createDay6Tasks();
-    createDay7Tasks();
-    createDay8Tasks();
+
+    fillTasksForDay(m_firstDay);
 }
 
 void GameBackend::moveToNextDay()
@@ -52,61 +46,39 @@ void GameBackend::checkCompletedTasks()
 
 void GameBackend::createDay1Tasks()
 {
-    auto emailTutorial = new GameTaskModel(true, "Check you emails", m_onboardingTasks, 1,[]() { return true; }, this);
+    auto emailTutorial = new GameTaskModel(true, "Check you emails", m_onboardingTasks, m_firstDay,[]() { return true; }, this);
     m_allTasks.append(emailTutorial);
 
-    auto messagerTutorial = new GameTaskModel(true, "Reply in user groups", m_onboardingTasks, 1,[]() { return true; }, this);
+    auto messagerTutorial = new GameTaskModel(true, "Reply in user groups", m_onboardingTasks, m_firstDay,[]() { return true; }, this);
     m_allTasks.append(messagerTutorial);
 
-    auto rssTutorial = new GameTaskModel(true, "Read news", m_onboardingTasks, 1,[]() { return true; }, this);
+    auto rssTutorial = new GameTaskModel(true, "Read news", m_onboardingTasks, m_firstDay,[]() { return true; }, this);
     m_allTasks.append(rssTutorial);
 
     auto trafficLightTask = m_trafficLights.value("ElmStreetHighway");
-    auto fixTrafficLightTutorial = new GameTaskModel(true, "Fix traffic light", m_onboardingTasks, 1, [trafficLightTask]() { return trafficLightTask->isCorrect(); }, this);
+    auto fixTrafficLightTutorial = new GameTaskModel(true, "Fix traffic light", m_onboardingTasks, m_firstDay, [trafficLightTask]() { return trafficLightTask->isCorrect(); }, this);
     m_allTasks.append(fixTrafficLightTutorial);
-}
-
-void GameBackend::createDay2Tasks()
-{
-
-}
-
-void GameBackend::createDay3Tasks()
-{
-
-}
-
-void GameBackend::createDay4Tasks()
-{
-
-}
-
-void GameBackend::createDay5Tasks()
-{
-
-}
-
-void GameBackend::createDay6Tasks()
-{
-
-}
-
-void GameBackend::createDay7Tasks()
-{
-
-}
-
-void GameBackend::createDay8Tasks()
-{
-
 }
 
 void GameBackend::fillTasksForDay(int day)
 {
     m_activeTasks.clear();
 
+    // clear inner tasks
+    foreach (auto section, m_tasksSections) {
+        section->clearInnerTasks();
+    }
+
+    // fill active tasks and section inner tasks
     foreach (auto task, m_allTasks) {
-        if (task->day() == day) m_activeTasks.append(task);
+        if (task->day() != day) continue;
+
+        m_activeTasks.append(task);
+        auto parentId = task->parentId();
+        if (!m_tasksSectionMap.contains(parentId)) continue;
+
+        auto section = m_tasksSectionMap.value(parentId);
+        section->addInnerTask(task);
     }
 }
 

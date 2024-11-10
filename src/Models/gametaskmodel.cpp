@@ -1,7 +1,7 @@
 #include "gametaskmodel.h"
 
 GameTaskModel::GameTaskModel(bool isMandatory, const QString& title, const QString& parentId, int day, std::function<bool()> action, QObject *parent)
-    : QObject{parent}, m_isMandatory{isMandatory}, m_title{title}, m_parentId{parentId}, m_action{action}
+    : QObject{parent}, m_isMandatory{isMandatory}, m_title{title}, m_parentId{parentId}, m_day{day}, m_action{action}
 {
 
 }
