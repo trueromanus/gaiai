@@ -5,6 +5,7 @@
 #include <QVariantList>
 #include <QtQml/qqmlregistration.h>
 #include "Models/gametaskmodel.h"
+#include "Models/gametrafficlightmodel.h"
 
 class GameBackend : public QObject
 {
@@ -19,6 +20,7 @@ private:
     QVariantList m_tasks { QVariantList() };
     QList<GameTaskModel*> m_allTasks { QList<GameTaskModel*>() };
     QList<GameTaskModel*> m_activeTasks { QList<GameTaskModel*>() };
+    QMap<QString, GameTrafficLightModel*> m_trafficLights { QMap<QString, GameTrafficLightModel*>() };
     int m_day { 1 };
     int m_time { 0 };
 
@@ -30,6 +32,7 @@ public:
     int time() const noexcept { return m_time; }
 
     Q_INVOKABLE void moveToNextDay();
+    Q_INVOKABLE void checkCompletedTasks();
 
 private:
     void createDay1Tasks();
@@ -41,6 +44,7 @@ private:
     void createDay7Tasks();
     void createDay8Tasks();
     void fillTasksForDay(int day);
+    void createTrafficLights();
 
 signals:
     void tasksChanged();

@@ -18,9 +18,10 @@ private:
     bool m_completed { false };
     bool m_isMandatory { false };
     int m_day { 0 };
+    std::function<bool()> m_action { nullptr };
 
 public:
-    explicit GameTaskModel(bool isMandatory, const QString& title, const QString& parentId, int day, QObject *parent = nullptr);
+    explicit GameTaskModel(bool isMandatory, const QString& title, const QString& parentId, int day, std::function<bool()> action, QObject *parent = nullptr);
 
     QString title() const noexcept { return m_title; }
 
@@ -31,7 +32,9 @@ public:
 
     bool isMandatory() const noexcept { return m_isMandatory; }
 
-    bool day() const noexcept { return m_day; }
+    int day() const noexcept { return m_day; }
+
+    void checkCompleted() noexcept;
 
 signals:
     void titleChanged();

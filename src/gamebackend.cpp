@@ -15,6 +15,8 @@ GameBackend::GameBackend(QObject *parent)
     streets["isEndItem"] = true;
     m_tasks.append(streets);
 
+    createTrafficLights();
+
     createDay1Tasks();
     createDay2Tasks();
     createDay3Tasks();
@@ -39,16 +41,28 @@ void GameBackend::moveToNextDay()
     emit dayChanged();
 }
 
+void GameBackend::checkCompletedTasks()
+{
+    foreach (auto activeTask, m_activeTasks) {
+        if (activeTask->completed()) continue;
+
+        activeTask->checkCompleted();
+    }
+}
+
 void GameBackend::createDay1Tasks()
 {
-    auto emailTutorial = new GameTaskModel(true, "Check email from government", m_onboardingTasks, 1, this);
-    auto messagerTutorial = new GameTaskModel(true, "Reply in user groups", m_onboardingTasks, 1, this);
-    auto rssTutorial = new GameTaskModel(true, "Read news", m_onboardingTasks, 1, this);
-    auto fixTrafficLightTutorial = new GameTaskModel(true, "Fix traffic light", m_onboardingTasks, 1, this);
-
+    auto emailTutorial = new GameTaskModel(true, "Check you emails", m_onboardingTasks, 1,[]() { return true; }, this);
     m_allTasks.append(emailTutorial);
+
+    auto messagerTutorial = new GameTaskModel(true, "Reply in user groups", m_onboardingTasks, 1,[]() { return true; }, this);
     m_allTasks.append(messagerTutorial);
+
+    auto rssTutorial = new GameTaskModel(true, "Read news", m_onboardingTasks, 1,[]() { return true; }, this);
     m_allTasks.append(rssTutorial);
+
+    auto trafficLightTask = m_trafficLights.value("ElmStreetHighway");
+    auto fixTrafficLightTutorial = new GameTaskModel(true, "Fix traffic light", m_onboardingTasks, 1, [trafficLightTask]() { return trafficLightTask->isCorrect(); }, this);
     m_allTasks.append(fixTrafficLightTutorial);
 }
 
@@ -94,4 +108,32 @@ void GameBackend::fillTasksForDay(int day)
     foreach (auto task, m_allTasks) {
         if (task->day() == day) m_activeTasks.append(task);
     }
+}
+
+void GameBackend::createTrafficLights()
+{
+    // Elm street, left side
+
+    auto elmStreetStartHighway = new GameTrafficLightModel(this);
+    elmStreetStartHighway->simpleSetup(10, 5, 3, true);
+    m_trafficLights.insert("ElmStreetHighway", elmStreetStartHighway);
+
+    auto elmStreetHouse1526 = new GameTrafficLightModel(this);
+    elmStreetHouse1526->simpleSetup(5, 4, 2, true);
+    m_trafficLights.insert("ElmStreetHouse1526", elmStreetHouse1526);
+
+    auto elmStreetHouse1680 = new GameTrafficLightModel(this);
+    elmStreetHouse1680->simpleSetup(7, 5, 2, true);
+    m_trafficLights.insert("ElmStreetHouse1680", elmStreetHouse1680);
+
+    // Elm street, right side
+
+    auto elmStreetHouse1427 = new GameTrafficLightModel(this);
+    elmStreetHouse1427->simpleSetup(9, 8, 3, true);
+    m_trafficLights.insert("ElmStreetHouse1427", elmStreetHouse1427);
+
+    auto elmStreetHouse1529 = new GameTrafficLightModel(this);
+    elmStreetHouse1529->simpleSetup(8, 8, 2, true);
+    m_trafficLights.insert("ElmStreetHouse1529", elmStreetHouse1529);
+
 }
