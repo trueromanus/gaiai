@@ -1,6 +1,8 @@
 import QtQuick
 import gaiai
 import "../Controls"
+import "../Controls/Panels"
+import "../Controls/Lines"
 
 InGameWindowPage {
     id: root

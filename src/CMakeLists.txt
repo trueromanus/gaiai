@@ -18,21 +18,41 @@ qt_add_executable(appgaiai
 qt_add_qml_module(appgaiai
     URI gaiai
     VERSION 1.0
-    QML_FILES Main.qml
-    QML_FILES Controls/DefaultHeaderWindow.qml
-    QML_FILES Controls/IconButton.qml
-    QML_FILES Controls/DefaultWindow.qml
-    QML_FILES Controls/Panel.qml
-    QML_FILES Controls/TaskBar.qml
-    QML_FILES Controls/ButtonPanel.qml Controls/InformationPanel.qml
-    QML_FILES Controls/DefaultButton.qml
-    QML_FILES Controls/PlainText.qml Controls/ContentButton.qml Controls/ToggleButton.qml Controls/StartMenuPopup.qml Controls/MenuPanel.qml
-    QML_FILES Controls/WindowPanel.qml Controls/RadioButton.qml Controls/HorizontalLine.qml
-    QML_FILES Controls/Tree.qml Controls/TreeItem.qml
-    QML_FILES Controls/VerticalDashLine.qml Controls/HorizontalDashLine.qml
-    QML_FILES Controls/FlickableArea.qml Controls/DashRectangle.qml
-    QML_FILES Controls/TreeLevel.qml
-    QML_FILES Pages/ShutDownPage.qml Pages/OnboardingPage.qml Pages/SmartTrackerPage.qml
+    QML_FILES
+        Main.qml
+        Controls/PlainText.qml
+    QML_FILES
+        Controls/DefaultHeaderWindow.qml
+        Controls/DefaultWindow.qml
+    QML_FILES
+        Controls/Panels/Panel.qml
+        Controls/Panels/ButtonPanel.qml
+        Controls/Panels/InformationPanel.qml
+        Controls/Panels/MenuPanel.qml
+        Controls/Panels/WindowPanel.qml
+    QML_FILES
+        Controls/Lines/VerticalDashLine.qml
+        Controls/Lines/HorizontalDashLine.qml
+        Controls/Lines/DashRectangle.qml
+        Controls/Lines/HorizontalLine.qml
+    QML_FILES
+        Controls/DefaultButton.qml
+        Controls/IconButton.qml
+        Controls/ContentButton.qml
+        Controls/ToggleButton.qml
+        Controls/RadioButton.qml
+    QML_FILES
+        Controls/TaskBar.qml
+        Controls/StartMenuPopup.qml
+    QML_FILES
+        Controls/Tree.qml
+        Controls/TreeItem.qml
+        Controls/TreeLevel.qml
+    QML_FILES Controls/FlickableArea.qml
+    QML_FILES
+        Pages/ShutDownPage.qml
+        Pages/OnboardingPage.qml
+        Pages/SmartTrackerPage.qml
 
     SOURCES ingamewindow.h ingamewindow.cpp
     SOURCES ingamewindowdefaultheader.h ingamewindowdefaultheader.cpp

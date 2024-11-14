@@ -1,5 +1,7 @@
 import QtQuick
 import gaiai
+import "Panels"
+import "Lines"
 
 InGameStartMenu {
     id: root
