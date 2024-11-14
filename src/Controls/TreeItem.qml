@@ -9,7 +9,10 @@ Item {
     property bool hasChildren: false
     property bool isEndItem: false
     property bool expanded: false
+    property bool isSelected: false
     default property alias content: contentContainer.children
+
+    signal itemPressed()
 
     VerticalDashLine {
         id: verticalDash
@@ -23,7 +26,7 @@ Item {
 
     HorizontalDashLine {
         anchors.left: verticalDash.left
-        anchors.right: textTitle.left
+        anchors.right: itemTitle.left
         anchors.rightMargin: 1
         anchors.top: parent.top
         anchors.topMargin: 10
@@ -66,15 +69,45 @@ Item {
         }
     }
 
-    Text {
-        id: textTitle
+    Item {
+        id: itemTitle
         anchors.left: iconContainer.right
         anchors.leftMargin: 10
+        width: textTitle.width + 6
+        height: 20
+
+        Rectangle {
+            visible: root.isSelected
+            anchors.fill: parent
+            color: "#00007F"
+
+            DashRectangle {
+                anchors.fill: parent
+                anchors.leftMargin: 1
+                dashColor: "#C6C642"
+            }
+        }
+
+        Text {
+            id: textTitle
+            color: root.isSelected ? "white" : "black"
+            font.weight: root.isSelected ? Font.Medium : Font.Normal
+            anchors.left: parent.left
+            anchors.leftMargin: 2
+            anchors.verticalCenter: parent.verticalCenter
+
+            MouseArea {
+                anchors.fill: parent
+                onPressed: {
+                    root.itemPressed();
+                }
+            }
+        }
     }
 
     Item {
         id: contentContainer
-        anchors.left: textTitle.left
+        anchors.left: itemTitle.left
         anchors.top: iconContainer.bottom
         anchors.right: parent.right
         anchors.bottom: parent.bottom

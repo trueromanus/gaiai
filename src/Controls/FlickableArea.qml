@@ -4,12 +4,15 @@ import gaiai
 Item {
     anchors.fill: parent
 
+    default property alias content: flickableArea.children
+
     Flickable {
         id: flickableArea
         anchors.right: fullVerticalScrollBar.left
         anchors.top: parent.top
         anchors.left: parent.left
         anchors.bottom: parent.bottom // replace on horizontal scrollbar
+        clip: true
     }
 
     Item {

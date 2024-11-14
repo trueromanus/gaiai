@@ -1,49 +1,28 @@
 import QtQuick
+import gaiai
 
-Item {
+InGameTree {
     id: root
 
-    property alias model: items.model
+    property var model
 
-
-    Column {
-        anchors.fill: parent
-
-        Repeater {
-            id: items
-            delegate: TreeItem {
-                id: treeItem
-                width: root.width
-                title: modelData.title
-                hasChildren: modelData.hasChildrens
-                isEndItem: index === items.model.length - 1
-                height: 20 + (expanded ? 20 * modelData.childrens.length : 0)
-                Loader {
-                    id: childrensLoader
-                    property var nestedChildrens: modelData.childrens
-                    anchors.fill: parent
-                    sourceComponent: treeItem.expanded && modelData.hasChildrens ? nestedTree : null
-                }
-            }
-        }
+    TreeLevel {
+        id: rootLevel
+        treeRoot: root
+        nestedChildrens: root.model
+        childComponent: childComponent
     }
 
     Component {
-        id: nestedTree
+        id: childComponent
 
-        Column {
-            anchors.fill: parent
-
-            Repeater {
-                id: nestedItems
-                model: nestedChildrens
-                delegate: TreeItem {
-                    width: root.width
-                    title: modelData.title
-                    hasChildren: modelData.hasChildrens
-                    isEndItem: index === nestedItems.model.length - 1
-                }
-            }
+        TreeLevel {
+            id: nestedLevel
+            anchors.top: parent.top
+            anchors.topMargin: 4
+            treeRoot: root
+            nestedChildrens: levelChildrens
+            childComponent: rootLevel.childComponent
         }
     }
 }

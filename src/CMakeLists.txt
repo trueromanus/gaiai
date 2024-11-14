@@ -30,7 +30,8 @@ qt_add_qml_module(appgaiai
     QML_FILES Controls/WindowPanel.qml Controls/RadioButton.qml Controls/HorizontalLine.qml
     QML_FILES Controls/Tree.qml Controls/TreeItem.qml
     QML_FILES Controls/VerticalDashLine.qml Controls/HorizontalDashLine.qml
-    QML_FILES Controls/FlickableArea.qml
+    QML_FILES Controls/FlickableArea.qml Controls/DashRectangle.qml
+    QML_FILES Controls/TreeLevel.qml
     QML_FILES Pages/ShutDownPage.qml Pages/OnboardingPage.qml Pages/SmartTrackerPage.qml
 
     SOURCES ingamewindow.h ingamewindow.cpp
@@ -45,12 +46,13 @@ qt_add_qml_module(appgaiai
     SOURCES framepaginator.cpp framepaginator.h
     SOURCES gamebackend.h gamebackend.cpp
     SOURCES verticalscrollbar.h verticalscrollbar.cpp
+    SOURCES ingametree.h ingametree.cpp
 
     RESOURCES Images/disablesound.png Images/enablesound.png
     RESOURCES Images/keys.png
     RESOURCES Images/menuhelp.png Images/menusettings.png Images/menushutdown.png
     RESOURCES Images/menudocuments.png Images/menuprograms.png Images/menurun.png
-    RESOURCES Images/disabledradio.png Images/smarttracker.png Images/closewindowicon.png
+    RESOURCES Images/disabledradio.png Images/smarttracker.png Images/closewindowicon.png    
 )
 
 set_target_properties(appgaiai PROPERTIES
