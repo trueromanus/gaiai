@@ -30,18 +30,21 @@ InGameWindowPage {
         }
     }
 
-    Rectangle {
+    Panel {
         anchors.left: parent.left
         anchors.leftMargin: 4
         anchors.top: treeHeader.bottom
         anchors.topMargin: 2
         anchors.right: treeHeader.right
         anchors.bottom: parent.bottom
-        color: "white"
-        border.width: 2
-        border.color: "black"
+
+        Rectangle {
+            anchors.fill: parent
+            color: "white"
+        }
 
         Tree {
+            id: tasksTree
             anchors.fill: parent
             anchors.leftMargin: 8
             anchors.topMargin: 4
@@ -64,7 +67,43 @@ InGameWindowPage {
             anchors.verticalCenter: parent.verticalCenter
             anchors.left: parent.left
             anchors.leftMargin: 4
-            text: "Content of"
+            text: "Contents of"
+        }
+    }
+
+    Panel {
+        visible: (tasksTree.selectedNode && tasksTree.selectedNode.hasChildrens)
+        anchors.left: contentsHeader.left
+        anchors.top: contentsHeader.bottom
+        anchors.topMargin: 2
+        anchors.right: contentsHeader.right
+        anchors.bottom: parent.bottom
+
+        Rectangle {
+            anchors.fill: parent
+            color: "white"
+        }
+
+        Text {
+            text: "list presentation"
+        }
+    }
+
+    Panel {
+        visible: (tasksTree.selectedNode && !tasksTree.selectedNode.hasChildrens)
+        anchors.left: contentsHeader.left
+        anchors.top: contentsHeader.bottom
+        anchors.topMargin: 2
+        anchors.right: contentsHeader.right
+        anchors.bottom: parent.bottom
+
+        Rectangle {
+            anchors.fill: parent
+            color: "white"
+        }
+
+        Text {
+            text: "item presentation"
         }
     }
 }
