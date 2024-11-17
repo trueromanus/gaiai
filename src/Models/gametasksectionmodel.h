@@ -10,10 +10,12 @@ class GameTaskSectionModel : public QObject
     Q_PROPERTY(QString title READ title WRITE setTitle NOTIFY titleChanged FINAL)
     Q_PROPERTY(bool hasChildrens READ hasChildrens NOTIFY hasChildrensChanged FINAL)
     Q_PROPERTY(QList<GameTaskModel*> childrens READ childrens NOTIFY childrensChanged FINAL)
+    Q_PROPERTY(QList<QObject*> objectChildrens READ objectChildrens NOTIFY objectChildrensChanged FINAL)
 
 private:
     QString m_title { "" };
     QList<GameTaskModel*> m_innerTasks { QList<GameTaskModel*>() };
+    QList<QObject*> m_innerTasksAsObject { QList<QObject*>() };
 
 public:
     explicit GameTaskSectionModel(QObject *parent = nullptr);
@@ -25,7 +27,7 @@ public:
 
     QList<GameTaskModel*> childrens() const noexcept { return m_innerTasks; }
 
-    void reassignInnerTasks(const QList<GameTaskModel*> tasks) noexcept;
+    QList<QObject*> objectChildrens() const noexcept { return m_innerTasksAsObject; }
 
     void clearInnerTasks() noexcept;
 
@@ -36,6 +38,7 @@ signals:
     void hasChildrensChanged();
     void isEndItemChanged();
     void childrensChanged();
+    void objectChildrensChanged();
 
 };
 

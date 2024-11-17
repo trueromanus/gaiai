@@ -14,6 +14,14 @@ void InGameTableList::setColumns(const QList<GameTableColumn *> columns) noexcep
     recalculateFullWidth();
 }
 
+void InGameTableList::setItems(const QList<QObject*> items) noexcept
+{
+    if (m_items == items) return;
+
+    m_items = items;
+    emit itemsChanged();
+}
+
 void InGameTableList::recalculateFullWidth()
 {
     auto fullWidth = 0;

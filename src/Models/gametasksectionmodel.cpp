@@ -12,26 +12,20 @@ void GameTaskSectionModel::setTitle(const QString &title) noexcept
     emit titleChanged();
 }
 
-void GameTaskSectionModel::reassignInnerTasks(const QList<GameTaskModel *> tasks) noexcept
-{
-    m_innerTasks.clear();
-
-    m_innerTasks.append(tasks);
-
-    emit hasChildrensChanged();
-    emit childrensChanged();
-}
-
 void GameTaskSectionModel::clearInnerTasks() noexcept
 {
     m_innerTasks.clear();
+    m_innerTasksAsObject.clear();
     emit hasChildrensChanged();
     emit childrensChanged();
+    emit objectChildrensChanged();
 }
 
 void GameTaskSectionModel::addInnerTask(GameTaskModel *task) noexcept
 {
     m_innerTasks.append(task);
+    m_innerTasksAsObject.append(qobject_cast<QObject*>(task));
     emit hasChildrensChanged();
     emit childrensChanged();
+    emit objectChildrensChanged();
 }

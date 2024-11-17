@@ -73,6 +73,7 @@ InGameWindowPage {
     }
 
     Panel {
+        id: contentsPanel
         visible: (tasksTree.selectedNode && tasksTree.selectedNode.hasChildrens)
         anchors.left: contentsHeader.left
         anchors.top: contentsHeader.bottom
@@ -85,9 +86,19 @@ InGameWindowPage {
             color: "white"
         }
 
+        Loader {
+            anchors.fill: parent
+            sourceComponent: contentsPanel.visible ? tableList : null
+        }
+    }
+
+    Component {
+        id: tableList
+
         TableList {
             anchors.fill: parent
             columns: gameBackend.smartTrackerPage.columns
+            items: tasksTree.selectedNode.objectChildrens
         }
     }
 
