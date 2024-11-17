@@ -7,6 +7,7 @@
 #include "Models/gametaskmodel.h"
 #include "Models/gametrafficlightmodel.h"
 #include "Models/gametasksectionmodel.h"
+#include "PageModels/smarttrackerpage.h"
 
 class GameBackend : public QObject
 {
@@ -14,6 +15,7 @@ class GameBackend : public QObject
     Q_PROPERTY(QList<GameTaskSectionModel*> tasks READ tasks NOTIFY tasksChanged FINAL)
     Q_PROPERTY(int day READ day NOTIFY dayChanged FINAL)
     Q_PROPERTY(int time READ time NOTIFY timeChanged FINAL)
+    Q_PROPERTY(SmartTrackerPage* smartTrackerPage READ smartTrackerPage NOTIFY smartTrackerPageChanged FINAL)
     QML_ELEMENT
 
 private:
@@ -27,6 +29,7 @@ private:
     QMap<QString, GameTrafficLightModel*> m_trafficLights { QMap<QString, GameTrafficLightModel*>() };
     int m_day { 1 };
     int m_time { 0 };
+    SmartTrackerPage* m_smartTrackerPage { new SmartTrackerPage(this) };
 
 public:
     explicit GameBackend(QObject *parent = nullptr);
@@ -34,6 +37,7 @@ public:
     QList<GameTaskSectionModel*> tasks() const noexcept { return m_tasksSections; }
     int day() const noexcept { return m_day; }
     int time() const noexcept { return m_time; }
+    SmartTrackerPage* smartTrackerPage() const noexcept { return m_smartTrackerPage; }
 
     Q_INVOKABLE void moveToNextDay();
     Q_INVOKABLE void checkCompletedTasks();
@@ -47,6 +51,7 @@ signals:
     void tasksChanged();
     void dayChanged();
     void timeChanged();
+    void smartTrackerPageChanged();
 
 };
 

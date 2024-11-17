@@ -21,6 +21,14 @@ void InGameButton::settitle(const QString &title) noexcept
     emit titleChanged();
 }
 
+void InGameButton::setLeftAligned(bool leftAligned) noexcept
+{
+    if (m_leftAligned == leftAligned) return;
+
+    m_leftAligned = leftAligned;
+    emit leftAlignedChanged();
+}
+
 void InGameButton::press() noexcept
 {
     m_pressed = true;

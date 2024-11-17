@@ -85,8 +85,9 @@ InGameWindowPage {
             color: "white"
         }
 
-        Text {
-            text: "list presentation"
+        TableList {
+            anchors.fill: parent
+            columns: gameBackend.smartTrackerPage.columns
         }
     }
 

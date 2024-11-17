@@ -16,7 +16,7 @@ InGameButton {
             anchors.left: parent.left
             anchors.leftMargin: 4
             anchors.verticalCenter: parent.verticalCenter
-            horizontalAlignment: Text.AlignHCenter
+            horizontalAlignment: !root.leftAligned ? Text.AlignHCenter : Text.AlignLeft
             color: root.disabled ? "#818181" : "black"
             text: root.title
             maximumLineCount: 1

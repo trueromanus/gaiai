@@ -168,7 +168,7 @@ void InGameTaskBar::adjustOnboardingPage()
 void InGameTaskBar::adjustSmartTrackerPage()
 {
     m_defaultNamesOfWindows.insert(m_smartTrackerPage, "SmartTracker");
-    m_windowSizes.insert(m_smartTrackerPage, std::make_tuple(488, 355));
+    m_windowSizes.insert(m_smartTrackerPage, std::make_tuple(558, 355));
     m_uniqueWindows.insert(m_smartTrackerPage);
     m_commandToPageMapping.insert(m_smartTrackerPage, "Pages/SmartTrackerPage.qml");
 }

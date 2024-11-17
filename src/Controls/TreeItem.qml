@@ -96,12 +96,12 @@ Item {
             anchors.left: parent.left
             anchors.leftMargin: 2
             anchors.verticalCenter: parent.verticalCenter
+        }
 
-            MouseArea {
-                anchors.fill: parent
-                onPressed: {
-                    root.itemPressed();
-                }
+        MouseArea {
+            anchors.fill: parent
+            onPressed: {
+                root.itemPressed();
             }
         }
     }

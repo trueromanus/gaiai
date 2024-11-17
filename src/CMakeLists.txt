@@ -12,6 +12,8 @@ qt_add_executable(appgaiai
     Models/gametaskmodel.h Models/gametaskmodel.cpp
     Models/gametrafficlightmodel.h Models/gametrafficlightmodel.cpp
     Models/gametasksectionmodel.h Models/gametasksectionmodel.cpp
+    Models/gametablecolumn.h Models/gametablecolumn.cpp
+    PageModels/smarttrackerpage.h PageModels/smarttrackerpage.cpp
     main.cpp
 )
 
@@ -48,7 +50,9 @@ qt_add_qml_module(appgaiai
         Controls/Tree.qml
         Controls/TreeItem.qml
         Controls/TreeLevel.qml
-    QML_FILES Controls/FlickableArea.qml
+    QML_FILES
+        Controls/FlickableArea.qml
+        Controls/TableList.qml
     QML_FILES
         Pages/ShutDownPage.qml
         Pages/OnboardingPage.qml
@@ -67,6 +71,7 @@ qt_add_qml_module(appgaiai
     SOURCES gamebackend.h gamebackend.cpp
     SOURCES verticalscrollbar.h verticalscrollbar.cpp
     SOURCES ingametree.h ingametree.cpp
+    SOURCES ingametablelist.h ingametablelist.cpp
 
     RESOURCES Images/disablesound.png Images/enablesound.png
     RESOURCES Images/keys.png
