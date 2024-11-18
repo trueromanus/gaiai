@@ -27,3 +27,19 @@ void GameTableColumn::setColumnWidth(int columnWidth) noexcept
     m_columnWidth = columnWidth;
     emit columnWidthChanged();
 }
+
+void GameTableColumn::setFormatter(const QString &formatter) noexcept
+{
+    if (m_formatter == formatter) return;
+
+    m_formatter = formatter;
+    emit formatterChanged();
+}
+
+void GameTableColumn::setSelectable(bool selectable) noexcept
+{
+    if (m_selectable == selectable) return;
+
+    m_selectable = selectable;
+    emit selectableChanged();
+}

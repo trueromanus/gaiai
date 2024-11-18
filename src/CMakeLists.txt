@@ -32,6 +32,7 @@ qt_add_qml_module(appgaiai
         Controls/Panels/InformationPanel.qml
         Controls/Panels/MenuPanel.qml
         Controls/Panels/WindowPanel.qml
+        Controls/Panels/CheckBoxPanel.qml
     QML_FILES
         Controls/Lines/VerticalDashLine.qml
         Controls/Lines/HorizontalDashLine.qml
@@ -72,6 +73,7 @@ qt_add_qml_module(appgaiai
     SOURCES verticalscrollbar.h verticalscrollbar.cpp
     SOURCES ingametree.h ingametree.cpp
     SOURCES ingametablelist.h ingametablelist.cpp
+    SOURCES ingamecheckbox.h ingamecheckbox.cpp
 
     RESOURCES Images/disablesound.png Images/enablesound.png
     RESOURCES Images/keys.png

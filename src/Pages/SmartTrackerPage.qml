@@ -99,6 +99,9 @@ InGameWindowPage {
             anchors.fill: parent
             columns: gameBackend.smartTrackerPage.columns
             items: tasksTree.selectedNode.objectChildrens
+            onSelectedItemChanged: {
+                gameBackend.smartTrackerPage.selectedTaskInList = selectedItem;
+            }
         }
     }
 

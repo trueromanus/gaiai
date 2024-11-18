@@ -9,6 +9,7 @@ class InGameTableList : public QQuickItem
     Q_OBJECT
     Q_PROPERTY(QList<GameTableColumn*> columns READ columns WRITE setColumns NOTIFY columnsChanged FINAL)
     Q_PROPERTY(QList<QObject*> items READ items WRITE setItems NOTIFY itemsChanged FINAL)
+    Q_PROPERTY(QObject* selectedItem READ selectedItem WRITE setSelectedItem NOTIFY selectedItemChanged FINAL)
     Q_PROPERTY(int fullWidth READ fullWidth NOTIFY fullWidthChanged FINAL)
     QML_ELEMENT
 
@@ -16,6 +17,7 @@ private:
     QList<GameTableColumn*> m_columns { QList<GameTableColumn*>() };
     QList<QObject*> m_items { QList<QObject*>() };
     int m_fullWidth { 0 };
+    QObject* m_selectedItem { nullptr };
 
 public:
     InGameTableList();
@@ -28,6 +30,9 @@ public:
 
     int fullWidth() const noexcept { return m_fullWidth; }
 
+    QObject* selectedItem() const noexcept { return m_selectedItem; }
+    void setSelectedItem(const QObject* selectedItem) noexcept;
+
 private:
     void recalculateFullWidth();
 
@@ -35,6 +40,7 @@ signals:
     void columnsChanged();
     void fullWidthChanged();
     void itemsChanged();
+    void selectedItemChanged();
 
 };
 

@@ -22,6 +22,14 @@ void InGameTableList::setItems(const QList<QObject*> items) noexcept
     emit itemsChanged();
 }
 
+void InGameTableList::setSelectedItem(const QObject *selectedItem) noexcept
+{
+    if (m_selectedItem == selectedItem) return;
+
+    m_selectedItem = const_cast<QObject *>(selectedItem);
+    emit selectedItemChanged();
+}
+
 void InGameTableList::recalculateFullWidth()
 {
     auto fullWidth = 0;

@@ -45,6 +45,13 @@ InGameTableList {
 
                     property int columnWidth: modelData.columnWidth
                     property string columnValue: listRow.rowModel[modelData.field]
+                    property bool selectable: modelData.selectable
+                    property bool selectedItem: root.selectedItem === listRow.rowModel
+
+                    signal selectItem()
+                    onSelectItem: {
+                        root.selectedItem = listRow.rowModel;
+                    }
                 }
             }
         }
@@ -53,15 +60,43 @@ InGameTableList {
     Component {
         id: simpleText
 
-        PlainText {
-            verticalAlignment: Text.AlignVCenter
-            leftPadding: 2
+        Item {
             width: columnWidth
             height: 20
-            text: columnValue
-            wrapMode: Text.NoWrap
-            elide: Text.ElideRight
-            maximumLineCount: 1
+
+            Rectangle {
+                visible: selectable && selectedItem
+                width: valueText.contentWidth + 4
+                height: parent.height
+                color: "#00007F"
+
+                DashRectangle {
+                    anchors.fill: parent
+                    anchors.leftMargin: 1
+                    dashColor: "#C6C642"
+                }
+            }
+
+            PlainText {
+                id: valueText
+                verticalAlignment: Text.AlignVCenter
+                leftPadding: 2
+                width: parent.width
+                height: parent.height
+                text: columnValue
+                color: selectable && selectedItem ? "white" : "black"
+                wrapMode: Text.NoWrap
+                elide: Text.ElideRight
+                maximumLineCount: 1
+            }
+
+            MouseArea {
+                anchors.fill: parent
+                enabled: selectable
+                onPressed: {
+                    selectItem();
+                }
+            }
         }
     }
 }
