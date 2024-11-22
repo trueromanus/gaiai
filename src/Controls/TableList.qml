@@ -96,6 +96,9 @@ InGameTableList {
                 onPressed: {
                     selectItem();
                 }
+                onDoubleClicked: {
+                    root.openItem();
+                }
             }
         }
     }

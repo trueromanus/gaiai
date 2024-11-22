@@ -9,6 +9,7 @@ InGameStartMenu {
     height: 336
 
     MenuPanel {
+        id: mainMenuPanel
         anchors.fill: parent
 
         Rectangle {
@@ -43,8 +44,12 @@ InGameStartMenu {
                 width: parent.width
                 model: root.menu
                 delegate: Item {
+                    id: itemRoot
                     width: itemsColumn.width
                     height: 55
+
+                    property bool highlightItem: menuMouseArea.isHovered ||
+                        (modelData.title === "Programs" && programsMenu.visible)
 
                     HorizontalLine {
                         anchors.top: parent.top
@@ -54,7 +59,7 @@ InGameStartMenu {
 
                     Rectangle {
                         id: selectedRectangle
-                        visible: false
+                        visible: itemRoot.highlightItem
                         anchors.fill: parent
                         color: "#00007F"
                     }
@@ -74,22 +79,42 @@ InGameStartMenu {
                         anchors.leftMargin: 18
                         anchors.verticalCenter: parent.verticalCenter
                         text: modelData.title
-                        color: selectedRectangle.visible ? "white" : "black"
+                        color: itemRoot.highlightItem ? "white" : "black"
                         fontSize: 15
                     }
 
+                    RightTriangle {
+                        visible: modelData.submenu
+                        anchors.right: parent.right
+                        anchors.rightMargin: 4
+                        anchors.verticalCenter: parent.verticalCenter
+                        shapeColor: itemRoot.highlightItem ? "white" : "black"
+                        transform: Scale {
+                            origin.x: 5;
+                            origin.y: 10;
+                            xScale: 0.5
+                            yScale: 0.5
+                        }
+                    }
+
                     MouseArea {
+                        id: menuMouseArea
                         anchors.fill: parent
                         acceptedButtons: Qt.LeftButton
                         hoverEnabled: true
+
+                        property bool isHovered: false
+
                         onEntered: {
-                            selectedRectangle.visible = true;
+                            menuMouseArea.isHovered = true;
+                            programsMenu.visible = modelData.submenu && modelData.title === "Programs";
                         }
                         onExited: {
-                            selectedRectangle.visible = false;
+                            menuMouseArea.isHovered = false;
                         }
                         onPressed: function (mouse) {
                             mouse.accepted = true;
+                            if (modelData.submenu) return;
                             if (modelData.command) root.commandRunned(modelData.command)
                         }
                     }
@@ -98,4 +123,13 @@ InGameStartMenu {
         }
     }
 
+    CommonMenu {
+        id: programsMenu
+        anchors.left: mainMenuPanel.right
+        anchors.leftMargin: -6
+        anchors.top: mainMenuPanel.top
+        visible: false
+        items: root.programs
+        menuWidth: 170
+    }
 }

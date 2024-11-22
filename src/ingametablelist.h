@@ -41,6 +41,7 @@ signals:
     void fullWidthChanged();
     void itemsChanged();
     void selectedItemChanged();
+    void openItem();
 
 };
 

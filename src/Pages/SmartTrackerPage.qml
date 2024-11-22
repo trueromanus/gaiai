@@ -102,6 +102,9 @@ InGameWindowPage {
             onSelectedItemChanged: {
                 gameBackend.smartTrackerPage.selectedTaskInList = selectedItem;
             }
+            onOpenItem: {
+                tasksTree.selectNode(gameBackend.smartTrackerPage.selectedTaskInList);
+            }
         }
     }
 

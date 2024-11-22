@@ -13,6 +13,7 @@ qt_add_executable(appgaiai
     Models/gametrafficlightmodel.h Models/gametrafficlightmodel.cpp
     Models/gametasksectionmodel.h Models/gametasksectionmodel.cpp
     Models/gametablecolumn.h Models/gametablecolumn.cpp
+    Models/gamemenumodel.h Models/gamemenumodel.cpp
     PageModels/smarttrackerpage.h PageModels/smarttrackerpage.cpp
     main.cpp
 )
@@ -38,6 +39,7 @@ qt_add_qml_module(appgaiai
         Controls/Lines/HorizontalDashLine.qml
         Controls/Lines/DashRectangle.qml
         Controls/Lines/HorizontalLine.qml
+        Controls/Lines/RightTriangle.qml
     QML_FILES
         Controls/DefaultButton.qml
         Controls/IconButton.qml
@@ -47,6 +49,8 @@ qt_add_qml_module(appgaiai
     QML_FILES
         Controls/TaskBar.qml
         Controls/StartMenuPopup.qml
+        Controls/CommonMenu.qml
+        Controls/CommonMenuList.qml
     QML_FILES
         Controls/Tree.qml
         Controls/TreeItem.qml
@@ -59,27 +63,37 @@ qt_add_qml_module(appgaiai
         Pages/OnboardingPage.qml
         Pages/SmartTrackerPage.qml
 
-    SOURCES ingamewindow.h ingamewindow.cpp
-    SOURCES ingamewindowdefaultheader.h ingamewindowdefaultheader.cpp
-    SOURCES ingametaskbar.h ingametaskbar.cpp
-    SOURCES ingamebutton.h ingamebutton.cpp
-    SOURCES ingamestartmenu.h ingamestartmenu.cpp
-    SOURCES systemsettings.h systemsettings.cpp
-    SOURCES ingameradiobutton.h ingameradiobutton.cpp
-    SOURCES ingamewindowpage.h ingamewindowpage.cpp
-    SOURCES ingamedesktop.h ingamedesktop.cpp
-    SOURCES framepaginator.cpp framepaginator.h
-    SOURCES gamebackend.h gamebackend.cpp
-    SOURCES verticalscrollbar.h verticalscrollbar.cpp
-    SOURCES ingametree.h ingametree.cpp
-    SOURCES ingametablelist.h ingametablelist.cpp
-    SOURCES ingamecheckbox.h ingamecheckbox.cpp
+    SOURCES
+        ingamewindow.h ingamewindow.cpp
+        ingamewindowdefaultheader.h ingamewindowdefaultheader.cpp
+        ingametaskbar.h ingametaskbar.cpp
+        ingamebutton.h ingamebutton.cpp
+        ingamestartmenu.h ingamestartmenu.cpp
+        systemsettings.h systemsettings.cpp
+        ingameradiobutton.h ingameradiobutton.cpp
+        ingamewindowpage.h ingamewindowpage.cpp
+        ingamedesktop.h ingamedesktop.cpp
+        framepaginator.cpp framepaginator.h
+        gamebackend.h gamebackend.cpp
+        verticalscrollbar.h verticalscrollbar.cpp
+        ingametree.h ingametree.cpp
+        ingametablelist.h ingametablelist.cpp
+        ingamecheckbox.h ingamecheckbox.cpp
+        ingamemenu.h ingamemenu.cpp
 
-    RESOURCES Images/disablesound.png Images/enablesound.png
-    RESOURCES Images/keys.png
-    RESOURCES Images/menuhelp.png Images/menusettings.png Images/menushutdown.png
-    RESOURCES Images/menudocuments.png Images/menuprograms.png Images/menurun.png
-    RESOURCES Images/disabledradio.png Images/smarttracker.png Images/closewindowicon.png    
+        RESOURCES
+            Images/disablesound.png
+            Images/enablesound.png
+            Images/keys.png
+            Images/menuhelp.png
+            Images/menusettings.png
+            Images/menushutdown.png
+            Images/menudocuments.png
+            Images/menuprograms.png
+            Images/menurun.png
+            Images/disabledradio.png
+            Images/smarttracker.png
+            Images/closewindowicon.png
 )
 
 set_target_properties(appgaiai PROPERTIES
