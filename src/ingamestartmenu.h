@@ -23,6 +23,7 @@ public:
 
 private:
     void fillProgramsMenu();
+    void addStartMenuItem(const QString& title, const QString& image, const QString& command, bool topLine, bool subMenu);
 
 signals:
     void menuChanged();

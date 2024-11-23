@@ -17,7 +17,7 @@ InGameWindowPage {
     Panel {
         id: treeHeader
         anchors.left: parent.left
-        anchors.leftMargin: 4
+        anchors.leftMargin: 2
         anchors.top: mainMenuItem.bottom
         anchors.topMargin: 2
         width: 200
@@ -33,11 +33,12 @@ InGameWindowPage {
 
     Panel {
         anchors.left: parent.left
-        anchors.leftMargin: 4
+        anchors.leftMargin: 2
         anchors.top: treeHeader.bottom
         anchors.topMargin: 2
         anchors.right: treeHeader.right
         anchors.bottom: parent.bottom
+        anchors.bottomMargin: 26
 
         Rectangle {
             anchors.fill: parent
@@ -80,6 +81,7 @@ InGameWindowPage {
         anchors.topMargin: 2
         anchors.right: contentsHeader.right
         anchors.bottom: parent.bottom
+        anchors.bottomMargin: 26
 
         Rectangle {
             anchors.fill: parent
@@ -123,6 +125,27 @@ InGameWindowPage {
 
         Text {
             text: "item presentation"
+        }
+    }
+
+    Panel {
+        id: pageFooter
+        anchors.left: parent.left
+        anchors.leftMargin: 2
+        anchors.right: parent.right
+        anchors.rightMargin: 2
+        anchors.top: contentsPanel.bottom
+        anchors.topMargin: 4
+        anchors.bottom: parent.bottom
+        anchors.bottomMargin: 2
+        width: 200
+        height: 22
+
+        Text {
+            anchors.verticalCenter: parent.verticalCenter
+            anchors.left: parent.left
+            anchors.leftMargin: 4
+            text: "All tasks"
         }
     }
 }

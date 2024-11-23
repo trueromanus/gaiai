@@ -43,13 +43,7 @@ InGameStartMenu::InGameStartMenu() {
     runMap["submenu"] = false;
     m_menu.append(runMap);
 
-    QVariantMap shutDownMap;
-    shutDownMap["title"] = "Shut Down...";
-    shutDownMap["image"] = "menushutdown.png";
-    shutDownMap["command"] = "shutdown";
-    shutDownMap["topLine"] = true;
-    shutDownMap["submenu"] = false;
-    m_menu.append(shutDownMap);
+    addStartMenuItem("Shut Down...", "menushutdown.png", "shutdown", true, false);
 
     fillProgramsMenu();
 }
@@ -65,4 +59,15 @@ void InGameStartMenu::fillProgramsMenu()
     //fot test purposes
     m_programs.append(smartTracker);
     m_programs.append(smartTracker);
+}
+
+void InGameStartMenu::addStartMenuItem(const QString &title, const QString &image, const QString &command, bool topLine, bool subMenu)
+{
+    QVariantMap map;
+    map["title"] = title;
+    map["image"] = image;
+    map["command"] = command;
+    map["topLine"] = topLine;
+    map["submenu"] = subMenu;
+    m_menu.append(map);
 }
