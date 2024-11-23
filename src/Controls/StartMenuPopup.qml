@@ -115,7 +115,7 @@ InGameStartMenu {
                         onPressed: function (mouse) {
                             mouse.accepted = true;
                             if (modelData.submenu) return;
-                            if (modelData.command) root.commandRunned(modelData.command)
+                            if (modelData.command) root.commandRunned(modelData.command);
                         }
                     }
                 }
@@ -131,5 +131,12 @@ InGameStartMenu {
         visible: false
         items: root.programs
         menuWidth: 170
+        onCommandPerformed: function (command){
+            root.commandRunned(command);
+        }
+    }
+
+    onVisibleChanged: {
+        programsMenu.visible = false;
     }
 }

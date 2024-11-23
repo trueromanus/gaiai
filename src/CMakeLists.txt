@@ -81,19 +81,19 @@ qt_add_qml_module(appgaiai
         ingamecheckbox.h ingamecheckbox.cpp
         ingamemenu.h ingamemenu.cpp
 
-        RESOURCES
-            Images/disablesound.png
-            Images/enablesound.png
-            Images/keys.png
-            Images/menuhelp.png
-            Images/menusettings.png
-            Images/menushutdown.png
-            Images/menudocuments.png
-            Images/menuprograms.png
-            Images/menurun.png
-            Images/disabledradio.png
-            Images/smarttracker.png
-            Images/closewindowicon.png
+    RESOURCES
+        Images/disablesound.png
+        Images/enablesound.png
+        Images/keys.png
+        Images/menuhelp.png
+        Images/menusettings.png
+        Images/menushutdown.png
+        Images/menudocuments.png
+        Images/menuprograms.png
+        Images/menurun.png
+        Images/disabledradio.png
+        Images/smarttracker.png
+        Images/closewindowicon.png
 )
 
 set_target_properties(appgaiai PROPERTIES

@@ -9,5 +9,8 @@ InGameMenu {
     CommonMenuList {
         width: root.menuWidth
         listModel: root.items
+        onCommandPerformed: function (command) {
+            root.commandPerformed(command);
+        }
     }
 }

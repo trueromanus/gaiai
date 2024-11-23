@@ -8,6 +8,7 @@ MenuPanel {
 
     property alias listModel: items.model
 
+    signal commandPerformed(string command)
 
     Column {
         id: itemsColumn
@@ -34,8 +35,18 @@ MenuPanel {
                     color: "#00007F"
                 }
 
-                PlainText {
+                Image {
+                    id: iconImage
                     anchors.left: parent.left
+                    anchors.leftMargin: modelData.icon ? 8 : 0
+                    anchors.verticalCenter: parent.verticalCenter
+                    width: modelData.icon ? 16 : 0
+                    height: 16
+                    source: assetsLocation.imagedPath + (modelData.icon ? modelData.icon : "closewindowicon.png")
+                }
+
+                PlainText {
+                    anchors.left: iconImage.right
                     anchors.leftMargin: 8
                     anchors.right: parent.right
                     height: parent.height
@@ -69,7 +80,7 @@ MenuPanel {
                         mouse.accepted = true;
                         if (modelData.hasChildrens) return; // for submenu don't need to make any action
 
-                        //if (modelData.command) root.commandRunned(modelData.command)
+                        root.commandPerformed(modelData.command);
                     }
                 }
             }

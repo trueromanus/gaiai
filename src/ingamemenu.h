@@ -26,6 +26,7 @@ public:
 signals:
     void itemsChanged();
     void subLevelsChanged();
+    void commandPerformed(const QString& command);
 
 };
 

@@ -13,6 +13,7 @@ class GameMenuModel : public QObject
     Q_PROPERTY(QString icon READ icon WRITE setIcon NOTIFY iconChanged FINAL)
     Q_PROPERTY(bool bottomLine READ bottomLine WRITE setBottomLine NOTIFY bottomLineChanged FINAL)
     Q_PROPERTY(bool upperLine READ upperLine WRITE setUpperLine NOTIFY upperLineChanged FINAL)
+    Q_PROPERTY(QString command READ command WRITE setCommand NOTIFY commandChanged FINAL)
 
 private:
     QString m_title { "" };
@@ -21,6 +22,7 @@ private:
     QString m_icon { "" };
     bool m_bottomLine { false };
     bool m_upperLine { false };
+    QString m_command { "" };
 
 public:
     explicit GameMenuModel(QObject *parent = nullptr);
@@ -41,6 +43,9 @@ public:
     bool upperLine() const noexcept { return m_upperLine; }
     void setUpperLine(bool upperLine) noexcept;
 
+    QString command() const noexcept { return m_command; }
+    void setCommand(const QString& command) noexcept;
+
     void addChildren(GameMenuModel* children) noexcept;
     void addChildrenWithoutEmit(GameMenuModel* children) noexcept;
 
@@ -51,6 +56,7 @@ signals:
     void iconChanged();
     void bottomLineChanged();
     void upperLineChanged();
+    void commandChanged();
 
 };
 

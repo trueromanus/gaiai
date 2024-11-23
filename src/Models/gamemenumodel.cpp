@@ -36,6 +36,14 @@ void GameMenuModel::setUpperLine(bool upperLine) noexcept
     emit upperLineChanged();
 }
 
+void GameMenuModel::setCommand(const QString &command) noexcept
+{
+    if (m_command == command) return;
+
+    m_command = command;
+    emit commandChanged();
+}
+
 void GameMenuModel::addChildren(GameMenuModel *children) noexcept
 {
     m_childrens.append(children);

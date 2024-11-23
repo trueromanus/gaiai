@@ -59,6 +59,7 @@ void InGameStartMenu::fillProgramsMenu()
     auto smartTracker = new GameMenuModel(this);
     smartTracker->setTitle("SmartTracker");
     smartTracker->setIcon("smarttracker.png");
+    smartTracker->setCommand("smarttracker");
     m_programs.append(smartTracker);
 
     //fot test purposes
