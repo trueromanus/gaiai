@@ -47,6 +47,7 @@ void GameBackend::checkCompletedTasks()
 void GameBackend::createDay1Tasks()
 {
     auto emailTutorial = new GameTaskModel(true, "Check you emails", m_onboardingTasks, m_firstDay,[]() { return true; }, this);
+    emailTutorial->setDescription("First youn need open email client<br>");
     m_allTasks.append(emailTutorial);
 
     auto messagerTutorial = new GameTaskModel(true, "Reply in user groups", m_onboardingTasks, m_firstDay,[]() { return true; }, this);

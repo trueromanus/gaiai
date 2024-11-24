@@ -22,3 +22,11 @@ void GameTaskModel::checkCompleted() noexcept
     m_completed = m_action();
     if (m_completed) emit completedChanged();
 }
+
+void GameTaskModel::setDescription(const QString &description) noexcept
+{
+    if (m_description == description) return;
+
+    m_description = description;
+    emit descriptionChanged();
+}

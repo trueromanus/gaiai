@@ -1,5 +1,6 @@
 import QtQuick
 import gaiai
+import "Panels"
 
 Item {
     anchors.fill: parent
@@ -17,20 +18,39 @@ Item {
 
     Item {
         id: fullVerticalScrollBar
+        width: 16
+        anchors.right: parent.right
+        anchors.top: parent.top
+        anchors.bottom: parent.bottom
 
-        Rectangle {
+        ContentButton {
             id: upButton
-            width: 10
-            height: 10
+            width: 16
+            height: 16
             anchors.top: parent.top
             anchors.right: parent.right
-            color: "green"
 
-            MouseArea {
-                anchors.fill: parent
-                onPressed: {
-                    verticalScrollBar.scrollUp();
-                }
+            RightTriangle {
+                anchors.horizontalCenter: parent.horizontalCenter
+                anchors.verticalCenter: parent.verticalCenter
+                shapeColor: "black"
+                transform: [
+                    Scale {
+                        origin.x: 5;
+                        origin.y: 10;
+                        xScale: 0.43
+                        yScale: 0.43
+                    },
+                    Rotation {
+                        origin.x: 5;
+                        origin.y: 10;
+                        angle: -90
+                    }
+                ]
+            }
+
+            onClicked: {
+                verticalScrollBar.scrollUp();
             }
         }
 
@@ -48,12 +68,12 @@ Item {
                 flickableArea.contentY = newValue;
             }
 
-            width: 10
+            width: 16
 
-            Rectangle {
+            GridCanvasPanel {
                 anchors.fill: parent
-                color: "yellow"
             }
+
 
             Rectangle {
                 id: scrollRoot
@@ -83,19 +103,34 @@ Item {
             }
         }
 
-        Rectangle {
+        ContentButton {
             id: downButton
-            width: 10
-            height: 10
+            width: 16
+            height: 16
             anchors.bottom: parent.bottom
             anchors.right: parent.right
-            color: "green"
 
-            MouseArea {
-                anchors.fill: parent
-                onPressed: {
-                    verticalScrollBar.scrollDown();
-                }
+            RightTriangle {
+                anchors.horizontalCenter: parent.horizontalCenter
+                anchors.verticalCenter: parent.verticalCenter
+                shapeColor: "black"
+                transform: [
+                    Scale {
+                        origin.x: 5;
+                        origin.y: 10;
+                        xScale: 0.43
+                        yScale: 0.43
+                    },
+                    Rotation {
+                        origin.x: 5;
+                        origin.y: 10;
+                        angle: 90
+                    }
+                ]
+            }
+
+            onClicked: {
+                verticalScrollBar.scrollDown();
             }
         }
     }

@@ -10,7 +10,7 @@ Item {
     }
 
     Rectangle {
-        color: "#C3C3C3"
+        color: "#7B7B7B"
         anchors.top: parent.top
         width: parent.width - 1
         height: 1
@@ -27,7 +27,7 @@ Item {
     }
 
     Rectangle {
-        color: "#C3C3C3"
+        color: "#7B7B7B"
         anchors.left: parent.left
         width: 1
         height: parent.height - 1
@@ -59,7 +59,7 @@ Item {
     }
 
     Rectangle {
-        color: "#404040"
+        color: "#DEDEDE"
         anchors.top: parent.top
         anchors.topMargin: 1
         anchors.right: parent.right
@@ -69,12 +69,12 @@ Item {
     }
 
     Rectangle {
-        color: "#404040"
+        color: "#DEDEDE"
         anchors.bottom: parent.bottom
         anchors.bottomMargin: 1
         anchors.right: parent.right
         anchors.rightMargin: 1
-        width: parent.width - 1
+        width: parent.width - 2
         height: 1
     }
 

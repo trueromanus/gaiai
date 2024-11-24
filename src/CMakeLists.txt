@@ -34,6 +34,7 @@ qt_add_qml_module(appgaiai
         Controls/Panels/MenuPanel.qml
         Controls/Panels/WindowPanel.qml
         Controls/Panels/CheckBoxPanel.qml
+        Controls/Panels/GridCanvasPanel.qml
     QML_FILES
         Controls/Lines/VerticalDashLine.qml
         Controls/Lines/HorizontalDashLine.qml
@@ -94,6 +95,7 @@ qt_add_qml_module(appgaiai
         Images/disabledradio.png
         Images/smarttracker.png
         Images/closewindowicon.png
+        Images/tile2x2.png
 )
 
 set_target_properties(appgaiai PROPERTIES

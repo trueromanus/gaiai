@@ -111,20 +111,36 @@ InGameWindowPage {
     }
 
     Panel {
+        id: contentsTextPanel
         visible: (tasksTree.selectedNode && !tasksTree.selectedNode.hasChildrens)
         anchors.left: contentsHeader.left
         anchors.top: contentsHeader.bottom
         anchors.topMargin: 2
         anchors.right: contentsHeader.right
         anchors.bottom: parent.bottom
+        anchors.bottomMargin: 26
 
         Rectangle {
             anchors.fill: parent
             color: "white"
         }
 
-        Text {
-            text: "item presentation"
+        Loader {
+            anchors.fill: parent
+            sourceComponent: contentsTextPanel.visible ? taskContentComponent : null
+        }
+    }
+
+    Component {
+        id: taskContentComponent
+
+        FlickableArea {
+            anchors.fill: parent
+
+            Text {
+                text: tasksTree.selectedNode.description
+                textFormat: Text.StyledText
+            }
         }
     }
 
@@ -135,17 +151,17 @@ InGameWindowPage {
         anchors.right: parent.right
         anchors.rightMargin: 2
         anchors.top: contentsPanel.bottom
-        anchors.topMargin: 4
+        anchors.topMargin: 3
         anchors.bottom: parent.bottom
         anchors.bottomMargin: 2
         width: 200
         height: 22
 
         Text {
-            anchors.verticalCenter: parent.verticalCenter
+            anchors.top: parent.top
             anchors.left: parent.left
             anchors.leftMargin: 4
-            text: "All tasks"
+            text: "Mandatory completed 0/0, optional completed 0/0"
         }
     }
 }

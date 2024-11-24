@@ -41,7 +41,10 @@ InGameTableList {
             Repeater {
                 model: root.columns
                 delegate: Loader {
-                    sourceComponent: simpleText
+                    sourceComponent: switch(modelData.formatter) {
+                        case "checkbox": return checkBoxComponent;
+                        default: return simpleText;
+                    }
 
                     property int columnWidth: modelData.columnWidth
                     property string columnValue: listRow.rowModel[modelData.field]
@@ -99,6 +102,21 @@ InGameTableList {
                 onDoubleClicked: {
                     root.openItem();
                 }
+            }
+        }
+    }
+
+    Component {
+        id: checkBoxComponent
+
+        Item {
+            width: columnWidth
+            height: 20
+
+            CheckBoxPanel {
+                anchors.centerIn: parent
+                width: 14
+                height: 14
             }
         }
     }

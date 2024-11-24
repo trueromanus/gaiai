@@ -12,6 +12,7 @@ class GameTaskModel : public QObject
     Q_PROPERTY(bool isMandatory READ isMandatory NOTIFY isMandatoryChanged FINAL)
     Q_PROPERTY(int day READ day NOTIFY dayChanged FINAL)
     Q_PROPERTY(bool hasChildrens READ hasChildrens NOTIFY hasChildrensChanged FINAL)
+    Q_PROPERTY(QString description READ description WRITE setDescription NOTIFY descriptionChanged FINAL)
 
 private:
     QString m_title { "" };
@@ -20,6 +21,7 @@ private:
     bool m_isMandatory { false };
     int m_day { 0 };
     std::function<bool()> m_action { nullptr };
+    QString m_description { "" };
 
 public:
     explicit GameTaskModel(bool isMandatory, const QString& title, const QString& parentId, int day, std::function<bool()> action, QObject *parent = nullptr);
@@ -39,6 +41,9 @@ public:
 
     bool hasChildrens() const noexcept { return false; }
 
+    QString description() const noexcept { return m_description; }
+    void setDescription(const QString& description) noexcept;
+
 signals:
     void titleChanged();
     void parentIdChanged();
@@ -46,6 +51,7 @@ signals:
     void isMandatoryChanged();
     void dayChanged();
     void hasChildrensChanged();
+    void descriptionChanged();
 
 };
 
