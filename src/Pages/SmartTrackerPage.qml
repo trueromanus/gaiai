@@ -136,8 +136,10 @@ InGameWindowPage {
 
         FlickableArea {
             anchors.fill: parent
+            contentHeight: descriptionText.height
 
             Text {
+                id: descriptionText
                 text: tasksTree.selectedNode.description
                 textFormat: Text.StyledText
             }
