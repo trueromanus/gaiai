@@ -1,11 +1,14 @@
 import QtQuick
+import QtQuick.Controls
 import gaiai
 import "Panels"
 
 Item {
+    id: root
     anchors.fill: parent
 
-    default property alias content: flickableArea.children
+    default property alias content: flickableChildren.children
+    property alias contentHeight: flickableArea.contentHeight
 
     Flickable {
         id: flickableArea
@@ -14,6 +17,12 @@ Item {
         anchors.left: parent.left
         anchors.bottom: parent.bottom // replace on horizontal scrollbar
         clip: true
+        contentWidth: root.width - fullVerticalScrollBar.width
+        interactive: false
+
+        Item {
+            id: flickableChildren
+        }
     }
 
     Item {
@@ -74,14 +83,12 @@ Item {
                 anchors.fill: parent
             }
 
-
-            Rectangle {
+            ButtonPanel {
                 id: scrollRoot
                 anchors.right: parent.right
                 y: verticalScrollBar.thumbPosition
-                width: 10
+                width: 16
                 height: verticalScrollBar.thumb
-                color: "red"
 
                 MouseArea {
                     id: mouseRoot

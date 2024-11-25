@@ -30,8 +30,8 @@ void VerticalScrollBar::setThumbPosition(qreal thumbPosition) noexcept
 
     m_thumbPosition = thumbPosition;
     emit thumbPositionChanged();
-
-    emit requiredChangeScrollPosition(m_scrollAreaContentHeight * (m_thumbPosition / m_scrollAreaHeight));
+    auto percentInCurrent = m_thumbPosition / height();
+    emit requiredChangeScrollPosition(m_scrollAreaContentHeight * percentInCurrent);
 }
 
 void VerticalScrollBar::setMoving(bool moving) noexcept
@@ -96,11 +96,21 @@ void VerticalScrollBar::scrollDown()
 
 void VerticalScrollBar::refreshPercent()
 {
+    if (m_scrollAreaHeight <= 0 || m_scrollAreaContentHeight <= 0) {
+        m_percent = 0;
+        return;
+    }
     m_percent = m_scrollAreaHeight / m_scrollAreaContentHeight;
 }
 
 void VerticalScrollBar::refreshThumbHeight()
 {
+    if (m_percent <= 0) {
+        m_thumb = 0;
+        emit thumbChanged();
+        return;
+    }
+
     m_thumb = height() * m_percent;
     emit thumbChanged();
 }
