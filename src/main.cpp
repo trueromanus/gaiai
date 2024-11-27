@@ -6,6 +6,10 @@ int main(int argc, char *argv[])
 {
     qputenv("QML_DISABLE_DISK_CACHE", "1"); // don't make cache on disk (because don't make sense)
 
+    QCoreApplication::setOrganizationDomain("emptyflow.org");
+    QCoreApplication::setOrganizationName("EmptyFlow");
+    QCoreApplication::setApplicationName("gaiai");
+
     /*
 QGuiApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
 calculateHugeMandelbrot();              // lunch time...

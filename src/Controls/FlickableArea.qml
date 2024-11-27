@@ -38,11 +38,12 @@ Item {
             height: 16
             anchors.top: parent.top
             anchors.right: parent.right
+            disabled: verticalScrollBar.thumb === 0
 
             RightTriangle {
                 anchors.horizontalCenter: parent.horizontalCenter
                 anchors.verticalCenter: parent.verticalCenter
-                shapeColor: "black"
+                shapeColor: verticalScrollBar.thumb === 0 ? "#818181" :"black"
                 transform: [
                     Scale {
                         origin.x: 5;
@@ -116,11 +117,12 @@ Item {
             height: 16
             anchors.bottom: parent.bottom
             anchors.right: parent.right
+            disabled: verticalScrollBar.thumb === 0
 
             RightTriangle {
                 anchors.horizontalCenter: parent.horizontalCenter
                 anchors.verticalCenter: parent.verticalCenter
-                shapeColor: "black"
+                shapeColor: verticalScrollBar.thumb === 0 ? "#818181" : "black"
                 transform: [
                     Scale {
                         origin.x: 5;

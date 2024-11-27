@@ -20,6 +20,8 @@ InGameButton {
         id: mouseArea
         anchors.fill: parent
         onPressed: {
+            if (root.disabled) return;
+
             root.press();
         }
         onReleased: {
@@ -28,6 +30,8 @@ InGameButton {
             if (!root.disabled && mouseArea.containsMouse) root.clicked();
         }
         onContainsMouseChanged: {
+            if (root.disabled) return;
+
             if (!mouseArea.containsMouse) root.release();
             if (mouseArea.containsMouse) root.press();
         }

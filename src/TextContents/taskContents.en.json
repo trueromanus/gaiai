@@ -1,7 +1,7 @@
 [
 	{
 		"id": "emailTutorial",
-		"text": "Press the `Smart` button in left bottom corner on the screen to open the main menu. In the main menu that appears, look for the option labeled `Programs` and move mouse cursor over it. After submenu is appeared move click on option `I'm the Bat_an!`. After window will be opened just click in left pane for read `Welcome to out team` email."
+                "text": "Press the <b>Smart</b> button in left bottom corner on the screen to open the main menu.<br> In the main menu that appears, look for the option labeled <b>Programs</b> and move mouse cursor over it.<br> After submenu is appeared move click on option <b>I'm the Bat_an!</b>.<br> After window will be opened just click in left pane for read <b>Welcome to out team</b> email."
 	},
 	{
 		"id": "messagerTutorial",

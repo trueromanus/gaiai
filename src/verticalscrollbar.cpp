@@ -100,6 +100,10 @@ void VerticalScrollBar::refreshPercent()
         m_percent = 0;
         return;
     }
+    if (m_scrollAreaContentHeight < m_scrollAreaHeight) {
+        m_percent = 0;
+        return;
+    }
     m_percent = m_scrollAreaHeight / m_scrollAreaContentHeight;
 }
 

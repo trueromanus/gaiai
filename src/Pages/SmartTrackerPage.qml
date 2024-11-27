@@ -135,13 +135,16 @@ InGameWindowPage {
         id: taskContentComponent
 
         FlickableArea {
+            id: taskFlickableArea
             anchors.fill: parent
             contentHeight: descriptionText.height
 
             Text {
                 id: descriptionText
+                width: taskFlickableArea.width - 17
                 text: tasksTree.selectedNode.description
                 textFormat: Text.StyledText
+                wrapMode: Text.WordWrap
             }
         }
     }

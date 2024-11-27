@@ -47,14 +47,20 @@ void GameBackend::checkCompletedTasks()
 void GameBackend::createDay1Tasks()
 {
     auto emailTutorial = new GameTaskModel(true, "Check you emails", m_onboardingTasks, m_firstDay,[]() { return true; }, this);
-    emailTutorial->setDescription("First youn need open email client<br>");
+    emailTutorial->setDescription(m_translationsModel->getTasksTranslation("emailTutorial"));
     m_allTasks.append(emailTutorial);
 
     auto messagerTutorial = new GameTaskModel(true, "Reply in user groups", m_onboardingTasks, m_firstDay,[]() { return true; }, this);
+    messagerTutorial->setDescription(m_translationsModel->getTasksTranslation("messagerTutorial"));
     m_allTasks.append(messagerTutorial);
 
     auto rssTutorial = new GameTaskModel(true, "Read news", m_onboardingTasks, m_firstDay,[]() { return true; }, this);
+    rssTutorial->setDescription(m_translationsModel->getTasksTranslation("rssTutorial"));
     m_allTasks.append(rssTutorial);
+
+    auto mapTutorial = new GameTaskModel(true, "Discover interactive map", m_onboardingTasks, m_firstDay,[]() { return true; }, this);
+    mapTutorial->setDescription(m_translationsModel->getTasksTranslation("mapTutorial"));
+    m_allTasks.append(mapTutorial);
 
     auto trafficLightTask = m_trafficLights.value("ElmStreetHighway");
     auto fixTrafficLightTutorial = new GameTaskModel(true, "Fix traffic light", m_onboardingTasks, m_firstDay, [trafficLightTask]() { return trafficLightTask->isCorrect(); }, this);

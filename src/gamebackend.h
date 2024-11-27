@@ -8,6 +8,7 @@
 #include "Models/gametrafficlightmodel.h"
 #include "Models/gametasksectionmodel.h"
 #include "PageModels/smarttrackerpage.h"
+#include "Models/translationsmodel.h"
 
 class GameBackend : public QObject
 {
@@ -27,6 +28,7 @@ private:
     QList<GameTaskModel*> m_allTasks { QList<GameTaskModel*>() };
     QList<GameTaskModel*> m_activeTasks { QList<GameTaskModel*>() };
     QMap<QString, GameTrafficLightModel*> m_trafficLights { QMap<QString, GameTrafficLightModel*>() };
+    TranslationsModel* m_translationsModel { new TranslationsModel(this) };
     int m_day { 1 };
     int m_time { 0 };
     SmartTrackerPage* m_smartTrackerPage { new SmartTrackerPage(this) };
