@@ -1,0 +1,18 @@
+[
+	{
+		"id": "emailTutorial",
+		"text": "Press the `Smart` button in left bottom corner on the screen to open the main menu. In the main menu that appears, look for the option labeled `Programs` and move mouse cursor over it. After submenu is appeared move click on option `I'm the Bat_an!`. After window will be opened just click in left pane for read `Welcome to out team` email."
+	},
+	{
+		"id": "messagerTutorial",
+		"text": "Press the `Smart` button in left bottom corner on the screen to open the main menu. In the main menu that appears, look for the option labeled `Programs` and move mouse cursor over it. After submenu is appeared move click on option `IRina Communicator`. After window will be opened click on group `Fun Room` left part of window and select any of the suggested answer options in the right part of the window."
+	},
+	{
+		"id": "rssTutorial",
+		"text": "Press the `Smart` button in left bottom corner on the screen to open the main menu. In the main menu that appears, look for the option labeled `Programs` and move mouse cursor over it. After submenu is appeared move click on option `RSS Reader`. After window will be opened click on group `People` left part of window, select section `Local news` below selected group."
+	},
+	{
+		"id": "mapTutorial",
+		"text": "Press the `Smart` button in left bottom corner on the screen to open the main menu. In the main menu that appears, look for the option labeled `Programs` and move mouse cursor over it. After submenu is appeared move click on option `TerraMap`."
+	}
+]

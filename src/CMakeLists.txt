@@ -96,6 +96,8 @@ qt_add_qml_module(appgaiai
         Images/smarttracker.png
         Images/closewindowicon.png
         Images/tile2x2.png
+
+        TextContents/taskContents.en.json
 )
 
 set_target_properties(appgaiai PROPERTIES
