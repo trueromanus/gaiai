@@ -42,6 +42,7 @@ InGameWindowDefaultHeader {
         hoverEnabled: true
         onPressed: {
             moving = true;
+            if (!root.activated) root.needActivateWindow();
         }
         onReleased: {
             moving = false;

@@ -56,9 +56,11 @@ void InGameStartMenu::fillProgramsMenu()
     smartTracker->setCommand("smarttracker");
     m_programs.append(smartTracker);
 
-    //fot test purposes
-    m_programs.append(smartTracker);
-    m_programs.append(smartTracker);
+    auto rssReader = new GameMenuModel(this);
+    rssReader->setTitle("RSS Reader");
+    rssReader->setIcon("rssreader.png");
+    rssReader->setCommand("rssreader");
+    m_programs.append(rssReader);
 }
 
 void InGameStartMenu::addStartMenuItem(const QString &title, const QString &image, const QString &command, bool topLine, bool subMenu)

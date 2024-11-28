@@ -1,18 +1,18 @@
 [
 	{
 		"id": "emailTutorial",
-                "text": "Press the <b>Smart</b> button in left bottom corner on the screen to open the main menu.<br> In the main menu that appears, look for the option labeled <b>Programs</b> and move mouse cursor over it.<br> After submenu is appeared move click on option <b>I'm the Bat_an!</b>.<br> After window will be opened just click in left pane for read <b>Welcome to out team</b> email."
+		"text": "Press the <b>Smart</b> button in left bottom corner on the screen to open the main menu. In the main menu that appears, look for the option labeled <b>Programs</b> and move mouse cursor over it.<br><br> After submenu is appeared click on option <b>I'm the Bat_an!</b>.<br><br> After window will be opened just click in left pane for read <b>Welcome to out team</b> email."
 	},
 	{
 		"id": "messagerTutorial",
-		"text": "Press the `Smart` button in left bottom corner on the screen to open the main menu. In the main menu that appears, look for the option labeled `Programs` and move mouse cursor over it. After submenu is appeared move click on option `IRina Communicator`. After window will be opened click on group `Fun Room` left part of window and select any of the suggested answer options in the right part of the window."
+        "text": "Press the <b>Smart</b> button in left bottom corner on the screen to open the main menu. In the main menu that appears, look for the option labeled <b>Programs</b> and move mouse cursor over it. <br><br> After submenu is appeared click on option <b>IRina Communicator</b>.<br><br> After window will be opened click on group <b>Fun Room</b> left part of window and select any of the suggested answer options in the right part of the window."
 	},
 	{
 		"id": "rssTutorial",
-		"text": "Press the `Smart` button in left bottom corner on the screen to open the main menu. In the main menu that appears, look for the option labeled `Programs` and move mouse cursor over it. After submenu is appeared move click on option `RSS Reader`. After window will be opened click on group `People` left part of window, select section `Local news` below selected group."
+        "text": "Press the <b>Smart</b> button in left bottom corner on the screen to open the main menu. In the main menu that appears, look for the option labeled <b>Programs</b> and move mouse cursor over it.<br><br> After submenu is appeared click on option <b>RSS Reader</b>.<br><br> After window will be opened click on group <b>People</b> left part of window, select section <b>Local news</b> below selected group."
 	},
 	{
 		"id": "mapTutorial",
-		"text": "Press the `Smart` button in left bottom corner on the screen to open the main menu. In the main menu that appears, look for the option labeled `Programs` and move mouse cursor over it. After submenu is appeared move click on option `TerraMap`."
+        "text": "Press the <b>Smart</b> button in left bottom corner on the screen to open the main menu. In the main menu that appears, look for the option labeled <b>Programs</b> and move mouse cursor over it.<br><br> After submenu is appeared click on option <b>TerraMap</b>.<br><br>"
 	}
 ]

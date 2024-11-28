@@ -20,6 +20,7 @@ private:
     const QString m_shutDownPage { "shutdown" };
     const QString m_onboardingPage { "onboarding" };
     const QString m_smartTrackerPage { "smarttracker" };
+    const QString m_rssReaderPage { "rssreader" };
 
     QMap<InGameWindow*, QQmlComponent*> m_windows { QMap<InGameWindow*, QQmlComponent*>() };
     QVariantList m_visibleItems { QVariantList() };
@@ -62,6 +63,7 @@ private:
     void adjustShutDownPage();
     void adjustOnboardingPage();
     void adjustSmartTrackerPage();
+    void adjustRssReaderPage();
 
 private slots:
     void removeWindow(InGameWindow* window);

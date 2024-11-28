@@ -23,6 +23,9 @@ InGameWindow {
         onNeedCloseWindow: {
             root.closeWindow();
         }
+        onNeedActivateWindow: {
+            taskBar.activateWindow(root);
+        }
     }
 
     Item {
@@ -35,4 +38,5 @@ InGameWindow {
         anchors.rightMargin: 3
         anchors.bottomMargin: 3
     }
+
 }

@@ -5,6 +5,7 @@ InGameTaskBar::InGameTaskBar() {
     adjustShutDownPage();
     adjustOnboardingPage();
     adjustSmartTrackerPage();
+    adjustRssReaderPage();
 }
 
 void InGameTaskBar::setStartMenuOpened(bool startMenuOpened) noexcept
@@ -84,16 +85,32 @@ void InGameTaskBar::createDefaultWindow(const QString& command, int position)
     if (m_commandToPageMapping.contains(command)) createPageInsideWindow(m_commandToPageMapping.value(command), window, context, engine);
 
     m_windows.insert(window, component);
+
+    activateWindow(window);
 }
 
 void InGameTaskBar::activateWindow(InGameWindow *window)
 {
     if (m_activeWindow == window) return;
 
-    if (m_activeWindow != nullptr) m_activeWindow->setActivated(false);
+    auto windows = m_windows.keys();
+    foreach (auto windowKey, windows) {
+        if (windowKey == window) continue;
+
+        windowKey->setActivated(false);
+    }
 
     window->setActivated(true);
     m_activeWindow = window;
+
+    auto childrens = m_windowsContainer->childItems();
+    if (childrens.size() == 1) return;
+
+    //move element on top of all items
+    auto lastElement = childrens.last();
+    if (lastElement == window) return;
+
+    window->stackAfter(lastElement);
 }
 
 void InGameTaskBar::activateWindowByCommand(const QString &command)
@@ -171,6 +188,14 @@ void InGameTaskBar::adjustSmartTrackerPage()
     m_windowSizes.insert(m_smartTrackerPage, std::make_tuple(558, 355));
     m_uniqueWindows.insert(m_smartTrackerPage);
     m_commandToPageMapping.insert(m_smartTrackerPage, "Pages/SmartTrackerPage.qml");
+}
+
+void InGameTaskBar::adjustRssReaderPage()
+{
+    m_defaultNamesOfWindows.insert(m_rssReaderPage, "RSS Reader");
+    m_windowSizes.insert(m_rssReaderPage, std::make_tuple(590, 355));
+    m_uniqueWindows.insert(m_rssReaderPage);
+    m_commandToPageMapping.insert(m_rssReaderPage, "Pages/RssReaderPage.qml");
 }
 
 void InGameTaskBar::removeWindow(InGameWindow *window)

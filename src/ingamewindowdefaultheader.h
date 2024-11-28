@@ -30,6 +30,7 @@ signals:
     void titleChanged();
     void activatedChanged();
     void needCloseWindow();
+    void needActivateWindow();
 
 };
 

@@ -66,6 +66,7 @@ qt_add_qml_module(appgaiai
         Pages/ShutDownPage.qml
         Pages/OnboardingPage.qml
         Pages/SmartTrackerPage.qml
+        Pages/RssReaderPage.qml
 
     SOURCES
         ingamewindow.h ingamewindow.cpp
@@ -99,6 +100,7 @@ qt_add_qml_module(appgaiai
         Images/smarttracker.png
         Images/closewindowicon.png
         Images/tile2x2.png
+        Images/rssreader.png
 
         TextContents/taskContents.en.json
 )
