@@ -22,13 +22,14 @@ InGameWindowPage {
             color: "white"
         }
 
-        /*Tree {
+        Tree {
             id: tasksTree
             anchors.fill: parent
             anchors.leftMargin: 8
             anchors.topMargin: 4
-            model: gameBackend.tasks
-        }*/
+            allExpandedOnStart: true
+            model: gameBackend.rssReaderPage.tree
+        }
     }
 
     Panel {

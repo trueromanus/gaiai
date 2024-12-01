@@ -11,6 +11,7 @@ InGameTree {
         treeRoot: root
         nestedChildrens: root.model
         childComponent: childComponent
+        allExpandedOnStart: root.allExpandedOnStart
     }
 
     Component {

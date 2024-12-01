@@ -15,8 +15,11 @@ qt_add_executable(appgaiai
     Models/gametablecolumn.h Models/gametablecolumn.cpp
     Models/gamemenumodel.h Models/gamemenumodel.cpp
     Models/translationsmodel.h Models/translationsmodel.cpp
+    Models/gametreesectionmodel.h Models/gametreesectionmodel.cpp
+    Models/gamerssitemmodel.h Models/gamerssitemmodel.cpp
 
-    PageModels/smarttrackerpage.h PageModels/smarttrackerpage.cpp    
+    PageModels/smarttrackerpage.h PageModels/smarttrackerpage.cpp
+    PageModels/rssreaderpage.h PageModels/rssreaderpage.cpp
 
     main.cpp
 )

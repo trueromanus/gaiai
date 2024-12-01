@@ -10,6 +10,7 @@ Column {
     property var treeRoot
     property Component childComponent
     property int fullHeight: 0
+    property bool allExpandedOnStart: false
 
     Repeater {
         id: items
@@ -40,6 +41,10 @@ Column {
 
             onExpandedChanged: {
                 recalculateNestedHeight();
+            }
+
+            Component.onCompleted: {
+                if (root.allExpandedOnStart) treeItem.expanded = true;
             }
 
             function recalculateNestedHeight() {
