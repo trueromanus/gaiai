@@ -21,7 +21,7 @@ Item {
         anchors.leftMargin: 5
         anchors.top: parent.top
         anchors.bottom: parent.bottom
-        anchors.bottomMargin: root.isEndItem ? 11 : 0
+        anchors.bottomMargin: !root.expanded && root.isEndItem ? 11 : 0
         dashColor: "#BFBFBF"
     }
 

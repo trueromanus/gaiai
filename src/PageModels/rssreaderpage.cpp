@@ -56,6 +56,14 @@ RssReaderPage::RssReaderPage(QObject *parent)
     m_tree.append(medicineSection);
 }
 
+void RssReaderPage::setSelectedSection(QObject *selectedSection) noexcept
+{
+    if (m_selectedSection == selectedSection) return;
+
+    m_selectedSection = selectedSection;
+    emit selectedSectionChanged();
+}
+
 void RssReaderPage::fillForDay(int day, const QSet<QString>& completedTasks)
 {
     m_rssItems.clear();
@@ -74,4 +82,11 @@ void RssReaderPage::fillForFirst()
     rssItem->setContent("");
     rssItem->setIcon("");
     m_rssItems.append(rssItem);
+}
+
+void RssReaderPage::filterItems()
+{
+    m_filteredRssItems.clear();
+
+
 }

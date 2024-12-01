@@ -29,6 +29,9 @@ InGameWindowPage {
             anchors.topMargin: 4
             allExpandedOnStart: true
             model: gameBackend.rssReaderPage.tree
+            Component.onCompleted: {
+                tasksTree.selectNode(gameBackend.rssReaderPage.tree[0]);
+            }
         }
     }
 

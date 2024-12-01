@@ -69,19 +69,25 @@ InGameWindowDefaultHeader {
         }
     }
 
-    IconButton {
+    ContentButton {
         anchors.top: root.top
         anchors.topMargin: 5
         anchors.right: root.right
         anchors.rightMargin: 6
         width: 16
         height: 16
-        iconWidth: 10
-        iconHeight: 8
-        iconX: 3
-        iconY: 3
-        iconSource: assetsLocation.imagedPath + "closewindowicon.png"
-        onPressed: {
+
+        Image {
+            anchors.left: parent.left
+            anchors.leftMargin: 1.8
+            anchors.top: parent.top
+            anchors.topMargin: 1.3
+            width: 9
+            height: 9
+            source: assetsLocation.imagedPath + "closewindowicon.png"
+        }
+
+        onClicked: {
             root.needCloseWindow();
         }
     }
