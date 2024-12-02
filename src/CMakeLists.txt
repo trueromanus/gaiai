@@ -106,6 +106,7 @@ qt_add_qml_module(appgaiai
         Images/rssreader.png
 
         TextContents/taskContents.en.json
+        TextContents/newsContents.en.json
 )
 
 set_target_properties(appgaiai PROPERTIES

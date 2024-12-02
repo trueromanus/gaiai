@@ -32,7 +32,7 @@ public:
 
 private:
     void fillForFirst();
-    void filterItems();
+    void loadRssItems(const QString& language);
 
 signals:
     void treeChanged();

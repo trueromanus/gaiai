@@ -1,8 +1,15 @@
+#include <QFile>
+#include <QJsonDocument>
+#include <QJsonArray>
+#include <QJsonObject>
 #include "rssreaderpage.h"
+#include "../Models/gamerssitemmodel.h"
 
 RssReaderPage::RssReaderPage(QObject *parent)
     : QObject{parent}
 {
+    loadRssItems("en");
+
     auto peopleSection = new GameTreeSectionModel(this);
     peopleSection->setTitle("People");
 
@@ -77,16 +84,35 @@ void RssReaderPage::fillForDay(int day, const QSet<QString>& completedTasks)
 
 void RssReaderPage::fillForFirst()
 {
-    auto rssItem = new GameRssItemModel();
-    rssItem->setHeader("");
-    rssItem->setContent("");
-    rssItem->setIcon("");
-    m_rssItems.append(rssItem);
-}
-
-void RssReaderPage::filterItems()
-{
     m_filteredRssItems.clear();
 
+    foreach (auto rssItem, m_rssItems) {
+        if (rssItem->day() == 1) m_filteredRssItems.append(rssItem);
+    }
+}
 
+void RssReaderPage::loadRssItems(const QString& language)
+{
+    m_rssItems.clear();
+
+    QFile file(":/qt/qml/gaiai/TextContents/newsContents." + language + ".json");
+    if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) return;
+
+    auto content = file.readAll();
+    file.close();
+
+    auto document = QJsonDocument::fromJson(content);
+    auto array = document.array();
+
+    foreach (auto item, array) {
+        GameRssItemModel* model = new GameRssItemModel(this);
+        auto object = item.toObject();
+        model->setTopic(object.value("topic").toString());
+        model->setIcon(object.value("icon").toString() + ".png");
+        model->setDay(object.value("day").toInt());
+        model->setHeader(object.value("header").toString());
+        model->setContent(object.value("text").toString());
+
+        m_rssItems.append(model);
+    }
 }

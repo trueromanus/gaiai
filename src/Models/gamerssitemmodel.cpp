@@ -27,3 +27,19 @@ void GameRssItemModel::setContent(const QString &content) noexcept
     m_content = content;
     emit contentChanged();
 }
+
+void GameRssItemModel::setTopic(const QString &topic) noexcept
+{
+    if (m_topic == topic) return;
+
+    m_topic = topic;
+    emit topicChanged();
+}
+
+void GameRssItemModel::setDay(int day) noexcept
+{
+    if (m_day == day) return;
+
+    m_day = day;
+    emit dayChanged();
+}
