@@ -20,6 +20,7 @@ qt_add_executable(appgaiai
 
     PageModels/smarttrackerpage.h PageModels/smarttrackerpage.cpp
     PageModels/rssreaderpage.h PageModels/rssreaderpage.cpp
+    PageModels/emailclientpage.h PageModels/emailclientpage.cpp
 
     main.cpp
 )
@@ -70,6 +71,7 @@ qt_add_qml_module(appgaiai
         Pages/OnboardingPage.qml
         Pages/SmartTrackerPage.qml
         Pages/RssReaderPage.qml
+        Pages/EmailClientPage.qml
 
     SOURCES
         ingamewindow.h ingamewindow.cpp
