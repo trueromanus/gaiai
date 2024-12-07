@@ -14,6 +14,7 @@ class RssReaderPage : public QObject
 
 private:
     QList<GameTreeSectionModel*> m_tree { QList<GameTreeSectionModel*>() };
+    QList<GameRssItemModel*> m_dayRssItems { QList<GameRssItemModel*>() };
     QList<GameRssItemModel*> m_filteredRssItems { QList<GameRssItemModel*>() };
     QList<GameRssItemModel*> m_rssItems { QList<GameRssItemModel*>() };
     QObject* m_selectedSection { nullptr };
@@ -33,6 +34,7 @@ public:
 private:
     void fillForFirst();
     void loadRssItems(const QString& language);
+    void filterItems(QSet<QString> items);
 
 signals:
     void treeChanged();

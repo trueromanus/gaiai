@@ -19,6 +19,8 @@ GameBackend::GameBackend(QObject *parent)
     createDay1Tasks();
 
     fillTasksForDay(m_firstDay);
+    QSet<QString> emptyTasks;
+    m_rssReaderPage->fillForDay(m_firstDay, emptyTasks);
 }
 
 void GameBackend::moveToNextDay()

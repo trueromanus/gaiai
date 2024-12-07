@@ -193,7 +193,7 @@ void InGameTaskBar::adjustSmartTrackerPage()
 void InGameTaskBar::adjustRssReaderPage()
 {
     m_defaultNamesOfWindows.insert(m_rssReaderPage, "RSS Reader");
-    m_windowSizes.insert(m_rssReaderPage, std::make_tuple(590, 355));
+    m_windowSizes.insert(m_rssReaderPage, std::make_tuple(650, 355));
     m_uniqueWindows.insert(m_rssReaderPage);
     m_commandToPageMapping.insert(m_rssReaderPage, "Pages/RssReaderPage.qml");
 }

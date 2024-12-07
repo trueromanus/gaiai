@@ -58,6 +58,7 @@ RssReaderPage::RssReaderPage(QObject *parent)
 
     auto medicineLocalNewsSection = new GameTreeSectionModel(this);
     medicineLocalNewsSection->setTitle("Local news");
+    medicineLocalNewsSection->setCommand("medicinelocalnews");
     medicineSection->addSubSection(medicineLocalNewsSection);
 
     m_tree.append(medicineSection);
@@ -69,12 +70,25 @@ void RssReaderPage::setSelectedSection(QObject *selectedSection) noexcept
 
     m_selectedSection = selectedSection;
     emit selectedSectionChanged();
+
+    auto section = qobject_cast<GameTreeSectionModel*>(selectedSection);
+    if (section == nullptr) return;
+
+    QSet<QString> items;
+    if (section->hasChildrens()) {
+        foreach (auto children, section->childrens()) {
+            auto topic = children->command();
+            if (!topic.isEmpty()) items.insert(children->command());
+        }
+    } else {
+        items.insert(section->command());
+    }
+
+    filterItems(items);
 }
 
 void RssReaderPage::fillForDay(int day, const QSet<QString>& completedTasks)
 {
-    m_rssItems.clear();
-
     switch (day) {
         case 1:
             fillForFirst();
@@ -84,10 +98,10 @@ void RssReaderPage::fillForDay(int day, const QSet<QString>& completedTasks)
 
 void RssReaderPage::fillForFirst()
 {
-    m_filteredRssItems.clear();
+    m_dayRssItems.clear();
 
     foreach (auto rssItem, m_rssItems) {
-        if (rssItem->day() == 1) m_filteredRssItems.append(rssItem);
+        if (rssItem->day() == 1) m_dayRssItems.append(rssItem);
     }
 }
 
@@ -115,4 +129,16 @@ void RssReaderPage::loadRssItems(const QString& language)
 
         m_rssItems.append(model);
     }
+}
+
+void RssReaderPage::filterItems(QSet<QString> items)
+{
+    m_filteredRssItems.clear();
+
+    foreach (auto rssItem, m_dayRssItems) {
+        auto insideTopic = items.contains(rssItem->topic());
+        if (insideTopic) m_filteredRssItems.append(rssItem);
+    }
+
+    emit filteredRssItemsChanged();
 }
