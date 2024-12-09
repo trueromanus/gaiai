@@ -9,6 +9,7 @@
 #include "Models/gametasksectionmodel.h"
 #include "PageModels/smarttrackerpage.h"
 #include "PageModels/rssreaderpage.h"
+#include "PageModels/emailclientpage.h"
 #include "Models/translationsmodel.h"
 
 class GameBackend : public QObject
@@ -19,6 +20,7 @@ class GameBackend : public QObject
     Q_PROPERTY(int time READ time NOTIFY timeChanged FINAL)
     Q_PROPERTY(SmartTrackerPage* smartTrackerPage READ smartTrackerPage NOTIFY smartTrackerPageChanged FINAL)
     Q_PROPERTY(RssReaderPage* rssReaderPage READ rssReaderPage NOTIFY rssReaderPageChanged FINAL)
+    Q_PROPERTY(EmailClientPage* emailClientPage READ emailClientPage NOTIFY emailClientPageChanged FINAL)
     QML_ELEMENT
 
 private:
@@ -35,6 +37,7 @@ private:
     int m_time { 0 };
     SmartTrackerPage* m_smartTrackerPage { new SmartTrackerPage(this) };
     RssReaderPage* m_rssReaderPage { new RssReaderPage(this) };
+    EmailClientPage* m_emailClientPage { new EmailClientPage() };
 
 public:
     explicit GameBackend(QObject *parent = nullptr);
@@ -44,6 +47,7 @@ public:
     int time() const noexcept { return m_time; }
     SmartTrackerPage* smartTrackerPage() const noexcept { return m_smartTrackerPage; }
     RssReaderPage* rssReaderPage() const noexcept { return m_rssReaderPage; }
+    EmailClientPage* emailClientPage() const noexcept { return m_emailClientPage; }
 
     Q_INVOKABLE void moveToNextDay();
     Q_INVOKABLE void checkCompletedTasks();
@@ -59,6 +63,7 @@ signals:
     void timeChanged();
     void smartTrackerPageChanged();
     void rssReaderPageChanged();
+    void emailClientPageChanged();
 
 };
 
