@@ -9,21 +9,21 @@ EmailClientPage::EmailClientPage(QObject *parent)
     folderColumn->setTitle("Folder");
     folderColumn->setField("title");
     folderColumn->setSelectable(true);
-    folderColumn->setColumnWidth(199);
+    folderColumn->setColumnWidth(120);
     m_foldersColumns.append(folderColumn);
 
     auto newColumn = new GameTableColumn(this);
     newColumn->setTitle("New");
     newColumn->setField("newCount");
     newColumn->setSelectable(true);
-    newColumn->setColumnWidth(199);
+    newColumn->setColumnWidth(40);
     m_foldersColumns.append(newColumn);
 
     auto totalColumn = new GameTableColumn(this);
     totalColumn->setTitle("Total");
     totalColumn->setField("totalCount");
     totalColumn->setSelectable(true);
-    totalColumn->setColumnWidth(199);
+    totalColumn->setColumnWidth(40);
     m_foldersColumns.append(totalColumn);
 
     // email columns

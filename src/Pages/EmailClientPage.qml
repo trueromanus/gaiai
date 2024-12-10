@@ -4,7 +4,7 @@ import "../Controls"
 
 InGameWindowPage {
     id: root
-   anchors.fill: parent
+    anchors.fill: parent
 
     TableList {
         anchors.left: parent.left
