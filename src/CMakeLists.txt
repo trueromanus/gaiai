@@ -108,6 +108,7 @@ qt_add_qml_module(appgaiai
         Images/tile2x2.png
         Images/rssreader.png
         Images/hospitalentrance.png
+        Images/emailclient.png
 
         TextContents/taskContents.en.json
         TextContents/newsContents.en.json

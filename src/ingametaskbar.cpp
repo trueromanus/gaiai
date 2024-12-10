@@ -6,6 +6,7 @@ InGameTaskBar::InGameTaskBar() {
     adjustOnboardingPage();
     adjustSmartTrackerPage();
     adjustRssReaderPage();
+    adjustEmailClientPage();
 }
 
 void InGameTaskBar::setStartMenuOpened(bool startMenuOpened) noexcept
@@ -196,6 +197,14 @@ void InGameTaskBar::adjustRssReaderPage()
     m_windowSizes.insert(m_rssReaderPage, std::make_tuple(650, 355));
     m_uniqueWindows.insert(m_rssReaderPage);
     m_commandToPageMapping.insert(m_rssReaderPage, "Pages/RssReaderPage.qml");
+}
+
+void InGameTaskBar::adjustEmailClientPage()
+{
+    m_defaultNamesOfWindows.insert(m_emailClientPage, "I'm The Bat_an!");
+    m_windowSizes.insert(m_emailClientPage, std::make_tuple(650, 355));
+    m_uniqueWindows.insert(m_emailClientPage);
+    m_commandToPageMapping.insert(m_emailClientPage, "Pages/EmailClientPage.qml");
 }
 
 void InGameTaskBar::removeWindow(InGameWindow *window)

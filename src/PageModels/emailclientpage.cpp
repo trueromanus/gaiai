@@ -14,14 +14,14 @@ EmailClientPage::EmailClientPage(QObject *parent)
 
     auto newColumn = new GameTableColumn(this);
     newColumn->setTitle("New");
-    newColumn->setField("title");
+    newColumn->setField("newCount");
     newColumn->setSelectable(true);
     newColumn->setColumnWidth(199);
     m_foldersColumns.append(newColumn);
 
     auto totalColumn = new GameTableColumn(this);
     totalColumn->setTitle("Total");
-    totalColumn->setField("title");
+    totalColumn->setField("totalCount");
     totalColumn->setSelectable(true);
     totalColumn->setColumnWidth(199);
     m_foldersColumns.append(totalColumn);
@@ -62,4 +62,13 @@ EmailClientPage::EmailClientPage(QObject *parent)
     subjectColumn->setSelectable(true);
     subjectColumn->setColumnWidth(199);
     m_emailColumns.append(subjectColumn);
+}
+
+void EmailClientPage::fillObjectSections()
+{
+    m_sectionObjects.clear();
+
+    foreach (auto section, m_sections) {
+        m_sectionObjects.append(qobject_cast<QObject*>(section));
+    }
 }

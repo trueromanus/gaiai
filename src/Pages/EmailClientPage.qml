@@ -1,21 +1,23 @@
 import QtQuick
 import gaiai
-import "Controls"
+import "../Controls"
 
 InGameWindowPage {
     id: root
-    anchors.fill: parent
-
+   anchors.fill: parent
 
     TableList {
-        anchors.fill: parent
+        anchors.left: parent.left
+        anchors.top: parent.top
+        anchors.bottom: parent.bottom
+        width: 200
         columns: gameBackend.emailClientPage.foldersColumns
-        //items: tasksTree.selectedNode.objectChildrens
+        items: gameBackend.emailClientPage.sections
         /*onSelectedItemChanged: {
-            gameBackend.smartTrackerPage.selectedTaskInList = selectedItem;
+           gameBackend.smartTrackerPage.selectedTaskInList = selectedItem;
         }
         onOpenItem: {
-            tasksTree.selectNode(gameBackend.smartTrackerPage.selectedTaskInList);
+           tasksTree.selectNode(gameBackend.smartTrackerPage.selectedTaskInList);
         }*/
     }
 }

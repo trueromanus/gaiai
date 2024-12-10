@@ -3,7 +3,7 @@
 
 #include <QObject>
 
-class GameEmailSectionModel : QObject
+class GameEmailSectionModel : public QObject
 {
     Q_OBJECT
     Q_PROPERTY(QString title READ title WRITE setTitle NOTIFY titleChanged FINAL)

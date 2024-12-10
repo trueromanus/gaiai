@@ -61,6 +61,12 @@ void InGameStartMenu::fillProgramsMenu()
     rssReader->setIcon("rssreader.png");
     rssReader->setCommand("rssreader");
     m_programs.append(rssReader);
+
+    auto emailClient = new GameMenuModel(this);
+    emailClient->setTitle("I'm The Bat_an!");
+    emailClient->setIcon("emailclient.png");
+    emailClient->setCommand("emailclient");
+    m_programs.append(emailClient);
 }
 
 void InGameStartMenu::addStartMenuItem(const QString &title, const QString &image, const QString &command, bool topLine, bool subMenu)

@@ -21,6 +21,7 @@ private:
     const QString m_onboardingPage { "onboarding" };
     const QString m_smartTrackerPage { "smarttracker" };
     const QString m_rssReaderPage { "rssreader" };
+    const QString m_emailClientPage { "emailclient" };
 
     QMap<InGameWindow*, QQmlComponent*> m_windows { QMap<InGameWindow*, QQmlComponent*>() };
     QVariantList m_visibleItems { QVariantList() };
@@ -64,6 +65,7 @@ private:
     void adjustOnboardingPage();
     void adjustSmartTrackerPage();
     void adjustRssReaderPage();
+    void adjustEmailClientPage();
 
 private slots:
     void removeWindow(InGameWindow* window);
