@@ -29,38 +29,38 @@ EmailClientPage::EmailClientPage(QObject *parent)
     // email columns
 
     auto readedColumn = new GameTableColumn(this);
-    readedColumn->setTitle("Readed");
+    readedColumn->setTitle("R");
     readedColumn->setField("title");
     readedColumn->setSelectable(true);
-    readedColumn->setColumnWidth(199);
+    readedColumn->setColumnWidth(34);
     m_emailColumns.append(readedColumn);
 
     auto hasAttachmentColumn = new GameTableColumn(this);
-    hasAttachmentColumn->setTitle("Has Attachment");
+    hasAttachmentColumn->setTitle("A");
     hasAttachmentColumn->setField("title");
     hasAttachmentColumn->setSelectable(true);
-    hasAttachmentColumn->setColumnWidth(199);
+    hasAttachmentColumn->setColumnWidth(30);
     m_emailColumns.append(hasAttachmentColumn);
 
     auto fromColumn = new GameTableColumn(this);
     fromColumn->setTitle("From");
     fromColumn->setField("title");
     fromColumn->setSelectable(true);
-    fromColumn->setColumnWidth(199);
+    fromColumn->setColumnWidth(90);
     m_emailColumns.append(fromColumn);
 
     auto toColumn = new GameTableColumn(this);
     toColumn->setTitle("To");
     toColumn->setField("title");
     toColumn->setSelectable(true);
-    toColumn->setColumnWidth(199);
+    toColumn->setColumnWidth(90);
     m_emailColumns.append(toColumn);
 
     auto subjectColumn = new GameTableColumn(this);
     subjectColumn->setTitle("Subject");
     subjectColumn->setField("title");
     subjectColumn->setSelectable(true);
-    subjectColumn->setColumnWidth(199);
+    subjectColumn->setColumnWidth(90);
     m_emailColumns.append(subjectColumn);
 }
 

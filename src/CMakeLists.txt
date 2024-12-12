@@ -48,6 +48,7 @@ qt_add_qml_module(appgaiai
         Controls/Lines/HorizontalDashLine.qml
         Controls/Lines/DashRectangle.qml
         Controls/Lines/HorizontalLine.qml
+        Controls/Lines/VerticalLine.qml
         Controls/Lines/RightTriangle.qml
     QML_FILES
         Controls/DefaultButton.qml

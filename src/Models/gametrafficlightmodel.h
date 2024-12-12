@@ -16,9 +16,9 @@ private:
     QStringList m_colors { QStringList() };
     QString m_text { "" };
     bool m_isCorrect { false };
-    bool m_correctRed { 0 };
-    bool m_correctGreen { 0 };
-    bool m_correctYellow { 0 };
+    int m_correctRed { 0 };
+    int m_correctGreen { 0 };
+    int m_correctYellow { 0 };
 
 public:
     explicit GameTrafficLightModel(QObject *parent = nullptr);
