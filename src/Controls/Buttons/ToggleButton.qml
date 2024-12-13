@@ -1,6 +1,6 @@
 import QtQuick
 import gaiai
-import "Panels"
+import "../Panels"
 
 InGameButton {
     id: root
@@ -22,18 +22,11 @@ InGameButton {
         onPressed: {
             if (root.disabled) return;
 
-            root.press();
-        }
-        onReleased: {
-            root.release();
-
-            if (!root.disabled && mouseArea.containsMouse) root.clicked();
-        }
-        onContainsMouseChanged: {
-            if (root.disabled) return;
-
-            if (!mouseArea.containsMouse) root.release();
-            if (mouseArea.containsMouse) root.press();
+            if (root.pressed) {
+                root.release();
+            } else {
+                root.press();
+            }
         }
     }
 }

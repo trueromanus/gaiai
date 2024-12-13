@@ -1,5 +1,6 @@
 import QtQuick
 import gaiai
+import "Buttons"
 
 InGameTableList {
     id: root

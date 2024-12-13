@@ -3,6 +3,7 @@ import gaiai
 import "../Controls"
 import "../Controls/Panels"
 import "../Controls/Lines"
+import "../Controls/Buttons"
 
 InGameWindowPage {
     id: root

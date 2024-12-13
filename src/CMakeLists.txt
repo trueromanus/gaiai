@@ -43,6 +43,7 @@ qt_add_qml_module(appgaiai
         Controls/Panels/WindowPanel.qml
         Controls/Panels/CheckBoxPanel.qml
         Controls/Panels/GridCanvasPanel.qml
+        Controls/Panels/RevertedPanel.qml
     QML_FILES
         Controls/Lines/VerticalDashLine.qml
         Controls/Lines/HorizontalDashLine.qml
@@ -51,11 +52,11 @@ qt_add_qml_module(appgaiai
         Controls/Lines/VerticalLine.qml
         Controls/Lines/RightTriangle.qml
     QML_FILES
-        Controls/DefaultButton.qml
-        Controls/IconButton.qml
-        Controls/ContentButton.qml
-        Controls/ToggleButton.qml
-        Controls/RadioButton.qml
+        Controls/Buttons/DefaultButton.qml
+        Controls/Buttons/IconButton.qml
+        Controls/Buttons/ContentButton.qml
+        Controls/Buttons/ToggleButton.qml
+        Controls/Buttons/RadioButton.qml
     QML_FILES
         Controls/TaskBar.qml
         Controls/StartMenuPopup.qml
@@ -110,6 +111,25 @@ qt_add_qml_module(appgaiai
         Images/rssreader.png
         Images/hospitalentrance.png
         Images/emailclient.png
+
+        Images/columnattachmentmail.png
+        Images/columnattachmentvaluemail.png
+        Images/columnreadedemail.png
+        Images/columnreadedvalueemail.png
+
+        Images/commonemailfolder.png
+        Images/deletedemails.png
+        Images/emailaccount.png
+        Images/inboxemails.png
+        Images/outboxemails.png
+        Images/sentemails.png
+
+        Images/deleteemail.png
+        Images/forwardemail.png
+        Images/pullnewemails.png
+        Images/sendwaitingemails.png
+        Images/resendemail.png
+        Images/createnewemail.png
 
         TextContents/taskContents.en.json
         TextContents/newsContents.en.json

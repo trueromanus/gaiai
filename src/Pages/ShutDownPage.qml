@@ -1,6 +1,7 @@
 import QtQuick
 import gaiai
 import "../Controls"
+import "../Controls/Buttons"
 
 InGameWindowPage {
     id: root

@@ -1,6 +1,7 @@
 import QtQuick
 import gaiai
 import "Panels"
+import "Buttons"
 
 InGameTaskBar {
     id: root

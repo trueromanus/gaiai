@@ -2,6 +2,8 @@ import QtQuick
 import gaiai
 import "../Controls"
 import "../Controls/Lines"
+import "../Controls/Buttons"
+import "../Controls/Panels"
 
 InGameWindowPage {
     id: root
@@ -48,13 +50,98 @@ InGameWindowPage {
             height: parent.height
         }
 
-        VerticalLine {
+        RevertedPanel {
+            id: splitterLine1
+            width: 3
+            anchors.left: parent.left
+            anchors.leftMargin: 4
             anchors.top: parent.top
             anchors.topMargin: 2
             anchors.bottom: parent.bottom
             anchors.bottomMargin: 2
-            anchors.left: parent.left
-            anchors.leftMargin: 20
+        }
+
+        RevertedPanel {
+            id: splitterLine2
+            width: 3
+            anchors.left: splitterLine1.right
+            anchors.leftMargin: 1
+            anchors.top: parent.top
+            anchors.topMargin: 2
+            anchors.bottom: parent.bottom
+            anchors.bottomMargin: 2
+        }
+
+        IconButton {
+            id: pullNewEmailsButton
+            width: 40
+            height: 32
+            anchors.top: parent.top
+            anchors.topMargin: 1
+            anchors.left: splitterLine2.right
+            anchors.leftMargin: 2
+
+            Image {
+                anchors.centerIn: parent
+                width: 28
+                height: 28
+                source: assetsLocation.imagedPath + "pullnewemails.png"
+            }
+
+            onClicked: {
+
+            }
+        }
+
+        IconButton {
+            id: sendWaitingEmailsButton
+            width: 40
+            height: 32
+            anchors.top: parent.top
+            anchors.topMargin: 1
+            anchors.left: pullNewEmailsButton.right
+
+            Image {
+                anchors.centerIn: parent
+                width: 28
+                height: 28
+                source: assetsLocation.imagedPath + "sendwaitingemails.png"
+            }
+
+            onClicked: {
+
+            }
+        }
+
+        VerticalLine {
+            id: firstSectionLine
+            anchors.top: parent.top
+            anchors.topMargin: 2
+            anchors.bottom: parent.bottom
+            anchors.bottomMargin: 2
+            anchors.left: sendWaitingEmailsButton.right
+            anchors.leftMargin: 2
+        }
+
+        IconButton {
+            id: createnewEmailButton
+            width: 40
+            height: 32
+            anchors.top: parent.top
+            anchors.topMargin: 1
+            anchors.left: firstSectionLine.right
+            anchors.leftMargin: 1
+
+            Image {
+                anchors.centerIn: parent
+                width: 28
+                height: 28
+                source: assetsLocation.imagedPath + "createnewemail.png"
+            }
+
+            onClicked: {
+
+            }
         }
     }
 

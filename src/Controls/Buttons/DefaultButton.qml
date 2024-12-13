@@ -1,6 +1,6 @@
 import QtQuick
 import gaiai
-import "Panels"
+import "../Panels"
 
 InGameButton {
     id: root

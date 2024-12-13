@@ -86,6 +86,8 @@ Item {
         visible: root.pressed
         color: "#7f787f"
         anchors.left: leftPressedEdge.right
+        anchors.top: parent.top
+        anchors.topMargin: 1
         width: 1
         height: parent.height - 1
     }
@@ -94,6 +96,8 @@ Item {
         visible: root.pressed
         color: "#7f787f"
         anchors.top: topPressedEdge.bottom
+        anchors.left: parent.left
+        anchors.leftMargin: 1
         width: parent.width - 1
         height: 1
     }
