@@ -30,6 +30,14 @@ void InGameTableList::setSelectedItem(const QObject *selectedItem) noexcept
     emit selectedItemChanged();
 }
 
+void InGameTableList::setSelectedStyle(int selectedStyle) noexcept
+{
+    if (m_selectedStyle == selectedStyle) return;
+
+    m_selectedStyle = selectedStyle;
+    emit selectedStyleChanged();
+}
+
 void InGameTableList::recalculateFullWidth()
 {
     auto fullWidth = 0;

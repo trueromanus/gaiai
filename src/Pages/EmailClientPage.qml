@@ -9,15 +9,24 @@ InGameWindowPage {
     id: root
     anchors.fill: parent
 
+    Rectangle {
+        anchors.left: parent.left
+        anchors.top: parent.top
+        anchors.margins: 2
+        width: 290
+        height: 240
+    }
+
     TableList {
         id: sectionsTableList
         anchors.left: parent.left
+        anchors.leftMargin: 2
         anchors.top: parent.top
-        anchors.bottom: parent.bottom
         width: 290
-        height: 80
+        height: 240
         columns: gameBackend.emailClientPage.foldersColumns
         items: gameBackend.emailClientPage.sections
+        selectedStyle: 1
         /*onSelectedItemChanged: {
            gameBackend.smartTrackerPage.selectedTaskInList = selectedItem;
         }
@@ -130,7 +139,7 @@ InGameWindowPage {
             anchors.top: parent.top
             anchors.topMargin: 1
             anchors.left: firstSectionLine.right
-            anchors.leftMargin: 1
+            anchors.leftMargin: 2
 
             Image {
                 anchors.centerIn: parent

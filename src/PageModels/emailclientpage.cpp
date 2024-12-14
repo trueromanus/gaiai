@@ -62,6 +62,34 @@ EmailClientPage::EmailClientPage(QObject *parent)
     subjectColumn->setSelectable(true);
     subjectColumn->setColumnWidth(90);
     m_emailColumns.append(subjectColumn);
+
+    createObjectSections();
+    fillObjectSections();
+}
+
+void EmailClientPage::createObjectSections()
+{
+    m_accountSection = new GameEmailSectionModel(this);
+    //Eve Trent
+    m_accountSection->setTitle("et.t-h@goverment");
+
+    m_inBoxSection = new GameEmailSectionModel(this);
+    m_inBoxSection->setTitle("Inbox");
+
+    m_outBoxSection = new GameEmailSectionModel(this);
+    m_outBoxSection->setTitle("Outbox");
+
+    m_sentSection = new GameEmailSectionModel(this);
+    m_sentSection->setTitle("Sent");
+
+    m_trashSection = new GameEmailSectionModel(this);
+    m_trashSection->setTitle("Trash");
+
+    m_sections.append(m_accountSection);
+    m_sections.append(m_inBoxSection);
+    m_sections.append(m_outBoxSection);
+    m_sections.append(m_sentSection);
+    m_sections.append(m_trashSection);
 }
 
 void EmailClientPage::fillObjectSections()

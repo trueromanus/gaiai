@@ -11,6 +11,7 @@ class InGameTableList : public QQuickItem
     Q_PROPERTY(QList<QObject*> items READ items WRITE setItems NOTIFY itemsChanged FINAL)
     Q_PROPERTY(QObject* selectedItem READ selectedItem WRITE setSelectedItem NOTIFY selectedItemChanged FINAL)
     Q_PROPERTY(int fullWidth READ fullWidth NOTIFY fullWidthChanged FINAL)
+    Q_PROPERTY(int selectedStyle READ selectedStyle WRITE setSelectedStyle NOTIFY selectedStyleChanged FINAL)
     QML_ELEMENT
 
 private:
@@ -18,6 +19,7 @@ private:
     QList<QObject*> m_items { QList<QObject*>() };
     int m_fullWidth { 0 };
     QObject* m_selectedItem { nullptr };
+    int m_selectedStyle { 0 };
 
 public:
     InGameTableList();
@@ -33,6 +35,9 @@ public:
     QObject* selectedItem() const noexcept { return m_selectedItem; }
     void setSelectedItem(const QObject* selectedItem) noexcept;
 
+    int selectedStyle() const noexcept { return m_selectedStyle; }
+    void setSelectedStyle(int selectedStyle) noexcept;
+
 private:
     void recalculateFullWidth();
 
@@ -42,6 +47,7 @@ signals:
     void itemsChanged();
     void selectedItemChanged();
     void openItem();
+    void selectedStyleChanged();
 
 };
 

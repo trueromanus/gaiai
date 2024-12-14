@@ -4,6 +4,7 @@
 #include <QObject>
 #include "../Models/gametablecolumn.h"
 #include "../Models/gameemailsectionmodel.h"
+#include "../Models/gameemailmodel.h"
 
 class EmailClientPage : public QObject
 {
@@ -18,6 +19,12 @@ private:
     QList<GameTableColumn*> m_emailColumns { QList<GameTableColumn*>() };
     QList<GameEmailSectionModel*> m_sections { QList<GameEmailSectionModel*>() };
     QList<QObject*> m_sectionObjects { QList<QObject*>() };
+    GameEmailSectionModel* m_accountSection { nullptr };
+    GameEmailSectionModel* m_inBoxSection { nullptr };
+    GameEmailSectionModel* m_outBoxSection { nullptr };
+    GameEmailSectionModel* m_sentSection { nullptr };
+    GameEmailSectionModel* m_trashSection { nullptr };
+    QList<GameEmailModel*> m_emails { QList<GameEmailModel*>() };
 
 public:
     explicit EmailClientPage(QObject *parent = nullptr);
@@ -28,6 +35,7 @@ public:
     QList<QObject*> sections() const noexcept { return m_sectionObjects; }
 
 private:
+    void createObjectSections();
     void fillObjectSections();
 
 signals:

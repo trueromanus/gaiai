@@ -69,7 +69,7 @@ InGameTableList {
             height: 20
 
             Rectangle {
-                visible: selectable && selectedItem
+                visible: selectable && selectedItem && root.selectedStyle === 0
                 width: valueText.contentWidth + 4
                 height: parent.height
                 color: "#00007F"
@@ -81,6 +81,12 @@ InGameTableList {
                 }
             }
 
+            Rectangle {
+                visible: selectable && selectedItem && root.selectedStyle === 1
+                anchors.fill: parent
+                color: "#BFB8BF"
+            }
+
             PlainText {
                 id: valueText
                 verticalAlignment: Text.AlignVCenter
@@ -88,7 +94,7 @@ InGameTableList {
                 width: parent.width
                 height: parent.height
                 text: columnValue
-                color: selectable && selectedItem ? "white" : "black"
+                color: selectable && selectedItem && root.selectedStyle === 0 ? "white" : "black"
                 wrapMode: Text.NoWrap
                 elide: Text.ElideRight
                 maximumLineCount: 1
