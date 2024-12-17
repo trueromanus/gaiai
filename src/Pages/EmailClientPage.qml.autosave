@@ -174,7 +174,7 @@ InGameWindowPage {
         items: gameBackend.emailClientPage.emails
         selectedStyle: 1
         onSelectedItemChanged: {
-
+            
         }
     }
 

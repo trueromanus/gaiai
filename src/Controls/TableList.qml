@@ -44,6 +44,7 @@ InGameTableList {
                 delegate: Loader {
                     sourceComponent: switch(modelData.formatter) {
                         case "checkbox": return checkBoxComponent;
+                        case "image": return imageComponent;
                         default: return simpleText;
                     }
 
@@ -124,6 +125,28 @@ InGameTableList {
                 anchors.centerIn: parent
                 width: 14
                 height: 14
+            }
+        }
+    }
+
+    Component {
+        id: imageComponent
+
+        Item {
+            width: columnWidth
+            height: 20
+
+            Rectangle {
+                visible: selectable && selectedItem && root.selectedStyle === 1
+                anchors.fill: parent
+                color: "#BFB8BF"
+            }
+
+            Image {
+                anchors.centerIn: parent
+                width: 20
+                height: 20
+                source: columnValue ? assetsLocation.imagedPath + columnValue + ".png" : ""
             }
         }
     }

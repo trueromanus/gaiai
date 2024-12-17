@@ -9,13 +9,13 @@ class GameEmailSectionModel : public QObject
     Q_PROPERTY(QString title READ title WRITE setTitle NOTIFY titleChanged FINAL)
     Q_PROPERTY(int newCount READ newCount NOTIFY newCountChanged FINAL)
     Q_PROPERTY(int totalCount READ totalCount NOTIFY totalCountChanged FINAL)
-    Q_PROPERTY(QString filter READ filter WRITE setFilter NOTIFY filterChanged FINAL)
+    Q_PROPERTY(QString group READ group WRITE setGroup NOTIFY groupChanged FINAL)
 
 private:
     QString m_title { "" };
     int m_newCount { 0 };
     int m_totalCount { 0 };
-    QString m_filter { "" };
+    QString m_group { "" };
 
 public:
     explicit GameEmailSectionModel(QObject *parent = nullptr);
@@ -26,14 +26,14 @@ public:
     int newCount() const noexcept { return m_newCount; }
     int totalCount() const noexcept { return m_totalCount; }
 
-    QString filter() const noexcept { return m_filter; }
-    void setFilter(const QString& filter) noexcept;
+    QString group() const noexcept { return m_group; }
+    void setGroup(const QString& group) noexcept;
 
 signals:
     void titleChanged();
     void newCountChanged();
     void totalCountChanged();
-    void filterChanged();
+    void groupChanged();
 
 };
 

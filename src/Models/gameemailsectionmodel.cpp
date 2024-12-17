@@ -13,10 +13,10 @@ void GameEmailSectionModel::setTitle(const QString &title) noexcept
     emit titleChanged();
 }
 
-void GameEmailSectionModel::setFilter(const QString &filter) noexcept
+void GameEmailSectionModel::setGroup(const QString &group) noexcept
 {
-    if (m_filter == filter) return;
+    if (m_group == group) return;
 
-    m_filter = filter;
-    emit filterChanged();
+    m_group = group;
+    emit groupChanged();
 }

@@ -4,8 +4,10 @@ Item {
     id: root
     default property alias content: contentContainer.children
     property bool pressed
+    property bool fillBackground: true
 
     Rectangle {
+        visible: root.fillBackground
         color: "#BFB8BF"
         anchors.fill: parent
     }
@@ -98,7 +100,7 @@ Item {
         anchors.top: topPressedEdge.bottom
         anchors.left: parent.left
         anchors.leftMargin: 1
-        width: parent.width - 1
+        width: parent.width - 2
         height: 1
     }
 

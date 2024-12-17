@@ -202,7 +202,7 @@ void InGameTaskBar::adjustRssReaderPage()
 void InGameTaskBar::adjustEmailClientPage()
 {
     m_defaultNamesOfWindows.insert(m_emailClientPage, "I'm The Bat_an!");
-    m_windowSizes.insert(m_emailClientPage, std::make_tuple(650, 355));
+    m_windowSizes.insert(m_emailClientPage, std::make_tuple(650, 400));
     m_uniqueWindows.insert(m_emailClientPage);
     m_commandToPageMapping.insert(m_emailClientPage, "Pages/EmailClientPage.qml");
 }
