@@ -11,6 +11,7 @@ void VerticalScrollBar::setScrollAreaHeight(qreal scrollAreaHeight) noexcept
 
     refreshPercent();
     refreshThumbHeight();
+    checkIfItRequireScroll();
 }
 
 void VerticalScrollBar::setScrollAreaContentHeight(qreal scrollAreaContentHeight) noexcept
@@ -22,6 +23,7 @@ void VerticalScrollBar::setScrollAreaContentHeight(qreal scrollAreaContentHeight
 
     refreshPercent();
     refreshThumbHeight();
+    checkIfItRequireScroll();
 }
 
 void VerticalScrollBar::setThumbPosition(qreal thumbPosition) noexcept
@@ -117,4 +119,10 @@ void VerticalScrollBar::refreshThumbHeight()
 
     m_thumb = height() * m_percent;
     emit thumbChanged();
+}
+
+void VerticalScrollBar::checkIfItRequireScroll()
+{
+    m_isNeedScroll = m_percent > 0;
+    emit isNeedScrollChanged();
 }

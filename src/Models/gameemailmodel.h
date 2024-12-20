@@ -14,6 +14,7 @@ class GameEmailModel : public QObject
     Q_PROPERTY(QString to READ to WRITE setTo NOTIFY toChanged FINAL)
     Q_PROPERTY(QString subject READ subject WRITE setSubject NOTIFY subjectChanged FINAL)
     Q_PROPERTY(QString group READ group WRITE setGroup NOTIFY groupChanged FINAL)
+    Q_PROPERTY(QString content READ content WRITE setContent NOTIFY contentChanged FINAL)
 
 private:
     bool m_hasAttachments { false };
@@ -22,6 +23,7 @@ private:
     QString m_to { "" };
     QString m_subject { "" };
     QString m_group { "" };
+    QString m_content { "" };
 
 public:
     explicit GameEmailModel(QObject *parent = nullptr);
@@ -44,6 +46,9 @@ public:
     QString group() const noexcept { return m_group; }
     void setGroup(const QString& group) noexcept;
 
+    QString content() const noexcept { return m_content; }
+    void setContent(const QString& content) noexcept;
+
     QString isReadedImage() const noexcept { return m_isReaded ? "columnreadedemail" : ""; }
     QString hasAttachmentImage() const noexcept { return m_hasAttachments ? "columnattachmentmail" : ""; }
 
@@ -56,6 +61,7 @@ signals:
     void groupChanged();
     void hasAttachmentImageChanged();
     void isReadedImageChanged();
+    void contentChanged();
 
 };
 

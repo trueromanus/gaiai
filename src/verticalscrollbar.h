@@ -11,6 +11,7 @@ class VerticalScrollBar : public QQuickItem
     Q_PROPERTY(qreal thumb READ thumb NOTIFY thumbChanged FINAL)
     Q_PROPERTY(qreal thumbPosition READ thumbPosition WRITE setThumbPosition NOTIFY thumbPositionChanged FINAL)
     Q_PROPERTY(bool moving READ moving WRITE setMoving NOTIFY movingChanged FINAL)
+    Q_PROPERTY(bool isNeedScroll READ isNeedScroll NOTIFY isNeedScrollChanged FINAL)
     QML_ELEMENT
 
 private:
@@ -21,6 +22,7 @@ private:
     qreal m_thumbPosition { 0 };
     qreal m_originY { -1 };
     bool m_moving { false };
+    bool m_isNeedScroll { false };
 
 public:
     VerticalScrollBar();
@@ -39,6 +41,8 @@ public:
     bool moving() const noexcept { return m_moving; }
     void setMoving(bool moving) noexcept;
 
+    bool isNeedScroll() const noexcept { return m_isNeedScroll; }
+
     Q_INVOKABLE void setOriginY(qreal value);
     Q_INVOKABLE void clearOriginY();
     Q_INVOKABLE void changeAfterChangePosition(qreal mousePosition);
@@ -49,6 +53,7 @@ public:
 private:
     void refreshPercent();
     void refreshThumbHeight();
+    void checkIfItRequireScroll();
 
 signals:
     void scrollAreaHeightChanged();
@@ -57,6 +62,7 @@ signals:
     void thumbPositionChanged();
     void requiredChangeScrollPosition(qreal newValue);
     void movingChanged();
+    void isNeedScrollChanged();
 
 };
 

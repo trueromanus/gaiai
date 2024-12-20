@@ -51,3 +51,11 @@ void GameEmailModel::setGroup(const QString &group) noexcept
     m_group = group;
     emit groupChanged();
 }
+
+void GameEmailModel::setContent(const QString &content) noexcept
+{
+    if (m_content == content) return;
+
+    m_content = content;
+    emit contentChanged();
+}

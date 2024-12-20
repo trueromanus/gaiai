@@ -174,11 +174,12 @@ InGameWindowPage {
         items: gameBackend.emailClientPage.emails
         selectedStyle: 1
         onSelectedItemChanged: {
-
+            gameBackend.emailClientPage.selectedEmail = selectedItem;
         }
     }
 
     ButtonPanel {
+        id: basicInfoAboutEmail
         pressed: true
         anchors.top: sectionsTableList.bottom
         anchors.left: parent.left
@@ -226,24 +227,56 @@ InGameWindowPage {
             anchors.top: parent.top
             anchors.topMargin: 2
             anchors.left: separator.right
-            text: "From"
-            font.bold: true
+            anchors.leftMargin: 6
+            text: (gameBackend.emailClientPage.selectedEmail ? gameBackend.emailClientPage.selectedEmail["from"] : "")
         }
 
         PlainText {
             id: toValueText
             anchors.left: separator.right
+            anchors.leftMargin: 6
             anchors.top: fromText.bottom
-            text: "To"
-            font.bold: true
+            text: (gameBackend.emailClientPage.selectedEmail ? gameBackend.emailClientPage.selectedEmail["to"] : "")
         }
 
         PlainText {
             id: subjectValueText
             anchors.left: separator.right
+            anchors.leftMargin: 6
             anchors.top: toText.bottom
-            text: "Subject"
-            font.bold: true
+            text: (gameBackend.emailClientPage.selectedEmail ? gameBackend.emailClientPage.selectedEmail["subject"] : "")
         }
+    }
+
+    Panel {
+        id: emailContentPanel
+        anchors.top: basicInfoAboutEmail.bottom
+        anchors.left: parent.left
+        anchors.right: parent.right
+        anchors.topMargin: 1
+        anchors.leftMargin: 2
+        anchors.rightMargin: 3
+        anchors.bottom: parent.bottom
+        anchors.bottomMargin: 2
+
+        Rectangle {
+            anchors.fill: parent
+            color: "#EFE8EF"
+        }
+
+        FlickableArea {
+            id: contentFlickableArea
+            anchors.fill: parent
+            contentHeight: emailTextContent.height
+
+            PlainText {
+                id: emailTextContent
+                color: "#00007F"
+                width: contentFlickableArea.width - 30
+                wrapMode: Text.WordWrap
+                text: (gameBackend.emailClientPage.selectedEmail ? gameBackend.emailClientPage.selectedEmail["content"] : "")
+            }
+        }
+
     }
 }

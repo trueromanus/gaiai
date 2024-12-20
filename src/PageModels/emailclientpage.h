@@ -14,6 +14,7 @@ class EmailClientPage : public QObject
     Q_PROPERTY(QList<QObject*> sections READ sections NOTIFY sectionsChanged FINAL)
     Q_PROPERTY(QList<QObject*> emails READ emails NOTIFY emailsChanged FINAL)
     Q_PROPERTY(QString selectedGroup READ selectedGroup WRITE setSelectedGroup NOTIFY selectedGroupChanged FINAL)
+    Q_PROPERTY(GameEmailModel* selectedEmail READ selectedEmail WRITE setSelectedEmail NOTIFY selectedEmailChanged FINAL)
 
 private:
     const QString InboxGroup { "inbox" };
@@ -33,6 +34,7 @@ private:
     QList<GameEmailModel*> m_emails { QList<GameEmailModel*>() };
     QList<QObject*> m_emailObjects { QList<QObject*>() };
     QString m_selectedGroup { "" };
+    GameEmailModel* m_selectedEmail { nullptr };
 
 public:
     explicit EmailClientPage(QObject *parent = nullptr);
@@ -46,6 +48,9 @@ public:
 
     QString selectedGroup() const noexcept { return m_selectedGroup; }
     void setSelectedGroup(const QString& selectedGroup) noexcept;
+
+    GameEmailModel* selectedEmail() const noexcept { return m_selectedEmail; }
+    void setSelectedEmail(const GameEmailModel* selectedEmail) noexcept;
 
     void fillForDay(int day) noexcept;
 
@@ -63,6 +68,7 @@ signals:
     void sectionsChanged();
     void emailsChanged();
     void selectedGroupChanged();
+    void selectedEmailChanged();
 
 };
 

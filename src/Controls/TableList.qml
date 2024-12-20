@@ -28,10 +28,13 @@ InGameTableList {
     }
 
     ListView {
+        id: flickableArea
         anchors.top: columnHeaders.bottom
         anchors.bottom: parent.bottom
+        anchors.right: fullVerticalScrollBar.left
         width: root.fullWidth
         model: root.items
+        clip: true
         delegate: Row {
             id: listRow
             width: root.fullWidth
@@ -58,6 +61,126 @@ InGameTableList {
                         root.selectedItem = listRow.rowModel;
                     }
                 }
+            }
+        }
+    }
+
+    Item {
+        id: fullVerticalScrollBar
+        width: verticalScrollBar.isNeedScroll ? 16 : 0
+        visible: verticalScrollBar.isNeedScroll
+        anchors.right: parent.right
+        anchors.top: parent.top
+        anchors.bottom: parent.bottom
+
+        ContentButton {
+            id: upButton
+            width: fullVerticalScrollBar.width
+            height: 16
+            anchors.top: parent.top
+            anchors.right: parent.right
+            disabled: verticalScrollBar.thumb === 0
+
+            RightTriangle {
+                anchors.horizontalCenter: parent.horizontalCenter
+                anchors.verticalCenter: parent.verticalCenter
+                shapeColor: verticalScrollBar.thumb === 0 ? "#818181" :"black"
+                transform: [
+                    Scale {
+                        origin.x: 5;
+                        origin.y: 10;
+                        xScale: 0.43
+                        yScale: 0.43
+                    },
+                    Rotation {
+                        origin.x: 5;
+                        origin.y: 10;
+                        angle: -90
+                    }
+                ]
+            }
+
+            onClicked: {
+                verticalScrollBar.scrollUp();
+            }
+        }
+
+        VerticalScrollBar {
+            id: verticalScrollBar
+            anchors.top: upButton.bottom
+            anchors.right: parent.right
+            anchors.bottom: downButton.top
+
+            scrollAreaHeight: flickableArea.height
+            scrollAreaContentHeight: flickableArea.contentHeight
+            moving: mouseRoot.pressed
+
+            onRequiredChangeScrollPosition: function (newValue) {
+                flickableArea.contentY = newValue;
+            }
+
+            width: fullVerticalScrollBar.width
+
+            GridCanvasPanel {
+                anchors.fill: parent
+            }
+
+            ButtonPanel {
+                id: scrollRoot
+                anchors.right: parent.right
+                y: verticalScrollBar.thumbPosition
+                width: 16
+                height: verticalScrollBar.thumb
+
+                MouseArea {
+                    id: mouseRoot
+                    anchors.fill: parent
+
+                    onPressed: function (mouse) {
+                        verticalScrollBar.setOriginY(mouse.y);
+                    }
+                    onReleased: {
+                        verticalScrollBar.clearOriginY();
+                    }
+
+                    onPositionChanged: function (mouse) {
+                        if (!pressed) return;
+
+                        verticalScrollBar.changeAfterChangePosition(mouse.y);
+                    }
+                }
+            }
+        }
+
+        ContentButton {
+            id: downButton
+            width: fullVerticalScrollBar.width
+            height: 16
+            anchors.bottom: parent.bottom
+            anchors.right: parent.right
+            disabled: verticalScrollBar.thumb === 0
+
+            RightTriangle {
+                anchors.horizontalCenter: parent.horizontalCenter
+                anchors.verticalCenter: parent.verticalCenter
+                shapeColor: verticalScrollBar.thumb === 0 ? "#818181" : "black"
+                transform: [
+                    Scale {
+                        origin.x: 5;
+                        origin.y: 10;
+                        xScale: 0.43
+                        yScale: 0.43
+                    },
+                    Rotation {
+                        origin.x: 5;
+                        origin.y: 10;
+                        angle: 90
+                    }
+                ]
+            }
+
+            onClicked: {
+                verticalScrollBar.scrollDown();
             }
         }
     }
