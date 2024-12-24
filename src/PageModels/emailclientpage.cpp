@@ -18,6 +18,8 @@ void EmailClientPage::setSelectedGroup(const QString &selectedGroup) noexcept
 
     m_selectedGroup = selectedGroup;
     emit selectedGroupChanged();
+
+    refreshDisplayEmails();
 }
 
 void EmailClientPage::setSelectedEmail(const GameEmailModel *selectedEmail) noexcept
@@ -37,11 +39,14 @@ void EmailClientPage::fillForDay(int day) noexcept
     greetingEmail->setIsReaded(true);
     greetingEmail->setHasAttachments(true);
     greetingEmail->setGroup(InboxGroup);
-    greetingEmail->setContent(R"(I am delighted to extend a warm welcome to you as you embark on your journey with our team as a System Operator. Congratulations on your new position! Your expertise and skills will undoubtedly make a valuable contribution to our team, and we are thrilled to have you on board.
-As you settle into your new role, please know that myself and the entire team are here to support you every step of the way. Should you have any questions or need assistance, do not hesitate to reach out. We believe that with your experience and dedication, you will excel in this role and be an integral part of our organization.
-I look forward to seeing your contributions and witnessing your growth within our company. Once again, congratulations on your new position as a System Operator. Welcome to the team!
+    greetingEmail->setContent(R"(I am delighted to extend a warm welcome to newcomer as you embark on your journey with our team as a System Operator.
+Congratulations on your new position! Your expertise and skills will undoubtedly make a valuable contribution to our team, and we are thrilled to have you on board.
+As newcomer settle into new role, please know that myself and the entire team are here to support on every step of the way.
+We believe that experience and dedication, we will excel and newcomer be an integral part of our organization.
+I look forward to seeing newcomer contributions and witnessing his growth within our company. Welcome to the team!
 
 Warm regards,
+Mayor of the city
 Mr. Norton
 )");
     m_emails.append(greetingEmail);
@@ -63,6 +68,8 @@ void EmailClientPage::refreshDisplayEmails() noexcept
 
         m_emailObjects.append(email);
     }
+
+    emit emailsChanged();
 }
 
 void EmailClientPage::createObjectSections()
@@ -84,15 +91,10 @@ void EmailClientPage::createObjectSections()
     m_sentSection->setTitle("Sent");
     m_sentSection->setGroup(SentGroup);
 
-    m_trashSection = new GameEmailSectionModel(this);
-    m_trashSection->setTitle("Trash");
-    m_trashSection->setGroup(TrashGroup);
-
     m_sections.append(m_accountSection);
     m_sections.append(m_inBoxSection);
     m_sections.append(m_outBoxSection);
     m_sections.append(m_sentSection);
-    m_sections.append(m_trashSection);
 }
 
 void EmailClientPage::fillObjectSections()
@@ -131,19 +133,25 @@ void EmailClientPage::createSectionColumns()
 void EmailClientPage::createEmailColumns()
 {
     auto readedColumn = new GameTableColumn(this);
-    readedColumn->setTitle("R");
+    readedColumn->setTitle("columnreadedvalueemail");
     readedColumn->setField("isReadedImage");
     readedColumn->setSelectable(true);
     readedColumn->setColumnWidth(34);
     readedColumn->setFormatter("image");
+    readedColumn->setColumnHeaderFormatter("image");
+    readedColumn->setColumnHeaderWidth(19);
+    readedColumn->setColumnHeaderHeight(15);
     m_emailColumns.append(readedColumn);
 
     auto hasAttachmentColumn = new GameTableColumn(this);
-    hasAttachmentColumn->setTitle("A");
+    hasAttachmentColumn->setTitle("columnattachmentvaluemail");
     hasAttachmentColumn->setField("hasAttachmentImage");
     hasAttachmentColumn->setSelectable(true);
     hasAttachmentColumn->setColumnWidth(30);
     hasAttachmentColumn->setFormatter("image");
+    hasAttachmentColumn->setColumnHeaderFormatter("image");
+    hasAttachmentColumn->setColumnHeaderWidth(16);
+    hasAttachmentColumn->setColumnHeaderHeight(16);
     m_emailColumns.append(hasAttachmentColumn);
 
     auto fromColumn = new GameTableColumn(this);

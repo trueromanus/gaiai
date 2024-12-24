@@ -43,3 +43,35 @@ void GameTableColumn::setSelectable(bool selectable) noexcept
     m_selectable = selectable;
     emit selectableChanged();
 }
+
+void GameTableColumn::setColumnHeaderAlign(int columnHeaderAlign) noexcept
+{
+    if (m_columnHeaderAlign == columnHeaderAlign) return;
+
+    m_columnHeaderAlign = columnHeaderAlign;
+    emit columnHeaderAlignChanged();
+}
+
+void GameTableColumn::setColumnHeaderFormatter(const QString &columnHeaderFormatter) noexcept
+{
+    if (m_columnHeaderFormatter == columnHeaderFormatter) return;
+
+    m_columnHeaderFormatter = columnHeaderFormatter;
+    emit columnHeaderFormatterChanged();
+}
+
+void GameTableColumn::setColumnHeaderWidth(int columnHeaderWidth) noexcept
+{
+    if (m_columnHeaderWidth == columnHeaderWidth) return;
+
+    m_columnHeaderWidth = columnHeaderWidth;
+    emit columnHeaderWidthChanged();
+}
+
+void GameTableColumn::setColumnHeaderHeight(int columnHeaderHeight) noexcept
+{
+    if (m_columnHeaderHeight == columnHeaderHeight) return;
+
+    m_columnHeaderHeight = columnHeaderHeight;
+    emit columnHeaderHeightChanged();
+}

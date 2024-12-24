@@ -18,11 +18,47 @@ InGameTableList {
 
         Repeater {
             model: root.columns
-            delegate: DefaultButton {
-                title: modelData.title
+            delegate: ContentButton {
                 width: modelData.columnWidth
                 leftAligned: true
                 height: 20
+
+                Loader {
+                    anchors.fill: parent
+                    property var itemData: modelData
+                    sourceComponent: switch(modelData.columnHeaderFormatter) {
+                        case "image": return columnHeaderImageComponent;
+                        default: return columnHeaderTextComponent;
+                    }
+                }
+            }
+        }
+    }
+
+    Component {
+        id: columnHeaderTextComponent
+
+        Text {
+            anchors.left: parent.left
+            anchors.leftMargin: 4
+            anchors.right: parent.right
+            anchors.rightMargin: 4
+            horizontalAlignment: itemData.columnHeaderAlign === 1 ? Text.AlignHCenter : (itemData.columnHeaderAlign === 2 ? Text.AlignRight : Text.AlignLeft)
+            text: itemData.title
+        }
+    }
+
+    Component {
+        id: columnHeaderImageComponent
+
+        Item {
+            anchors.fill: parent
+
+            Image {
+                anchors.centerIn: parent
+                width: itemData.columnHeaderWidth
+                height: itemData.columnHeaderHeight
+                source: assetsLocation.imagedPath + itemData.title + ".png"
             }
         }
     }
@@ -31,7 +67,6 @@ InGameTableList {
         id: flickableArea
         anchors.top: columnHeaders.bottom
         anchors.bottom: parent.bottom
-        anchors.right: fullVerticalScrollBar.left
         width: root.fullWidth
         model: root.items
         clip: true

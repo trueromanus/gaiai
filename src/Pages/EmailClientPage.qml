@@ -92,8 +92,8 @@ InGameWindowPage {
 
             Image {
                 anchors.centerIn: parent
-                width: 28
-                height: 28
+                width: 30
+                height: 30
                 source: assetsLocation.imagedPath + "pullnewemails.png"
             }
 
@@ -112,8 +112,8 @@ InGameWindowPage {
 
             Image {
                 anchors.centerIn: parent
-                width: 28
-                height: 28
+                width: 30
+                height: 30
                 source: assetsLocation.imagedPath + "sendwaitingemails.png"
             }
 
@@ -143,8 +143,8 @@ InGameWindowPage {
 
             Image {
                 anchors.centerIn: parent
-                width: 28
-                height: 28
+                width: 30
+                height: 30
                 source: assetsLocation.imagedPath + "createnewemail.png"
             }
 
@@ -271,6 +271,8 @@ InGameWindowPage {
 
             PlainText {
                 id: emailTextContent
+                anchors.left: parent.left
+                anchors.leftMargin: 8
                 color: "#00007F"
                 width: contentFlickableArea.width - 30
                 wrapMode: Text.WordWrap
