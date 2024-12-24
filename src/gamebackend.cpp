@@ -18,7 +18,7 @@ GameBackend::GameBackend(QObject *parent)
 
     createDay1Tasks();
 
-    fillTasksForDay(m_firstDay);
+    fillDay(1);
     QSet<QString> emptyTasks;
     m_rssReaderPage->fillForDay(m_firstDay, emptyTasks);
 }
@@ -32,7 +32,7 @@ void GameBackend::moveToNextDay()
 
     m_day += 1;
 
-    fillTasksForDay(m_day);
+    fillDay(m_day);
 
     emit dayChanged();
 }
@@ -44,6 +44,14 @@ void GameBackend::checkCompletedTasks()
 
         activeTask->checkCompleted();
     }
+}
+
+void GameBackend::fillDay(int day)
+{
+    fillTasksForDay(m_day);
+    m_emailClientPage->fillForDay(m_day);
+    QSet<QString> completedTasks;
+    m_rssReaderPage->fillForDay(m_day, completedTasks);
 }
 
 void GameBackend::createDay1Tasks()

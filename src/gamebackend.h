@@ -51,6 +51,7 @@ public:
 
     Q_INVOKABLE void moveToNextDay();
     Q_INVOKABLE void checkCompletedTasks();
+    Q_INVOKABLE void fillDay(int day);
 
 private:
     void createDay1Tasks();

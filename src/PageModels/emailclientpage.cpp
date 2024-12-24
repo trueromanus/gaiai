@@ -8,8 +8,6 @@ EmailClientPage::EmailClientPage(QObject *parent)
 
     createObjectSections();
     fillObjectSections();
-
-    fillForDay(1);
 }
 
 void EmailClientPage::setSelectedGroup(const QString &selectedGroup) noexcept

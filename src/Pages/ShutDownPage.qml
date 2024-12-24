@@ -63,7 +63,7 @@ InGameWindowPage {
         anchors.topMargin: 2
         anchors.left: iconShutDown.right
         anchors.leftMargin: 20
-        title: "Restart the computer in M_-SOS mode?"
+        title: "Finish current shift?"
         radioValue: 3
         actualValue: root.selectedOption
         onSelected: {
