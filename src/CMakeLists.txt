@@ -134,6 +134,7 @@ qt_add_qml_module(appgaiai
 
         TextContents/taskContents.en.json
         TextContents/newsContents.en.json
+        TextContents/emailContents.en.json
 )
 
 set_target_properties(appgaiai PROPERTIES

@@ -18,6 +18,7 @@ void GameEmailModel::setIsReaded(bool isReaded) noexcept
 
     m_isReaded = isReaded;
     emit isReadedChanged();
+    emit highlightChanged();
 }
 
 void GameEmailModel::setFrom(const QString &from) noexcept

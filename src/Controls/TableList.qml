@@ -90,6 +90,7 @@ InGameTableList {
                     property string columnValue: listRow.rowModel[modelData.field]
                     property bool selectable: modelData.selectable
                     property bool selectedItem: root.selectedItem === listRow.rowModel
+                    property bool highlightLine: listRow.rowModel["highlight"] ? listRow.rowModel["highlight"] : false
 
                     signal selectItem()
                     onSelectItem: {
@@ -254,6 +255,7 @@ InGameTableList {
                 height: parent.height
                 text: columnValue
                 color: selectable && selectedItem && root.selectedStyle === 0 ? "white" : "black"
+                font.bold: highlightLine
                 wrapMode: Text.NoWrap
                 elide: Text.ElideRight
                 maximumLineCount: 1

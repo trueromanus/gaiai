@@ -2,6 +2,7 @@
 #define EMAILCLIENTPAGE_H
 
 #include <QObject>
+#include <QMap>
 #include "../Models/gametablecolumn.h"
 #include "../Models/gameemailsectionmodel.h"
 #include "../Models/gameemailmodel.h"
@@ -20,7 +21,6 @@ private:
     const QString InboxGroup { "inbox" };
     const QString OutboxGroup { "outbox" };
     const QString SentGroup { "sent" };
-    const QString TrashGroup { "trash" };
 
     QList<GameTableColumn*> m_foldersColumns { QList<GameTableColumn*>() };
     QList<GameTableColumn*> m_emailColumns { QList<GameTableColumn*>() };
@@ -30,8 +30,8 @@ private:
     GameEmailSectionModel* m_inBoxSection { nullptr };
     GameEmailSectionModel* m_outBoxSection { nullptr };
     GameEmailSectionModel* m_sentSection { nullptr };
-    GameEmailSectionModel* m_trashSection { nullptr };
     QList<GameEmailModel*> m_emails { QList<GameEmailModel*>() };
+    QMap<QString, GameEmailModel*> m_emailTemplates { QMap<QString, GameEmailModel*>() };
     QList<QObject*> m_emailObjects { QList<QObject*>() };
     QString m_selectedGroup { "" };
     GameEmailModel* m_selectedEmail { nullptr };
@@ -61,6 +61,7 @@ private:
     void fillObjectSections();
     void createSectionColumns();
     void createEmailColumns();
+    void loadEmails(const QString& language);
 
 signals:
     void foldersColumnsChanged();

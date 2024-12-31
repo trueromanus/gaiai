@@ -1,3 +1,7 @@
+#include <QFile>
+#include <QJsonDocument>
+#include <QJsonObject>
+#include <QJsonArray>
 #include "emailclientpage.h"
 
 EmailClientPage::EmailClientPage(QObject *parent)
@@ -8,6 +12,8 @@ EmailClientPage::EmailClientPage(QObject *parent)
 
     createObjectSections();
     fillObjectSections();
+
+    loadEmails("en");
 }
 
 void EmailClientPage::setSelectedGroup(const QString &selectedGroup) noexcept
@@ -26,28 +32,22 @@ void EmailClientPage::setSelectedEmail(const GameEmailModel *selectedEmail) noex
 
     m_selectedEmail = const_cast<GameEmailModel*>(selectedEmail);
     emit selectedEmailChanged();
+
+    if (!m_selectedEmail->isReaded()) {
+        m_selectedEmail->setIsReaded(true);
+        emit emailsChanged();
+    }
 }
 
 void EmailClientPage::fillForDay(int day) noexcept
 {
-    GameEmailModel* greetingEmail = new GameEmailModel(this);
-    greetingEmail->setFrom("stuff@temple-house.gov");
-    greetingEmail->setTo("Everybody");
-    greetingEmail->setSubject("Warm Welcome Our New System Operator!");
-    greetingEmail->setIsReaded(true);
-    greetingEmail->setHasAttachments(true);
-    greetingEmail->setGroup(InboxGroup);
-    greetingEmail->setContent(R"(I am delighted to extend a warm welcome to newcomer as you embark on your journey with our team as a System Operator.
-Congratulations on your new position! Your expertise and skills will undoubtedly make a valuable contribution to our team, and we are thrilled to have you on board.
-As newcomer settle into new role, please know that myself and the entire team are here to support on every step of the way.
-We believe that experience and dedication, we will excel and newcomer be an integral part of our organization.
-I look forward to seeing newcomer contributions and witnessing his growth within our company. Welcome to the team!
+    if (day == 1) {
+        auto onboardingEmail1 = m_emailTemplates.value("onboardinginbox1");
+        auto onboardingEmail2 = m_emailTemplates.value("onboardinginbox2");
 
-Warm regards,
-Mayor of the city
-Mr. Norton
-)");
-    m_emails.append(greetingEmail);
+        m_emails.append(onboardingEmail1);
+        m_emails.append(onboardingEmail2);
+    }
 
     refreshDisplayEmails();
 }
@@ -172,4 +172,34 @@ void EmailClientPage::createEmailColumns()
     subjectColumn->setSelectable(true);
     subjectColumn->setColumnWidth(90);
     m_emailColumns.append(subjectColumn);
+}
+
+void EmailClientPage::loadEmails(const QString& language)
+{
+    m_emailTemplates.clear();
+
+    QFile file(":/qt/qml/gaiai/TextContents/emailContents." + language + ".json");
+    if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) return;
+
+    auto content = file.readAll();
+    file.close();
+
+    auto document = QJsonDocument::fromJson(content);
+    auto array = document.array();
+
+    foreach (auto item, array) {
+        GameEmailModel* model = new GameEmailModel(this);
+        auto object = item.toObject();
+
+        model->setFrom(object.value("from").toString());
+        model->setTo(object.value("to").toString());
+        model->setSubject(object.value("subject").toString());
+        model->setGroup(object.value("group").toString());
+        model->setContent(object.value("content").toString());
+        model->setHasAttachments(object.value("hasAttachments").toBool());
+
+        auto identifier = object.value("identifier").toString();
+
+        m_emailTemplates.insert(identifier, model);
+    }
 }
