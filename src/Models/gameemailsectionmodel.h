@@ -29,6 +29,10 @@ public:
     QString group() const noexcept { return m_group; }
     void setGroup(const QString& group) noexcept;
 
+    void addToCount(bool isNew);
+    void refreshCounts();
+    void resetCounts();
+
 signals:
     void titleChanged();
     void newCountChanged();

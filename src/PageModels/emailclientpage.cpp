@@ -36,6 +36,7 @@ void EmailClientPage::setSelectedEmail(const GameEmailModel *selectedEmail) noex
     if (!m_selectedEmail->isReaded()) {
         m_selectedEmail->setIsReaded(true);
         emit emailsChanged();
+        recalculateSectionCounts();
     }
 }
 
@@ -58,16 +59,17 @@ void EmailClientPage::refreshDisplayEmails() noexcept
 
     if (m_selectedGroup.isEmpty()) {
         foreach (auto email, m_emails) m_emailObjects.append(email);
-        return;
-    }
+    } else {
+        foreach (auto email, m_emails) {
+            if (email->group() != m_selectedGroup) continue;
 
-    foreach (auto email, m_emails) {
-        if (email->group() != m_selectedGroup) continue;
-
-        m_emailObjects.append(email);
+            m_emailObjects.append(email);
+        }
     }
 
     emit emailsChanged();
+
+    recalculateSectionCounts();
 }
 
 void EmailClientPage::createObjectSections()
@@ -93,6 +95,28 @@ void EmailClientPage::createObjectSections()
     m_sections.append(m_inBoxSection);
     m_sections.append(m_outBoxSection);
     m_sections.append(m_sentSection);
+}
+
+void EmailClientPage::recalculateSectionCounts()
+{
+    m_accountSection->resetCounts();
+    m_inBoxSection->resetCounts();
+    m_outBoxSection->resetCounts();
+    m_sentSection->resetCounts();
+
+    foreach (auto email, m_emails) {
+        m_accountSection->addToCount(!email->isReaded());
+
+        auto group = email->group();
+        if (group == InboxGroup) m_inBoxSection->addToCount(!email->isReaded());
+        if (group == OutboxGroup) m_outBoxSection->addToCount(!email->isReaded());
+        if (group == SentGroup) m_sentSection->addToCount(!email->isReaded());
+    }
+
+    m_accountSection->refreshCounts();
+    m_inBoxSection->refreshCounts();
+    m_outBoxSection->refreshCounts();
+    m_sentSection->refreshCounts();
 }
 
 void EmailClientPage::fillObjectSections()

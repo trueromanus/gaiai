@@ -20,3 +20,24 @@ void GameEmailSectionModel::setGroup(const QString &group) noexcept
     m_group = group;
     emit groupChanged();
 }
+
+void GameEmailSectionModel::addToCount(bool isNew)
+{
+    if (isNew) m_newCount += 1;
+    m_totalCount += 1;
+}
+
+void GameEmailSectionModel::refreshCounts()
+{
+    emit newCountChanged();
+    emit totalCountChanged();
+}
+
+void GameEmailSectionModel::resetCounts()
+{
+    m_newCount = 0;
+    m_totalCount = 0;
+
+    emit newCountChanged();
+    emit totalCountChanged();
+}

@@ -58,6 +58,7 @@ public:
 
 private:
     void createObjectSections();
+    void recalculateSectionCounts();
     void fillObjectSections();
     void createSectionColumns();
     void createEmailColumns();
