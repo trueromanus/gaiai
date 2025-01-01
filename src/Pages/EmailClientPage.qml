@@ -30,9 +30,6 @@ InGameWindowPage {
         onSelectedItemChanged: {
            gameBackend.emailClientPage.selectedGroup = selectedItem.group;
         }
-        /*onOpenItem: {
-           tasksTree.selectNode(gameBackend.smartTrackerPage.selectedTaskInList);
-        }*/
     }
 
     Item {
@@ -146,6 +143,46 @@ InGameWindowPage {
                 width: 30
                 height: 30
                 source: assetsLocation.imagedPath + "createnewemail.png"
+            }
+
+            onClicked: {
+
+            }
+        }
+        IconButton {
+            id: resendEmailButton
+            width: 40
+            height: 32
+            anchors.top: parent.top
+            anchors.topMargin: 1
+            anchors.left: createnewEmailButton.right
+            anchors.leftMargin: 2
+
+            Image {
+                anchors.centerIn: parent
+                width: 30
+                height: 30
+                source: assetsLocation.imagedPath + "resendemail.png"
+            }
+
+            onClicked: {
+
+            }
+        }
+        IconButton {
+            id: forwardEmailButton
+            width: 40
+            height: 32
+            anchors.top: parent.top
+            anchors.topMargin: 1
+            anchors.left: resendEmailButton.right
+            anchors.leftMargin: 2
+
+            Image {
+                anchors.centerIn: parent
+                width: 30
+                height: 30
+                source: assetsLocation.imagedPath + "forwardemail.png"
             }
 
             onClicked: {
