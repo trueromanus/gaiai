@@ -119,7 +119,6 @@ qt_add_qml_module(appgaiai
         Images/columnreadedvalueemail.png
 
         Images/commonemailfolder.png
-        Images/deletedemails.png
         Images/emailaccount.png
         Images/inboxemails.png
         Images/outboxemails.png

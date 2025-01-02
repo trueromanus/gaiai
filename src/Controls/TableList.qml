@@ -76,6 +76,7 @@ InGameTableList {
             height: 20
 
             property var rowModel: modelData
+            property int rowIteratorIndex: index
 
             Repeater {
                 model: root.columns
@@ -83,6 +84,7 @@ InGameTableList {
                     sourceComponent: switch(modelData.formatter) {
                         case "checkbox": return checkBoxComponent;
                         case "image": return imageComponent;
+                        case "emailpage": return emailPage;
                         default: return simpleText;
                     }
 
@@ -91,6 +93,8 @@ InGameTableList {
                     property bool selectable: modelData.selectable
                     property bool selectedItem: root.selectedItem === listRow.rowModel
                     property bool highlightLine: listRow.rowModel["highlight"] ? listRow.rowModel["highlight"] : false
+                    property int currentRowIndex: listRow.rowIteratorIndex
+                    property bool isLastIndex: listRow.rowIteratorIndex  === root.items.length - 1
 
                     signal selectItem()
                     onSelectItem: {
@@ -255,6 +259,76 @@ InGameTableList {
                 height: parent.height
                 text: columnValue
                 color: selectable && selectedItem && root.selectedStyle === 0 ? "white" : "black"
+                font.bold: highlightLine
+                wrapMode: Text.NoWrap
+                elide: Text.ElideRight
+                maximumLineCount: 1
+            }
+
+            MouseArea {
+                anchors.fill: parent
+                enabled: selectable
+                onPressed: {
+                    selectItem();
+                }
+                onDoubleClicked: {
+                    root.openItem();
+                }
+            }
+        }
+    }
+
+    Component {
+        id: emailPage
+
+        Item {
+            width: columnWidth
+            height: 20
+
+            Rectangle {
+                visible: selectable && selectedItem
+                anchors.fill: parent
+                color: "#BFB8BF"
+            }
+
+            VerticalDashLine {
+                id: verticalDashLine
+                anchors.top: parent.top
+                anchors.bottom: parent.bottom
+                anchors.bottomMargin: isLastIndex ? 11 : 0
+                anchors.left: parent.left
+                anchors.leftMargin: currentRowIndex > 0 ? 20 : 0
+                dashColor: currentRowIndex > 0 ? "black" : "transparent"
+            }
+
+            HorizontalDashLine {
+                id: dashLine
+                anchors.left: verticalDashLine.right
+                anchors.verticalCenter: parent.verticalCenter
+                width: 10
+                dashColor: "black"
+            }
+
+            Image {
+                id: emailSectionIcon
+                anchors.left: dashLine.right
+                anchors.leftMargin: 1
+                anchors.verticalCenter: parent.verticalCenter
+                width: 16
+                height: 16
+                source: assetsLocation.imagedPath + (columnValue.split(":")[1]) + ".png"
+            }
+
+            PlainText {
+                id: valueText
+                anchors.left: emailSectionIcon.right
+                anchors.leftMargin: 1
+                anchors.right: parent.right
+                verticalAlignment: Text.AlignVCenter
+                leftPadding: 2
+                height: parent.height
+                text: columnValue.split(":")[0]
+                color: "black"
                 font.bold: highlightLine
                 wrapMode: Text.NoWrap
                 elide: Text.ElideRight

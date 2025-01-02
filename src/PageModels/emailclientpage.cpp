@@ -76,19 +76,19 @@ void EmailClientPage::createObjectSections()
 {
     m_accountSection = new GameEmailSectionModel(this);
     //Eve Trent
-    m_accountSection->setTitle("et@temple-house.gov");
+    m_accountSection->setTitle("et@temple-house.gov:emailaccount");
     m_accountSection->setGroup("");
 
     m_inBoxSection = new GameEmailSectionModel(this);
-    m_inBoxSection->setTitle("Inbox");
+    m_inBoxSection->setTitle("Inbox:inboxemails");
     m_inBoxSection->setGroup(InboxGroup);
 
     m_outBoxSection = new GameEmailSectionModel(this);
-    m_outBoxSection->setTitle("Outbox");
+    m_outBoxSection->setTitle("Outbox:outboxemails");
     m_outBoxSection->setGroup(OutboxGroup);
 
     m_sentSection = new GameEmailSectionModel(this);
-    m_sentSection->setTitle("Sent");
+    m_sentSection->setTitle("Sent:sentemails");
     m_sentSection->setGroup(SentGroup);
 
     m_sections.append(m_accountSection);
@@ -134,7 +134,8 @@ void EmailClientPage::createSectionColumns()
     folderColumn->setTitle("Folder");
     folderColumn->setField("title");
     folderColumn->setSelectable(true);
-    folderColumn->setColumnWidth(170);
+    folderColumn->setFormatter("emailpage");
+    folderColumn->setColumnWidth(190);
     m_foldersColumns.append(folderColumn);
 
     auto newColumn = new GameTableColumn(this);
@@ -148,7 +149,7 @@ void EmailClientPage::createSectionColumns()
     totalColumn->setTitle("Total");
     totalColumn->setField("totalCount");
     totalColumn->setSelectable(true);
-    totalColumn->setColumnWidth(70);
+    totalColumn->setColumnWidth(50);
     m_foldersColumns.append(totalColumn);
 }
 

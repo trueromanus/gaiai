@@ -31,6 +31,7 @@ void GameEmailSectionModel::refreshCounts()
 {
     emit newCountChanged();
     emit totalCountChanged();
+    emit highlightChanged();
 }
 
 void GameEmailSectionModel::resetCounts()

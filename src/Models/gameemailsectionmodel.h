@@ -10,6 +10,7 @@ class GameEmailSectionModel : public QObject
     Q_PROPERTY(int newCount READ newCount NOTIFY newCountChanged FINAL)
     Q_PROPERTY(int totalCount READ totalCount NOTIFY totalCountChanged FINAL)
     Q_PROPERTY(QString group READ group WRITE setGroup NOTIFY groupChanged FINAL)
+    Q_PROPERTY(bool highlight READ highlight NOTIFY highlightChanged FINAL)
 
 private:
     QString m_title { "" };
@@ -29,6 +30,8 @@ public:
     QString group() const noexcept { return m_group; }
     void setGroup(const QString& group) noexcept;
 
+    bool highlight() const noexcept { return m_newCount > 0; }
+
     void addToCount(bool isNew);
     void refreshCounts();
     void resetCounts();
@@ -38,6 +41,7 @@ signals:
     void newCountChanged();
     void totalCountChanged();
     void groupChanged();
+    void highlightChanged();
 
 };
 
