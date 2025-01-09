@@ -94,6 +94,7 @@ qt_add_qml_module(appgaiai
         ingametablelist.h ingametablelist.cpp
         ingamecheckbox.h ingamecheckbox.cpp
         ingamemenu.h ingamemenu.cpp
+        ingameshifttimer.h ingameshifttimer.cpp
 
     RESOURCES
         Images/disablesound.png

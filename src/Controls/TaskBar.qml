@@ -63,8 +63,6 @@ InGameTaskBar {
         anchors.leftMargin: 2
         anchors.right: timeAndVolumePanel.left
         anchors.rightMargin: 2
-
-
     }
 
     Panel {
@@ -87,7 +85,7 @@ InGameTaskBar {
         }
 
         Text {
-            text: "12:24"
+            text: shiftTimer.displayTime
             font.pixelSize: 12
             font.family: "Arial"
             anchors.right: parent.right
