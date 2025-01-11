@@ -20,6 +20,8 @@ class GameBackend : public QObject
     Q_PROPERTY(SmartTrackerPage* smartTrackerPage READ smartTrackerPage NOTIFY smartTrackerPageChanged FINAL)
     Q_PROPERTY(RssReaderPage* rssReaderPage READ rssReaderPage NOTIFY rssReaderPageChanged FINAL)
     Q_PROPERTY(EmailClientPage* emailClientPage READ emailClientPage NOTIFY emailClientPageChanged FINAL)
+    Q_PROPERTY(bool isBigScreenVisible READ isBigScreenVisible NOTIFY isBigScreenVisibleChanged FINAL)
+    Q_PROPERTY(QString bigScreenType READ bigScreenType NOTIFY bigScreenTypeChanged FINAL)
     QML_ELEMENT
 
 private:
@@ -36,6 +38,8 @@ private:
     SmartTrackerPage* m_smartTrackerPage { new SmartTrackerPage(this) };
     RssReaderPage* m_rssReaderPage { new RssReaderPage(this) };
     EmailClientPage* m_emailClientPage { new EmailClientPage() };
+    bool m_isBigScreenVisible { false };
+    QString m_bigScreenType { "" };
 
 public:
     explicit GameBackend(QObject *parent = nullptr);
@@ -46,9 +50,14 @@ public:
     RssReaderPage* rssReaderPage() const noexcept { return m_rssReaderPage; }
     EmailClientPage* emailClientPage() const noexcept { return m_emailClientPage; }
 
+    bool isBigScreenVisible() const noexcept { return m_isBigScreenVisible; }
+    QString bigScreenType() const noexcept { return m_bigScreenType; }
+
     Q_INVOKABLE void moveToNextDay();
     Q_INVOKABLE void checkCompletedTasks();
     Q_INVOKABLE void fillDay(int day);
+    Q_INVOKABLE void showFullScreen(const QString& screen);
+    Q_INVOKABLE void hideFullScreen();
 
 private:
     void createDay1Tasks();
@@ -62,6 +71,8 @@ signals:
     void smartTrackerPageChanged();
     void rssReaderPageChanged();
     void emailClientPageChanged();
+    void isBigScreenVisibleChanged();
+    void bigScreenTypeChanged();
 
 };
 

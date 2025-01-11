@@ -19,6 +19,7 @@ RssReaderPage::RssReaderPage(QObject *parent)
 
     auto localNewsSection = new GameTreeSectionModel(this);
     localNewsSection->setTitle("Local news");
+    localNewsSection->setCommand("peoplelocalnews");
     peopleSection->addSubSection(localNewsSection);
 
     m_tree.append(peopleSection);

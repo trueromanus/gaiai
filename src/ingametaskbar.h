@@ -9,7 +9,7 @@
 class InGameTaskBar : public QQuickItem
 {
     Q_OBJECT
-    Q_PROPERTY(QVariantList visibleItems READ visibleItems NOTIFY visibleItemsChanged FINAL)
+    Q_PROPERTY(QList<InGameWindow*> visibleItems READ visibleItems NOTIFY visibleItemsChanged FINAL)
     Q_PROPERTY(bool hasLeftItems READ hasLeftItems NOTIFY hasLeftItemsChanged FINAL)
     Q_PROPERTY(bool hasRightItems READ hasRightItems NOTIFY hasRightItemsChanged FINAL)
     Q_PROPERTY(bool startMenuOpened READ startMenuOpened WRITE setStartMenuOpened NOTIFY startMenuOpenedChanged FINAL)
@@ -24,7 +24,7 @@ private:
     const QString m_emailClientPage { "emailclient" };
 
     QMap<InGameWindow*, QQmlComponent*> m_windows { QMap<InGameWindow*, QQmlComponent*>() };
-    QVariantList m_visibleItems { QVariantList() };
+    QList<InGameWindow*> m_visibleItems { QList<InGameWindow*>() };
     bool m_hasLeftItems { false };
     bool m_hasRightItems { false };
     int m_startActiveWindows { -1 };
@@ -35,11 +35,14 @@ private:
     QSet<QString> m_uniqueWindows { QSet<QString>() };
     QMap<QString, QString> m_commandToPageMapping { QMap<QString, QString>() };
     InGameWindow* m_activeWindow { nullptr };
+    int32_t m_visiblePageNumber { 0 };
+    int32_t m_visibleItemPerPage { 0 };
+    int32_t m_visibleItemsPageCount { 0 };
 
 public:
     InGameTaskBar();
 
-    QVariantList visibleItems() const noexcept { return m_visibleItems; }
+    QList<InGameWindow*> visibleItems() const noexcept { return m_visibleItems; }
     bool hasLeftItems() const noexcept { return m_hasLeftItems; }
     bool hasRightItems() const noexcept { return m_hasRightItems; }
 
@@ -48,6 +51,8 @@ public:
 
     QQuickItem* windowsContainer() const noexcept { return m_windowsContainer; }
     void setWindowsContainer(const QQuickItem* windowsContainer) noexcept;
+
+    void componentComplete() override;
 
     Q_INVOKABLE void showPreviousVisibleItems();
     Q_INVOKABLE void showNextVisibleItems();
@@ -60,12 +65,12 @@ private:
     bool alreadyOpenedUniqueWindow(const QString& command);
     InGameWindow* getWindowByUnique(const QString& command);
     QQuickItem* createPageInsideWindow(const QString& path, InGameWindow* window, QQmlContext* context, QQmlEngine* engine);
-    void refreshVisibleWindows();
     void adjustShutDownPage();
     void adjustOnboardingPage();
     void adjustSmartTrackerPage();
     void adjustRssReaderPage();
     void adjustEmailClientPage();
+    void fillVisibleItems();
 
 private slots:
     void removeWindow(InGameWindow* window);

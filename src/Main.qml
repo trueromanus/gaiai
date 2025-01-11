@@ -60,6 +60,16 @@ Window {
         SystemSettings {
             id: systemSettings
         }
+
+        Item {
+            id: fullScreen
+            visible: gameBackend.isBigScreenVisible
+
+            Rectangle {
+                anchors.fill: parent
+                color: "red"
+            }
+        }
     }
 
     GameBackend {

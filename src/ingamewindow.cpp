@@ -47,6 +47,14 @@ void InGameWindow::setUniqueId(const QString &uniqueId) noexcept
     emit uniqueIdChanged();
 }
 
+void InGameWindow::setNotShowOnTaskBar(bool notShowOnTaskBar) noexcept
+{
+    if (m_notShowOnTaskBar == notShowOnTaskBar) return;
+
+    m_notShowOnTaskBar = notShowOnTaskBar;
+    emit notShowOnTaskBarChanged();
+}
+
 void InGameWindow::componentComplete()
 {
     auto childrens = children();

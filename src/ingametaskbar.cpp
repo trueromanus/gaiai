@@ -25,19 +25,30 @@ void InGameTaskBar::setWindowsContainer(const QQuickItem* windowsContainer) noex
     emit windowsContainerChanged();
 }
 
+void InGameTaskBar::componentComplete()
+{
+    m_visibleItemPerPage = width() / 120;
+
+    QQuickItem::componentComplete();
+}
+
 void InGameTaskBar::showPreviousVisibleItems()
 {
+    if (m_visiblePageNumber <= 0) return;
 
+    m_visiblePageNumber -= 1;
+    fillVisibleItems();
 }
 
 void InGameTaskBar::showNextVisibleItems()
 {
-
+    m_visiblePageNumber += 1;
+    fillVisibleItems();
 }
 
 void InGameTaskBar::refreshVisibleItems()
 {
-
+    fillVisibleItems();
 }
 
 void InGameTaskBar::createDefaultWindow(const QString& command, int position)
@@ -162,11 +173,6 @@ QQuickItem* InGameTaskBar::createPageInsideWindow(const QString &path, InGameWin
     return page;
 }
 
-void InGameTaskBar::refreshVisibleWindows()
-{
-
-}
-
 void InGameTaskBar::adjustShutDownPage()
 {
     m_defaultNamesOfWindows.insert(m_shutDownPage, "Shut Down SmartCityOS");
@@ -207,6 +213,28 @@ void InGameTaskBar::adjustEmailClientPage()
     m_commandToPageMapping.insert(m_emailClientPage, "Pages/EmailClientPage.qml");
 }
 
+void InGameTaskBar::fillVisibleItems()
+{
+    auto windows = m_windows.keys();
+    QList<InGameWindow*> filteredWindows;
+    foreach (auto window, windows) {
+        if (window->notShowOnTaskBar()) continue;
+
+        filteredWindows.append(window);
+    }
+    m_visibleItemsPageCount = static_cast<int>(filteredWindows.count() / m_visibleItemPerPage);
+    if (m_visiblePageNumber > m_visibleItemsPageCount) m_visiblePageNumber = m_visibleItemsPageCount - 1;
+
+    std::sort(
+        filteredWindows.begin(),
+        filteredWindows.end(),
+        [](InGameWindow* left, InGameWindow* right) {
+            return left->title() > right->title();
+        }
+    );
+
+}
+
 void InGameTaskBar::removeWindow(InGameWindow *window)
 {
     if (!m_windows.contains(window)) return;
@@ -218,5 +246,5 @@ void InGameTaskBar::removeWindow(InGameWindow *window)
     window->setParentItem(nullptr);
     window->deleteLater();
 
-    refreshVisibleWindows();
+    fillVisibleItems();
 }

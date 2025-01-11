@@ -54,6 +54,24 @@ void GameBackend::fillDay(int day)
     m_rssReaderPage->fillForDay(m_day, completedTasks);
 }
 
+void GameBackend::showFullScreen(const QString &screen)
+{
+    m_bigScreenType = screen;
+    m_isBigScreenVisible = true;
+
+    emit bigScreenTypeChanged();
+    emit isBigScreenVisibleChanged();
+}
+
+void GameBackend::hideFullScreen()
+{
+    m_bigScreenType = "";
+    m_isBigScreenVisible = false;
+
+    emit bigScreenTypeChanged();
+    emit isBigScreenVisibleChanged();
+}
+
 void GameBackend::createDay1Tasks()
 {
     auto emailTutorial = new GameTaskModel(true, "Check you emails", m_onboardingTasks, m_firstDay,[]() { return true; }, this);
