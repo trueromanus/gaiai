@@ -1,3 +1,4 @@
+#include <cmath>
 #include "ingametaskbar.h"
 #include "ingamewindowpage.h"
 
@@ -99,6 +100,8 @@ void InGameTaskBar::createDefaultWindow(const QString& command, int position)
     m_windows.insert(window, component);
 
     activateWindow(window);
+
+    fillVisibleItems();
 }
 
 void InGameTaskBar::activateWindow(InGameWindow *window)
@@ -222,7 +225,7 @@ void InGameTaskBar::fillVisibleItems()
 
         filteredWindows.append(window);
     }
-    m_visibleItemsPageCount = static_cast<int>(filteredWindows.count() / m_visibleItemPerPage);
+    m_visibleItemsPageCount = std::ceil((double)filteredWindows.size() / (double)m_visibleItemPerPage);
     if (m_visiblePageNumber > m_visibleItemsPageCount) m_visiblePageNumber = m_visibleItemsPageCount - 1;
 
     std::sort(
@@ -233,6 +236,18 @@ void InGameTaskBar::fillVisibleItems()
         }
     );
 
+    m_visibleItems.clear();
+
+    auto pageOffset = static_cast<int>(m_visibleItemPerPage * m_visiblePageNumber);
+    auto pageEnd = pageOffset + m_visibleItemPerPage;
+
+    for (int i = pageOffset; i < pageEnd; i++) {
+        if (i >= filteredWindows.size()) break;
+
+        m_visibleItems.append(filteredWindows.value(i));
+    }
+
+    emit visibleItemsChanged();
 }
 
 void InGameTaskBar::removeWindow(InGameWindow *window)
