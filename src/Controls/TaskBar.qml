@@ -38,6 +38,7 @@ InGameTaskBar {
         anchors.topMargin: 4
         anchors.left: parent.left
         anchors.leftMargin: 2
+        notShowGridPanel: true
 
         Image {
             anchors.left: parent.left
@@ -88,7 +89,7 @@ InGameTaskBar {
                         anchors.left: parent.left
                         anchors.leftMargin: 6
                         text: modelData.title
-                        font.bold: true
+                        font.bold: taskBarWindow.pressed
                     }
 
                     onClicked: {
