@@ -28,23 +28,7 @@ void InGameTaskBar::setWindowsContainer(const QQuickItem* windowsContainer) noex
 
 void InGameTaskBar::componentComplete()
 {
-    m_visibleItemPerPage = width() / 120;
-
     QQuickItem::componentComplete();
-}
-
-void InGameTaskBar::showPreviousVisibleItems()
-{
-    if (m_visiblePageNumber <= 0) return;
-
-    m_visiblePageNumber -= 1;
-    fillVisibleItems();
-}
-
-void InGameTaskBar::showNextVisibleItems()
-{
-    m_visiblePageNumber += 1;
-    fillVisibleItems();
 }
 
 void InGameTaskBar::refreshVisibleItems()
@@ -218,35 +202,28 @@ void InGameTaskBar::adjustEmailClientPage()
 
 void InGameTaskBar::fillVisibleItems()
 {
+    m_visibleItems.clear();
+
     auto windows = m_windows.keys();
-    QList<InGameWindow*> filteredWindows;
     foreach (auto window, windows) {
         if (window->notShowOnTaskBar()) continue;
 
-        filteredWindows.append(window);
+        m_visibleItems.append(window);
     }
-    m_visibleItemsPageCount = std::ceil((double)filteredWindows.size() / (double)m_visibleItemPerPage);
-    if (m_visiblePageNumber > m_visibleItemsPageCount) m_visiblePageNumber = m_visibleItemsPageCount - 1;
+    auto taskBarWidth = static_cast<double>(width() - 72);  // 72 width of smart button, TODO replace on bindable property
+    auto count = static_cast<double>(m_visibleItems.size());
+    if (count < 5) count = 5;
+    m_widthVisibleItem = std::ceil(taskBarWidth / count);
 
     std::sort(
-        filteredWindows.begin(),
-        filteredWindows.end(),
+        m_visibleItems.begin(),
+        m_visibleItems.end(),
         [](InGameWindow* left, InGameWindow* right) {
             return left->title() > right->title();
         }
     );
 
-    m_visibleItems.clear();
-
-    auto pageOffset = static_cast<int>(m_visibleItemPerPage * m_visiblePageNumber);
-    auto pageEnd = pageOffset + m_visibleItemPerPage;
-
-    for (int i = pageOffset; i < pageEnd; i++) {
-        if (i >= filteredWindows.size()) break;
-
-        m_visibleItems.append(filteredWindows.value(i));
-    }
-
+    emit widthVisibleItemChanged();
     emit visibleItemsChanged();
 }
 

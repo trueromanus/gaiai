@@ -14,6 +14,7 @@ class InGameTaskBar : public QQuickItem
     Q_PROPERTY(bool hasRightItems READ hasRightItems NOTIFY hasRightItemsChanged FINAL)
     Q_PROPERTY(bool startMenuOpened READ startMenuOpened WRITE setStartMenuOpened NOTIFY startMenuOpenedChanged FINAL)
     Q_PROPERTY(QQuickItem* windowsContainer READ windowsContainer WRITE setWindowsContainer NOTIFY windowsContainerChanged FINAL)
+    Q_PROPERTY(int widthVisibleItem READ widthVisibleItem NOTIFY widthVisibleItemChanged FINAL)
     QML_ELEMENT
 
 private:
@@ -35,9 +36,7 @@ private:
     QSet<QString> m_uniqueWindows { QSet<QString>() };
     QMap<QString, QString> m_commandToPageMapping { QMap<QString, QString>() };
     InGameWindow* m_activeWindow { nullptr };
-    int32_t m_visiblePageNumber { 0 };
-    int32_t m_visibleItemPerPage { 0 };
-    int32_t m_visibleItemsPageCount { 0 };
+    int32_t m_widthVisibleItem { 0 };
 
 public:
     InGameTaskBar();
@@ -52,10 +51,10 @@ public:
     QQuickItem* windowsContainer() const noexcept { return m_windowsContainer; }
     void setWindowsContainer(const QQuickItem* windowsContainer) noexcept;
 
+    int widthVisibleItem() const noexcept { return static_cast<int>(m_widthVisibleItem); }
+
     void componentComplete() override;
 
-    Q_INVOKABLE void showPreviousVisibleItems();
-    Q_INVOKABLE void showNextVisibleItems();
     Q_INVOKABLE void refreshVisibleItems();
     Q_INVOKABLE void createDefaultWindow(const QString& command, int position);
     Q_INVOKABLE void activateWindow(InGameWindow* window);
@@ -82,6 +81,7 @@ signals:
     void hasRightItemsChanged();
     void startMenuOpenedChanged();
     void windowsContainerChanged();
+    void widthVisibleItemChanged();
 
 };
 

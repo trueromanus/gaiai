@@ -60,9 +60,44 @@ InGameTaskBar {
 
     Item {
         anchors.left: smartButton.right
-        anchors.leftMargin: 2
         anchors.right: timeAndVolumePanel.left
         anchors.rightMargin: 2
+        height: 26
+
+        Row {
+            id: rowTaskbarWindows
+            anchors.top: parent.top
+            anchors.topMargin: 4
+            anchors.right: parent.right
+            anchors.rightMargin: 4
+            anchors.left: parent.left
+            anchors.leftMargin: 4
+            spacing: 3
+            height: parent.height
+
+            Repeater {
+                model: root.visibleItems
+                delegate: ToggleButton {
+                    id: taskBarWindow
+                    width: root.widthVisibleItem
+                    height: rowTaskbarWindows.height
+                    toggled: modelData.activated
+
+                    PlainText {
+                        anchors.verticalCenter: parent.verticalCenter
+                        anchors.left: parent.left
+                        anchors.leftMargin: 6
+                        text: modelData.title
+                        font.bold: true
+                    }
+
+                    onClicked: {
+                        if (!taskBarWindow.pressed && modelData.activated) taskBarWindow.press();
+                        if (taskBarWindow.pressed && !modelData.activated) root.activateWindow(modelData);
+                    }
+                }
+            }
+        }
     }
 
     Panel {

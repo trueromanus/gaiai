@@ -2,6 +2,14 @@
 
 InGameButton::InGameButton() {}
 
+void InGameButton::setToggled(bool toggled) noexcept
+{
+    if (m_pressed == toggled) return;
+
+    m_pressed = toggled;
+    emit pressedChanged();
+}
+
 void InGameButton::setdisabled(bool disabled) noexcept
 {
     if (m_disabled == disabled) return;
@@ -33,10 +41,12 @@ void InGameButton::press() noexcept
 {
     m_pressed = true;
     emit pressedChanged();
+    emit clicked();
 }
 
 void InGameButton::release() noexcept
 {
     m_pressed = false;
     emit pressedChanged();
+    emit clicked();
 }

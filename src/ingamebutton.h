@@ -7,6 +7,7 @@ class InGameButton : public QQuickItem
 {
     Q_OBJECT
     Q_PROPERTY(bool pressed READ pressed NOTIFY pressedChanged FINAL)
+    Q_PROPERTY(bool toggled READ toggled WRITE setToggled NOTIFY toggledChanged FINAL)
     Q_PROPERTY(bool disabled READ disabled WRITE setdisabled NOTIFY disabledChanged FINAL)
     Q_PROPERTY(QString title READ title WRITE settitle NOTIFY titleChanged FINAL)
     Q_PROPERTY(bool leftAligned READ leftAligned WRITE setLeftAligned NOTIFY leftAlignedChanged FINAL)
@@ -21,6 +22,9 @@ public:
     InGameButton();
 
     bool pressed() const noexcept { return m_pressed; }
+
+    bool toggled() const noexcept { return m_pressed; }
+    void setToggled(bool toggled) noexcept;
 
     bool disabled() const noexcept { return m_disabled; }
     void setdisabled(bool disabled) noexcept;
@@ -40,6 +44,7 @@ signals:
     void titleChanged();
     void clicked();
     void leftAlignedChanged();
+    void toggledChanged();
 
 };
 
