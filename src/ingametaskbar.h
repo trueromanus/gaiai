@@ -37,6 +37,7 @@ private:
     QMap<QString, QString> m_commandToPageMapping { QMap<QString, QString>() };
     InGameWindow* m_activeWindow { nullptr };
     int32_t m_widthVisibleItem { 0 };
+    int32_t m_windowCounter { 0 };
 
 public:
     InGameTaskBar();

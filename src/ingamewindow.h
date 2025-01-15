@@ -14,6 +14,7 @@ class InGameWindow : public QQuickItem
     Q_PROPERTY(bool activated READ activated WRITE setActivated NOTIFY activatedChanged FINAL)
     Q_PROPERTY(QString uniqueId READ uniqueId WRITE setUniqueId NOTIFY uniqueIdChanged FINAL)
     Q_PROPERTY(bool notShowOnTaskBar READ notShowOnTaskBar WRITE setNotShowOnTaskBar NOTIFY notShowOnTaskBarChanged FINAL)
+    Q_PROPERTY(int order READ order WRITE setOrder NOTIFY orderChanged FINAL)
     QML_ELEMENT
 private:
     QString m_title { "" };
@@ -23,6 +24,7 @@ private:
     bool m_activated { true };
     QString m_uniqueId { "" };
     bool m_notShowOnTaskBar { false };
+    int m_order { 0 };
 
 public:
     explicit InGameWindow();
@@ -45,6 +47,9 @@ public:
     bool notShowOnTaskBar() const noexcept { return m_notShowOnTaskBar; }
     void setNotShowOnTaskBar(bool notShowOnTaskBar) noexcept;
 
+    int order() const noexcept { return m_order; }
+    void setOrder(int order) noexcept;
+
 protected:
     void componentComplete() override;
 
@@ -62,6 +67,7 @@ signals:
     void uniqueIdChanged();
     void windowClosed(InGameWindow* window);
     void notShowOnTaskBarChanged();
+    void orderChanged();
 
 };
 

@@ -76,6 +76,9 @@ void InGameTaskBar::createDefaultWindow(const QString& command, int position)
     window->setParentItem(m_windowsContainer);
     if (m_uniqueWindows.contains(command)) window->setUniqueId(command);
 
+    m_windowCounter += 1;
+    window->setOrder(m_windowCounter);
+
     connect(window, &InGameWindow::windowClosed, this, &InGameTaskBar::removeWindow);
 
     // create page (page it is content of window) inside window
@@ -150,7 +153,7 @@ QQuickItem* InGameTaskBar::createPageInsideWindow(const QString &path, InGameWin
     auto page = qobject_cast<InGameWindowPage*>(object);
 
     auto childrens = window->childItems();
-    auto containerChildren = childrens.last();
+    auto containerChildren = childrens.value(childrens.size() - 2);
 
     page->setParent(containerChildren);
     page->setParentItem(containerChildren);
@@ -219,7 +222,7 @@ void InGameTaskBar::fillVisibleItems()
         m_visibleItems.begin(),
         m_visibleItems.end(),
         [](InGameWindow* left, InGameWindow* right) {
-            return left->title() > right->title();
+            return left->order() < right->order();
         }
     );
 

@@ -57,10 +57,6 @@ Window {
             }
         }
 
-        SystemSettings {
-            id: systemSettings
-        }
-
         Item {
             id: fullScreen
             visible: gameBackend.isBigScreenVisible
@@ -70,6 +66,10 @@ Window {
                 color: "red"
             }
         }
+    }
+
+    SystemSettings {
+        id: systemSettings
     }
 
     GameBackend {

@@ -55,6 +55,14 @@ void InGameWindow::setNotShowOnTaskBar(bool notShowOnTaskBar) noexcept
     emit notShowOnTaskBarChanged();
 }
 
+void InGameWindow::setOrder(int order) noexcept
+{
+    if (m_order == order) return;
+
+    m_order = order;
+    emit orderChanged();
+}
+
 void InGameWindow::componentComplete()
 {
     auto childrens = children();

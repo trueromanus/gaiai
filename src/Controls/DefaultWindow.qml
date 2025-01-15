@@ -39,4 +39,12 @@ InGameWindow {
         anchors.bottomMargin: 3
     }
 
+    MouseArea {
+        width: !root.activated ? root.width : 0
+        height: !root.activated ? root.height : 0
+        enabled: !root.activated
+        onPressed: {
+            taskBar.activateWindow(root);
+        }
+    }
 }
