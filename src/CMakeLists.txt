@@ -21,6 +21,7 @@ qt_add_executable(appgaiai
     Models/gamerssitemmodel.h Models/gamerssitemmodel.cpp
     Models/gameemailsectionmodel.h Models/gameemailsectionmodel.cpp
     Models/gameemailmodel.h Models/gameemailmodel.cpp
+    Models/gamecitizen.h Models/gamecitizen.cpp
 
     PageModels/smarttrackerpage.h PageModels/smarttrackerpage.cpp
     PageModels/rssreaderpage.h PageModels/rssreaderpage.cpp
