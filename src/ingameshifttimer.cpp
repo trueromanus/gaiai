@@ -8,8 +8,7 @@ void InGameShiftTimer::timerEvent(QTimerEvent *event)
 
     m_time += 1;
     emit displayTimeChanged();
-
-    handleTimerForPeople();
+    emit timeChanged(m_time);
 }
 
 void InGameShiftTimer::setBackend(const GameBackend *backend) noexcept

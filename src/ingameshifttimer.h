@@ -43,6 +43,7 @@ signals:
     void backendChanged();
     void displayTimeChanged();
     void formatChanged();
+    void timeChanged(int time);
 
 };
 

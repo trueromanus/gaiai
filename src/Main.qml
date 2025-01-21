@@ -79,9 +79,18 @@ Window {
     InGameShiftTimer {
         id: shiftTimer
         backend: gameBackend
+        onTimeChanged: function (time) {
+            inGameCityObjects.handleTimerForCitizens(time);
+        }
+
         Component.onCompleted: {
             shiftTimer.restartShift();
         }
+    }
+
+    InGameCityObjects {
+        id: inGameCityObjects
+        gameBackend: gameBackend
     }
 
     Item {

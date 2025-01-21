@@ -36,3 +36,13 @@ void GameCitizen::setOriginalLocation(const QString &originalLocation) noexcept
     m_originalLocation = originalLocation;
     emit originalLocationChanged();
 }
+
+void GameCitizen::handleTimer(int time, const GameBackend &backend)
+{
+
+}
+
+void GameCitizen::addTrafficLights(const QList<QString> &trafficLights) noexcept
+{
+
+}

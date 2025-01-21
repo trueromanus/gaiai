@@ -2,6 +2,7 @@
 #define GAMECITIZEN_H
 
 #include <QObject>
+#include "../gamebackend.h"
 
 class GameCitizen : public QObject
 {
@@ -40,6 +41,10 @@ public:
 
     QString originalLocation() const { return m_originalLocation; }
     void setOriginalLocation(const QString& originalLocation) noexcept;
+
+    void handleTimer(int time, const GameBackend& backend);
+
+    void addTrafficLights(const QList<QString>& trafficLights) noexcept;
 
 signals:
     void titleChanged();
