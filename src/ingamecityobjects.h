@@ -3,6 +3,8 @@
 
 #include <QQuickItem>
 #include "Models/gamecitizen.h"
+#include "Models/gamehouse.h"
+#include "Models/gametrafficlightmodel.h"
 #include "gamebackend.h"
 
 class InGameCityObjects : public QQuickItem
@@ -12,7 +14,10 @@ class InGameCityObjects : public QQuickItem
     QML_ELEMENT
 
 private:
-    QList<GameCitizen*> m_gameCitizens { QList<GameCitizen*>() };
+    QList<QString> m_activeCitizens { QList<QString>() };
+    QMap<QString, GameCitizen*> m_citizens { QMap<QString, GameCitizen*>() };
+    QMap<QString, GameHouse*> m_houses { QMap<QString, GameHouse*>() };
+    QMap<QString, GameTrafficLightModel*> m_trafficLights { QMap<QString, GameTrafficLightModel*>() };
     GameBackend* m_gameBackend { nullptr };
 
 public:

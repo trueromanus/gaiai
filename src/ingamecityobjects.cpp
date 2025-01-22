@@ -9,7 +9,8 @@ void InGameCityObjects::setGameBackend(const GameBackend* backend) noexcept
 
 void InGameCityObjects::handleTimerForCitizens(int time) noexcept
 {
-    foreach (auto citizen, m_gameCitizens) {
+    foreach (auto citizenKey, m_activeCitizens) {
+        auto citizen = m_citizens.value(citizenKey);
         citizen->handleTimer(time, *m_gameBackend);
     }
 }
