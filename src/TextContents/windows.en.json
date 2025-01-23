@@ -1,0 +1,47 @@
+[
+    {
+        "command": "shutdown",
+        "defaultTitle": "Shut Down SmartCityOS",
+        "width": 400,
+        "height": 195,
+        "isUnique": true,
+        "component": "Pages/ShutDownPage.qml",
+        "notShowOnTaskBar": true
+    },
+    {
+        "command": "onboarding",
+        "defaultTitle": "Welcome",
+        "width": 488,
+        "height": 355,
+        "isUnique": true,
+        "component": "Pages/OnboardingPage.qml",
+        "notShowOnTaskBar": false
+    },
+    {
+        "command": "smarttracker",
+        "defaultTitle": "SmartTracker",
+        "width": 558,
+        "height": 355,
+        "isUnique": true,
+        "component": "Pages/SmartTrackerPage.qml",
+        "notShowOnTaskBar": false
+    },
+    {
+        "command": "rssreader",
+        "defaultTitle": "RSS Reader",
+        "width": 650,
+        "height": 355,
+        "isUnique": true,
+        "component": "Pages/RssReaderPage.qml",
+        "notShowOnTaskBar": false
+    },
+    {
+        "command": "emailclient",
+        "defaultTitle": "I'm The Bat_an!",
+        "width": 650,
+        "height": 430,
+        "isUnique": true,
+        "component": "Pages/EmailClientPage.qml",
+        "notShowOnTaskBar": false
+    }
+]

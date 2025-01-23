@@ -63,6 +63,14 @@ void InGameWindow::setOrder(int order) noexcept
     emit orderChanged();
 }
 
+void InGameWindow::setArguments(const QString &arguments) noexcept
+{
+    if (m_arguments == arguments) return;
+
+    m_arguments = arguments;
+    emit argumentsChanged();
+}
+
 void InGameWindow::componentComplete()
 {
     auto childrens = children();

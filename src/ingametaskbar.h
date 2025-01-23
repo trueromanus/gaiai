@@ -34,6 +34,7 @@ private:
     QMap<QString, QString> m_defaultNamesOfWindows { QMap<QString, QString>() };
     QMap<QString, std::tuple<int, int>> m_windowSizes { QMap<QString, std::tuple<int, int>>() };
     QSet<QString> m_uniqueWindows { QSet<QString>() };
+    QSet<QString> m_notShowOnTaskBar { QSet<QString>() };
     QMap<QString, QString> m_commandToPageMapping { QMap<QString, QString>() };
     InGameWindow* m_activeWindow { nullptr };
     int32_t m_widthVisibleItem { 0 };
@@ -57,7 +58,7 @@ public:
     void componentComplete() override;
 
     Q_INVOKABLE void refreshVisibleItems();
-    Q_INVOKABLE void createDefaultWindow(const QString& command, int position);
+    Q_INVOKABLE void createDefaultWindow(const QString& command, int position, const QString& arguments);
     Q_INVOKABLE void activateWindow(InGameWindow* window);
     Q_INVOKABLE void activateWindowByCommand(const QString& command);
 
@@ -71,6 +72,7 @@ private:
     void adjustRssReaderPage();
     void adjustEmailClientPage();
     void fillVisibleItems();
+    void loadWindows(const QString& language);
 
 private slots:
     void removeWindow(InGameWindow* window);

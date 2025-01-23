@@ -23,7 +23,7 @@ qt_add_executable(appgaiai
     Models/gameemailmodel.h Models/gameemailmodel.cpp
     Models/gamecitizen.h Models/gamecitizen.cpp
     Models/gamehouse.h Models/gamehouse.cpp
-    Models/lamppost.h Models/lamppost.cpp
+    Models/gamelamppost.h Models/gamelamppost.cpp
 
     PageModels/smarttrackerpage.h PageModels/smarttrackerpage.cpp
     PageModels/rssreaderpage.h PageModels/rssreaderpage.cpp
@@ -141,6 +141,7 @@ qt_add_qml_module(appgaiai
         TextContents/taskContents.en.json
         TextContents/newsContents.en.json
         TextContents/emailContents.en.json
+        TextContents/windows.en.json
 )
 
 set_target_properties(appgaiai PROPERTIES

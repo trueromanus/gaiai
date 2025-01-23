@@ -5,6 +5,7 @@
 #include "Models/gamecitizen.h"
 #include "Models/gamehouse.h"
 #include "Models/gametrafficlightmodel.h"
+#include "Models/gamelamppost.h"
 #include "gamebackend.h"
 
 class InGameCityObjects : public QQuickItem
@@ -18,6 +19,7 @@ private:
     QMap<QString, GameCitizen*> m_citizens { QMap<QString, GameCitizen*>() };
     QMap<QString, GameHouse*> m_houses { QMap<QString, GameHouse*>() };
     QMap<QString, GameTrafficLightModel*> m_trafficLights { QMap<QString, GameTrafficLightModel*>() };
+    QMap<QString, GameLampPost*> m_lampPosts { QMap<QString, GameLampPost*>() };
     GameBackend* m_gameBackend { nullptr };
 
 public:

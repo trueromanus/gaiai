@@ -1,13 +1,13 @@
 #include <cmath>
+#include <QFile>
+#include <QJsonDocument>
+#include <QJsonArray>
+#include <QJsonObject>
 #include "ingametaskbar.h"
 #include "ingamewindowpage.h"
 
 InGameTaskBar::InGameTaskBar() {
-    adjustShutDownPage();
-    adjustOnboardingPage();
-    adjustSmartTrackerPage();
-    adjustRssReaderPage();
-    adjustEmailClientPage();
+    loadWindows("en");
 }
 
 void InGameTaskBar::setStartMenuOpened(bool startMenuOpened) noexcept
@@ -36,7 +36,7 @@ void InGameTaskBar::refreshVisibleItems()
     fillVisibleItems();
 }
 
-void InGameTaskBar::createDefaultWindow(const QString& command, int position)
+void InGameTaskBar::createDefaultWindow(const QString& command, int position, const QString& arguments)
 {
     if (alreadyOpenedUniqueWindow(command)) {
         activateWindowByCommand(command);
@@ -53,6 +53,9 @@ void InGameTaskBar::createDefaultWindow(const QString& command, int position)
     auto window = qobject_cast<InGameWindow*>(object);
 
     window->setTitle(m_defaultNamesOfWindows.value(command));
+    if (!arguments.isEmpty()) window->setArguments(arguments);
+    if (m_notShowOnTaskBar.contains(command)) window->setNotShowOnTaskBar(true);
+
     if (m_windowSizes.contains(command)) {
         auto sizeTuple = m_windowSizes.value(command);
         window->setWindowWidth(std::get<0>(sizeTuple));
@@ -228,6 +231,46 @@ void InGameTaskBar::fillVisibleItems()
 
     emit widthVisibleItemChanged();
     emit visibleItemsChanged();
+}
+
+void InGameTaskBar::loadWindows(const QString& language)
+{
+    m_defaultNamesOfWindows.clear();
+    m_windowSizes.clear();
+    m_uniqueWindows.clear();
+    m_commandToPageMapping.clear();
+    m_notShowOnTaskBar.clear();
+
+    QFile file(":/qt/qml/gaiai/TextContents/windows." + language + ".json");
+    if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) return;
+
+    auto content = file.readAll();
+    file.close();
+
+    auto document = QJsonDocument::fromJson(content);
+    auto array = document.array();
+
+    foreach (auto item, array) {
+        auto object = item.toObject();
+
+        auto command = object.value("command").toString();
+        auto component = object.value("component").toString();
+        m_commandToPageMapping.insert(command, component);
+
+        auto isUnique = object.value("isUnique").toBool();
+        if (isUnique) m_uniqueWindows.insert(command);
+
+        auto width = object.value("width").toInt();
+        auto height = object.value("height").toInt();
+
+        m_windowSizes.insert(command, std::make_tuple(width, height));
+
+        auto defaultTitle = object.value("defaultTitle").toString();
+        m_defaultNamesOfWindows.insert(command, defaultTitle);
+
+        auto notShowOnTaskBar = object.value("notShowOnTaskBar").toBool();
+        if (notShowOnTaskBar) m_notShowOnTaskBar.insert(command);
+    }
 }
 
 void InGameTaskBar::removeWindow(InGameWindow *window)
