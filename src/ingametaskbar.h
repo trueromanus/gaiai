@@ -18,12 +18,6 @@ class InGameTaskBar : public QQuickItem
     QML_ELEMENT
 
 private:
-    const QString m_shutDownPage { "shutdown" };
-    const QString m_onboardingPage { "onboarding" };
-    const QString m_smartTrackerPage { "smarttracker" };
-    const QString m_rssReaderPage { "rssreader" };
-    const QString m_emailClientPage { "emailclient" };
-
     QMap<InGameWindow*, QQmlComponent*> m_windows { QMap<InGameWindow*, QQmlComponent*>() };
     QList<InGameWindow*> m_visibleItems { QList<InGameWindow*>() };
     bool m_hasLeftItems { false };
@@ -66,11 +60,6 @@ private:
     bool alreadyOpenedUniqueWindow(const QString& command);
     InGameWindow* getWindowByUnique(const QString& command);
     QQuickItem* createPageInsideWindow(const QString& path, InGameWindow* window, QQmlContext* context, QQmlEngine* engine);
-    void adjustShutDownPage();
-    void adjustOnboardingPage();
-    void adjustSmartTrackerPage();
-    void adjustRssReaderPage();
-    void adjustEmailClientPage();
     void fillVisibleItems();
     void loadWindows(const QString& language);
 

@@ -166,46 +166,6 @@ QQuickItem* InGameTaskBar::createPageInsideWindow(const QString &path, InGameWin
     return page;
 }
 
-void InGameTaskBar::adjustShutDownPage()
-{
-    m_defaultNamesOfWindows.insert(m_shutDownPage, "Shut Down SmartCityOS");
-    m_windowSizes.insert(m_shutDownPage, std::make_tuple(400, 195));
-    m_uniqueWindows.insert(m_shutDownPage);
-    m_commandToPageMapping.insert(m_shutDownPage, "Pages/ShutDownPage.qml");
-}
-
-void InGameTaskBar::adjustOnboardingPage()
-{
-    m_defaultNamesOfWindows.insert(m_onboardingPage, "Welcome");
-    m_windowSizes.insert(m_onboardingPage, std::make_tuple(488, 355));
-    m_uniqueWindows.insert(m_onboardingPage);
-    m_commandToPageMapping.insert(m_onboardingPage, "Pages/OnboardingPage.qml");
-}
-
-void InGameTaskBar::adjustSmartTrackerPage()
-{
-    m_defaultNamesOfWindows.insert(m_smartTrackerPage, "SmartTracker");
-    m_windowSizes.insert(m_smartTrackerPage, std::make_tuple(558, 355));
-    m_uniqueWindows.insert(m_smartTrackerPage);
-    m_commandToPageMapping.insert(m_smartTrackerPage, "Pages/SmartTrackerPage.qml");
-}
-
-void InGameTaskBar::adjustRssReaderPage()
-{
-    m_defaultNamesOfWindows.insert(m_rssReaderPage, "RSS Reader");
-    m_windowSizes.insert(m_rssReaderPage, std::make_tuple(650, 355));
-    m_uniqueWindows.insert(m_rssReaderPage);
-    m_commandToPageMapping.insert(m_rssReaderPage, "Pages/RssReaderPage.qml");
-}
-
-void InGameTaskBar::adjustEmailClientPage()
-{
-    m_defaultNamesOfWindows.insert(m_emailClientPage, "I'm The Bat_an!");
-    m_windowSizes.insert(m_emailClientPage, std::make_tuple(650, 430));
-    m_uniqueWindows.insert(m_emailClientPage);
-    m_commandToPageMapping.insert(m_emailClientPage, "Pages/EmailClientPage.qml");
-}
-
 void InGameTaskBar::fillVisibleItems()
 {
     m_visibleItems.clear();
