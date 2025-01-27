@@ -59,11 +59,28 @@ Window {
 
         Item {
             id: fullScreen
+            anchors.fill: parent
             visible: gameBackend.isBigScreenVisible
 
-            Rectangle {
+            Item {
                 anchors.fill: parent
-                color: "red"
+                visible: gameBackend.bigScreenType === "turnoff"
+
+                Rectangle {
+                    anchors.fill: parent
+                    color: "black"
+                }
+
+                PlainText {
+                    id: turnoffText
+                    x: (parent.width / 2) - (turnoffText.width / 2)
+                    y: (parent.height / 2) - turnoffText.height
+                    horizontalAlignment: Text.AlignHCenter
+                    color: "#FF7F00"
+                    text: "It's now safe to turn off\nyour computer."
+                    fontSize: 38
+                    font.bold: true
+                }
             }
         }
     }

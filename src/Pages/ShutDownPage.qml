@@ -109,7 +109,11 @@ InGameWindowPage {
         height: 30
         title: "Yes"
         onClicked: {
-            //root.closeContainerWindow();
+            if (root.selectedOption === 1) {
+                gameBackend.showFullScreen("turnoff");
+            }
+
+            root.closeContainerWindow();
         }
     }
 }
