@@ -42,6 +42,11 @@ void InGameShiftTimer::restartShift()
     startShiftTimer();
 }
 
+void InGameShiftTimer::pauseTimer()
+{
+    stopShiftTimer();
+}
+
 void InGameShiftTimer::startShiftTimer()
 {
     m_shiftTimer = startTimer(1000 / 10, Qt::CoarseTimer);
@@ -52,6 +57,7 @@ void InGameShiftTimer::stopShiftTimer()
     if (m_shiftTimer == -1) return;
 
     killTimer(m_shiftTimer);
+    m_shiftTimer = -1;
 }
 
 void InGameShiftTimer::handleTimerForPeople()

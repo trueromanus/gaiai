@@ -58,11 +58,15 @@ public:
     Q_INVOKABLE void fillDay(int day);
     Q_INVOKABLE void showFullScreen(const QString& screen);
     Q_INVOKABLE void hideFullScreen();
+    Q_INVOKABLE void turnoffGame();
 
 private:
     void createDay1Tasks();
     void fillTasksForDay(int day);
     void createTrafficLights();
+
+private slots:
+    void handleTurnOff();
 
 signals:
     void tasksChanged();

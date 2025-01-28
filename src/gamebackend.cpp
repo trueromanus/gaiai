@@ -1,3 +1,5 @@
+#include <QTimer>
+#include <QCoreApplication>
 #include "gamebackend.h"
 
 GameBackend::GameBackend(QObject *parent)
@@ -72,6 +74,11 @@ void GameBackend::hideFullScreen()
     emit isBigScreenVisibleChanged();
 }
 
+void GameBackend::turnoffGame()
+{
+    QTimer::singleShot(4000, this, &GameBackend::handleTurnOff);
+}
+
 void GameBackend::createDay1Tasks()
 {
     auto emailTutorial = new GameTaskModel(true, "Check you emails", m_onboardingTasks, m_firstDay,[]() { return true; }, this);
@@ -143,4 +150,9 @@ void GameBackend::createTrafficLights()
     elmStreetHouse1529->simpleSetup(8, 8, 2, true);
     m_trafficLights.insert("ElmStreetHouse1529", elmStreetHouse1529);
 
+}
+
+void GameBackend::handleTurnOff()
+{
+    QCoreApplication::quit();
 }

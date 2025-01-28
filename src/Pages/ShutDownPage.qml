@@ -111,6 +111,8 @@ InGameWindowPage {
         onClicked: {
             if (root.selectedOption === 1) {
                 gameBackend.showFullScreen("turnoff");
+                shiftTimer.pauseTimer();
+                gameBackend.turnoffGame();
             }
 
             root.closeContainerWindow();

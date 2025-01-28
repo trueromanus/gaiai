@@ -33,6 +33,7 @@ public:
     void setFormat(const QString& format) noexcept;
 
     Q_INVOKABLE void restartShift();
+    Q_INVOKABLE void pauseTimer();
 
 private:
     void startShiftTimer();

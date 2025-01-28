@@ -92,7 +92,7 @@ InGameTaskBar {
                         font.bold: taskBarWindow.pressed
                     }
 
-                    onClicked: {
+                    onPressedChanged: {
                         if (!taskBarWindow.pressed && modelData.activated) taskBarWindow.press();
                         if (taskBarWindow.pressed && !modelData.activated) root.activateWindow(modelData);
                     }

@@ -41,12 +41,10 @@ void InGameButton::press() noexcept
 {
     m_pressed = true;
     emit pressedChanged();
-    emit clicked();
 }
 
 void InGameButton::release() noexcept
 {
     m_pressed = false;
     emit pressedChanged();
-    emit clicked();
 }
