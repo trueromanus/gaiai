@@ -24,6 +24,7 @@ qt_add_executable(appgaiai
     Models/gamecitizen.h Models/gamecitizen.cpp
     Models/gamehouse.h Models/gamehouse.cpp
     Models/gamelamppost.h Models/gamelamppost.cpp
+    Models/gamestartscreenmodel.h Models/gamestartscreenmodel.cpp
 
     PageModels/smarttrackerpage.h PageModels/smarttrackerpage.cpp
     PageModels/rssreaderpage.h PageModels/rssreaderpage.cpp
@@ -101,6 +102,7 @@ qt_add_qml_module(appgaiai
         ingamemenu.h ingamemenu.cpp
         ingameshifttimer.h ingameshifttimer.cpp
         ingamecityobjects.h ingamecityobjects.cpp
+        ingamefullscreen.h ingamefullscreen.cpp
 
     RESOURCES
         Images/disablesound.png
@@ -142,6 +144,7 @@ qt_add_qml_module(appgaiai
         TextContents/newsContents.en.json
         TextContents/emailContents.en.json
         TextContents/windows.en.json
+        TextContents/fullscreen.en.json
 )
 
 set_target_properties(appgaiai PROPERTIES

@@ -1,0 +1,69 @@
+{
+    "turnoffMessage": "It's now safe to turn off\nyour computer.",
+    "loadingScreenMessages": [
+        {
+            "day": 1,
+            "nameOS": "SmartCity",
+            "nameOSExtra": "OS",
+            "companyName": "Macroloft",
+            "slogan": "Be smart and take the keys to the city",
+            "background": ""
+        },
+        {
+            "day": 2,
+            "nameOS": "SmartCity",
+            "nameOSExtra": "OS",
+            "companyName": "Macroloft",
+            "slogan": "Be smart and take the keys to the city",
+            "background": ""
+        },
+        {
+            "day": 3,
+            "nameOS": "SmartCity",
+            "nameOSExtra": "OS",
+            "companyName": "Macroloft",
+            "slogan": "Be smart and take the keys to the city",
+            "background": ""
+        },
+        {
+            "day": 4,
+            "nameOS": "SmartCity",
+            "nameOSExtra": "OS",
+            "companyName": "Macroloft",
+            "slogan": "Be smart and take the keys to the city",
+            "background": ""
+        },
+        {
+            "day": 5,
+            "nameOS": "SmartCity",
+            "nameOSExtra": "OS",
+            "companyName": "Macroloft",
+            "slogan": "Be smart and take the keys to the city",
+            "background": ""
+        },
+        {
+            "day": 6,
+            "nameOS": "SmartCity",
+            "nameOSExtra": "OS",
+            "companyName": "Macroloft",
+            "slogan": "Be smart and take the keys to the city",
+            "background": ""
+        },
+        {
+            "day": 7,
+            "nameOS": "SmartCity",
+            "nameOSExtra": "OS",
+            "companyName": "Macroloft",
+            "slogan": "Be smart and take the keys to the city",
+            "background": ""
+        },
+        {
+            "day": 8,
+            "nameOS": "SmartCity",
+            "nameOSExtra": "OS",
+            "companyName": "Macroloft",
+            "slogan": "Be smart and take the keys to the city",
+            "background": ""
+        }
+    ]
+}

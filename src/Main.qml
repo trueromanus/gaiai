@@ -57,7 +57,7 @@ Window {
             }
         }
 
-        Item {
+        InGameFullScreen {
             id: fullScreen
             anchors.fill: parent
             visible: gameBackend.isBigScreenVisible
@@ -77,7 +77,7 @@ Window {
                     y: (parent.height / 2) - turnoffText.height
                     horizontalAlignment: Text.AlignHCenter
                     color: "#FF7F00"
-                    text: "It's now safe to turn off\nyour computer."
+                    text: fullScreen.turnOffMessage
                     fontSize: 38
                     font.bold: true
                 }

@@ -54,7 +54,7 @@ std::tuple<bool, bool, int> GameLampPost::parseLine(const QString &line)
 
     auto first = parts.first();
     if (first == m_lightOn || first == m_lightOff) {
-        bool* ok;
+        bool* ok = nullptr;
         auto second = parts.value(1).trimmed().toInt(ok);
         if (*ok) return std::make_tuple(true, first == m_lightOn, second);
     }
