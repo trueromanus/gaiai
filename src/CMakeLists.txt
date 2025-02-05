@@ -33,6 +33,8 @@ qt_add_executable(appgaiai
     main.cpp
 )
 
+qt_policy(SET QTP0004 NEW)
+
 qt_add_qml_module(appgaiai
     URI gaiai
     VERSION 1.0
