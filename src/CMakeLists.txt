@@ -6,9 +6,9 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 set(CMAKE_CXX_STANDARD 17)
 
-find_package(Qt6 6.7 REQUIRED COMPONENTS Quick)
+find_package(Qt6 6.8 REQUIRED COMPONENTS Quick)
 
-qt_standard_project_setup(REQUIRES 6.7)
+qt_standard_project_setup(REQUIRES 6.8)
 
 qt_add_executable(appgaiai
     Models/gametaskmodel.h Models/gametaskmodel.cpp
@@ -123,18 +123,15 @@ qt_add_qml_module(appgaiai
         Images/rssreader.png
         Images/hospitalentrance.png
         Images/emailclient.png
-
         Images/columnattachmentmail.png
         Images/columnattachmentvaluemail.png
         Images/columnreadedemail.png
         Images/columnreadedvalueemail.png
-
         Images/commonemailfolder.png
         Images/emailaccount.png
         Images/inboxemails.png
         Images/outboxemails.png
         Images/sentemails.png
-
         Images/deleteemail.png
         Images/forwardemail.png
         Images/pullnewemails.png
@@ -147,6 +144,7 @@ qt_add_qml_module(appgaiai
         TextContents/emailContents.en.json
         TextContents/windows.en.json
         TextContents/fullscreen.en.json
+        TextContents/citizens.en.json TextContents/houses.en.json
 )
 
 set_target_properties(appgaiai PROPERTIES

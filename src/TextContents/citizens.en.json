@@ -1,0 +1,26 @@
+[
+    {
+        "title": "My Home",
+        "originalLocation": "1428 Elm Street",
+        "schedule": [
+            {
+                "time": 0,
+                "location": "1428 Elm Street"
+            }
+        ]
+    },
+    {
+        "title": "Doctor H. Lecter",
+        "originalLocation": "55 State Street",
+        "schedule": [
+            {
+                "time": 0,
+                "location": ""
+            },
+            {
+                "time": 2,
+                "location": ""
+            }
+        ]
+    }
+]

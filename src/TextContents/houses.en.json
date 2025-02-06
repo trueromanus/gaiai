@@ -1,0 +1,299 @@
+[
+    {
+        "district": "south",
+        "houses": [
+            {
+                "name": "1428 Elm Street",
+                "shape": "---",
+                "x": 0,
+                "y": 0,
+                "rotation": 0,
+            },
+            {
+                "name": "1526 Elm Street",
+                "shape": "---",
+                "x": 0,
+                "y": 0,
+                "rotation": 0,
+            },
+            {
+                "name": "1680 Elm Street",
+                "shape": "---",
+                "x": 0,
+                "y": 0,
+                "rotation": 0,
+            },
+            {
+                "name": "1427 Elm Street",
+                "shape": "---",
+                "x": 0,
+                "y": 0,
+                "rotation": 0,
+            },
+            {
+                "name": "1529 Elm Street",
+                "shape": "---",
+                "x": 0,
+                "y": 0,
+                "rotation": 0,
+            },
+            {
+                "name": "1415 L Street",
+                "shape": "---",
+                "x": 0,
+                "y": 0,
+                "rotation": 0,
+            },
+            {
+                "name": "1418 L Street",
+                "shape": "---",
+                "x": 0,
+                "y": 0,
+                "rotation": 0,
+            },
+            {
+                "name": "1420 L Street",
+                "shape": "---",
+                "x": 0,
+                "y": 0,
+                "rotation": 0,
+            },
+
+            {
+                "name": "10 Burkittsville St",
+                "shape": "---",
+                "x": 0,
+                "y": 0,
+                "rotation": 0,
+            },
+            {
+                "name": "20 Burkittsville St",
+                "shape": "---",
+                "x": 0,
+                "y": 0,
+                "rotation": 0,
+            },
+            {
+                "name": "50 Burkittsville St",
+                "shape": "---",
+                "x": 0,
+                "y": 0,
+                "rotation": 0,
+            },
+
+            {
+                "name": "54 State Street",
+                "shape": "---",
+                "x": 0,
+                "y": 0,
+                "rotation": 0,
+            },
+            {
+                "name": "55 State Street",
+                "shape": "---",
+                "x": 0,
+                "y": 0,
+                "rotation": 0,
+            },
+            {
+                "name": "70 State Street",
+                "shape": "---",
+                "x": 0,
+                "y": 0,
+                "rotation": 0,
+            },
+            {
+                "name": "73 State Street",
+                "shape": "---",
+                "x": 0,
+                "y": 0,
+                "rotation": 0,
+            },
+            {
+                "name": "80 State Street",
+                "shape": "---",
+                "x": 0,
+                "y": 0,
+                "rotation": 0,
+            },
+
+            {
+                "name": "20 Tampico Avenue",
+                "shape": "---",
+                "x": 0,
+                "y": 0,
+                "rotation": 0,
+            },
+            {
+                "name": "21 Tampico Avenue",
+                "shape": "---",
+                "x": 0,
+                "y": 0,
+                "rotation": 0,
+            },
+            {
+                "name": "22 Tampico Avenue",
+                "shape": "---",
+                "x": 0,
+                "y": 0,
+                "rotation": 0,
+            },
+            {
+                "name": "23 Tampico Avenue",
+                "shape": "---",
+                "x": 0,
+                "y": 0,
+                "rotation": 0,
+            },
+            {
+                "name": "24 Tampico Avenue",
+                "shape": "---",
+                "x": 0,
+                "y": 0,
+                "rotation": 0,
+            },
+            {
+                "name": "25 Tampico Avenue",
+                "shape": "---",
+                "x": 0,
+                "y": 0,
+                "rotation": 0,
+            },
+            {
+                "name": "26 Tampico Avenue",
+                "shape": "---",
+                "x": 0,
+                "y": 0,
+                "rotation": 0,
+            },
+            {
+                "name": "27 Tampico Avenue",
+                "shape": "---",
+                "x": 0,
+                "y": 0,
+                "rotation": 0,
+            },
+            {
+                "name": "28 Tampico Avenue",
+                "shape": "---",
+                "x": 0,
+                "y": 0,
+                "rotation": 0,
+            },
+            {
+                "name": "29 Tampico Avenue",
+                "shape": "---",
+                "x": 0,
+                "y": 0,
+                "rotation": 0,
+            },
+            {
+                "name": "30 Tampico Avenue",
+                "shape": "---",
+                "x": 0,
+                "y": 0,
+                "rotation": 0,
+            },
+
+            {
+                "name": "40 Big Tes DE Street",
+                "shape": "---",
+                "x": 0,
+                "y": 0,
+                "rotation": 0,
+            },
+            {
+                "name": "41 Big Tes DE Street",
+                "shape": "---",
+                "x": 0,
+                "y": 0,
+                "rotation": 0,
+            },
+            {
+                "name": "42 Big Tes DE Street",
+                "shape": "---",
+                "x": 0,
+                "y": 0,
+                "rotation": 0,
+            },
+            {
+                "name": "43 Big Tes DE Street",
+                "shape": "---",
+                "x": 0,
+                "y": 0,
+                "rotation": 0,
+            },
+            {
+                "name": "44 Big Tes DE Street",
+                "shape": "---",
+                "x": 0,
+                "y": 0,
+                "rotation": 0,
+            },
+            {
+                "name": "45 Big Tes DE Street",
+                "shape": "---",
+                "x": 0,
+                "y": 0,
+                "rotation": 0,
+            },
+            {
+                "name": "46 Big Tes DE Street",
+                "shape": "---",
+                "x": 0,
+                "y": 0,
+                "rotation": 0,
+            },
+            {
+                "name": "47 Big Tes DE Street",
+                "shape": "---",
+                "x": 0,
+                "y": 0,
+                "rotation": 0,
+            },
+            {
+                "name": "48 Big Tes DE Street",
+                "shape": "---",
+                "x": 0,
+                "y": 0,
+                "rotation": 0,
+            }
+        ]
+    },
+    {
+        "district": "north",
+        "houses": [
+            {
+                "name": "48 Big Tes DE Street",
+                "shape": "---",
+                "x": 0,
+                "y": 0,
+                "rotation": 0,
+            }
+        ]
+    },
+    {
+        "district": "west",
+        "houses": [
+            {
+                "name": "48 Big Tes DE Street",
+                "shape": "---",
+                "x": 0,
+                "y": 0,
+                "rotation": 0,
+            }
+        ]
+    },
+    {
+        "district": "east",
+        "houses": [
+            {
+                "name": "48 Big Tes DE Street",
+                "shape": "---",
+                "x": 0,
+                "y": 0,
+                "rotation": 0,
+            }
+        ]
+    }
+]
