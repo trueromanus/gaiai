@@ -144,7 +144,9 @@ qt_add_qml_module(appgaiai
         TextContents/emailContents.en.json
         TextContents/windows.en.json
         TextContents/fullscreen.en.json
-        TextContents/citizens.en.json TextContents/houses.en.json
+        TextContents/citizens.en.json
+        TextContents/houses.en.json
+        TextContents/trafficlights.en.json
 )
 
 set_target_properties(appgaiai PROPERTIES

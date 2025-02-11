@@ -16,6 +16,14 @@ void GameTrafficLightModel::setText(const QString &text) noexcept
     emit textChanged();
 }
 
+void GameTrafficLightModel::setDistrict(const QString &district) noexcept
+{
+    if (m_district == district) return;
+
+    m_district = district;
+    emit districtChanged();
+}
+
 void GameTrafficLightModel::simpleSetup(int red, int green, int yellow, bool correct)
 {
     m_isCorrect = correct;

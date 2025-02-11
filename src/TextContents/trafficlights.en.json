@@ -1,0 +1,73 @@
+[
+    {
+        "district": "south",
+        "items": [
+            {
+                "title": "Near highway",
+                "affectedHouses": [
+                    "1428 Elm Street"
+                ]
+            },
+            {
+                "title": "Turn onto Burkittsville St",
+                "affectedHouses": [
+                    "1429 Elm Street",
+                    "10 Burkittsville St",
+                    "20 Burkittsville St",
+                    "50 Burkittsville St"
+                ]
+            },
+            {
+                "title": "Turn onto L Street",
+                "affectedHouses": [
+                    "1430 Elm Street",
+                    "1415 L Street",
+                    "1418 L Street",
+                    "1420 L Street"
+                ]
+            },
+            {
+                "title": "Turn onto State Street",
+                "affectedHouses": [
+                    "1431 Elm Street",
+                    "54 State Street",
+                    "55 State Street",
+                    "70 State Street",
+                    "73 State Street",
+                    "80 State Street"
+                ]
+            },
+            {
+                "title": "Turn onto Tampico Avenue",
+                "affectedHouses": [
+                    "1432 Elm Street",
+                    "20 Tampico Avenue",
+                    "21 Tampico Avenue",
+                    "22 Tampico Avenue",
+                    "23 Tampico Avenue",
+                    "24 Tampico Avenue",
+                    "25 Tampico Avenue",
+                    "26 Tampico Avenue",
+                    "27 Tampico Avenue",
+                    "28 Tampico Avenue",
+                    "29 Tampico Avenue",
+                    "30 Tampico Avenue"
+                ]
+            },
+            {
+                "title": "Turn onto Big Tes DE Street",
+                "affectedHouses": [
+                    "40 Big Tes DE Street",
+                    "41 Big Tes DE Street",
+                    "42 Big Tes DE Street",
+                    "43 Big Tes DE Street",
+                    "44 Big Tes DE Street",
+                    "45 Big Tes DE Street",
+                    "46 Big Tes DE Street",
+                    "47 Big Tes DE Street",
+                    "48 Big Tes DE Street"
+                ]
+            }
+        ]
+    }
+]

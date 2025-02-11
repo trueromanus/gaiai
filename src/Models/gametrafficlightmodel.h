@@ -7,6 +7,7 @@ class GameTrafficLightModel : public QObject
 {
     Q_OBJECT
     Q_PROPERTY(QString text READ text WRITE setText NOTIFY textChanged FINAL)
+    Q_PROPERTY(QString district READ district WRITE setDistrict NOTIFY districtChanged FINAL)
     Q_PROPERTY(bool isCorrect READ isCorrect NOTIFY isCorrectChanged FINAL)
 
 private:
@@ -19,12 +20,16 @@ private:
     int m_correctRed { 0 };
     int m_correctGreen { 0 };
     int m_correctYellow { 0 };
+    QString m_district { "" };
 
 public:
     explicit GameTrafficLightModel(QObject *parent = nullptr);
 
     QString text() const noexcept { return m_text; }
     void setText(const QString& text) noexcept;
+
+    QString district() const noexcept { return m_district; }
+    void setDistrict(const QString& district) noexcept;
 
     bool isCorrect() const noexcept { return m_isCorrect; }
 
@@ -38,6 +43,7 @@ private:
 signals:
     void textChanged();
     void isCorrectChanged();
+    void districtChanged();
 
 };
 

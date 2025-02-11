@@ -10,28 +10,28 @@
                 "rotation": 0,
             },
             {
-                "name": "1526 Elm Street",
+                "name": "1429 Elm Street",
                 "shape": "---",
                 "x": 0,
                 "y": 0,
                 "rotation": 0,
             },
             {
-                "name": "1680 Elm Street",
+                "name": "1430 Elm Street",
                 "shape": "---",
                 "x": 0,
                 "y": 0,
                 "rotation": 0,
             },
             {
-                "name": "1427 Elm Street",
+                "name": "1431 Elm Street",
                 "shape": "---",
                 "x": 0,
                 "y": 0,
                 "rotation": 0,
             },
             {
-                "name": "1529 Elm Street",
+                "name": "1432 Elm Street",
                 "shape": "---",
                 "x": 0,
                 "y": 0,
@@ -263,37 +263,16 @@
     {
         "district": "north",
         "houses": [
-            {
-                "name": "48 Big Tes DE Street",
-                "shape": "---",
-                "x": 0,
-                "y": 0,
-                "rotation": 0,
-            }
         ]
     },
     {
         "district": "west",
         "houses": [
-            {
-                "name": "48 Big Tes DE Street",
-                "shape": "---",
-                "x": 0,
-                "y": 0,
-                "rotation": 0,
-            }
         ]
     },
     {
         "district": "east",
         "houses": [
-            {
-                "name": "48 Big Tes DE Street",
-                "shape": "---",
-                "x": 0,
-                "y": 0,
-                "rotation": 0,
-            }
         ]
     }
 ]
