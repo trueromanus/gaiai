@@ -15,11 +15,19 @@
         "schedule": [
             {
                 "time": 0,
-                "location": ""
+                "location": "Hospital"
             },
             {
                 "time": 2,
-                "location": ""
+                "location": "1432 Elm Street"
+            },
+            {
+                "time": 2,
+                "location": "1430 Elm Street"
+            },
+            {
+                "time": 2,
+                "location": "55 State Street"
             }
         ]
     }
