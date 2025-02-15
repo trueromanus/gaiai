@@ -4,30 +4,164 @@
         "originalLocation": "1428 Elm Street",
         "schedule": [
             {
-                "time": 0,
+                "time": [0],
                 "location": "1428 Elm Street"
             }
         ]
     },
     {
         "title": "Doctor H. Lecter",
+        "position": "Chief Physician of Cuckoo's Nest Hospital",
         "originalLocation": "55 State Street",
         "schedule": [
             {
-                "time": 0,
+                "time": [0],
                 "location": "Hospital"
             },
             {
-                "time": 2,
+                "time": [0],
                 "location": "1432 Elm Street"
             },
             {
-                "time": 2,
+                "time": [0],
                 "location": "1430 Elm Street"
             },
             {
-                "time": 2,
+                "time": [0],
                 "location": "55 State Street"
+            }
+        ]
+    },
+    {
+        "title": " Dale Cooper",
+        "position": "Realtor and founder of Cooper Agency",
+        "originalLocation": "28 Tampico Avenue",
+        "schedule": [
+            {
+                "time": [0],
+                "location": ""
+            },
+            {
+                "time": [0],
+                "location": "1431 Elm Street"
+            },
+            {
+                "time": [0],
+                "location": "28 Tampico Avenue"
+            }
+        ]
+    },
+    {
+        "title": "Angelica Davis",
+        "position": "Activist of the political party 'We are equal'",
+        "originalLocation": "42 Big Tes DE Street",
+        "schedule": [
+            {
+                "time": [0],
+                "location": ""
+            },
+            {
+                "time": [0],
+                "location": "1432 Elm Street"
+            },
+            {
+                "time": [0],
+                "location": "42 Big Tes DE Street"
+            }
+        ]
+    },
+    {
+        "title": "Carlos Marquez",
+        "position": "Founder of the political party 'We are equal'",
+        "originalLocation": "45 Big Tes DE Street",
+        "schedule": [
+            {
+                "time": [0],
+                "location": ""
+            },
+            {
+                "time": [0],
+                "location": "1432 Elm Street"
+            },
+            {
+                "time": [0],
+                "location": "45 Big Tes DE Street"
+            }
+        ]
+    },
+    {
+        "title": "Joseph Stolen",
+        "position": "Leader of the political party 'We are equal'",
+        "originalLocation": "48 Big Tes DE Street",
+        "schedule": [
+            {
+                "time": [0],
+                "location": ""
+            },
+            {
+                "time": [0],
+                "location": "1432 Elm Street"
+            },
+            {
+                "time": [0],
+                "location": "48 Big Tes DE Street"
+            }
+        ]
+    },
+    {
+        "title": "Wilson Riagan",
+        "position": "Leader of the political party 'Profit'",
+        "originalLocation": "28 Tampico Avenue",
+        "schedule": [
+            {
+                "time": [0],
+                "location": ""
+            },
+            {
+                "time": [0],
+                "location": "1431 Elm Street"
+            },
+            {
+                "time": [0],
+                "location": "28 Tampico Avenue"
+            }
+        ]
+    },
+    {
+        "title": "Leroy Gyngrich",
+        "position": "Founder of the political party 'Profit'",
+        "originalLocation": "25 Tampico Avenue",
+        "schedule": [
+            {
+                "time": [0],
+                "location": ""
+            },
+            {
+                "time": [0],
+                "location": "1431 Elm Street"
+            },
+            {
+                "time": [0],
+                "location": "25 Tampico Avenue"
+            }
+        ]
+    },
+    {
+        "title": "Lara Klinton",
+        "position": "Activist of the political party 'Profit'",
+        "originalLocation": "27 Tampico Avenue",
+        "schedule": [
+            {
+                "time": [0],
+                "location": ""
+            },
+            {
+                "time": [0],
+                "location": "1431 Elm Street"
+            },
+            {
+                "time": [0],
+                "location": "27 Tampico Avenue"
             }
         ]
     }
