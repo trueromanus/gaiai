@@ -21,7 +21,7 @@ private:
     int m_stressLevel { 0 };
     QString m_location { "" };
     QString m_originalLocation { "" };
-    QList<QString> m_relatedTrafficLights { QList<QString>() };
+    QMap<int, QString> m_schedule { QMap<int, QString>() };
 
 public:
     explicit GameCitizen(QObject *parent = nullptr);
@@ -44,7 +44,7 @@ public:
 
     void handleTimer(int time, const GameBackend& backend);
 
-    void addTrafficLights(const QList<QString>& trafficLights) noexcept;
+    void addSchedule(int time, const QString& location) noexcept;
 
 signals:
     void titleChanged();

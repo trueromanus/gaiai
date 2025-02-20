@@ -28,3 +28,27 @@ void GameHouse::setShape(const QString &shape) noexcept
     m_shape = shape;
     emit shapeChanged();
 }
+
+void GameHouse::setXvalue(int xvalue) noexcept
+{
+    if (m_xvalue == xvalue) return;
+
+    m_xvalue = xvalue;
+    emit xvalueChanged();
+}
+
+void GameHouse::setYvalue(int yvalue) noexcept
+{
+    if (m_yvalue == yvalue) return;
+
+    m_yvalue = yvalue;
+    emit yvalueChanged();
+}
+
+void GameHouse::setRotation(int rotation) noexcept
+{
+    if (m_rotation == rotation) return;
+
+    m_rotation = rotation;
+    emit rotationChanged();
+}

@@ -28,7 +28,11 @@ public:
     GameBackend* gameBackend() const noexcept { return m_gameBackend; }
     void setGameBackend(const GameBackend* backend) noexcept;
 
-    Q_INVOKABLE void handleTimerForCitizens(int time) noexcept;
+    Q_INVOKABLE void handleTimerForCitizens(int time) const noexcept;
+
+private:
+    void loadCitizens(const QString& language);
+    void loadHouses(const QString& language);
 
 signals:
     void gameBackendChanged();

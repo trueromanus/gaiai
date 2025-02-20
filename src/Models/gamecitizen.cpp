@@ -42,7 +42,7 @@ void GameCitizen::handleTimer(int time, const GameBackend &backend)
 
 }
 
-void GameCitizen::addTrafficLights(const QList<QString> &trafficLights) noexcept
+void GameCitizen::addSchedule(int time, const QString &location) noexcept
 {
 
 }
