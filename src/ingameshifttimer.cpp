@@ -21,7 +21,9 @@ void InGameShiftTimer::setBackend(const GameBackend *backend) noexcept
 
 QString InGameShiftTimer::displayTime() const noexcept
 {
-    auto time = QTime::fromMSecsSinceStartOfDay(75600000 + m_time * 1000);
+    auto isNextDay = m_time > 10700;
+    auto processedTime = m_time > 10700 ? m_time - 10700 : m_time;
+    auto time = QTime::fromMSecsSinceStartOfDay((isNextDay ? 0 : 75600000) + processedTime * 1000);
     return time.toString(m_format);
 }
 
@@ -37,7 +39,7 @@ void InGameShiftTimer::restartShift()
 {
     stopShiftTimer();
 
-    m_time = 0;
+    m_time = 10000;
 
     startShiftTimer();
 }

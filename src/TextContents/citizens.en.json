@@ -15,19 +15,19 @@
         "originalLocation": "55 State Street",
         "": [
             {
-                "time": 0,
+                "time": 7200,
                 "location": "Hospital"
             },
             {
-                "time": 0,
+                "time": 7300,
                 "location": "1432 Elm Street"
             },
             {
-                "time": 0,
+                "time": 7300,
                 "location": "1430 Elm Street"
             },
             {
-                "time": 0,
+                "time": 7800,
                 "location": "55 State Street"
             }
         ]
@@ -38,15 +38,15 @@
         "originalLocation": "28 Tampico Avenue",
         "schedule": [
             {
-                "time": 0,
+                "time": 3600,
                 "location": ""
             },
             {
-                "time": 0,
+                "time": 3800,
                 "location": "1431 Elm Street"
             },
             {
-                "time": 0,
+                "time": 3900,
                 "location": "28 Tampico Avenue"
             }
         ]
