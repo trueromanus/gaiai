@@ -39,10 +39,19 @@ void GameCitizen::setOriginalLocation(const QString &originalLocation) noexcept
 
 void GameCitizen::handleTimer(int time, const GameBackend &backend)
 {
+    if (!m_isAlive) return;
 
+    if (m_schedule.contains(time)) {
+        setLocation(m_schedule.value(time));
+        auto isFixed = backend.locationIsFixed(m_location);
+        if (!isFixed) {
+            m_isAlive = false;
+            emit isAliveChanged();
+        }
+    }
 }
 
 void GameCitizen::addSchedule(int time, const QString &location) noexcept
 {
-
+    m_schedule.insert(time, location);
 }

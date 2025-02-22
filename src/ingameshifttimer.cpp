@@ -39,7 +39,7 @@ void InGameShiftTimer::restartShift()
 {
     stopShiftTimer();
 
-    m_time = 10000;
+    m_time = 0;
 
     startShiftTimer();
 }

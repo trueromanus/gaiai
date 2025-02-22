@@ -97,7 +97,7 @@ Window {
         id: shiftTimer
         backend: gameBackend
         onTimeChanged: function (time) {
-            inGameCityObjects.handleTimerForCitizens(time);
+            inGameCityObjects.handleTimerForObjects(time);
         }
 
         Component.onCompleted: {

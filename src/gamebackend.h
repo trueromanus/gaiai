@@ -60,6 +60,8 @@ public:
     Q_INVOKABLE void hideFullScreen();
     Q_INVOKABLE void turnoffGame();
 
+    bool locationIsFixed(const QString& location) const;
+
 private:
     void createDay1Tasks();
     void fillTasksForDay(int day);

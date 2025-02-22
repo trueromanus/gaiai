@@ -8,8 +8,8 @@ class GameCitizen : public QObject
 {
     Q_OBJECT
     Q_PROPERTY(QString title READ title WRITE setTitle NOTIFY titleChanged FINAL)
-    Q_PROPERTY(bool isALive READ isALive NOTIFY isALiveChanged FINAL)
-    Q_PROPERTY(bool isNotALive READ isNotALive NOTIFY isNotALiveChanged FINAL)
+    Q_PROPERTY(bool isAlive READ isAlive NOTIFY isAliveChanged FINAL)
+    Q_PROPERTY(bool isNotAlive READ isNotAlive NOTIFY isNotAliveChanged FINAL)
     Q_PROPERTY(bool isMad READ isMad NOTIFY isMadChanged FINAL)
     Q_PROPERTY(int stressLevel READ stressLevel WRITE setStressLevel NOTIFY stressLevelChanged FINAL)
     Q_PROPERTY(QString location READ location WRITE setLocation NOTIFY locationChanged FINAL)
@@ -17,7 +17,7 @@ class GameCitizen : public QObject
 
 private:
     QString m_title { "" };
-    bool m_isALive { true };
+    bool m_isAlive { true };
     int m_stressLevel { 0 };
     QString m_location { "" };
     QString m_originalLocation { "" };
@@ -29,8 +29,8 @@ public:
     QString title() const noexcept { return m_title; }
     void setTitle(const QString& title) noexcept;
 
-    bool isALive() const noexcept { return m_isALive; }
-    bool isNotALive() const noexcept { return !m_isALive; }
+    bool isAlive() const noexcept { return m_isAlive; }
+    bool isNotAlive() const noexcept { return !m_isAlive; }
     bool isMad() const noexcept { return m_stressLevel >= 2; }
 
     int stressLevel() const noexcept { return m_stressLevel; }
@@ -48,8 +48,8 @@ public:
 
 signals:
     void titleChanged();
-    void isALiveChanged();
-    void isNotALiveChanged();
+    void isAliveChanged();
+    void isNotAliveChanged();
     void isMadChanged();
     void stressLevelChanged();
     void locationChanged();

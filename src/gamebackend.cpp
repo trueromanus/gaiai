@@ -79,6 +79,11 @@ void GameBackend::turnoffGame()
     QTimer::singleShot(4000, this, &GameBackend::handleTurnOff);
 }
 
+bool GameBackend::locationIsFixed(const QString &location) const
+{
+    return true;
+}
+
 void GameBackend::createDay1Tasks()
 {
     auto emailTutorial = new GameTaskModel(true, "Check you emails", m_onboardingTasks, m_firstDay,[]() { return true; }, this);

@@ -7,6 +7,8 @@
 InGameCityObjects::InGameCityObjects(QObject *parent) {
     loadCitizens("en");
     loadHouses("en");
+
+    fillActiveCitizens();
 }
 
 void InGameCityObjects::setGameBackend(const GameBackend* backend) noexcept
@@ -14,12 +16,18 @@ void InGameCityObjects::setGameBackend(const GameBackend* backend) noexcept
     m_gameBackend = const_cast<GameBackend *>(backend);
 }
 
-void InGameCityObjects::handleTimerForCitizens(int time) const noexcept
+void InGameCityObjects::handleTimerForObjects(int time) noexcept
 {
-    foreach (auto citizenKey, m_activeCitizens) {
-        auto citizen = m_citizens.value(citizenKey);
+    bool isNeedRefreshActiveCitizens = false;
+
+    foreach (auto citizen, m_activeCitizens) {
         citizen->handleTimer(time, *m_gameBackend);
+
+        //if after handle timer citizen is not alive need to filter active citizens on last step
+        if (citizen->isNotAlive()) isNeedRefreshActiveCitizens = true;
     }
+
+    if (isNeedRefreshActiveCitizens) fillActiveCitizens();
 }
 
 void InGameCityObjects::loadCitizens(const QString& language)
@@ -89,4 +97,19 @@ void InGameCityObjects::loadHouses(const QString& language)
             m_houses.insert(name, gameHouse);
         }
     }
+}
+
+void InGameCityObjects::fillActiveCitizens() noexcept
+{
+    m_activeCitizens.clear();
+
+    auto list = m_citizens.values();
+    std::copy_if(
+        list.begin(),
+        list.end(),
+        std::back_inserter(m_activeCitizens),
+        [&](GameCitizen* citizen){
+            return citizen->isAlive();
+        }
+    );
 }

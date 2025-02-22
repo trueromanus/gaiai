@@ -15,7 +15,7 @@ class InGameCityObjects : public QQuickItem
     QML_ELEMENT
 
 private:
-    QList<QString> m_activeCitizens { QList<QString>() };
+    QList<GameCitizen*> m_activeCitizens { QList<GameCitizen*>() };
     QMap<QString, GameCitizen*> m_citizens { QMap<QString, GameCitizen*>() };
     QMap<QString, GameHouse*> m_houses { QMap<QString, GameHouse*>() };
     QMap<QString, GameTrafficLightModel*> m_trafficLights { QMap<QString, GameTrafficLightModel*>() };
@@ -28,11 +28,12 @@ public:
     GameBackend* gameBackend() const noexcept { return m_gameBackend; }
     void setGameBackend(const GameBackend* backend) noexcept;
 
-    Q_INVOKABLE void handleTimerForCitizens(int time) const noexcept;
+    Q_INVOKABLE void handleTimerForObjects(int time) noexcept;
 
 private:
     void loadCitizens(const QString& language);
     void loadHouses(const QString& language);
+    void fillActiveCitizens() noexcept;
 
 signals:
     void gameBackendChanged();
