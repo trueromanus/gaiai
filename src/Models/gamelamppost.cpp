@@ -47,6 +47,16 @@ void GameLampPost::parseText()
     }
 }
 
+void GameLampPost::addAffectedLocation(const QString &location)
+{
+    m_affectedLocations.append(location);
+}
+
+bool GameLampPost::isInAffectedLocations(const QString &location)
+{
+    return m_affectedLocations.contains(location);
+}
+
 std::tuple<bool, bool, int> GameLampPost::parseLine(const QString &line)
 {
     auto parts = line.trimmed().split(" ");

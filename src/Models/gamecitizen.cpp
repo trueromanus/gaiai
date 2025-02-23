@@ -37,21 +37,50 @@ void GameCitizen::setOriginalLocation(const QString &originalLocation) noexcept
     emit originalLocationChanged();
 }
 
-void GameCitizen::handleTimer(int time, const GameBackend &backend)
+void GameCitizen::setEnableSchedule(bool enableSchedule) noexcept
 {
-    if (!m_isAlive) return;
+    if (m_enableSchedule == enableSchedule) return;
+
+    m_enableSchedule = enableSchedule;
+    emit enableScheduleChanged();
+}
+
+bool GameCitizen::handleTimer(int time)
+{
+    if (!m_isAlive) return false;
+    if (!m_enableSchedule) return false;
 
     if (m_schedule.contains(time)) {
         setLocation(m_schedule.value(time));
-        auto isFixed = backend.locationIsFixed(m_location);
-        if (!isFixed) {
-            m_isAlive = false;
-            emit isAliveChanged();
-        }
+        return true;
     }
+
+    return false;
 }
 
 void GameCitizen::addSchedule(int time, const QString &location) noexcept
 {
     m_schedule.insert(time, location);
+}
+
+bool GameCitizen::isInHomeLocation()
+{
+    return m_location == m_originalLocation;
+}
+
+void GameCitizen::setIsNotAlive()
+{
+    m_isAlive = false;
+    emit isAliveChanged();
+}
+
+void GameCitizen::setStressLevel()
+{
+    if (m_stressLevel == 10) {
+        setIsNotAlive();
+        return;
+    }
+
+    m_stressLevel += 1;
+    emit stressLevelChanged();
 }

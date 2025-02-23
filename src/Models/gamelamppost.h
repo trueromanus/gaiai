@@ -18,6 +18,7 @@ private:
     QList<std::tuple<bool, int>> m_parsedTimes { QList<std::tuple<bool, int>>() };
     const QString m_lightOn { "lighton" };
     const QString m_lightOff { "lightoff" };
+    QList<QString> m_affectedLocations { QList<QString>() };
 
 public:
     explicit GameLampPost(QObject *parent = nullptr);
@@ -33,6 +34,9 @@ public:
     void simpleSetup(QList<std::tuple<bool, int>> times, bool correct);
 
     void parseText();
+
+    void addAffectedLocation(const QString& location);
+    bool isInAffectedLocations(const QString& location);
 
 private:
     std::tuple<bool, bool, int> parseLine(const QString& line);

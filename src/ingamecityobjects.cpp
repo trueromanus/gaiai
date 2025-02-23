@@ -21,9 +21,19 @@ void InGameCityObjects::handleTimerForObjects(int time) noexcept
     bool isNeedRefreshActiveCitizens = false;
 
     foreach (auto citizen, m_activeCitizens) {
-        citizen->handleTimer(time, *m_gameBackend);
+        citizen->handleTimer(time); // move citizen between locations by his schedule
 
-        //if after handle timer citizen is not alive need to filter active citizens on last step
+        //if citizen at home and lump post not fixed it will be increase stress level on each timer tick
+        if ((citizen->isInHomeLocation() || !citizen->enableSchedule()) && !lumpPostIsFixed(citizen->location())) {
+            citizen->setStressLevel();
+        }
+
+        //if citizen in road and in location where not fixed light traffic his drive is ended
+        if (!citizen->isInHomeLocation() && !ligthTrafficIsFixed(citizen->location())) {
+            citizen->setIsNotAlive();
+        }
+
+        //if after handle timer if citizen is not alive need to filter active citizens on last step
         if (citizen->isNotAlive()) isNeedRefreshActiveCitizens = true;
     }
 
@@ -110,6 +120,36 @@ void InGameCityObjects::fillActiveCitizens() noexcept
         std::back_inserter(m_activeCitizens),
         [&](GameCitizen* citizen){
             return citizen->isAlive();
+        }
+    );
+}
+
+bool InGameCityObjects::citizenInTargetDestination(const QString &location)
+{
+    if (location == "Hospital") return true;
+    if (location == "Template House") return true;
+
+    return false;
+}
+
+bool InGameCityObjects::ligthTrafficIsFixed(const QString &location)
+{
+    return std::none_of(
+        m_trafficLights.cbegin(),
+        m_trafficLights.cend(),
+        [location](GameTrafficLightModel* item) {
+            return !item->isCorrect() && item->isInAffectedLocations(location);
+        }
+    );
+}
+
+bool InGameCityObjects::lumpPostIsFixed(const QString &location)
+{
+    return std::none_of(
+        m_lampPosts.cbegin(),
+        m_lampPosts.cend(),
+        [location](GameLampPost* item) {
+            return !item->isCorrect() && item->isInAffectedLocations(location);
         }
     );
 }

@@ -34,6 +34,9 @@ private:
     void loadCitizens(const QString& language);
     void loadHouses(const QString& language);
     void fillActiveCitizens() noexcept;
+    bool citizenInTargetDestination(const QString& location);
+    bool ligthTrafficIsFixed(const QString& location);
+    bool lumpPostIsFixed(const QString& location);
 
 signals:
     void gameBackendChanged();

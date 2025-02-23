@@ -2,7 +2,7 @@
 #define GAMECITIZEN_H
 
 #include <QObject>
-#include "../gamebackend.h"
+#include <QMap>
 
 class GameCitizen : public QObject
 {
@@ -14,6 +14,7 @@ class GameCitizen : public QObject
     Q_PROPERTY(int stressLevel READ stressLevel WRITE setStressLevel NOTIFY stressLevelChanged FINAL)
     Q_PROPERTY(QString location READ location WRITE setLocation NOTIFY locationChanged FINAL)
     Q_PROPERTY(QString originalLocation READ originalLocation WRITE setOriginalLocation NOTIFY originalLocationChanged FINAL)
+    Q_PROPERTY(bool enableSchedule READ enableSchedule WRITE setEnableSchedule NOTIFY enableScheduleChanged FINAL)
 
 private:
     QString m_title { "" };
@@ -22,6 +23,7 @@ private:
     QString m_location { "" };
     QString m_originalLocation { "" };
     QMap<int, QString> m_schedule { QMap<int, QString>() };
+    bool m_enableSchedule { true };
 
 public:
     explicit GameCitizen(QObject *parent = nullptr);
@@ -42,9 +44,18 @@ public:
     QString originalLocation() const { return m_originalLocation; }
     void setOriginalLocation(const QString& originalLocation) noexcept;
 
-    void handleTimer(int time, const GameBackend& backend);
+    bool enableSchedule() const noexcept { return m_enableSchedule; }
+    void setEnableSchedule(bool enableSchedule) noexcept;
+
+    bool handleTimer(int time);
 
     void addSchedule(int time, const QString& location) noexcept;
+
+    bool isInHomeLocation();
+
+    void setIsNotAlive();
+
+    void setStressLevel();
 
 signals:
     void titleChanged();
@@ -54,6 +65,7 @@ signals:
     void stressLevelChanged();
     void locationChanged();
     void originalLocationChanged();
+    void enableScheduleChanged();
 
 };
 

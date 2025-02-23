@@ -21,6 +21,7 @@ private:
     int m_correctGreen { 0 };
     int m_correctYellow { 0 };
     QString m_district { "" };
+    QList<QString> m_affectedLocations { QList<QString>() };
 
 public:
     explicit GameTrafficLightModel(QObject *parent = nullptr);
@@ -36,6 +37,9 @@ public:
     void simpleSetup(int red, int green, int yellow, bool correct);
 
     void parseText();
+
+    void addAffectedLocation(const QString& location) noexcept;
+    bool isInAffectedLocations(const QString& location) const;
 
 private:
     std::tuple<int, int> parseLine(const QString& line);

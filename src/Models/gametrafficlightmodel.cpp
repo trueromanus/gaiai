@@ -64,6 +64,16 @@ void GameTrafficLightModel::parseText()
     emit isCorrectChanged();
 }
 
+void GameTrafficLightModel::addAffectedLocation(const QString &location) noexcept
+{
+    m_affectedLocations.append(location);
+}
+
+bool GameTrafficLightModel::isInAffectedLocations(const QString &location) const
+{
+    return m_affectedLocations.contains(location);
+}
+
 std::tuple<int, int> GameTrafficLightModel::parseLine(const QString &line)
 {
     auto parts = line.trimmed().split(" ");
