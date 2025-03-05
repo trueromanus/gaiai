@@ -10,6 +10,8 @@ find_package(Qt6 6.8 REQUIRED COMPONENTS Quick)
 
 qt_standard_project_setup(REQUIRES 6.8)
 
+set(QT_QML_GENERATE_QMLLS_INI ON)
+
 qt_add_executable(appgaiai
     Models/gametaskmodel.h Models/gametaskmodel.cpp
     Models/gametrafficlightmodel.h Models/gametrafficlightmodel.cpp
@@ -29,6 +31,7 @@ qt_add_executable(appgaiai
     PageModels/smarttrackerpage.h PageModels/smarttrackerpage.cpp
     PageModels/rssreaderpage.h PageModels/rssreaderpage.cpp
     PageModels/emailclientpage.h PageModels/emailclientpage.cpp
+    PageModels/runpage.h PageModels/runpage.cpp
 
     main.cpp
 )
@@ -71,6 +74,7 @@ qt_add_qml_module(appgaiai
         Controls/StartMenuPopup.qml
         Controls/CommonMenu.qml
         Controls/CommonMenuList.qml
+
     QML_FILES
         Controls/Tree.qml
         Controls/TreeItem.qml
@@ -84,6 +88,7 @@ qt_add_qml_module(appgaiai
         Pages/SmartTrackerPage.qml
         Pages/RssReaderPage.qml
         Pages/EmailClientPage.qml
+        Pages/RunPage.qml
 
     SOURCES
         ingamewindow.h ingamewindow.cpp

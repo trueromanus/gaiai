@@ -61,8 +61,3 @@ void InGameShiftTimer::stopShiftTimer()
     killTimer(m_shiftTimer);
     m_shiftTimer = -1;
 }
-
-void InGameShiftTimer::handleTimerForPeople()
-{
-
-}

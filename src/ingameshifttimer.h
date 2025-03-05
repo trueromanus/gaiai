@@ -38,7 +38,6 @@ public:
 private:
     void startShiftTimer();
     void stopShiftTimer();
-    void handleTimerForPeople();
 
 signals:
     void backendChanged();

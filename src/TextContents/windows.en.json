@@ -43,5 +43,14 @@
         "isUnique": true,
         "component": "Pages/EmailClientPage.qml",
         "notShowOnTaskBar": false
+    },
+    {
+        "command": "run",
+        "defaultTitle": "Run",
+        "width": 390,
+        "height": 154,
+        "isUnique": true,
+        "component": "Pages/RunPage.qml",
+        "notShowOnTaskBar": false
     }
 ]

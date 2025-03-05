@@ -35,13 +35,7 @@ InGameStartMenu::InGameStartMenu() {
     helpMap["submenu"] = false;
     m_menu.append(helpMap);
 
-    QVariantMap runMap;
-    runMap["title"] = "Run";
-    runMap["image"] = "menurun.png";
-    runMap["command"] = "run";
-    runMap["topLine"] = false;
-    runMap["submenu"] = false;
-    m_menu.append(runMap);
+    addStartMenuItem("Run", "menurun.png", "run", false, false);
 
     addStartMenuItem("Shut Down...", "menushutdown.png", "shutdown", true, false);
 

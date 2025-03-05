@@ -10,6 +10,7 @@
 #include "PageModels/smarttrackerpage.h"
 #include "PageModels/rssreaderpage.h"
 #include "PageModels/emailclientpage.h"
+#include "PageModels/runpage.h"
 #include "Models/translationsmodel.h"
 
 class GameBackend : public QObject
@@ -20,6 +21,7 @@ class GameBackend : public QObject
     Q_PROPERTY(SmartTrackerPage* smartTrackerPage READ smartTrackerPage NOTIFY smartTrackerPageChanged FINAL)
     Q_PROPERTY(RssReaderPage* rssReaderPage READ rssReaderPage NOTIFY rssReaderPageChanged FINAL)
     Q_PROPERTY(EmailClientPage* emailClientPage READ emailClientPage NOTIFY emailClientPageChanged FINAL)
+    Q_PROPERTY(RunPage* runPage READ runPage NOTIFY runPageChanged FINAL)
     Q_PROPERTY(bool isBigScreenVisible READ isBigScreenVisible NOTIFY isBigScreenVisibleChanged FINAL)
     Q_PROPERTY(QString bigScreenType READ bigScreenType NOTIFY bigScreenTypeChanged FINAL)
     QML_ELEMENT
@@ -37,7 +39,8 @@ private:
     int m_day { 1 };
     SmartTrackerPage* m_smartTrackerPage { new SmartTrackerPage(this) };
     RssReaderPage* m_rssReaderPage { new RssReaderPage(this) };
-    EmailClientPage* m_emailClientPage { new EmailClientPage() };
+    EmailClientPage* m_emailClientPage { new EmailClientPage(this) };
+    RunPage* m_runPage { new RunPage(this) };
     bool m_isBigScreenVisible { false };
     QString m_bigScreenType { "" };
 
@@ -49,6 +52,7 @@ public:
     SmartTrackerPage* smartTrackerPage() const noexcept { return m_smartTrackerPage; }
     RssReaderPage* rssReaderPage() const noexcept { return m_rssReaderPage; }
     EmailClientPage* emailClientPage() const noexcept { return m_emailClientPage; }
+    RunPage* runPage() const noexcept { return m_runPage; }
 
     bool isBigScreenVisible() const noexcept { return m_isBigScreenVisible; }
     QString bigScreenType() const noexcept { return m_bigScreenType; }
@@ -79,6 +83,7 @@ signals:
     void emailClientPageChanged();
     void isBigScreenVisibleChanged();
     void bigScreenTypeChanged();
+    void runPageChanged();
 
 };
 

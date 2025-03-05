@@ -28,7 +28,7 @@ void InGameCityObjects::handleTimerForObjects(int time) noexcept
             citizen->setStressLevel();
         }
 
-        //if citizen in road and in location where not fixed light traffic his drive is ended
+        //if citizen in road and in location where not fixed light traffic his drive is placed
         if (!citizen->isInHomeLocation() && !ligthTrafficIsFixed(citizen->location())) {
             citizen->setIsNotAlive();
         }
