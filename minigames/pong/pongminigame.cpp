@@ -397,9 +397,9 @@ void PongMiniGame::handlePaddleHeight(GameEntity* paddle, bool isLeft)
 
         if (height == m_longPaddleLength) {
             if (isLeft) {
-                m_leftPaddleDownTimer = 240;
+                m_leftPaddleDownTimer = 500;
             } else {
-                m_rightPaddleDownTimer = 240;
+                m_rightPaddleDownTimer = 500;
             }
         }
         return;
