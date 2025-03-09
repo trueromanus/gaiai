@@ -28,7 +28,8 @@ private:
     int m_moveStep { 6 };
     int m_dodgeMoveStep { 20 };
     int m_defaultPaddleLength { 40 };
-    int m_longPaddleLength { 60 };
+    int m_longPaddleLength { 68 };
+    bool m_pausePressed { false };
     QMap<QString, GameEntity*> m_childrens { QMap<QString, GameEntity*>() };
     GameEntity* m_ball { nullptr };
     GameEntity* m_leftPaddle { nullptr };

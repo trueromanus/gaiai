@@ -1,6 +1,8 @@
 #include "pongminigame.h"
 
-PongMiniGame::PongMiniGame() {}
+PongMiniGame::PongMiniGame() {
+
+}
 
 void PongMiniGame::setActive(bool active) noexcept
 {
@@ -9,13 +11,8 @@ void PongMiniGame::setActive(bool active) noexcept
     m_active = active;
     emit activeChanged();
 
-    if (m_active) {
+    if (m_active && m_activeTimer == -1) {
         m_activeTimer = startTimer(1000 / 80, Qt::CoarseTimer);
-    } else {
-        if (m_activeTimer != -1) {
-            killTimer(m_activeTimer);
-            m_activeTimer = -1;
-        }
     }
 }
 
@@ -134,6 +131,11 @@ void PongMiniGame::timerEvent(QTimerEvent *event)
 {
     Q_UNUSED(event);
 
+    if (m_active == false) {
+        handleInput();
+        return;
+    }
+
     if (m_collideTimer == 0) {
         bool isCollided = ballIsCollidingPaddles();
         if (!isCollided) isCollided = ballIsCollidingWalls();
@@ -156,7 +158,7 @@ void PongMiniGame::timerEvent(QTimerEvent *event)
     if (m_ballTimer > 1600) { // 20 seconds for change mode
         m_ballTimer = 0;
         m_ballMode = randomBallEnabled();
-        m_ballMode = 4; // TODO: remove direct ball mode
+        //m_ballMode = 4; // TODO: remove direct ball mode
         emit ballColorChanged();
         qDebug() << "New Ball mode" << m_ballMode;
     }
@@ -417,12 +419,25 @@ void PongMiniGame::handlePaddleHeight(GameEntity* paddle, bool isLeft)
 
 void PongMiniGame::handleInput()
 {
-    auto isLeftDodged = m_inputHandler->isKeyPressed("f");
-    auto isRightDodged = m_inputHandler->isKeyPressed("}");
-    if (m_inputHandler->isKeyPressed("w")) leftPaddleMove(0, isLeftDodged);
-    if (m_inputHandler->isKeyPressed("s")) leftPaddleMove(1, isLeftDodged);
-    if (m_inputHandler->isKeyPressed("up")) rightPaddleMove(0, isRightDodged);
-    if (m_inputHandler->isKeyPressed("down")) rightPaddleMove(1, isRightDodged);
-    if (m_inputHandler->isKeyPressed("r")) resetGame();
-    //if (m_inputHandler->isKeyPressed("h"))
+    if (m_active == true) {
+        auto isLeftDodged = m_inputHandler->isKeyPressed("f");
+        auto isRightDodged = m_inputHandler->isKeyPressed("}");
+        if (m_inputHandler->isKeyPressed("w")) leftPaddleMove(0, isLeftDodged);
+        if (m_inputHandler->isKeyPressed("s")) leftPaddleMove(1, isLeftDodged);
+        if (m_inputHandler->isKeyPressed("up")) rightPaddleMove(0, isRightDodged);
+        if (m_inputHandler->isKeyPressed("down")) rightPaddleMove(1, isRightDodged);
+        if (m_inputHandler->isKeyPressed("r")) resetGame();
+    }
+
+    if (m_inputHandler->isKeyPressed("p") && !m_pausePressed) {
+        m_pausePressed = true;
+    }
+    if (!m_inputHandler->isKeyPressed("p") && m_pausePressed) {
+        m_pausePressed = false;
+        if (m_active) {
+            setActive(false);
+        } else {
+            setActive(true);
+        }
+    }
 }
