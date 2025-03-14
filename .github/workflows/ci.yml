@@ -26,11 +26,11 @@ jobs:
         cmake .
         cmake --build . --config Release
     - name: Deploy
+      run: cd minigames\pong\Release && windeployqt6.exe appMiniGames.exe -qmldir=../ --release --no-translations
+    - name: Delete redundant files
       run: |
-        cd minigames\pong\Release
-        windeployqt6.exe appMiniGames.exe -qmldir=../ --release --no-translations
-        del /q *.obj
-        del /q moc_*.cpp
+        del /q minigames\pong\Release\*.obj
+        del /q minigames\pong\Release\moc_*.cpp
     - uses: actions/upload-artifact@v4
       with:
         path: minigames\pong\Release\*.*
