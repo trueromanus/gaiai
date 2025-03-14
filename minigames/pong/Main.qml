@@ -1,4 +1,5 @@
 import QtQuick
+import QtQuick.Controls
 import MiniGames
 
 Window {
@@ -6,19 +7,169 @@ Window {
     width: 640
     height: 480
     visible: true
-    title: qsTr("Hello World")
+    title: qsTr("Pong")
 
-    InputHandler {
-        id: inputHandler
+    Item {
+        id: mainMenu
+        anchors.centerIn: parent
+        width: 200
+        height: menuContainerColumn.implicitHeight
+
+        Column {
+            id: menuContainerColumn
+            width: 180
+            spacing: 10
+            anchors.horizontalCenter: parent.horizontalCenter
+
+            Text {
+                width: parent.width
+                horizontalAlignment: Text.AlignHCenter
+                text: "Pong MiniGame"
+                font.pointSize: 12
+                font.bold: true
+            }
+            Item {
+                width: parent.width
+                height: startGameButton.height
+
+                Button {
+                    id: startGameButton
+                    anchors.centerIn: parent
+                    width: 80
+                    text: "Start Game"
+                    onPressed: {
+                        mainMenu.visible = false;
+                        pongMiniGame.visible = true;
+                        pongMiniGame.resetGame();
+                    }
+                }
+            }
+
+            Item {
+                width: parent.width
+                height: gameModeComboBox.height
+
+                ComboBox {
+                    id: gameModeComboBox
+                    anchors.centerIn: parent
+                    width: 120
+                    model: ["Classic", "Difference 10", "Difference 20", "30 and 30"]
+                    onCurrentIndexChanged: {
+                        pongMiniGame.gameMode = gameModeComboBox.currentIndex;
+                    }
+                }
+            }
+
+            Item {
+                width: parent.width
+                height: gameControlComboBox.height
+
+                ComboBox {
+                    id: gameControlComboBox
+                    anchors.centerIn: parent
+                    width: 120
+                    model: ["Player vs Player", "Player vs CPU", "CPU vs Player", "Ball"]
+                    onCurrentIndexChanged: {
+                        pongMiniGame.gameControlMode = gameControlComboBox.currentIndex;
+                    }
+                }
+            }
+
+            Item {
+                width: parent.width
+                height: gameBonusComboBox.height
+
+                ComboBox {
+                    id: gameBonusComboBox
+                    anchors.centerIn: parent
+                    width: 120
+                    model: ["No bonus", "Only buffs", "Only debuffs", "Buffs and debuffs"]
+                    onCurrentIndexChanged: {
+                        pongMiniGame.bonusMode = gameBonusComboBox.currentIndex;
+                    }
+                }
+            }
+
+            Item {
+                width: parent.width
+                height: exitGameButton.height
+
+                Button {
+                    id: exitGameButton
+                    anchors.centerIn: parent
+                    width: 80
+                    text: "Exit Game"
+                    onPressed: {
+                        root.close();
+                    }
+                }
+            }
+        }
+    }
+
+    Item {
+        id: winnerScreen
+        visible: false
+        anchors.centerIn: parent
+        width: 200
+        height: menuContainerColumn.implicitHeight
+
+        property bool winnerLeft: false
+        property int winnerLeftScore: 0
+        property int winnerRightScore: 0
+
+        Column {
+            id: winnerScreenColumn
+            width: 180
+            spacing: 10
+            anchors.horizontalCenter: parent.horizontalCenter
+
+            Text {
+                width: parent.width
+                horizontalAlignment: Text.AlignHCenter
+                text: "Game is over"
+                font.pointSize: 12
+            }
+            Text {
+                width: parent.width
+                horizontalAlignment: Text.AlignHCenter
+                font.pointSize: 11
+                text: "Winner is " + (winnerScreen.winnerLeft ? "left player" : "right player") + "!!!"
+            }
+            Text {
+                width: parent.width
+                horizontalAlignment: Text.AlignHCenter
+                font.pointSize: 11
+                text: "Final score is " + winnerScreen.winnerLeftScore + " - " + winnerScreen.winnerRightScore
+            }
+            Item {
+                width: parent.width
+                height: backToMainMenuButton.height
+
+                Button {
+                    id: backToMainMenuButton
+                    anchors.centerIn: parent
+                    width: 120
+                    text: "Back to Main Menu"
+                    onPressed: {
+                        winnerScreen.visible = false;
+                        mainMenu.visible = true;
+                    }
+                }
+            }
+        }
     }
 
     PongMiniGame {
         id: pongMiniGame
+        active: false
+        visible: false
         anchors.left: parent.left
         anchors.top: parent.top
         anchors.bottom: parent.bottom
         anchors.right: parent.right
-        inputHandler: inputHandler
+        inputHandler: InputHandler {
+        }
 
         Rectangle {
             anchors.fill: parent
@@ -107,8 +258,13 @@ Window {
             }
         }
 
-        Component.onCompleted: {
-            pongMiniGame.resetGame();
+        onWeHaveWinner: function (leftWinner, leftScore, rightScore){
+            pongMiniGame.active = false;
+            pongMiniGame.visible = false;
+            winnerScreen.visible = true;
+            winnerScreen.winnerLeft = leftWinner;
+            winnerScreen.winnerLeftScore = leftScore;
+            winnerScreen.winnerRightScore = rightScore;
         }
     }
 }

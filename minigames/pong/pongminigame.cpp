@@ -49,6 +49,30 @@ QString PongMiniGame::rightPaddleColor() const noexcept
     return "#006600";
 }
 
+void PongMiniGame::setGameMode(int gameMode) noexcept
+{
+    if (m_gameMode == gameMode) return;
+
+    m_gameMode = gameMode;
+    emit gameModeChanged();
+}
+
+void PongMiniGame::setGameControlMode(int gameControlMode) noexcept
+{
+    if (m_gameControlMode == gameControlMode) return;
+
+    m_gameControlMode = gameControlMode;
+    emit gameControlModeChanged();
+}
+
+void PongMiniGame::setBonusMode(int bonusMode) noexcept
+{
+    if (m_bonusMode == bonusMode) return;
+
+    m_bonusMode = bonusMode;
+    emit bonusModeChanged();
+}
+
 void PongMiniGame::moveBallToCenter()
 {
     auto centerX = width() / 2;
@@ -110,6 +134,11 @@ void PongMiniGame::resetGame()
     m_rightPaddle->setHeight(40);
     m_rightPaddle->setY(centerHeight);
 
+    m_leftScore = false;
+    m_rightScore = false;
+
+    emit leftScoreChanged();
+    emit rightScoreChanged();
     setActive(true);
 }
 
@@ -160,7 +189,6 @@ void PongMiniGame::timerEvent(QTimerEvent *event)
         m_ballMode = randomBallEnabled();
         //m_ballMode = 4; // TODO: remove direct ball mode
         emit ballColorChanged();
-        qDebug() << "New Ball mode" << m_ballMode;
     }
 
     if (m_ballTimer > 640 && m_ballMode > 0) { // 8 seconds reset
@@ -334,28 +362,58 @@ void PongMiniGame::handlePaddleCollision(bool isLeft)
     }
 }
 
+void PongMiniGame::handleWinner()
+{
+    switch (m_gameMode) {
+        case 0: // classic
+            if (m_leftScore >= 20) emit weHaveWinner(true, m_leftScore, m_rightScore);
+            if (m_rightScore >= 20) emit weHaveWinner(false, m_leftScore, m_rightScore);
+            break;
+        case 1: // difference 10
+            if (m_leftScore < m_rightScore && m_rightScore - m_leftScore >= 10) emit weHaveWinner(true, m_leftScore, m_rightScore);
+            if (m_leftScore > m_rightScore && m_leftScore - m_rightScore >= 10) emit weHaveWinner(false, m_leftScore, m_rightScore);
+            break;
+        case 2: // difference 20
+            if (m_leftScore < m_rightScore && m_rightScore - m_leftScore >= 20) emit weHaveWinner(true, m_leftScore, m_rightScore);
+            if (m_leftScore > m_rightScore && m_leftScore - m_rightScore >= 20) emit weHaveWinner(false, m_leftScore, m_rightScore);
+            break;
+        case 3: // 30 and 30
+            if (m_leftScore == 30 && m_rightScore == 30) emit weHaveWinner(true, m_leftScore, m_rightScore);
+            break;
+    }
+
+}
+
 void PongMiniGame::incrementLeftScore()
 {
     m_leftScore += 1;
     emit leftScoreChanged();
+
+    handleWinner();
 }
 
 void PongMiniGame::decrementLeftScore()
 {
     m_leftScore -= 1;
     emit leftScoreChanged();
+
+    handleWinner();
 }
 
 void PongMiniGame::incrementRightScore()
 {
     m_rightScore += 1;
     emit rightScoreChanged();
+
+    handleWinner();
 }
 
 void PongMiniGame::decrementRightScore()
 {
     m_rightScore -= 1;
     emit rightScoreChanged();
+
+    handleWinner();
 }
 
 int PongMiniGame::randomBallEnabled()
@@ -373,19 +431,33 @@ int PongMiniGame::randomBallEnabled()
 
     if (mode == 0) return 0;
 
-    if (m_ballModeIterator) {
-        switch (mode) {
-            case 0: return 3; // remove 2x score
-            case 1: return 4; // long paddle
+    if (m_bonusMode == 3) {
+        if (m_ballModeIterator) {
+            switch (mode) {
+                case 1: return 3; // remove 2x score
+                case 2: return 4; // long paddle
+            }
+        } else {
+            switch (mode) {
+                case 1: return 1; // hot
+                case 2: return 2; // ice
+            }
         }
-    } else {
+
+        m_ballModeIterator = !m_ballModeIterator;
+    }
+    if (m_bonusMode == 1) {
         switch (mode) {
-            case 0: return 1; // hot
-            case 1: return 2; // ice
+            case 1: return 3; // remove 2x score
+            case 2: return 4; // long paddle
         }
     }
-
-    m_ballModeIterator = !m_ballModeIterator;
+    if (m_bonusMode == 2) {
+        switch (mode) {
+            case 1: return 1; // hot
+            case 2: return 2; // ice
+        }
+    }
 
     return 0;
 }

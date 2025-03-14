@@ -18,6 +18,9 @@ class PongMiniGame : public QQuickItem
     Q_PROPERTY(QString ballColor READ ballColor NOTIFY ballColorChanged FINAL)
     Q_PROPERTY(QString leftPaddleColor READ leftPaddleColor NOTIFY leftPaddleColorChanged FINAL)
     Q_PROPERTY(QString rightPaddleColor READ rightPaddleColor NOTIFY rightPaddleColorChanged FINAL)
+    Q_PROPERTY(int gameMode READ gameMode WRITE setGameMode NOTIFY gameModeChanged FINAL)
+    Q_PROPERTY(int gameControlMode READ gameControlMode WRITE setGameControlMode NOTIFY gameControlModeChanged FINAL)
+    Q_PROPERTY(int bonusMode READ bonusMode WRITE setBonusMode NOTIFY bonusModeChanged FINAL)
     QML_ELEMENT
 
 private:
@@ -49,6 +52,9 @@ private:
     int m_leftPaddleFreezed { 0 };
     int m_rightPaddleFreezed { 0 };
     int m_collideTimer { 0 };
+    int m_gameMode { 0 };
+    int m_gameControlMode { 0 };
+    int m_bonusMode { 0 };
 
 public:
     PongMiniGame();
@@ -68,6 +74,15 @@ public:
     QString leftPaddleColor() const noexcept;
     QString rightPaddleColor() const noexcept;
 
+    int gameMode() const noexcept { return m_gameMode; }
+    void setGameMode(int gameMode) noexcept;
+
+    int gameControlMode() const noexcept { return m_gameControlMode; }
+    void setGameControlMode(int gameControlMode) noexcept;
+
+    int bonusMode() const noexcept { return m_bonusMode; }
+    void setBonusMode(int bonusMode) noexcept;
+
     Q_INVOKABLE void moveBallToCenter();
     Q_INVOKABLE void leftPaddleMove(int direction, bool dodge);
     Q_INVOKABLE void rightPaddleMove(int direction, bool dodge);
@@ -84,6 +99,7 @@ private:
     void handleLeftWallCollision();
     void handleRightWallCollision();
     void handlePaddleCollision(bool isLeft);
+    void handleWinner();
     void incrementLeftScore();
     void decrementLeftScore();
     void incrementRightScore();
@@ -101,6 +117,10 @@ signals:
     void ballColorChanged();
     void leftPaddleColorChanged();
     void rightPaddleColorChanged();
+    void gameModeChanged();
+    void gameControlModeChanged();
+    void bonusModeChanged();
+    void weHaveWinner(bool leftWinner, int leftScore, int rightScore);
 
 };
 
