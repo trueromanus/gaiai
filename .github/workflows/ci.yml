@@ -24,4 +24,7 @@ jobs:
       run: |
         cd minigames/pong
         cmake .
-        cmake --build .
+        cmake --build . --config Release
+    - name: Deploy
+      run: |
+        cd minigames\pong\Release && windeployqt6.exe appMiniGames.exe -qmldir=../
