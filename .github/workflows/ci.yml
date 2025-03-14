@@ -29,8 +29,8 @@ jobs:
       run: cd minigames\pong\Release && windeployqt6.exe appMiniGames.exe -qmldir=../ --release --no-translations
     - name: Delete redundant files
       run: |
-        del /q minigames\pong\Release\*.obj
-        del /q minigames\pong\Release\moc_*.cpp
+        Remove-Item minigames\pong\Release\*.obj
+        Remove-Item minigames\pong\Release\moc_*.cpp
     - uses: actions/upload-artifact@v4
       with:
         path: minigames\pong\Release\*.*
