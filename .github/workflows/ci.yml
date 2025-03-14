@@ -20,7 +20,8 @@ jobs:
       uses: jurplel/install-qt-action@v4.1.1
       with:
         version: 6.8.0
-    - name: Configure
-      run: cmake ./minigames/pong
     - name: Build
-      run: cmake --build ./minigames/pong
+      run: |
+        cd minigames/pong
+        cmake .
+        cmake --build .
