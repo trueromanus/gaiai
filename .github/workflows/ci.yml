@@ -23,4 +23,4 @@ jobs:
     - name: Configure
       run: cmake ./minigames/pong
     - name: Build
-      run: cmake --build ./minigames/pong --target pong.exe --config Release -- -j4
+      run: cmake --build ./minigames/pong
