@@ -21,4 +21,4 @@ jobs:
       with:
         version: 6.8.0
     - name: Build
-      run: cmake build
+      run: cmake --build minigames/pong/ --target pong.exe --config Release -- -j4
