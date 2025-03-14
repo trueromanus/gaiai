@@ -31,6 +31,9 @@ jobs:
       run: |
         Remove-Item minigames\pong\Release\*.obj
         Remove-Item minigames\pong\Release\moc_*.cpp
+        Remove-Item minigames\pong\Release\*.lib
+        Remove-Item minigames\pong\Release\*.exp
+        Remove-Item minigames\pong\Release\vc_redist.x64.exe
     - uses: actions/upload-artifact@v4
       with:
-        path: minigames\pong\Release\*.*
+        path: minigames\pong\Release\*
