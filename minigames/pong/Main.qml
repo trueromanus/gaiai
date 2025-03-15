@@ -9,6 +9,27 @@ Window {
     visible: true
     title: qsTr("Pong")
 
+    Text {
+        visible: mainMenu.visible
+        anchors.left: parent.left
+        anchors.bottom: parent.bottom
+        text: "Left player\nw - up\ns - down\nf - dash"
+    }
+
+    Text {
+        visible: mainMenu.visible
+        anchors.right: parent.right
+        anchors.bottom: parent.bottom
+        text: "Right player\narrow up - up\narrow down - down\n} - dash"
+    }
+
+    Text {
+        visible: mainMenu.visible
+        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.bottom: parent.bottom
+        text: "r - reset game\nb - back to main menu"
+    }
+
     Item {
         id: mainMenu
         anchors.centerIn: parent
@@ -34,6 +55,7 @@ Window {
 
                 Button {
                     id: startGameButton
+                    enabled: mainMenu.visible
                     anchors.centerIn: parent
                     width: 80
                     text: "Start Game"
@@ -96,6 +118,7 @@ Window {
 
                 Button {
                     id: exitGameButton
+                    enabled: mainMenu.visible
                     anchors.centerIn: parent
                     width: 80
                     text: "Exit Game"
@@ -265,6 +288,12 @@ Window {
             winnerScreen.winnerLeft = leftWinner;
             winnerScreen.winnerLeftScore = leftScore;
             winnerScreen.winnerRightScore = rightScore;
+        }
+
+        onBackToMainMenu: {
+            pongMiniGame.active = false;
+            pongMiniGame.visible = false;
+            mainMenu.visible = true;
         }
     }
 }

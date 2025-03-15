@@ -499,6 +499,7 @@ void PongMiniGame::handleInput()
         if (m_inputHandler->isKeyPressed("up")) rightPaddleMove(0, isRightDodged);
         if (m_inputHandler->isKeyPressed("down")) rightPaddleMove(1, isRightDodged);
         if (m_inputHandler->isKeyPressed("r")) resetGame();
+        if (m_inputHandler->isKeyPressed("b")) emit backToMainMenu();
     }
 
     if (m_inputHandler->isKeyPressed("p") && !m_pausePressed) {

@@ -121,6 +121,7 @@ signals:
     void gameControlModeChanged();
     void bonusModeChanged();
     void weHaveWinner(bool leftWinner, int leftScore, int rightScore);
+    void backToMainMenu();
 
 };
 
