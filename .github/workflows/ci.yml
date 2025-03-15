@@ -1,0 +1,41 @@
+name: CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  windowsbuild:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Configure MSVC
+      uses: ilammy/msvc-dev-cmd@v1.13.0
+      with:
+        arch: x64
+        spectre: true
+    - name: Install Qt
+      uses: jurplel/install-qt-action@v4.1.1
+      with:
+        version: 6.8.0
+    - name: Build
+      run: |
+        cd minigames/pong
+        cmake .
+        cmake --build . --config Release
+    - name: Deploy
+      run: |
+        cd minigames\pong\Release
+        windeployqt6.exe appMiniGames.exe --qmldir=../../ --release --no-translations
+    - name: Delete redundant files
+      run: |
+        Remove-Item minigames\pong\Release\*.obj
+        Remove-Item minigames\pong\Release\moc_*.cpp
+        Remove-Item minigames\pong\Release\*.lib
+        Remove-Item minigames\pong\Release\*.exp
+        Remove-Item minigames\pong\Release\vc_redist.x64.exe
+    - uses: actions/upload-artifact@v4
+      with:
+        path: minigames\pong\Release\*
