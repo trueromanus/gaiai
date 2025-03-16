@@ -114,6 +114,21 @@ Window {
 
             Item {
                 width: parent.width
+                height: gameBonusForceComboBox.height
+
+                ComboBox {
+                    id: gameBonusForceComboBox
+                    anchors.centerIn: parent
+                    width: 120
+                    model: ["No Bonus Override", "Hot", "Ice", "-2 score", "Long paddle"]
+                    onCurrentIndexChanged: {
+                        pongMiniGame.overrideBonusMode = gameBonusForceComboBox.currentIndex;
+                    }
+                }
+            }
+
+            Item {
+                width: parent.width
                 height: exitGameButton.height
 
                 Button {

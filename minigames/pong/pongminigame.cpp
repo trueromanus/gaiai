@@ -1,7 +1,8 @@
 #include "pongminigame.h"
 
 PongMiniGame::PongMiniGame() {
-
+    auto seedValue = QRandomGenerator::system()->generate64();
+    m_randomGenerator = QRandomGenerator(seedValue);
 }
 
 void PongMiniGame::setActive(bool active) noexcept
@@ -71,6 +72,14 @@ void PongMiniGame::setBonusMode(int bonusMode) noexcept
 
     m_bonusMode = bonusMode;
     emit bonusModeChanged();
+}
+
+void PongMiniGame::setOverrideBonusMode(int overrideBonusMode)
+{
+    if (m_overrideBonusMode == overrideBonusMode) return;
+
+    m_overrideBonusMode = overrideBonusMode;
+    emit overrideBonusModeChanged();
 }
 
 void PongMiniGame::moveBallToCenter()
@@ -187,7 +196,9 @@ void PongMiniGame::timerEvent(QTimerEvent *event)
     if (m_ballTimer > 1600) { // 20 seconds for change mode
         m_ballTimer = 0;
         m_ballMode = randomBallEnabled();
-        //m_ballMode = 4; // TODO: remove direct ball mode
+        if (m_overrideBonusMode > 0) { // if need override bonus we force enable only required mode
+            m_ballMode = m_overrideBonusMode;
+        }
         emit ballColorChanged();
     }
 
@@ -328,14 +339,14 @@ void PongMiniGame::handleRightWallCollision()
 
 void PongMiniGame::handlePaddleCollision(bool isLeft)
 {
-    if (m_ballMode == 1) {
+    if (m_ballMode == 1) { // hot
         if (isLeft) {
-            decrementLeftScore();
+            incrementLeftScore();
         } else {
-            decrementRightScore();
+            incrementRightScore();
         }
     }
-    if (m_ballMode == 2) {
+    if (m_ballMode == 2) { // ice
         if (isLeft) {
             m_leftPaddleFreezed = 640;
             emit leftPaddleColorChanged();
@@ -351,7 +362,7 @@ void PongMiniGame::handlePaddleCollision(bool isLeft)
             decrementRightScore();
         }
     }
-    if (m_ballMode == 4) {
+    if (m_ballMode == 4) { // long paddle
         if (isLeft && m_leftPaddle->height() == m_defaultPaddleLength) {
             m_leftPaddle->setHeight(m_defaultPaddleLength + 1);
         }
@@ -418,7 +429,7 @@ void PongMiniGame::decrementRightScore()
 
 int PongMiniGame::randomBallEnabled()
 {
-    auto value = QRandomGenerator::global()->bounded(5);
+    auto value = m_randomGenerator.bounded(1, 5);
     int mode = 0;
     switch (value) {
         case 2:

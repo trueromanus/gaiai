@@ -21,6 +21,7 @@ class PongMiniGame : public QQuickItem
     Q_PROPERTY(int gameMode READ gameMode WRITE setGameMode NOTIFY gameModeChanged FINAL)
     Q_PROPERTY(int gameControlMode READ gameControlMode WRITE setGameControlMode NOTIFY gameControlModeChanged FINAL)
     Q_PROPERTY(int bonusMode READ bonusMode WRITE setBonusMode NOTIFY bonusModeChanged FINAL)
+    Q_PROPERTY(int overrideBonusMode READ overrideBonusMode WRITE setOverrideBonusMode NOTIFY overrideBonusModeChanged FINAL)
     QML_ELEMENT
 
 private:
@@ -55,6 +56,8 @@ private:
     int m_gameMode { 0 };
     int m_gameControlMode { 0 };
     int m_bonusMode { 0 };
+    int m_overrideBonusMode { 0 };
+    QRandomGenerator m_randomGenerator;
 
 public:
     PongMiniGame();
@@ -82,6 +85,9 @@ public:
 
     int bonusMode() const noexcept { return m_bonusMode; }
     void setBonusMode(int bonusMode) noexcept;
+
+    int overrideBonusMode() const noexcept { return m_overrideBonusMode; }
+    void setOverrideBonusMode(int overrideBonusMode);
 
     Q_INVOKABLE void moveBallToCenter();
     Q_INVOKABLE void leftPaddleMove(int direction, bool dodge);
@@ -122,6 +128,7 @@ signals:
     void bonusModeChanged();
     void weHaveWinner(bool leftWinner, int leftScore, int rightScore);
     void backToMainMenu();
+    void overrideBonusModeChanged();
 
 };
 
