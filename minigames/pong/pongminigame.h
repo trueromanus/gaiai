@@ -7,6 +7,17 @@
 #include "gameentity.h"
 #include "inputhandler.h"
 
+struct CpuState {
+    int dragTimer { 0 };
+    int moveTimer { 0 };
+    int moveTimerMiddle { 4 };
+    int moveTimerGood { 3 };
+    bool moveTimerGoodEnable { true };
+    int moveTimerChangedGoodMiddle { 0 };
+    int moveTimerChangedGoodMiddleMaximum { 150 };
+    GameEntity* paddle { nullptr };
+};
+
 class PongMiniGame : public QQuickItem
 {
     Q_OBJECT
@@ -58,6 +69,8 @@ private:
     int m_bonusMode { 0 };
     int m_overrideBonusMode { 0 };
     QRandomGenerator m_randomGenerator;
+    CpuState m_leftCpuState { CpuState() };
+    CpuState m_rightCpuState { CpuState() };
 
 public:
     PongMiniGame();
@@ -113,6 +126,8 @@ private:
     int randomBallEnabled();
     void handlePaddleHeight(GameEntity* paddle, bool isLeft);
     void handleInput();
+    void handleCpus();
+    void handleCpuPaddle(CpuState& state);
 
 signals:
     void ballPositionChanged();

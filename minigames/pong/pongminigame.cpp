@@ -191,6 +191,7 @@ void PongMiniGame::timerEvent(QTimerEvent *event)
     emit ballPositionChanged();
 
     handleInput();
+    handleCpus();
 
     m_ballTimer += 1;
     if (m_ballTimer > 1600) { // 20 seconds for change mode
@@ -242,6 +243,10 @@ void PongMiniGame::componentComplete()
     if (m_childrens.contains("leftWall")) m_leftWall = m_childrens.value("leftWall");
     if (m_childrens.contains("rightWall")) m_rightWall = m_childrens.value("rightWall");
     if (m_childrens.contains("bottomWall")) m_bottomWall = m_childrens.value("bottomWall");
+
+    m_leftCpuState.paddle = m_leftPaddle;
+    m_leftCpuState.moveTimerGoodEnable = false;
+    m_rightCpuState.paddle = m_rightPaddle;
 }
 
 bool PongMiniGame::ballIsCollidingWalls()
@@ -503,14 +508,21 @@ void PongMiniGame::handlePaddleHeight(GameEntity* paddle, bool isLeft)
 void PongMiniGame::handleInput()
 {
     if (m_active == true) {
-        auto isLeftDodged = m_inputHandler->isKeyPressed("f");
-        auto isRightDodged = m_inputHandler->isKeyPressed("}");
-        if (m_inputHandler->isKeyPressed("w")) leftPaddleMove(0, isLeftDodged);
-        if (m_inputHandler->isKeyPressed("s")) leftPaddleMove(1, isLeftDodged);
-        if (m_inputHandler->isKeyPressed("up")) rightPaddleMove(0, isRightDodged);
-        if (m_inputHandler->isKeyPressed("down")) rightPaddleMove(1, isRightDodged);
+
+        if (m_gameControlMode == 0 || m_gameControlMode == 1) {
+            auto isLeftDodged = m_inputHandler->isKeyPressed("f");
+            if (m_inputHandler->isKeyPressed("w")) leftPaddleMove(0, isLeftDodged);
+            if (m_inputHandler->isKeyPressed("s")) leftPaddleMove(1, isLeftDodged);
+
+        }
+        if (m_gameControlMode == 0 || m_gameControlMode == 2) {
+            auto isRightDodged = m_inputHandler->isKeyPressed("}");
+            if (m_inputHandler->isKeyPressed("up")) rightPaddleMove(0, isRightDodged);
+            if (m_inputHandler->isKeyPressed("down")) rightPaddleMove(1, isRightDodged);
+        }
         if (m_inputHandler->isKeyPressed("r")) resetGame();
         if (m_inputHandler->isKeyPressed("b")) emit backToMainMenu();
+
     }
 
     if (m_inputHandler->isKeyPressed("p") && !m_pausePressed) {
@@ -523,5 +535,45 @@ void PongMiniGame::handleInput()
         } else {
             setActive(true);
         }
+    }
+}
+
+void PongMiniGame::handleCpus()
+{
+    if (m_gameControlMode == 0) return;
+
+    if (m_ballDirection.x() > 0 && (m_gameControlMode == 1 || m_gameControlMode == 3)) { // right paddle or ball
+        handleCpuPaddle(m_rightCpuState);
+    }
+    if (m_ballDirection.x() < 0 && (m_gameControlMode == 2 || m_gameControlMode == 3)) { // left paddle or ball
+        handleCpuPaddle(m_leftCpuState);
+    }
+}
+
+void PongMiniGame::handleCpuPaddle(CpuState &state)
+{
+    state.moveTimer++;
+    auto limit = state.moveTimerGoodEnable ? state.moveTimerGood : state.moveTimerMiddle;
+    if (state.moveTimer >= limit) {
+        state.moveTimer = 0;
+    } else {
+        return;
+    }
+
+    state.moveTimerChangedGoodMiddle++;
+    if (state.moveTimerChangedGoodMiddle >= state.moveTimerChangedGoodMiddleMaximum) {
+        state.moveTimerChangedGoodMiddle = 0;
+        state.moveTimerGoodEnable = !state.moveTimerGoodEnable;
+    }
+
+    auto currentPosition = state.paddle->y();
+    auto currentHeight = state.paddle->height();
+    auto center = currentPosition + (currentHeight / 2);
+
+    if (m_ball->y() > center) {
+        state.paddle->setY(moveDown(currentPosition, currentHeight, m_bottomWall->y() + m_bottomWall->height(), false));
+    }
+    if (m_ball->y() < center) {
+        state.paddle->setY(moveUp(currentPosition, m_topWall->y(), false));
     }
 }
