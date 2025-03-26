@@ -71,6 +71,7 @@ InGameStartMenu {
                         anchors.verticalCenter: parent.verticalCenter
                         width: 40
                         height: 40
+                        mipmap: true
                         source: assetsLocation.imagedPath + modelData.image
                     }
 

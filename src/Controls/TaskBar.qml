@@ -47,6 +47,9 @@ InGameTaskBar {
             anchors.topMargin: 2
             width: 20
             height: 20
+            mipmap: true
+            sourceSize.width: 500
+            sourceSize.height: 500
             source: assetsLocation.imagedPath + "keys.png"
         }
 
