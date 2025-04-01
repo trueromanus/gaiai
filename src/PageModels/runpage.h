@@ -16,7 +16,7 @@ public:
     Q_INVOKABLE void runCommand(const QString& command);
 
 signals:
-    void runCommanded(const QString& command);
+    void commandRunned(const QString& command);
 
 };
 

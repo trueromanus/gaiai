@@ -267,12 +267,26 @@ bool PongMiniGame::ballIsCollidingWalls()
     if (ballBottomY >= m_bottomWall->y()) bottomContact = true;
     if (ballXRight >= m_rightWall->x()) rightContact = true;
 
-    if (topContact || bottomContact) m_ballDirection.setY(directionY > 0 ? -2 : 2);
-    if (leftContact || rightContact) m_ballDirection.setX(directionX > 0 ? -3 : 3);
+    auto lastState = m_ballDirectionLastRandomDirectionState;
+
+    if (topContact || bottomContact) m_ballDirection.setY(directionY > 0 ? (lastState ? -3 : -2 ) : (lastState ? 3 : 2 ));
+    if (leftContact || rightContact) m_ballDirection.setX(directionX > 0 ? (lastState ? -4 : -3 ) : (lastState ? 4 : 3 ));
     if (leftContact) handleLeftWallCollision();
     if (rightContact) handleRightWallCollision();
 
-    return topContact || leftContact || bottomContact || rightContact;
+    auto hasCollision = topContact || leftContact || bottomContact || rightContact;
+
+    if (hasCollision) {
+        if (m_ballDirectionRandomDirectionTimer > 8) {
+            m_ballDirectionRandomDirectionTimer = 0;
+            m_ballDirectionLastRandomDirectionState = !m_ballDirectionLastRandomDirectionState;
+        } else {
+            m_ballDirectionRandomDirectionTimer++;
+        }
+        emit playWallCollideSound();
+    }
+
+    return hasCollision;
 }
 
 bool PongMiniGame::ballIsCollidingPaddles()

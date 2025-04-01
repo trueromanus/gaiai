@@ -1,5 +1,6 @@
 import QtQuick
 import QtQuick.Controls
+import QtMultimedia
 import MiniGames
 
 Window {
@@ -296,6 +297,11 @@ Window {
             }
         }
 
+        SoundEffect {
+            id: wallCollideSound
+            source: "pickwall.wav"
+        }
+
         onWeHaveWinner: function (leftWinner, leftScore, rightScore){
             pongMiniGame.active = false;
             pongMiniGame.visible = false;
@@ -309,6 +315,10 @@ Window {
             pongMiniGame.active = false;
             pongMiniGame.visible = false;
             mainMenu.visible = true;
+        }
+
+        onPlayWallCollideSound: {
+            wallCollideSound.play();
         }
     }
 }

@@ -38,6 +38,8 @@ class PongMiniGame : public QQuickItem
 private:
     QPoint m_ballPosition { QPoint(0, 0) };
     QPoint m_ballDirection { QPoint(3, 2) };
+    bool m_ballDirectionLastRandomDirectionState { false };
+    int m_ballDirectionRandomDirectionTimer { 0 };
     bool m_active { false };
     int m_activeTimer { -1 };
     int m_moveStep { 6 };
@@ -144,6 +146,7 @@ signals:
     void weHaveWinner(bool leftWinner, int leftScore, int rightScore);
     void backToMainMenu();
     void overrideBonusModeChanged();
+    void playWallCollideSound();
 
 };
 
