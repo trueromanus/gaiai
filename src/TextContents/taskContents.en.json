@@ -6,7 +6,7 @@
         "title": "Check you emails",
         "group": "Onboarding",
         "day": 1,
-        "completionCondition": "triggers.welcomeemailopened === true"
+        "completionCondition": "host.triggerIsEnabled('welcomeemailopened')"
     },
     {
         "id": "messagerTutorial",
@@ -15,7 +15,7 @@
         "title": "Reply in user groups",
         "group": "Onboarding",
         "day": 1,
-        "completionCondition": "triggers.funroomopened === true"
+        "completionCondition": "host.triggerIsEnabled('funroomopened')"
     },
     {
         "id": "rssTutorial",
@@ -24,7 +24,7 @@
         "title": "Read news",
         "group": "Onboarding",
         "day": 1,
-        "completionCondition": "triggers.localnewsopened === true"
+        "completionCondition": "host.triggerIsEnabled('localnewsopened')"
     },
     {
         "id": "mapTutorial",
@@ -33,6 +33,6 @@
         "title": "Discover interactive map",
         "group": "Onboarding",
         "day": 1,
-        "completionCondition": "triggers.interactivemapopened === true"
+        "completionCondition": "host.triggerIsEnabled('interactivemapopened')"
     }
 ]

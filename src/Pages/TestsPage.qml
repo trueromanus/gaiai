@@ -57,36 +57,4 @@ InGameWindowPage {
             }
         }
     }
-
-
-
-
-    DefaultButton {
-        id: noButton
-        anchors.right: helpButton.left
-        anchors.rightMargin: 4
-        anchors.bottom: parent.bottom
-        anchors.bottomMargin: 14
-        width: 90
-        height: 28
-        title: "Cancel"
-        onClicked: {
-            root.closeContainerWindow();
-        }
-    }
-
-    DefaultButton {
-        id: yesButton
-        anchors.right: noButton.left
-        anchors.rightMargin: 4
-        anchors.bottom: parent.bottom
-        anchors.bottomMargin: 14
-        width: 90
-        height: 28
-        title: "OK"
-        onClicked: {
-
-            root.closeContainerWindow();
-        }
-    }
 }

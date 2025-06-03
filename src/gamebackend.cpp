@@ -56,6 +56,7 @@ void GameBackend::checkCompletedTasks()
 void GameBackend::fillDay(int day)
 {
     m_day = day;
+    m_activatedTriggers.clear();
     fillTasksForDay(m_day);
     m_emailClientPage->fillForDay(m_day);
     QSet<QString> completedTasks;
@@ -83,6 +84,13 @@ void GameBackend::hideFullScreen()
 void GameBackend::turnoffGame()
 {
     QTimer::singleShot(4000, this, &GameBackend::handleTurnOff);
+}
+
+void GameBackend::activateTrigger(const QString &name)
+{
+    if (m_activatedTriggers.contains(name)) return;
+
+    m_activatedTriggers.insert(name);
 }
 
 bool GameBackend::locationIsFixed(const QString &location) const

@@ -89,6 +89,7 @@ qt_add_qml_module(appgaiai
         Pages/RssReaderPage.qml
         Pages/EmailClientPage.qml
         Pages/RunPage.qml
+        Pages/TestsPage.qml
 
     SOURCES
         ingamewindow.h ingamewindow.cpp
@@ -152,7 +153,7 @@ qt_add_qml_module(appgaiai
         TextContents/citizens.en.json
         TextContents/houses.en.json
         TextContents/trafficlights.en.json
-        QML_FILES Pages/TestsPage.qml
+        TextContents/newsTree.en.json
 )
 
 set_target_properties(appgaiai PROPERTIES

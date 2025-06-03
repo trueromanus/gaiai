@@ -35,7 +35,7 @@ private:
     QList<GameTaskModel*> m_allTasks { QList<GameTaskModel*>() };
     QList<GameTaskModel*> m_activeTasks { QList<GameTaskModel*>() };
     QMap<QString, GameTrafficLightModel*> m_trafficLights { QMap<QString, GameTrafficLightModel*>() };
-    QMap<QString, bool> m_triggers { QMap<QString, bool>() };
+    QSet<QString> m_activatedTriggers { QSet<QString>() };
     TranslationsModel* m_translationsModel { new TranslationsModel(this) };
     int m_day { 1 };
     SmartTrackerPage* m_smartTrackerPage { new SmartTrackerPage(this) };
@@ -65,6 +65,7 @@ public:
     Q_INVOKABLE void showFullScreen(const QString& screen);
     Q_INVOKABLE void hideFullScreen();
     Q_INVOKABLE void turnoffGame();
+    Q_INVOKABLE void activateTrigger(const QString& name);
 
     bool locationIsFixed(const QString& location) const;
 
