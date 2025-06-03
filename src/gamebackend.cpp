@@ -32,11 +32,16 @@ void GameBackend::moveToNextDay()
         return;
     }
 
-    m_day += 1;
-
-    fillDay(m_day);
+    fillDay(m_day + 1);
 
     emit dayChanged();
+}
+
+void GameBackend::moveToDay(int number)
+{
+    if (number > 8 || number < 1) return;
+
+    fillDay(number);
 }
 
 void GameBackend::checkCompletedTasks()
@@ -50,6 +55,7 @@ void GameBackend::checkCompletedTasks()
 
 void GameBackend::fillDay(int day)
 {
+    m_day = day;
     fillTasksForDay(m_day);
     m_emailClientPage->fillForDay(m_day);
     QSet<QString> completedTasks;

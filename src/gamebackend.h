@@ -35,6 +35,7 @@ private:
     QList<GameTaskModel*> m_allTasks { QList<GameTaskModel*>() };
     QList<GameTaskModel*> m_activeTasks { QList<GameTaskModel*>() };
     QMap<QString, GameTrafficLightModel*> m_trafficLights { QMap<QString, GameTrafficLightModel*>() };
+    QMap<QString, bool> m_triggers { QMap<QString, bool>() };
     TranslationsModel* m_translationsModel { new TranslationsModel(this) };
     int m_day { 1 };
     SmartTrackerPage* m_smartTrackerPage { new SmartTrackerPage(this) };
@@ -58,6 +59,7 @@ public:
     QString bigScreenType() const noexcept { return m_bigScreenType; }
 
     Q_INVOKABLE void moveToNextDay();
+    Q_INVOKABLE void moveToDay(int number);
     Q_INVOKABLE void checkCompletedTasks();
     Q_INVOKABLE void fillDay(int day);
     Q_INVOKABLE void showFullScreen(const QString& screen);

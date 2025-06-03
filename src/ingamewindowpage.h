@@ -12,6 +12,7 @@ public:
 
 signals:
     void closeContainerWindow();
+    void runCommand(const QString& command);
 
 };
 

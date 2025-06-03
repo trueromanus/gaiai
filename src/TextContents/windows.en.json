@@ -52,5 +52,14 @@
         "isUnique": true,
         "component": "Pages/RunPage.qml",
         "notShowOnTaskBar": false
+    },
+    {
+        "command": "inntest",
+        "defaultTitle": "Inner Tests",
+        "width": 400,
+        "height": 200,
+        "isUnique": true,
+        "component": "Pages/TestsPage.qml",
+        "notShowOnTaskBar": false
     }
 ]

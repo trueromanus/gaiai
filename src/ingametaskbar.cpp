@@ -162,6 +162,7 @@ QQuickItem* InGameTaskBar::createPageInsideWindow(const QString &path, InGameWin
     page->setParentItem(containerChildren);
 
     connect(page, &InGameWindowPage::closeContainerWindow, window, &InGameWindow::closeWindow);
+    connect(page, &InGameWindowPage::runCommand, this, &InGameTaskBar::runCommandFromInner);
 
     return page;
 }
@@ -245,4 +246,23 @@ void InGameTaskBar::removeWindow(InGameWindow *window)
     window->deleteLater();
 
     fillVisibleItems();
+}
+
+void InGameTaskBar::runCommandFromInner(const QString &command)
+{
+    QString commandName = "";
+    QString parameters = "";
+    if (command.contains(" ")) {
+        auto index = command.indexOf(" ");
+        if (index == -1) {
+            commandName = command;
+            return;
+        }
+        commandName = command.mid(0, index);
+        parameters = command.mid(index + 1);
+    } else {
+        commandName = command;
+    }
+
+    createDefaultWindow(commandName, 1, parameters);
 }

@@ -6,7 +6,8 @@
         "subject": "Warm Welcome Our New System Operator!",
         "hasAttachments": false,
         "group": "inbox",
-        "content": "I am delighted to extend a warm welcome to newcomer as you embark on your journey with our team as a System Operator.\nCongratulations on your new position! Your expertise and\n skills will undoubtedly make a valuable contribution to our team, and we are thrilled to have you on board.\nAs newcomer settle into new role, please know that myself and\n the entire team are here to support on every step of the way.\nWe believe that experience and dedication, we will excel and newcomer be an integral part of our organization.\nI look forward to seeing newcomer contributions and witnessing his growth within our company. Welcome to the team!\n\nWarm regards,\nMayor of the city\nMr. Norton"
+        "content": "I am delighted to extend a warm welcome to newcomer as you embark on your journey with our team as a System Operator.\nCongratulations on your new position! Your expertise and\n skills will undoubtedly make a valuable contribution to our team, and we are thrilled to have you on board.\nAs newcomer settle into new role, please know that myself and\n the entire team are here to support on every step of the way.\nWe believe that experience and dedication, we will excel and newcomer be an integral part of our organization.\nI look forward to seeing newcomer contributions and witnessing his growth within our company. Welcome to the team!\n\nWarm regards,\nMayor of the city\nMr. Norton",
+        "openTrigger": "welcomeemailopened"
     },
     {
         "identifier": "onboardinginbox2",

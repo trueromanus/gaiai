@@ -1,18 +1,38 @@
 [
     {
         "id": "emailTutorial",
-        "text": "Press the <b>Smart</b> button in left bottom corner on the screen to open the main menu. In the main menu that appears, look for the option labeled <b>Programs</b> and move mouse cursor over it.<br><br> After submenu is appeared click on option <b>I'm the Bat_an!</b>.<br><br> After window will be opened just click in left pane for read <b>Welcome to out team</b> email."
+        "text": "Press the <b>Smart</b> button in left bottom corner on the screen to open the main menu. In the main menu that appears, look for the option labeled <b>Programs</b> and move mouse cursor over it.<br><br> After submenu is appeared click on option <b>I'm the Bat_an!</b>.<br><br> After window will be opened just click in left pane for read <b>Warm Welcome Our New System Operator!</b> email.",
+        "mandatory": true,
+        "title": "Check you emails",
+        "group": "Onboarding",
+        "day": 1,
+        "completionCondition": "triggers.welcomeemailopened === true"
     },
     {
         "id": "messagerTutorial",
-        "text": "Press the <b>Smart</b> button in left bottom corner on the screen to open the main menu. In the main menu that appears, look for the option labeled <b>Programs</b> and move mouse cursor over it. <br><br> After submenu is appeared click on option <b>IRina Communicator</b>.<br><br> After window will be opened click on group <b>Fun Room</b> left part of window and select any of the suggested answer options in the right part of the window."
+        "text": "Press the <b>Smart</b> button in left bottom corner on the screen to open the main menu. In the main menu that appears, look for the option labeled <b>Programs</b> and move mouse cursor over it. <br><br> After submenu is appeared click on option <b>IRina Communicator</b>.<br><br> After window will be opened click on group <b>Fun Room</b> left part of window and select any of the suggested answer options in the right part of the window.",
+        "mandatory": true,
+        "title": "Reply in user groups",
+        "group": "Onboarding",
+        "day": 1,
+        "completionCondition": "triggers.funroomopened === true"
     },
     {
         "id": "rssTutorial",
-        "text": "Press the <b>Smart</b> button in left bottom corner on the screen to open the main menu. In the main menu that appears, look for the option labeled <b>Programs</b> and move mouse cursor over it.<br><br> After submenu is appeared click on option <b>RSS Reader</b>.<br><br> After window will be opened click on group <b>People</b> left part of window, select section <b>Local news</b> below selected group."
+        "text": "Press the <b>Smart</b> button in left bottom corner on the screen to open the main menu. In the main menu that appears, look for the option labeled <b>Programs</b> and move mouse cursor over it.<br><br> After submenu is appeared click on option <b>RSS Reader</b>.<br><br> After window will be opened click on group <b>People</b> left part of window, select section <b>Local news</b> below selected group.",
+        "mandatory": true,
+        "title": "Read news",
+        "group": "Onboarding",
+        "day": 1,
+        "completionCondition": "triggers.localnewsopened === true"
     },
     {
         "id": "mapTutorial",
-        "text": "Press the <b>Smart</b> button in left bottom corner on the screen to open the main menu. In the main menu that appears, look for the option labeled <b>Programs</b> and move mouse cursor over it.<br><br> After submenu is appeared click on option <b>TerraMap</b>.<br><br>"
+        "text": "Press the <b>Smart</b> button in left bottom corner on the screen to open the main menu. In the main menu that appears, look for the option labeled <b>Programs</b> and move mouse cursor over it.<br><br> After submenu is appeared click on option <b>TerraMap</b>.<br><br>",
+        "mandatory": true,
+        "title": "Discover interactive map",
+        "group": "Onboarding",
+        "day": 1,
+        "completionCondition": "triggers.interactivemapopened === true"
     }
 ]

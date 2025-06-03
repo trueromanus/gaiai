@@ -65,6 +65,7 @@ private:
 
 private slots:
     void removeWindow(InGameWindow* window);
+    void runCommandFromInner(const QString& command);
 
 signals:
     void activeWindowChanged();

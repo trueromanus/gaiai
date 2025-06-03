@@ -152,6 +152,7 @@ qt_add_qml_module(appgaiai
         TextContents/citizens.en.json
         TextContents/houses.en.json
         TextContents/trafficlights.en.json
+        QML_FILES Pages/TestsPage.qml
 )
 
 set_target_properties(appgaiai PROPERTIES
