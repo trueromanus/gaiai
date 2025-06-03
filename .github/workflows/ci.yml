@@ -20,6 +20,7 @@ jobs:
       uses: jurplel/install-qt-action@v4.1.1
       with:
         version: 6.8.0
+        modules: 'qtmultimedia'
     - name: Build
       run: |
         cd minigames/pong
