@@ -13,3 +13,6 @@ CMakeUserPresets.json
 
 .vs
 build
+
+bin
+obj
