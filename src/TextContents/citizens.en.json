@@ -13,7 +13,7 @@
         "title": "Doctor H. Lecter",
         "position": "Chief Physician of Cuckoo's Nest Hospital",
         "originalLocation": "55 State Street",
-        "": [
+        "schedule": [
             {
                 "time": 7200,
                 "location": "Hospital"
