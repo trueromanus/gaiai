@@ -2,7 +2,7 @@
 
     public record CitizenSchedule {
 
-        public int Time { get; init; }
+        public TimeSpan Time { get; init; }
 
         public string Location { get; init; } = "";
 
