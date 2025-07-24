@@ -4,6 +4,12 @@
 
     internal class GameTrafficLight {
 
+        private const string Green = "green";
+
+        private const string Red = "red";
+
+        private const string Yellow = "yellow";
+
         private ColorTimes m_currentState = new ColorTimes ( 0, 0, 0 );
 
         private readonly ColorTimes m_correctState;
@@ -23,7 +29,30 @@
             AffectedHouses = affectedHouses;
         }
 
+        public void ChangeState ( int green, int yellow, int red ) {
+            m_currentState = new ColorTimes ( green, red, yellow );
+        }
 
+        public void ParseContent ( string content ) {
+            var lines = content.Split ( "\n" )
+                .Select ( line => line.Trim ().ToLowerInvariant () )
+                .Where ( a => !string.IsNullOrEmpty ( a ) )
+                .ToList ();
+            var green = 0;
+            var red = 0;
+            var yellow = 0;
+            foreach ( var line in lines ) {
+                if ( line.StartsWith ( Green ) ) green = GetValue ( Green, line );
+                if ( line.StartsWith ( Red ) ) red = GetValue ( Red, line );
+                if ( line.StartsWith ( Yellow ) ) yellow = GetValue ( Yellow, line );
+            }
+
+            static int GetValue ( string color, string line ) {
+                return Convert.ToInt32 ( line.Replace ( color, "" ) );
+            }
+
+            m_currentState = new ColorTimes ( green, yellow, red );
+        }
 
     }
 
