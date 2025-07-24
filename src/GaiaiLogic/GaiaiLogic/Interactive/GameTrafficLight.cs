@@ -16,6 +16,10 @@
 
         public string Title { get; internal set; } = "";
 
+        public ColorTimes CurrentState => m_currentState;
+
+        public ColorTimes CorrectState => m_correctState;
+
         public IEnumerable<string> AffectedHouses { get; internal set; } = Enumerable.Empty<string> ();
 
         public bool Correct => m_correctState == m_currentState;
