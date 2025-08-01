@@ -4,9 +4,9 @@ namespace GaiaiLogic {
 
     internal class City {
 
-        public List<GameCitizen> m_citizens = [];
+        private List<GameCitizen> m_citizens = [];
 
-        public Dictionary<string, GameTrafficLight> m_trafficLight = [];
+        private List<GameTrafficLight> m_trafficLight = [];
 
         private Random m_randomCollisions = new Random ( (int) ( DateTime.UtcNow - new DateTime ( 1970, 1, 1 ) ).TotalSeconds );
 
@@ -22,7 +22,8 @@ namespace GaiaiLogic {
 
                     // if related to location trafic light will be not in correct state
                     // citizen get or 5 craziness and in random case is incident
-                    if ( m_trafficLight.TryGetValue ( activeCitizen.CurrentLocation, out var trafficLight ) ) {
+                    var trafficLights = m_trafficLight.Where ( a => a.AffectedHouses.Any ( b => b == scheduleStep.Location ) );
+                    foreach ( var trafficLight in trafficLights ) {
                         if ( !trafficLight.Correct ) {
                             activeCitizen.IncreaseCraziness ( 5 );
                             //TODO: in random case is it happened incident
@@ -36,7 +37,7 @@ namespace GaiaiLogic {
                             .ToList ();
                         foreach ( var otherCitizenInSamePlace in otherCitizensInSamePlace ) {
                             if ( m_randomCollisions.Next ( 4 ) == 1 ) {
-                                activeCitizen.IncreaseCraziness( 100 );
+                                activeCitizen.IncreaseCraziness ( 100 );
                                 otherCitizenInSamePlace.IncreaseCraziness ( 100 );
                             }
                         }
@@ -53,6 +54,10 @@ namespace GaiaiLogic {
         public void FinishAllProcesses () {
 
         }
+
+        public void AddTrafficLight ( GameTrafficLight gameTrafficLight ) => m_trafficLight.Add ( gameTrafficLight );
+
+        public void AddCitizen ( GameCitizen citizen ) => m_citizens.Add ( citizen );
 
     }
 
