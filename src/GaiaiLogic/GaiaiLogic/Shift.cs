@@ -6,7 +6,9 @@
 
         private City m_city = new City ();
 
-        private CancellationTokenSource? m_cancellationTokenSource;
+        private int m_day = 1;
+
+        private CancellationTokenSource? m_mainProcessCancellationTokenSource;
 
         public void Run () {
             CancellationTokenSource cancellationTokenSource = new ();
@@ -23,8 +25,21 @@
             );
         }
 
+        /// <summary>
+        /// Close current opened shift.
+        /// </summary>
+        public void CloseShift() {
+            if (m_day == 8) {
+                //TODO: need to close game
+            }
+
+            m_city.FinishAllProcesses ();
+            m_shiftTimer.Reset ();
+            m_day += 1;
+        }
+
         public void Stop () {
-            m_cancellationTokenSource?.Cancel ();
+            m_mainProcessCancellationTokenSource?.Cancel ();
         }
 
     }

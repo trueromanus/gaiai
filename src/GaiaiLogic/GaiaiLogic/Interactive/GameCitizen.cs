@@ -38,6 +38,8 @@ namespace GaiaiLogic.Interactive {
             if ( m_craziness == 100 ) m_active = false;
         }
 
+        public bool InsideOriginalLocation () => m_currentLocation == OriginalLocation;
+
     }
 
 }
