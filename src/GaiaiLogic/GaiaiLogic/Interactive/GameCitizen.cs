@@ -16,6 +16,8 @@ namespace GaiaiLogic.Interactive {
 
         public string CurrentLocation => m_currentLocation;
 
+        public GameCitizenIncidentMode IncidentMode { get; set; }
+
         public IEnumerable<CitizenSchedule> Schedule { get; internal set; } = Enumerable.Empty<CitizenSchedule> ().ToList ();
 
         public bool Active => m_active;
@@ -39,6 +41,13 @@ namespace GaiaiLogic.Interactive {
         }
 
         public bool InsideOriginalLocation () => m_currentLocation == OriginalLocation;
+
+        public void CarIncidentHappened() {
+            if ( IncidentMode is GameCitizenIncidentMode.None and not GameCitizenIncidentMode.CarAccident ) {
+                IncreaseCraziness ( 20 );
+                IncidentMode = GameCitizenIncidentMode.CarAccident;
+            }
+        }
 
     }
 

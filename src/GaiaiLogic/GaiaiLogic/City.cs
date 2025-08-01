@@ -10,6 +10,12 @@ namespace GaiaiLogic {
 
         private Random m_randomCollisions = new Random ( (int) ( DateTime.UtcNow - new DateTime ( 1970, 1, 1 ) ).TotalSeconds );
 
+        private bool m_enableRandomized = true;
+
+        private int GetRandomCollisisons () => m_enableRandomized ? m_randomCollisions.Next ( 4 ) : 1;
+
+        public void SetEnableRandomized ( bool enabled ) => m_enableRandomized = enabled;
+
         public void ProcessEvents ( TimeSpan time ) {
             var activeCitizens = m_citizens
                 .Where ( a => a.Active )
@@ -20,32 +26,26 @@ namespace GaiaiLogic {
                 if ( scheduleStep != null ) {
                     activeCitizen.ChangeLocation ( scheduleStep.Location );
 
-                    // if related to location trafic light will be not in correct state
-                    // citizen get or 5 craziness and in random case is incident
+                    // if related to location trafic light will be not in correct state citizen we increase 5 of craziness
                     var trafficLights = m_trafficLight.Where ( a => a.AffectedHouses.Any ( b => b == scheduleStep.Location ) );
                     foreach ( var trafficLight in trafficLights ) {
-                        if ( !trafficLight.Correct ) {
-                            activeCitizen.IncreaseCraziness ( 5 );
-                            //TODO: in random case is it happened incident
-                        }
+                        if ( !trafficLight.Correct ) activeCitizen.IncreaseCraziness ( 5 );
                     }
 
                     // if some other citizen will be in same location we need to make crash
                     if ( !activeCitizen.InsideOriginalLocation () ) {
                         var otherCitizensInSamePlace = activeCitizens
-                            .Where ( a => a != activeCitizen && a.CurrentLocation == activeCitizen.CurrentLocation )
+                            .Where ( a => activeCitizen.Title != a.Title && !a.InsideOriginalLocation () && a.CurrentLocation == activeCitizen.CurrentLocation )
                             .ToList ();
                         foreach ( var otherCitizenInSamePlace in otherCitizensInSamePlace ) {
-                            if ( m_randomCollisions.Next ( 4 ) == 1 ) {
-                                activeCitizen.IncreaseCraziness ( 100 );
-                                otherCitizenInSamePlace.IncreaseCraziness ( 100 );
+                            if ( GetRandomCollisisons () == 1 ) {
+                                activeCitizen.CarIncidentHappened ();
+                                otherCitizenInSamePlace.CarIncidentHappened ();
                             }
                         }
                     }
                 }
             }
-
-            // TODO: if some from citizens will be in location where another citizen and any city objects is not correct it must be happened incident
         }
 
         /// <summary>
