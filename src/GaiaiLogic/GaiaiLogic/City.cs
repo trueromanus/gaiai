@@ -24,7 +24,7 @@ namespace GaiaiLogic {
             foreach ( var activeCitizen in activeCitizens ) {
                 var scheduleStep = activeCitizen.Schedule.FirstOrDefault ( a => a.Time == time );
                 if ( scheduleStep != null ) {
-                    activeCitizen.ChangeLocation ( scheduleStep.Location );
+                    activeCitizen.ChangeLocation ( scheduleStep.Location, scheduleStep.Transport );
 
                     // if related to location trafic light will be not in correct state citizen we increase 5 of craziness
                     var trafficLights = m_trafficLight.Where ( a => a.AffectedHouses.Any ( b => b == scheduleStep.Location ) );
@@ -39,8 +39,8 @@ namespace GaiaiLogic {
                             .ToList ();
                         foreach ( var otherCitizenInSamePlace in otherCitizensInSamePlace ) {
                             if ( GetRandomCollisisons () == 1 ) {
-                                activeCitizen.CarIncidentHappened ();
-                                otherCitizenInSamePlace.CarIncidentHappened ();
+                                activeCitizen.CrossIncidentHappened ( otherCitizenInSamePlace );
+                                otherCitizenInSamePlace.CrossIncidentHappened ( activeCitizen );
                             }
                         }
                     }

@@ -54,7 +54,7 @@ namespace GaiaiLogicTests {
             var citizen = new GameCitizen ( "arg1", "title", new List<CitizenSchedule> () );
 
             // act
-            citizen.ChangeLocation ( "new location" );
+            citizen.ChangeLocation ( "new location", CitizenScheduleTransport.NoTransport );
 
             //assert
             Assert.Equal ( "new location", citizen.CurrentLocation );

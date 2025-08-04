@@ -122,7 +122,8 @@ namespace GaiaiLogicTests {
                 new List<CitizenSchedule> {
                     new CitizenSchedule {
                         Location = "house1",
-                        Time = new TimeSpan ( 10, 0, 0 )
+                        Time = new TimeSpan ( 10, 0, 0 ),
+                        Transport = CitizenScheduleTransport.Car
                     }
                 }
             );
@@ -132,7 +133,8 @@ namespace GaiaiLogicTests {
                 new List<CitizenSchedule> {
                     new CitizenSchedule {
                         Location = "house1",
-                        Time = new TimeSpan ( 10, 0, 0 )
+                        Time = new TimeSpan ( 10, 0, 0 ),
+                        Transport = CitizenScheduleTransport.Car
                     }
                 }
             );
