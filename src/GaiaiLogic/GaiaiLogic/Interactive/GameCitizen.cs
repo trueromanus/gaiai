@@ -58,22 +58,24 @@ namespace GaiaiLogic.Interactive {
                 return;
             }
 
+            if ( IncidentMode is not GameCitizenIncidentMode.None ) return;
+
             // case when crossed with any object located in car
-            if ( m_currentLocationTransport == CitizenScheduleTransport.Car && IncidentMode is GameCitizenIncidentMode.None ) {
+            if ( m_currentLocationTransport == CitizenScheduleTransport.Car ) {
                 IncreaseCraziness ( 20 );
                 IncidentMode = GameCitizenIncidentMode.CarAccident;
                 return;
             }
 
             // case when crossed with any object located in bus
-            if ( m_currentLocationTransport == CitizenScheduleTransport.Bus && IncidentMode is GameCitizenIncidentMode.None ) {
+            if ( m_currentLocationTransport == CitizenScheduleTransport.Bus) {
                 IncreaseCraziness ( 10 );
                 IncidentMode = GameCitizenIncidentMode.BusAccident;
                 return;
             }
 
             // case when crossed with bus or car and citizen not in transport
-            if ( ( gameCitizen.CitizenScheduleTransport is CitizenScheduleTransport.Car or CitizenScheduleTransport.Bus ) && IncidentMode is GameCitizenIncidentMode.None ) {
+            if ( gameCitizen.CitizenScheduleTransport is CitizenScheduleTransport.Car or CitizenScheduleTransport.Bus ) {
                 IncreaseCraziness ( 100 );
                 IncidentMode = gameCitizen.CitizenScheduleTransport switch {
                     CitizenScheduleTransport.Car => GameCitizenIncidentMode.CarAccident,

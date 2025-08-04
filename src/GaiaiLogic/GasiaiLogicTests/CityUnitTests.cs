@@ -112,7 +112,7 @@ namespace GaiaiLogicTests {
         }
 
         [Fact]
-        public void City_Completed_HitTrafficLight_NotCorrectTrafficLight_CitizensCollision () {
+        public void City_Completed_HitTrafficLight_NotCorrectTrafficLight_CitizensCollision_OnCars () {
             // arrange
             var city = new City ();
             city.SetEnableRandomized ( false );
@@ -154,6 +154,141 @@ namespace GaiaiLogicTests {
             Assert.False ( citizen1.InsideOriginalLocation () );
             Assert.Equal ( 25, citizen1.Craziness );
             Assert.Equal ( 25, citizen2.Craziness );
+        }
+
+        [Fact]
+        public void City_Completed_HitTrafficLight_NotCorrectTrafficLight_CitizensCollision_OnBuses () {
+            // arrange
+            var city = new City ();
+            city.SetEnableRandomized ( false );
+            var citizen1 = new GameCitizen (
+                "loc1",
+                "cit1",
+                new List<CitizenSchedule> {
+                    new CitizenSchedule {
+                        Location = "house1",
+                        Time = new TimeSpan ( 10, 0, 0 ),
+                        Transport = CitizenScheduleTransport.Bus
+                    }
+                }
+            );
+            var citizen2 = new GameCitizen (
+                "loc3",
+                "cit2",
+                new List<CitizenSchedule> {
+                    new CitizenSchedule {
+                        Location = "house1",
+                        Time = new TimeSpan ( 10, 0, 0 ),
+                        Transport = CitizenScheduleTransport.Bus
+                    }
+                }
+            );
+            var trafficLight = new GameTrafficLight (
+                "trafficlight1",
+                ["house1"]
+            );
+            trafficLight.ChangeState ( 0, 0, 0 );
+            city.AddCitizen ( citizen1 );
+            city.AddCitizen ( citizen2 );
+            city.AddTrafficLight ( trafficLight );
+
+            // act
+            city.ProcessEvents ( new TimeSpan ( 10, 0, 0 ) );
+
+            // assert
+            Assert.False ( citizen1.InsideOriginalLocation () );
+            Assert.Equal ( 15, citizen1.Craziness );
+            Assert.Equal ( 15, citizen2.Craziness );
+        }
+
+        [Fact]
+        public void City_Completed_HitTrafficLight_NotCorrectTrafficLight_CitizensCollision_OnCarAndBus () {
+            // arrange
+            var city = new City ();
+            city.SetEnableRandomized ( false );
+            var citizen1 = new GameCitizen (
+                "loc1",
+                "cit1",
+                new List<CitizenSchedule> {
+                    new CitizenSchedule {
+                        Location = "house1",
+                        Time = new TimeSpan ( 10, 0, 0 ),
+                        Transport = CitizenScheduleTransport.Car
+                    }
+                }
+            );
+            var citizen2 = new GameCitizen (
+                "loc3",
+                "cit2",
+                new List<CitizenSchedule> {
+                    new CitizenSchedule {
+                        Location = "house1",
+                        Time = new TimeSpan ( 10, 0, 0 ),
+                        Transport = CitizenScheduleTransport.Bus
+                    }
+                }
+            );
+            var trafficLight = new GameTrafficLight (
+                "trafficlight1",
+                ["house1"]
+            );
+            trafficLight.ChangeState ( 0, 0, 0 );
+            city.AddCitizen ( citizen1 );
+            city.AddCitizen ( citizen2 );
+            city.AddTrafficLight ( trafficLight );
+
+            // act
+            city.ProcessEvents ( new TimeSpan ( 10, 0, 0 ) );
+
+            // assert
+            Assert.False ( citizen1.InsideOriginalLocation () );
+            Assert.Equal ( 25, citizen1.Craziness );
+            Assert.Equal ( 15, citizen2.Craziness );
+        }
+
+        [Fact]
+        public void City_Completed_HitTrafficLight_NotCorrectTrafficLight_CitizensCollision_WalkAndCar () {
+            // arrange
+            var city = new City ();
+            city.SetEnableRandomized ( false );
+            var citizen1 = new GameCitizen (
+                "loc1",
+                "cit1",
+                new List<CitizenSchedule> {
+                    new CitizenSchedule {
+                        Location = "house1",
+                        Time = new TimeSpan ( 10, 0, 0 ),
+                        Transport = CitizenScheduleTransport.Car
+                    }
+                }
+            );
+            var citizen2 = new GameCitizen (
+                "loc3",
+                "cit2",
+                new List<CitizenSchedule> {
+                    new CitizenSchedule {
+                        Location = "house1",
+                        Time = new TimeSpan ( 10, 0, 0 ),
+                        Transport = CitizenScheduleTransport.NoTransport
+                    }
+                }
+            );
+            var trafficLight = new GameTrafficLight (
+                "trafficlight1",
+                ["house1"]
+            );
+            trafficLight.ChangeState ( 0, 0, 0 );
+            city.AddCitizen ( citizen1 );
+            city.AddCitizen ( citizen2 );
+            city.AddTrafficLight ( trafficLight );
+
+            // act
+            city.ProcessEvents ( new TimeSpan ( 10, 0, 0 ) );
+
+            // assert
+            Assert.False ( citizen1.InsideOriginalLocation () );
+            Assert.Equal ( 25, citizen1.Craziness );
+            Assert.Equal ( 100, citizen2.Craziness );
         }
 
     }
