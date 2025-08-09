@@ -42,7 +42,7 @@ namespace GaiaiLogic {
                     // if related to location lamp post will be not in correct state citizen we increase craziness
                     var lampPosts = m_lampPosts.Where ( a => a.AffectedHouses.Any ( b => b == scheduleStep.Location ) );
                     foreach ( var lampPost in lampPosts ) {
-                        if ( !lampPost.Correct || !lampPost.IsTurnOn ) {
+                        if ( !lampPost.Correct || !lampPost.IsTurnOn( time ) ) {
                             activeCitizen.IncreaseCraziness ( 2 );
                             haveInCorrectess = true;
                         }

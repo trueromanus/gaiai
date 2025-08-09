@@ -1,6 +1,6 @@
 ﻿namespace GaiaiLogic.Interactive {
 
-    internal record LampPostItem ( bool Mode, TimeOnly Minutes );
+    internal record LampPostItem ( bool Mode, TimeSpan Minutes );
 
     internal class GameLampPost {
 
@@ -11,8 +11,6 @@
         private readonly int m_correctState;
 
         private readonly int m_currentState;
-
-        private bool m_turnOn = true;
 
         public string Title { get; internal set; } = "";
 
@@ -28,20 +26,46 @@
             m_correctState = random.Next ( 30, 70 );
             m_currentState = m_correctState;
 
-            var time = new TimeOnly ( 21, 00 ).AddHours ( random.Next ( 1, 7 ) );
+            var time = new TimeSpan ( 21, 0, 0 ) + new TimeSpan ( 21 + random.Next ( 1, 7 ), 0, 0 );
 
             CurrentSchedule = new List<LampPostItem> {
                 new LampPostItem (true, time),
-                new LampPostItem (false, time.AddMinutes(m_correctState))
+                new LampPostItem (false, time + TimeSpan.FromMinutes( m_correctState))
             };
         }
 
         public bool Correct => m_currentState == m_correctState;
 
-        public bool IsTurnOn => m_turnOn;
+        public bool IsTurnOn ( TimeSpan time ) {
+            var schedule = CurrentSchedule
+                .OrderBy ( a => a.Minutes );
+
+            var leftLimit = schedule.FirstOrDefault ( a => a.Minutes <= time );
+            if ( leftLimit == null ) return false;
+
+            return leftLimit.Mode;
+        }
 
         public void ParseContent ( string content ) {
+            CurrentSchedule.Clear ();
 
+            var lines = content.Split ( "\n" )
+                .Select ( line => line.Trim ().ToLowerInvariant () )
+                .Where ( a => !string.IsNullOrEmpty ( a ) )
+                .ToList ();
+            foreach ( var line in lines ) {
+                if ( !( line.StartsWith ( TurnOff ) || line.StartsWith ( TurnOn ) ) ) continue;
+
+                var turnOn = line.StartsWith ( TurnOn );
+                TimeSpan timeValue = TimeSpan.Zero;
+
+                var span = line.AsSpan ();
+                var index = span.IndexOf ( ' ' );
+                var slice = span.Slice ( index );
+                timeValue = TimeSpan.Parse ( slice );
+
+                CurrentSchedule.Add ( new LampPostItem ( turnOn, timeValue ) );
+            }
         }
 
     }
