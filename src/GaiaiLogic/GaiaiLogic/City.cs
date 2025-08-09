@@ -28,20 +28,28 @@ namespace GaiaiLogic {
                 if ( scheduleStep != null ) {
                     activeCitizen.ChangeLocation ( scheduleStep.Location, scheduleStep.Transport );
 
+                    var haveInCorrectess = false;
+
                     // if related to location trafic light will be not in correct state citizen we increase craziness
                     var trafficLights = m_trafficLight.Where ( a => a.AffectedHouses.Any ( b => b == scheduleStep.Location ) );
                     foreach ( var trafficLight in trafficLights ) {
-                        if ( !trafficLight.Correct ) activeCitizen.IncreaseCraziness ( 5 );
+                        if ( !trafficLight.Correct ) {
+                            activeCitizen.IncreaseCraziness ( 5 );
+                            haveInCorrectess = true;
+                        }
                     }
 
                     // if related to location lamp post will be not in correct state citizen we increase craziness
                     var lampPosts = m_lampPosts.Where ( a => a.AffectedHouses.Any ( b => b == scheduleStep.Location ) );
                     foreach ( var lampPost in lampPosts ) {
-                        if ( !lampPost.Correct ) activeCitizen.IncreaseCraziness ( 2 );
+                        if ( !lampPost.Correct || !lampPost.IsTurnOn ) {
+                            activeCitizen.IncreaseCraziness ( 2 );
+                            haveInCorrectess = true;
+                        }
                     }
 
                     // if some other citizen will be in same location we need to make crash
-                    if ( !activeCitizen.InsideOriginalLocation () ) {
+                    if ( haveInCorrectess && !activeCitizen.InsideOriginalLocation () ) {
                         var otherCitizensInSamePlace = activeCitizens
                             .Where ( a => activeCitizen.Title != a.Title && !a.InsideOriginalLocation () && a.CurrentLocation == activeCitizen.CurrentLocation )
                             .ToList ();
