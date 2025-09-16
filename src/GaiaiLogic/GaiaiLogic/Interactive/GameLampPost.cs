@@ -8,7 +8,7 @@
 
         private const string TurnOff = "turnoff";
 
-        private readonly int m_correctState;
+        private readonly int m_maximumState;
 
         private readonly int m_currentState;
 
@@ -18,23 +18,26 @@
 
         public IEnumerable<string> AffectedHouses { get; internal set; } = Enumerable.Empty<string> ();
 
-        public GameLampPost ( string title, IEnumerable<string> affectedHouses ) {
+        public GameLampPost ( string title, IEnumerable<string> affectedHouses, TimeSpan startTime, int maximumState ) {
             Title = title ?? throw new ArgumentNullException ( nameof ( title ) ); ;
             AffectedHouses = affectedHouses ?? throw new ArgumentNullException ( nameof ( affectedHouses ) );
             var random = new Random ( (int) ( DateTime.UtcNow - new DateTime ( 1970, 1, 1 ) ).TotalSeconds );
 
-            m_correctState = random.Next ( 30, 70 );
-            m_currentState = m_correctState;
+            m_maximumState = maximumState;
+            m_currentState = m_maximumState;
 
-            var time = new TimeSpan ( 21, 0, 0 ) + new TimeSpan ( 21 + random.Next ( 1, 7 ), 0, 0 );
+            var time = new TimeSpan ( 21, 0, 0 ) + startTime;
+            if ( time > new TimeSpan ( 23, 59, 59 ) ) time = time - new TimeSpan ( 23, 59, 59 );
 
             CurrentSchedule = new List<LampPostItem> {
                 new LampPostItem (true, time),
-                new LampPostItem (false, time + TimeSpan.FromMinutes( m_correctState))
+                new LampPostItem (false, time + TimeSpan.FromMinutes(m_maximumState))
             };
         }
 
-        public bool Correct => m_currentState == m_correctState;
+        public int MaximumState => m_maximumState;
+
+        public bool Correct => m_currentState <= m_maximumState;
 
         public bool IsTurnOn ( TimeSpan time ) {
             var schedule = CurrentSchedule
