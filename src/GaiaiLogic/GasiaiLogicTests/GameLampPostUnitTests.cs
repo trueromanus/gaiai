@@ -36,11 +36,25 @@ namespace GaiaiLogicTests {
             // arrange
             var lampPost = new GameLampPost ( "", Enumerable.Empty<string> (), new TimeSpan ( 3, 0, 0 ), 30 );
 
-            // act
-            var isTurned = lampPost.IsTurnOn ( new TimeSpan ( 23, 10, 0 ) );
+            // assert and act
+            Assert.True ( lampPost.IsTurnOn ( new TimeSpan ( 0, 10, 0 ) ) );
+            Assert.True ( lampPost.IsTurnOn ( new TimeSpan ( 0, 15, 0 ) ) );
+            Assert.True ( lampPost.IsTurnOn ( new TimeSpan ( 0, 20, 0 ) ) );
+            Assert.True ( lampPost.IsTurnOn ( new TimeSpan ( 0, 25, 0 ) ) );
+            Assert.True ( lampPost.IsTurnOn ( new TimeSpan ( 0, 30, 0 ) ) );
+        }
 
-            // assert
-            Assert.True ( isTurned );
+        [Fact]
+        public void IsTurnOff_Completed_Case1 () {
+            // arrange
+            var lampPost = new GameLampPost ( "", Enumerable.Empty<string> (), new TimeSpan ( 3, 0, 0 ), 30 );
+
+            // assert and act
+            Assert.False ( lampPost.IsTurnOn ( new TimeSpan ( 22, 59, 0 ) ) );
+            Assert.False ( lampPost.IsTurnOn ( new TimeSpan ( 22, 50, 0 ) ) );
+            Assert.False ( lampPost.IsTurnOn ( new TimeSpan ( 1, 0, 0 ) ) );
+            Assert.False ( lampPost.IsTurnOn ( new TimeSpan ( 4, 20, 0 ) ) );
+            Assert.False ( lampPost.IsTurnOn ( new TimeSpan ( 8, 25, 0 ) ) );
         }
 
     }

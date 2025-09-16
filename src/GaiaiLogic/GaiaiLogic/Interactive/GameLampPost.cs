@@ -16,6 +16,8 @@
 
         public List<LampPostItem> CurrentSchedule { get; internal set; }
 
+        public List<(TimeSpan start, TimeSpan end)> CurrentSchedulePairs { get; internal set; } = new List<(TimeSpan start, TimeSpan end)> ();
+
         public IEnumerable<string> AffectedHouses { get; internal set; } = Enumerable.Empty<string> ();
 
         public GameLampPost ( string title, IEnumerable<string> affectedHouses, TimeSpan startTime, int maximumState ) {
@@ -33,6 +35,7 @@
                 new LampPostItem (true, time),
                 new LampPostItem (false, time + TimeSpan.FromMinutes(m_maximumState))
             };
+            FillCurrentSchedulePairs ();
         }
 
         public int MaximumState => m_maximumState;
@@ -40,13 +43,9 @@
         public bool Correct => m_currentState <= m_maximumState;
 
         public bool IsTurnOn ( TimeSpan time ) {
-            var schedule = CurrentSchedule
-                .OrderBy ( a => a.Minutes );
-
-            var leftLimit = schedule.FirstOrDefault ( a => a.Minutes <= time );
-            if ( leftLimit == null ) return false;
-
-            return leftLimit.Mode;
+            return CurrentSchedulePairs
+                .Where ( a => a.start < a.end ? time >= a.start && time <= a.end : time >= a.start && time <= a.end )
+                .Any ();
         }
 
         public void ParseContent ( string content ) {
@@ -68,6 +67,24 @@
                 timeValue = TimeSpan.Parse ( slice );
 
                 CurrentSchedule.Add ( new LampPostItem ( turnOn, timeValue ) );
+            }
+
+            FillCurrentSchedulePairs ();
+        }
+
+        private void FillCurrentSchedulePairs () {
+            TimeSpan? currentStartTime = null;
+            CurrentSchedulePairs.Clear ();
+
+            foreach ( var item in CurrentSchedule.OrderBy ( a => a.Minutes ) ) {
+                if ( !currentStartTime.HasValue && item.Mode ) {
+                    currentStartTime = item.Minutes;
+                    continue;
+                }
+                if ( currentStartTime.HasValue && !item.Mode ) {
+                    CurrentSchedulePairs.Add ( (currentStartTime.Value, item.Minutes) );
+                    currentStartTime = null;
+                }
             }
         }
 
