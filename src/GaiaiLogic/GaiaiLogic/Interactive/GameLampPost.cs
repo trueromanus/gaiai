@@ -1,4 +1,6 @@
-﻿namespace GaiaiLogic.Interactive {
+﻿using System.Globalization;
+
+namespace GaiaiLogic.Interactive {
 
     internal record LampPostItem ( bool Mode, TimeSpan Minutes );
 
@@ -48,7 +50,7 @@
                 .Any ();
         }
 
-        public void ParseContent ( string content ) {
+        public void ParseContent ( string content, bool isAmPm ) {
             CurrentSchedule.Clear ();
 
             var lines = content.Split ( "\n" )
@@ -63,13 +65,24 @@
 
                 var span = line.AsSpan ();
                 var index = span.IndexOf ( ' ' );
-                var slice = span.Slice ( index );
-                timeValue = TimeSpan.Parse ( slice );
+                var slice = span.Slice ( index + 1 );
+                try {
+                    timeValue = ConvertTime ( slice.ToString (), isAmPm );
 
-                CurrentSchedule.Add ( new LampPostItem ( turnOn, timeValue ) );
+                    CurrentSchedule.Add ( new LampPostItem ( turnOn, timeValue ) );
+                } catch {
+                }
             }
 
             FillCurrentSchedulePairs ();
+        }
+
+        private static TimeSpan ConvertTime ( string time, bool isAmPm ) {
+            if ( isAmPm ) {
+                return DateTime.ParseExact ( time, "h:mm tt", CultureInfo.InvariantCulture ).TimeOfDay;
+            } else {
+                return DateTime.ParseExact ( time, "HH:mm", CultureInfo.InvariantCulture ).TimeOfDay;
+            }
         }
 
         private void FillCurrentSchedulePairs () {
