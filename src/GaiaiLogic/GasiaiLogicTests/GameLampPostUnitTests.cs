@@ -129,6 +129,110 @@ turnoff 20:34
             Assert.Equal ( new TimeSpan ( 20, 34, 0 ), third.end );
         }
 
+        [Fact]
+        public void ParseContent_Completed_Pairs_NotCorrectOmitOn () {
+            // arrange
+            var lampPost = new GameLampPost ( "", [], new TimeSpan ( 0, 0, 0 ), 30 );
+
+            // act
+            lampPost.ParseContent (
+"""
+turnon 12:00
+turnoff 15:00
+turnoff 16:40
+turnon 17:30
+turnoff 20:34
+""",
+    false
+            );
+
+            // assert
+            Assert.Equal ( 2, lampPost.CurrentSchedulePairs.Count () );
+            var first = lampPost.CurrentSchedulePairs.First ();
+            var second = lampPost.CurrentSchedulePairs.Last ();
+
+            Assert.Equal ( new TimeSpan ( 12, 0, 0 ), first.start );
+            Assert.Equal ( new TimeSpan ( 15, 0, 0 ), first.end );
+            Assert.Equal ( new TimeSpan ( 17, 30, 0 ), second.start );
+            Assert.Equal ( new TimeSpan ( 20, 34, 0 ), second.end );
+        }
+
+        [Fact]
+        public void ParseContent_Completed_Pairs_NotCorrectOmitOff () {
+            // arrange
+            var lampPost = new GameLampPost ( "", [], new TimeSpan ( 0, 0, 0 ), 30 );
+
+            // act
+            lampPost.ParseContent (
+"""
+turnon 12:00
+turnoff 15:00
+turnon 16:00
+turnon 17:30
+turnoff 20:34
+""",
+    false
+            );
+
+            // assert
+            Assert.Equal ( 2, lampPost.CurrentSchedulePairs.Count () );
+            var first = lampPost.CurrentSchedulePairs.First ();
+            var second = lampPost.CurrentSchedulePairs.Last ();
+
+            Assert.Equal ( new TimeSpan ( 12, 0, 0 ), first.start );
+            Assert.Equal ( new TimeSpan ( 15, 0, 0 ), first.end );
+            Assert.Equal ( new TimeSpan ( 16, 0, 0 ), second.start );
+            Assert.Equal ( new TimeSpan ( 20, 34, 0 ), second.end );
+        }
+
+        [Fact]
+        public void ParseContent_Completed_Pairs_NotCorrectTime () {
+            // arrange
+            var lampPost = new GameLampPost ( "", [], new TimeSpan ( 0, 0, 0 ), 30 );
+
+            // act
+            lampPost.ParseContent (
+"""
+turnon 1:00
+turnoff 15:00
+turnon 16:00
+turnoff 20:34
+""",
+    false
+            );
+
+            // assert
+            Assert.Single ( lampPost.CurrentSchedulePairs );
+            var first = lampPost.CurrentSchedulePairs.First ();
+
+            Assert.Equal ( new TimeSpan ( 16, 0, 0 ), first.start );
+            Assert.Equal ( new TimeSpan ( 20, 34, 0 ), first.end );
+        }
+
+        [Fact]
+        public void ParseContent_Completed_Pairs_NotCorrectTime_Case2 () {
+            // arrange
+            var lampPost = new GameLampPost ( "", [], new TimeSpan ( 0, 0, 0 ), 30 );
+
+            // act
+            lampPost.ParseContent (
+"""
+turnon akjsfkjaskf daskj flasdj a
+turnoff 15:00
+turnon 16:00
+turnoff 20:34
+""",
+    false
+            );
+
+            // assert
+            Assert.Single ( lampPost.CurrentSchedulePairs );
+            var first = lampPost.CurrentSchedulePairs.First ();
+
+            Assert.Equal ( new TimeSpan ( 16, 0, 0 ), first.start );
+            Assert.Equal ( new TimeSpan ( 20, 34, 0 ), first.end );
+        }
+
     }
 
 }
