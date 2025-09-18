@@ -1,0 +1,12 @@
+[
+  {
+    "district": "south",
+    "title": "Near highway",
+    "startTime": "22:00:00",
+    "maximumState": 80,
+    "affectedHouses": [
+      "1428 Elm Street",
+      "1429 Elm Street"
+    ]
+  }
+]
