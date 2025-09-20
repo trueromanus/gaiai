@@ -20,6 +20,16 @@ namespace GaiaiLogic.Loaders {
             return result;
         }
 
+        public IEnumerable<TrafficLight> LoadTrafficLights() {
+            var items = JsonSerializer.Deserialize ( GetResourceStream ( "" ), typeof ( IEnumerable<TrafficLight> ), LoaderJsonSerializerContext.Default );
+            if ( items == null ) throw new Exception ( "Can't deserialize TrafficLight!" );
+
+            var result = items as IEnumerable<TrafficLight>;
+            if ( result == null ) throw new Exception ( "Can't conversion TrafficLight!" );
+
+            return result;
+        }
+
         private Stream GetResourceStream ( string file ) {
             var stream = m_assembly!.GetManifestResourceStream ( file );
             if ( stream == null ) throw new Exception ( $"Can't read file {file} from resource!" );

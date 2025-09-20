@@ -1,10 +1,12 @@
 ﻿namespace GaiaiLogic.Models {
 
-    internal record TrafficLight {
+    public record TrafficLight {
+
+        public string Title { get; init; } = "";
 
         public string District { get; init; } = "";
 
-        public IEnumerable<TrafficLightItem> Items { get; init; } = Enumerable.Empty<TrafficLightItem> ();
+        public IEnumerable<string> AffectedHouses { get; init; } = Enumerable.Empty<string> ();
 
     }
 

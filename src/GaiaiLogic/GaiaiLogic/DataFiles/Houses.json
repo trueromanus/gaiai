@@ -1,0 +1,330 @@
+[
+  {
+    "name": "1428 Elm Street",
+    "district": "south",
+    "shape": "---",
+    "x": 0,
+    "y": 0,
+    "rotation": 0,
+    "fusesCount": 2
+  },
+  {
+    "name": "1429 Elm Street",
+    "district": "south",
+    "shape": "---",
+    "x": 0,
+    "y": 0,
+    "rotation": 0,
+    "fusesCount": 2
+  },
+  {
+    "name": "1430 Elm Street",
+    "district": "south",
+    "shape": "---",
+    "x": 0,
+    "y": 0,
+    "rotation": 0,
+    "fusesCount": 2
+  },
+  {
+    "name": "1431 Elm Street",
+    "district": "south",
+    "shape": "---",
+    "x": 0,
+    "y": 0,
+    "rotation": 0,
+    "fusesCount": 2
+  },
+  {
+    "name": "1432 Elm Street",
+    "district": "south",
+    "shape": "---",
+    "x": 0,
+    "y": 0,
+    "rotation": 0,
+    "fusesCount": 2
+  },
+  {
+    "name": "1415 L Street",
+    "district": "south",
+    "shape": "---",
+    "x": 0,
+    "y": 0,
+    "rotation": 0,
+    "fusesCount": 2
+  },
+  {
+    "name": "1418 L Street",
+    "district": "south",
+    "shape": "---",
+    "x": 0,
+    "y": 0,
+    "rotation": 0,
+    "fusesCount": 2
+  },
+  {
+    "name": "1420 L Street",
+    "district": "south",
+    "shape": "---",
+    "x": 0,
+    "y": 0,
+    "rotation": 0,
+    "fusesCount": 2
+  },
+
+  {
+    "name": "10 Burkittsville St",
+    "district": "south",
+    "shape": "---",
+    "x": 0,
+    "y": 0,
+    "rotation": 0,
+    "fusesCount": 2
+  },
+  {
+    "name": "20 Burkittsville St",
+    "district": "south",
+    "shape": "---",
+    "x": 0,
+    "y": 0,
+    "rotation": 0,
+    "fusesCount": 2
+  },
+  {
+    "name": "50 Burkittsville St",
+    "district": "south",
+    "shape": "---",
+    "x": 0,
+    "y": 0,
+    "rotation": 0,
+    "fusesCount": 2
+  },
+
+  {
+    "name": "54 State Street",
+    "district": "south",
+    "shape": "---",
+    "x": 0,
+    "y": 0,
+    "rotation": 0,
+    "fusesCount": 2
+  },
+  {
+    "name": "55 State Street",
+    "district": "south",
+    "shape": "---",
+    "x": 0,
+    "y": 0,
+    "rotation": 0,
+    "fusesCount": 2
+  },
+  {
+    "name": "70 State Street",
+    "district": "south",
+    "shape": "---",
+    "x": 0,
+    "y": 0,
+    "rotation": 0,
+    "fusesCount": 2
+  },
+  {
+    "name": "73 State Street",
+    "district": "south",
+    "shape": "---",
+    "x": 0,
+    "y": 0,
+    "rotation": 0,
+    "fusesCount": 2
+  },
+  {
+    "name": "80 State Street",
+    "district": "south",
+    "shape": "---",
+    "x": 0,
+    "y": 0,
+    "rotation": 0,
+    "fusesCount": 2
+  },
+
+  {
+    "name": "20 Tampico Avenue",
+    "district": "south",
+    "shape": "---",
+    "x": 0,
+    "y": 0,
+    "rotation": 0,
+    "fusesCount": 2
+  },
+  {
+    "name": "21 Tampico Avenue",
+    "district": "south",
+    "shape": "---",
+    "x": 0,
+    "y": 0,
+    "rotation": 0,
+    "fusesCount": 2
+  },
+  {
+    "name": "22 Tampico Avenue",
+    "district": "south",
+    "shape": "---",
+    "x": 0,
+    "y": 0,
+    "rotation": 0,
+    "fusesCount": 2
+  },
+  {
+    "name": "23 Tampico Avenue",
+    "district": "south",
+    "shape": "---",
+    "x": 0,
+    "y": 0,
+    "rotation": 0,
+    "fusesCount": 2
+  },
+  {
+    "name": "24 Tampico Avenue",
+    "district": "south",
+    "shape": "---",
+    "x": 0,
+    "y": 0,
+    "rotation": 0,
+    "fusesCount": 2
+  },
+  {
+    "name": "25 Tampico Avenue",
+    "district": "south",
+    "shape": "---",
+    "x": 0,
+    "y": 0,
+    "rotation": 0,
+    "fusesCount": 2
+  },
+  {
+    "name": "26 Tampico Avenue",
+    "district": "south",
+    "shape": "---",
+    "x": 0,
+    "y": 0,
+    "rotation": 0,
+    "fusesCount": 2
+  },
+  {
+    "name": "27 Tampico Avenue",
+    "district": "south",
+    "shape": "---",
+    "x": 0,
+    "y": 0,
+    "rotation": 0,
+    "fusesCount": 2
+  },
+  {
+    "name": "28 Tampico Avenue",
+    "district": "south",
+    "shape": "---",
+    "x": 0,
+    "y": 0,
+    "rotation": 0,
+    "fusesCount": 2
+  },
+  {
+    "name": "29 Tampico Avenue",
+    "district": "south",
+    "shape": "---",
+    "x": 0,
+    "y": 0,
+    "rotation": 0,
+    "fusesCount": 2
+  },
+  {
+    "name": "30 Tampico Avenue",
+    "district": "south",
+    "shape": "---",
+    "x": 0,
+    "y": 0,
+    "rotation": 0,
+    "fusesCount": 2
+  },
+
+  {
+    "name": "40 Big Tes DE Street",
+    "district": "south",
+    "shape": "---",
+    "x": 0,
+    "y": 0,
+    "rotation": 0,
+    "fusesCount": 2
+  },
+  {
+    "name": "41 Big Tes DE Street",
+    "district": "south",
+    "shape": "---",
+    "x": 0,
+    "y": 0,
+    "rotation": 0,
+    "fusesCount": 2
+  },
+  {
+    "name": "42 Big Tes DE Street",
+    "district": "south",
+    "shape": "---",
+    "x": 0,
+    "y": 0,
+    "rotation": 0,
+    "fusesCount": 2
+  },
+  {
+    "name": "43 Big Tes DE Street",
+    "district": "south",
+    "shape": "---",
+    "x": 0,
+    "y": 0,
+    "rotation": 0,
+    "fusesCount": 2
+  },
+  {
+    "name": "44 Big Tes DE Street",
+    "district": "south",
+    "shape": "---",
+    "x": 0,
+    "y": 0,
+    "rotation": 0,
+    "fusesCount": 2
+  },
+  {
+    "name": "45 Big Tes DE Street",
+    "district": "south",
+    "shape": "---",
+    "x": 0,
+    "y": 0,
+    "rotation": 0,
+    "fusesCount": 2
+  },
+  {
+    "name": "46 Big Tes DE Street",
+    "district": "south",
+    "shape": "---",
+    "x": 0,
+    "y": 0,
+    "rotation": 0,
+    "fusesCount": 2
+  },
+  {
+    "name": "47 Big Tes DE Street",
+    "district": "south",
+    "shape": "---",
+    "x": 0,
+    "y": 0,
+    "rotation": 0,
+    "fusesCount": 2
+  },
+  {
+    "name": "48 Big Tes DE Street",
+    "district": "south",
+    "shape": "---",
+    "x": 0,
+    "y": 0,
+    "rotation": 0,
+    "fusesCount": 2
+  }
+]
