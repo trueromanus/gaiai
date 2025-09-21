@@ -6,7 +6,7 @@
     "x": 0,
     "y": 0,
     "rotation": 0,
-    "fusesCount": 2
+    "fuses": []
   },
   {
     "name": "1429 Elm Street",
@@ -15,7 +15,16 @@
     "x": 0,
     "y": 0,
     "rotation": 0,
-    "fusesCount": 2
+    "fuses": [
+      {
+        "width": 3,
+        "triggers": [ 1, 2, 3 ]
+      },
+      {
+        "width": 4,
+        "triggers": [ 2, 3 ]
+      }
+    ]
   },
   {
     "name": "1430 Elm Street",
@@ -24,7 +33,7 @@
     "x": 0,
     "y": 0,
     "rotation": 0,
-    "fusesCount": 2
+    "fuses": []
   },
   {
     "name": "1431 Elm Street",
@@ -33,7 +42,7 @@
     "x": 0,
     "y": 0,
     "rotation": 0,
-    "fusesCount": 2
+    "fuses": []
   },
   {
     "name": "1432 Elm Street",
@@ -42,7 +51,7 @@
     "x": 0,
     "y": 0,
     "rotation": 0,
-    "fusesCount": 2
+    "fuses": []
   },
   {
     "name": "1415 L Street",
@@ -51,7 +60,7 @@
     "x": 0,
     "y": 0,
     "rotation": 0,
-    "fusesCount": 2
+    "fuses": []
   },
   {
     "name": "1418 L Street",
@@ -60,7 +69,7 @@
     "x": 0,
     "y": 0,
     "rotation": 0,
-    "fusesCount": 2
+    "fuses": []
   },
   {
     "name": "1420 L Street",
@@ -69,7 +78,7 @@
     "x": 0,
     "y": 0,
     "rotation": 0,
-    "fusesCount": 2
+    "fuses": []
   },
 
   {
@@ -79,7 +88,7 @@
     "x": 0,
     "y": 0,
     "rotation": 0,
-    "fusesCount": 2
+    "fuses": []
   },
   {
     "name": "20 Burkittsville St",
@@ -88,7 +97,7 @@
     "x": 0,
     "y": 0,
     "rotation": 0,
-    "fusesCount": 2
+    "fuses": []
   },
   {
     "name": "50 Burkittsville St",
@@ -97,7 +106,7 @@
     "x": 0,
     "y": 0,
     "rotation": 0,
-    "fusesCount": 2
+    "fuses": []
   },
 
   {
@@ -107,7 +116,7 @@
     "x": 0,
     "y": 0,
     "rotation": 0,
-    "fusesCount": 2
+    "fuses": []
   },
   {
     "name": "55 State Street",
@@ -116,7 +125,7 @@
     "x": 0,
     "y": 0,
     "rotation": 0,
-    "fusesCount": 2
+    "fuses": []
   },
   {
     "name": "70 State Street",
@@ -125,7 +134,7 @@
     "x": 0,
     "y": 0,
     "rotation": 0,
-    "fusesCount": 2
+    "fuses": []
   },
   {
     "name": "73 State Street",
@@ -134,7 +143,7 @@
     "x": 0,
     "y": 0,
     "rotation": 0,
-    "fusesCount": 2
+    "fuses": []
   },
   {
     "name": "80 State Street",
@@ -143,7 +152,7 @@
     "x": 0,
     "y": 0,
     "rotation": 0,
-    "fusesCount": 2
+    "fuses": []
   },
 
   {
@@ -153,7 +162,7 @@
     "x": 0,
     "y": 0,
     "rotation": 0,
-    "fusesCount": 2
+    "fuses": []
   },
   {
     "name": "21 Tampico Avenue",
@@ -162,7 +171,7 @@
     "x": 0,
     "y": 0,
     "rotation": 0,
-    "fusesCount": 2
+    "fuses": []
   },
   {
     "name": "22 Tampico Avenue",
@@ -171,7 +180,7 @@
     "x": 0,
     "y": 0,
     "rotation": 0,
-    "fusesCount": 2
+    "fuses": []
   },
   {
     "name": "23 Tampico Avenue",
@@ -180,7 +189,7 @@
     "x": 0,
     "y": 0,
     "rotation": 0,
-    "fusesCount": 2
+    "fuses": []
   },
   {
     "name": "24 Tampico Avenue",
@@ -189,7 +198,7 @@
     "x": 0,
     "y": 0,
     "rotation": 0,
-    "fusesCount": 2
+    "fuses": []
   },
   {
     "name": "25 Tampico Avenue",
@@ -198,7 +207,7 @@
     "x": 0,
     "y": 0,
     "rotation": 0,
-    "fusesCount": 2
+    "fuses": []
   },
   {
     "name": "26 Tampico Avenue",
@@ -207,7 +216,7 @@
     "x": 0,
     "y": 0,
     "rotation": 0,
-    "fusesCount": 2
+    "fuses": []
   },
   {
     "name": "27 Tampico Avenue",
@@ -216,7 +225,7 @@
     "x": 0,
     "y": 0,
     "rotation": 0,
-    "fusesCount": 2
+    "fuses": []
   },
   {
     "name": "28 Tampico Avenue",
@@ -225,7 +234,7 @@
     "x": 0,
     "y": 0,
     "rotation": 0,
-    "fusesCount": 2
+    "fuses": []
   },
   {
     "name": "29 Tampico Avenue",
@@ -234,7 +243,7 @@
     "x": 0,
     "y": 0,
     "rotation": 0,
-    "fusesCount": 2
+    "fuses": []
   },
   {
     "name": "30 Tampico Avenue",
@@ -243,7 +252,7 @@
     "x": 0,
     "y": 0,
     "rotation": 0,
-    "fusesCount": 2
+    "fuses": []
   },
 
   {
@@ -253,7 +262,7 @@
     "x": 0,
     "y": 0,
     "rotation": 0,
-    "fusesCount": 2
+    "fuses": []
   },
   {
     "name": "41 Big Tes DE Street",
@@ -262,7 +271,7 @@
     "x": 0,
     "y": 0,
     "rotation": 0,
-    "fusesCount": 2
+    "fuses": []
   },
   {
     "name": "42 Big Tes DE Street",
@@ -271,7 +280,7 @@
     "x": 0,
     "y": 0,
     "rotation": 0,
-    "fusesCount": 2
+    "fuses": []
   },
   {
     "name": "43 Big Tes DE Street",
@@ -280,7 +289,7 @@
     "x": 0,
     "y": 0,
     "rotation": 0,
-    "fusesCount": 2
+    "fuses": []
   },
   {
     "name": "44 Big Tes DE Street",
@@ -289,7 +298,7 @@
     "x": 0,
     "y": 0,
     "rotation": 0,
-    "fusesCount": 2
+    "fuses": []
   },
   {
     "name": "45 Big Tes DE Street",
@@ -298,7 +307,7 @@
     "x": 0,
     "y": 0,
     "rotation": 0,
-    "fusesCount": 2
+    "fuses": []
   },
   {
     "name": "46 Big Tes DE Street",
@@ -307,7 +316,7 @@
     "x": 0,
     "y": 0,
     "rotation": 0,
-    "fusesCount": 2
+    "fuses": []
   },
   {
     "name": "47 Big Tes DE Street",
@@ -316,7 +325,7 @@
     "x": 0,
     "y": 0,
     "rotation": 0,
-    "fusesCount": 2
+    "fuses": []
   },
   {
     "name": "48 Big Tes DE Street",
@@ -325,6 +334,6 @@
     "x": 0,
     "y": 0,
     "rotation": 0,
-    "fusesCount": 2
+    "fuses": []
   }
 ]

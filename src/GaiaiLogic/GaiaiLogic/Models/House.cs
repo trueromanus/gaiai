@@ -1,6 +1,6 @@
 ﻿namespace GaiaiLogic.Models {
 
-    public record House {
+    internal record House {
 
         public string District { get; init; } = "";
 
@@ -14,9 +14,7 @@
 
         public int Rotation { get; set; }
 
-        public int FusesCount { get; set; }
-
-        public IEnumerable<int> Fuses { get; set; } = new List<int> ();
+        public IEnumerable<HouseFuse> Fuses { get; set; } = [];
 
     }
 

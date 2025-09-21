@@ -10,22 +10,18 @@ namespace GaiaiLogic.Loaders {
 
         public DataLoader () => m_assembly = typeof ( DataLoader ).Assembly;
 
-        public IEnumerable<LampPost> LoadLampPosts () {
-            var items = JsonSerializer.Deserialize ( GetResourceStream ( "" ), typeof ( IEnumerable<LampPost> ), LoaderJsonSerializerContext.Default );
-            if ( items == null ) throw new Exception ( "Can't deserialize LampPosts!" );
-
-            var result = items as IEnumerable<LampPost>;
-            if ( result == null ) throw new Exception ( "Can't conversion LampPosts!" );
-
-            return result;
+        public void LoadStaticItems () {
+            var lampPosts = LoadStaticItems<LampPost> ( "LampPosts", "LampPosts.json" );
+            var trafficLights = LoadStaticItems<TrafficLight> ( "TrafficLights", "TrafficLights.json" );
+            var houses = LoadStaticItems<House> ( "Houses", "Houses.json" );
         }
 
-        public IEnumerable<TrafficLight> LoadTrafficLights() {
-            var items = JsonSerializer.Deserialize ( GetResourceStream ( "" ), typeof ( IEnumerable<TrafficLight> ), LoaderJsonSerializerContext.Default );
-            if ( items == null ) throw new Exception ( "Can't deserialize TrafficLight!" );
+        private IEnumerable<T> LoadStaticItems<T> ( string name, string fileName ) {
+            var items = JsonSerializer.Deserialize ( GetResourceStream ( "" ), typeof ( IEnumerable<T> ), LoaderJsonSerializerContext.Default );
+            if ( items == null ) throw new Exception ( "Can't deserialize LampPosts!" );
 
-            var result = items as IEnumerable<TrafficLight>;
-            if ( result == null ) throw new Exception ( "Can't conversion TrafficLight!" );
+            var result = items as IEnumerable<T>;
+            if ( result == null ) throw new Exception ( "Can't conversion LampPosts!" );
 
             return result;
         }
