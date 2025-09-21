@@ -22,17 +22,33 @@ namespace GaiaiLogic.Interactive {
                 .Select (
                     group => new GameHouseFuseGroup {
                         Width = group.Width,
-                        Triggers = group.Triggers
+                        Triggers = Enumerable.Repeat ( new GameHouseFuse (), group.Width )
                             .Select (
-                                a => new GameHouseFuse {
-                                    Enabled = true,
-                                    Number = a
+                                ( a, index ) => {
+                                    a.Number = index + 1;
+                                    a.Enabled = group.Triggers.Any ( b => b == a.Number );
+                                    a.Correct = a.Enabled;
+                                    return a;
                                 }
                             )
                             .ToDictionary ( a => a.Number )
                     }
                 )
                 .ToList ();
+        }
+
+        public int NotCorrectLevel () {
+            if ( !FusesGroups.Any () ) return 0;
+
+            var notCorrectLevels = 0;
+
+            foreach ( var group in FusesGroups ) {
+                if ( group.Triggers.Values.All ( a => a.Enabled && a.Correct ) ) {
+                    notCorrectLevels++;
+                }
+            }
+
+            return notCorrectLevels;
         }
 
     }

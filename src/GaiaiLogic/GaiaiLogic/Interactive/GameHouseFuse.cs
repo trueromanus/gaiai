@@ -4,6 +4,8 @@
 
         public bool Enabled { get; set; }
 
+        public bool Correct { get; set; }
+
         public int Number { get; set; }
 
     }
