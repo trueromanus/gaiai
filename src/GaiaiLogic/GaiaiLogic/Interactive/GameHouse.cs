@@ -25,10 +25,13 @@ namespace GaiaiLogic.Interactive {
                         Triggers = Enumerable.Repeat ( new GameHouseFuse (), group.Width )
                             .Select (
                                 ( a, index ) => {
-                                    a.Number = index + 1;
-                                    a.Enabled = group.Triggers.Any ( b => b == a.Number );
-                                    a.Correct = a.Enabled;
-                                    return a;
+                                    var number = index + 1;
+                                    var enabled = group.Triggers.Any ( b => b == number );
+                                    return new GameHouseFuse {
+                                        Number = index + 1,
+                                        Correct = enabled,
+                                        Enabled = enabled
+                                    };
                                 }
                             )
                             .ToDictionary ( a => a.Number )
@@ -43,7 +46,10 @@ namespace GaiaiLogic.Interactive {
             var notCorrectLevels = 0;
 
             foreach ( var group in FusesGroups ) {
-                if ( group.Triggers.Values.All ( a => a.Enabled && a.Correct ) ) {
+                var values = group.Triggers.Values;
+                var allCorrectEnabled = values.Where ( a => a.Correct ).All ( a => a.Enabled );
+                var allNotCorrectDisabled = values.Where ( a => !a.Correct ).All ( a => !a.Enabled );
+                if ( !( allCorrectEnabled && allNotCorrectDisabled ) ) {
                     notCorrectLevels++;
                 }
             }
