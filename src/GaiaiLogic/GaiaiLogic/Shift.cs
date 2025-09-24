@@ -10,6 +10,12 @@
 
         private CancellationTokenSource? m_mainProcessCancellationTokenSource;
 
+        private readonly TriggersHub m_triggersHub;
+
+        public Shift ( TriggersHub triggersHub ) {
+            m_triggersHub = triggersHub ?? throw new ArgumentNullException ( nameof ( triggersHub ) );
+        }
+
         public void Run () {
             CancellationTokenSource cancellationTokenSource = new ();
 
@@ -28,8 +34,8 @@
         /// <summary>
         /// Close current opened shift.
         /// </summary>
-        public void CloseShift() {
-            if (m_day == 8) {
+        public void CloseShift () {
+            if ( m_day == 8 ) {
                 //TODO: need to close game
             }
 

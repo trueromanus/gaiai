@@ -67,6 +67,14 @@ namespace GaiaiLogic.Interactive {
             fuseItem.Enabled = !fuseItem.Enabled;
         }
 
+        public void RestoreToCorrect () {
+            foreach ( var group in FusesGroups ) {
+                foreach ( var trigger in group.Triggers.Values ) {
+                    trigger.Enabled = trigger.Correct ? true : false;
+                }
+            }
+        }
+
     }
 
 }
