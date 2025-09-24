@@ -57,6 +57,16 @@ namespace GaiaiLogic.Interactive {
             return notCorrectLevels;
         }
 
+        public void ToggleTrigger ( int line, int fuse ) {
+            if ( line >= FusesGroups.Count ) return;
+            var group = FusesGroups[line];
+
+            var fuseItem = group.Triggers.Values.FirstOrDefault ( a => a.Number == fuse );
+            if ( fuseItem == null ) return;
+
+            fuseItem.Enabled = !fuseItem.Enabled;
+        }
+
     }
 
 }
