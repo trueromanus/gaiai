@@ -12,14 +12,14 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<EmbeddedResource Include="DataFiles\Houses.json">
-			<LogicalName>Houses.json</LogicalName>
+		<EmbeddedResource Include="DataFiles\Houses.en.json">
+			<LogicalName>Houses.en.json</LogicalName>
 		</EmbeddedResource>
-		<EmbeddedResource Include="DataFiles\LampPosts.json">
-			<LogicalName>LampPosts.json</LogicalName>
+		<EmbeddedResource Include="DataFiles\LampPosts.en.json">
+			<LogicalName>LampPosts.en.json</LogicalName>
 		</EmbeddedResource>
-		<EmbeddedResource Include="DataFiles\TrafficLights.json">
-			<LogicalName>TrafficLights.json</LogicalName>
+		<EmbeddedResource Include="DataFiles\TrafficLights.en.json">
+			<LogicalName>TrafficLights.en.json</LogicalName>
 		</EmbeddedResource>
 	</ItemGroup>
 
