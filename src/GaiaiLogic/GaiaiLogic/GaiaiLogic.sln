@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.13.36105.23 d17.13
+VisualStudioVersion = 17.13.36105.23
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GaiaiLogic", "GaiaiLogic.csproj", "{2D5B6787-6E4F-4230-9AFA-CBD5DA007062}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GaiaiLogicTests", "..\GasiaiLogicTests\GaiaiLogicTests.csproj", "{1C7A8415-298A-4DFF-B3B1-7CBF1A303E2F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestConsole", "..\TestConsole\TestConsole.csproj", "{B6CB08FD-F1E3-4904-BB45-85428E814F74}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{1C7A8415-298A-4DFF-B3B1-7CBF1A303E2F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1C7A8415-298A-4DFF-B3B1-7CBF1A303E2F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1C7A8415-298A-4DFF-B3B1-7CBF1A303E2F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B6CB08FD-F1E3-4904-BB45-85428E814F74}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B6CB08FD-F1E3-4904-BB45-85428E814F74}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B6CB08FD-F1E3-4904-BB45-85428E814F74}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B6CB08FD-F1E3-4904-BB45-85428E814F74}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

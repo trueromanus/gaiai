@@ -10,14 +10,14 @@ namespace GaiaiLogic.Loaders {
 
         public DataLoader () => m_assembly = typeof ( DataLoader ).Assembly;
 
-        public void LoadStaticItems () {
-            var lampPosts = LoadStaticItems<LampPost> ( "LampPosts", "LampPosts.json" );
-            var trafficLights = LoadStaticItems<TrafficLight> ( "TrafficLights", "TrafficLights.json" );
-            var houses = LoadStaticItems<House> ( "Houses", "Houses.json" );
+        public void LoadStaticItems (string language) {
+            var lampPosts = LoadStaticItems<LampPost> ( "LampPosts", $"LampPosts-{language}.json" );
+            var trafficLights = LoadStaticItems<TrafficLight> ( "TrafficLights", $"TrafficLights-{language}.json" );
+            var houses = LoadStaticItems<House> ( "Houses", $"Houses-{language}.json" );
         }
 
         private IEnumerable<T> LoadStaticItems<T> ( string name, string fileName ) {
-            var items = JsonSerializer.Deserialize ( GetResourceStream ( "" ), typeof ( IEnumerable<T> ), LoaderJsonSerializerContext.Default );
+            var items = JsonSerializer.Deserialize ( GetResourceStream ( fileName ), typeof ( IEnumerable<T> ), LoaderJsonSerializerContext.Default );
             if ( items == null ) throw new Exception ( "Can't deserialize LampPosts!" );
 
             var result = items as IEnumerable<T>;

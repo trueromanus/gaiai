@@ -25,7 +25,6 @@
 
                     m_shiftTimer.RunIteration ();
                     m_city.ProcessEvents ( m_shiftTimer.CurrentTime );
-                    //TODO: in random case add obstacles, count must be depending from shift count
                 },
                 cancellationTokenSource.Token
             );
