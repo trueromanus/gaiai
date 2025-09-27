@@ -21,10 +21,12 @@
 
             Task.Run (
                 async () => {
-                    await Task.Delay ( 5000, cancellationTokenSource.Token );
+                    while (true) {
+                        await Task.Delay ( 5000, cancellationTokenSource.Token );
 
-                    m_shiftTimer.RunIteration ();
-                    m_city.ProcessEvents ( m_shiftTimer.CurrentTime );
+                        m_shiftTimer.RunIteration ();
+                        m_city.ProcessEvents ( m_shiftTimer.CurrentTime );
+                    }
                 },
                 cancellationTokenSource.Token
             );
