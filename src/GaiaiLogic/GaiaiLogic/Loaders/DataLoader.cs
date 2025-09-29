@@ -10,10 +10,16 @@ namespace GaiaiLogic.Loaders {
 
         public DataLoader () => m_assembly = typeof ( DataLoader ).Assembly;
 
-        public void LoadStaticItems (string language) {
+        public LoadedStaticItems LoadStaticItems ( string language ) {
             var lampPosts = LoadStaticItems<LampPost> ( "LampPosts", $"LampPosts-{language}.json" );
             var trafficLights = LoadStaticItems<TrafficLight> ( "TrafficLights", $"TrafficLights-{language}.json" );
             var houses = LoadStaticItems<House> ( "Houses", $"Houses-{language}.json" );
+
+            return new LoadedStaticItems {
+                LampPosts = lampPosts,
+                TrafficLights = trafficLights,
+                Houses = houses
+            };
         }
 
         private IEnumerable<T> LoadStaticItems<T> ( string name, string fileName ) {

@@ -1,4 +1,5 @@
 ﻿using GaiaiLogic.Interactive;
+using GaiaiLogic.Loaders;
 
 namespace GaiaiLogic {
 
@@ -20,7 +21,7 @@ namespace GaiaiLogic {
 
         public void SetEnableRandomized ( bool enabled ) => m_enableRandomized = enabled;
 
-        public void ProcessEvents ( TimeSpan time ) {
+        public void ProcessEvents ( TimeSpan time, TriggersHub triggersHub ) {
             var activeCitizens = m_citizens
                 .Where ( a => a.Active )
                 .ToArray ();
@@ -84,6 +85,19 @@ namespace GaiaiLogic {
         public void AddTrafficLight ( GameTrafficLight gameTrafficLight ) => m_trafficLight.Add ( gameTrafficLight );
 
         public void AddCitizen ( GameCitizen citizen ) => m_citizens.Add ( citizen );
+
+        public void FillData ( LoadedStaticItems loadedStaticItems ) {
+            m_citizens.Clear ();
+            m_trafficLight.Clear ();
+            m_lampPosts.Clear ();
+
+            foreach ( var item in loadedStaticItems.Houses ) m_houses.Add ( item.Name, new GameHouse ( item ) );
+        }
+
+        /// <summary>
+        /// Just for tests
+        /// </summary>
+        public IEnumerable<GameHouse> GetHouses () => m_houses.Values.ToList ();
 
     }
 

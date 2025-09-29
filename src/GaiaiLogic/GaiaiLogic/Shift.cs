@@ -1,4 +1,7 @@
-﻿namespace GaiaiLogic {
+﻿using GaiaiLogic.Interactive;
+using GaiaiLogic.Loaders;
+
+namespace GaiaiLogic {
 
     internal class Shift {
 
@@ -21,11 +24,11 @@
 
             Task.Run (
                 async () => {
-                    while (true) {
+                    while ( true ) {
                         await Task.Delay ( 5000, cancellationTokenSource.Token );
 
                         m_shiftTimer.RunIteration ();
-                        m_city.ProcessEvents ( m_shiftTimer.CurrentTime );
+                        m_city.ProcessEvents ( m_shiftTimer.CurrentTime, m_triggersHub );
                     }
                 },
                 cancellationTokenSource.Token
@@ -48,6 +51,17 @@
         public void Stop () {
             m_mainProcessCancellationTokenSource?.Cancel ();
         }
+
+        /// <summary>
+        /// Fill static items.
+        /// </summary>
+        /// <param name="items">Items.</param>
+        public void FillStaticItems ( LoadedStaticItems items ) => m_city.FillData ( items );
+
+        /// <summary>
+        /// For test purposes!!!
+        /// </summary>
+        public IEnumerable<GameHouse> GetHouses() => m_city.GetHouses ();
 
     }
 

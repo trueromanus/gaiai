@@ -13,7 +13,8 @@ namespace GaiaiLogic {
             m_triggersHub = new TriggersHub ();
             m_shift = new Shift ( m_triggersHub );
 
-            m_dataLoader.LoadStaticItems ( language );
+            var staticItems = m_dataLoader.LoadStaticItems ( language );
+            m_shift.FillStaticItems ( staticItems );
 
             return true;
         }
@@ -26,6 +27,18 @@ namespace GaiaiLogic {
         public static bool StopTimer () {
             m_shift?.Stop ();
             return true;
+        }
+
+        /// <summary>
+        /// Just for tests
+        /// </summary>
+        public static IEnumerable<(string shape, int x, int y, int rotate)> GetHouses () {
+            var result = new List<(string shape, int x, int y, int rotate)> ();
+            foreach ( var house in m_shift!.GetHouses () ) {
+                result.Add ( (house.Shape, house.Position.x, house.Position.y, house.Position.rotation) );
+            }
+
+            return result;
         }
 
     }
