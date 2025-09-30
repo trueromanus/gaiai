@@ -4,7 +4,7 @@ using SkiaSharp;
 GameLibrary.InitializeGame ( "en" );
 
 string outputPath = "C:/work/Repositories/output_image.png";
-CreateAndSaveImage ( outputPath, 400, 300, GameLibrary.GetHouses ().Take(1) );
+CreateAndSaveImage ( outputPath, 500, 400, GameLibrary.GetHouses ().Take(1) );
 
 /*GameLibrary.RunTimer ();
 
@@ -38,9 +38,10 @@ void CreateAndSaveImage ( string outputPath, int width, int height, IEnumerable<
             X = house.x,
             Y = house.y,
         };
-        canvas.Translate ( houseBitmap.Width, 0 );
-        canvas.RotateDegrees ( house.rotate, houseBitmap.Width / 2f, houseBitmap.Height / 2f );
-        canvas.DrawBitmap ( houseBitmap, point );
+        canvas.Translate ( house.x + houseBitmap.Width / 2f, house.y + houseBitmap.Height / 2f );
+        canvas.RotateDegrees ( house.rotate );
+        canvas.Translate ( -houseBitmap.Width / 2f, -houseBitmap.Height / 2f );
+        canvas.DrawBitmap ( houseBitmap, SKPoint.Empty );
 
         canvas.Restore ();
     }
