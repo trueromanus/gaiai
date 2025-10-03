@@ -4,17 +4,17 @@
     "district": "south",
     "shape": "simplerect",
     "x": 20,
-    "y": 300,
-    "rotation": -10,
+    "y": 320,
+    "rotation": -30,
     "fuses": []
   },
   {
     "name": "1429 Elm Street",
     "district": "south",
     "shape": "simplerect",
-    "x": 0,
-    "y": 0,
-    "rotation": 0,
+    "x": 40,
+    "y": 345,
+    "rotation": -25,
     "fuses": [
       {
         "width": 3,
@@ -30,18 +30,18 @@
     "name": "1430 Elm Street",
     "district": "south",
     "shape": "simplerect",
-    "x": 0,
-    "y": 0,
-    "rotation": 0,
+    "x": 150,
+    "y": 250,
+    "rotation": -30,
     "fuses": []
   },
   {
     "name": "1431 Elm Street",
     "district": "south",
     "shape": "simplerect",
-    "x": 0,
-    "y": 0,
-    "rotation": 0,
+    "x": 280,
+    "y": 240,
+    "rotation": -30,
     "fuses": []
   },
   {
