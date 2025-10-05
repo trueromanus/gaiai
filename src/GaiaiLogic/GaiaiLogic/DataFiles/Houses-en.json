@@ -48,9 +48,9 @@
     "name": "1432 Elm Street",
     "district": "south",
     "shape": "simplerect",
-    "x": 0,
-    "y": 0,
-    "rotation": 0,
+    "x": 250,
+    "y": 200,
+    "rotation": -30,
     "fuses": []
   },
   {
