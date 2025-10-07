@@ -57,27 +57,27 @@
     "name": "1415 L Street",
     "district": "south",
     "shape": "simplerect",
-    "x": 0,
-    "y": 0,
-    "rotation": 0,
+    "x": 50,
+    "y": 270,
+    "rotation": 60,
     "fuses": []
   },
   {
     "name": "1418 L Street",
     "district": "south",
     "shape": "simplerect",
-    "x": 0,
-    "y": 0,
-    "rotation": 0,
+    "x": 80,
+    "y": 253,
+    "rotation": 60,
     "fuses": []
   },
   {
     "name": "1420 L Street",
     "district": "south",
     "shape": "simplerect",
-    "x": 0,
-    "y": 0,
-    "rotation": 0,
+    "x": 60,
+    "y": 200,
+    "rotation": 65,
     "fuses": []
   },
 
