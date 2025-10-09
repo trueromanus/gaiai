@@ -85,27 +85,27 @@
     "name": "10 Burkittsville St",
     "district": "south",
     "shape": "simplerect",
-    "x": 0,
-    "y": 0,
-    "rotation": 0,
+    "x": 90,
+    "y": 340,
+    "rotation": 65,
     "fuses": []
   },
   {
     "name": "20 Burkittsville St",
     "district": "south",
     "shape": "simplerect",
-    "x": 0,
-    "y": 0,
-    "rotation": 0,
+    "x": 120,
+    "y": 320,
+    "rotation": 60,
     "fuses": []
   },
   {
     "name": "50 Burkittsville St",
     "district": "south",
     "shape": "simplerect",
-    "x": 0,
-    "y": 0,
-    "rotation": 0,
+    "x": 120,
+    "y": 360,
+    "rotation": 150,
     "fuses": []
   },
 
