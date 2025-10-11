@@ -23,7 +23,7 @@ namespace GaiaiLogicTests {
             city.AddCitizen ( citizen );
 
             // act
-            city.ProcessEvents ( new TimeSpan ( 10, 0, 0 ) );
+            city.ProcessEvents ( new TimeSpan ( 10, 0, 0 ), new TriggersHub() );
 
             // assert
             Assert.False ( citizen.InsideOriginalLocation () );
@@ -46,7 +46,7 @@ namespace GaiaiLogicTests {
             city.AddCitizen ( citizen );
 
             // act
-            city.ProcessEvents ( new TimeSpan ( 10, 0, 0 ) );
+            city.ProcessEvents ( new TimeSpan ( 10, 0, 0 ), new TriggersHub () );
 
             // assert
             Assert.True ( citizen.InsideOriginalLocation () );
@@ -75,7 +75,7 @@ namespace GaiaiLogicTests {
             city.AddTrafficLight ( trafficLight );
 
             // act
-            city.ProcessEvents ( new TimeSpan ( 10, 0, 0 ) );
+            city.ProcessEvents ( new TimeSpan ( 10, 0, 0 ), new TriggersHub () );
 
             // assert
             Assert.False ( citizen.InsideOriginalLocation () );
@@ -104,7 +104,7 @@ namespace GaiaiLogicTests {
             city.AddTrafficLight ( trafficLight );
 
             // act
-            city.ProcessEvents ( new TimeSpan ( 10, 0, 0 ) );
+            city.ProcessEvents ( new TimeSpan ( 10, 0, 0 ), new TriggersHub () );
 
             // assert
             Assert.False ( citizen.InsideOriginalLocation () );
@@ -148,7 +148,7 @@ namespace GaiaiLogicTests {
             city.AddTrafficLight ( trafficLight );
 
             // act
-            city.ProcessEvents ( new TimeSpan ( 10, 0, 0 ) );
+            city.ProcessEvents ( new TimeSpan ( 10, 0, 0 ), new TriggersHub () );
 
             // assert
             Assert.False ( citizen1.InsideOriginalLocation () );
@@ -193,7 +193,7 @@ namespace GaiaiLogicTests {
             city.AddTrafficLight ( trafficLight );
 
             // act
-            city.ProcessEvents ( new TimeSpan ( 10, 0, 0 ) );
+            city.ProcessEvents ( new TimeSpan ( 10, 0, 0 ), new TriggersHub () );
 
             // assert
             Assert.False ( citizen1.InsideOriginalLocation () );
@@ -238,7 +238,7 @@ namespace GaiaiLogicTests {
             city.AddTrafficLight ( trafficLight );
 
             // act
-            city.ProcessEvents ( new TimeSpan ( 10, 0, 0 ) );
+            city.ProcessEvents ( new TimeSpan ( 10, 0, 0 ), new TriggersHub () );
 
             // assert
             Assert.False ( citizen1.InsideOriginalLocation () );
@@ -283,7 +283,7 @@ namespace GaiaiLogicTests {
             city.AddTrafficLight ( trafficLight );
 
             // act
-            city.ProcessEvents ( new TimeSpan ( 10, 0, 0 ) );
+            city.ProcessEvents ( new TimeSpan ( 10, 0, 0 ), new TriggersHub () );
 
             // assert
             Assert.False ( citizen1.InsideOriginalLocation () );

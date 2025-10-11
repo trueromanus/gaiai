@@ -1,0 +1,14 @@
+version 1.0
+
+globaloption CsFileName GaiaiLogicLibrary.cs 
+globaloption CppFileName gaiailogic.h 
+
+globalmethod InitializeGame
+Language stringansi
+returnType boolean
+
+globalmethod RunTimer
+returnType boolean
+
+globalmethod StopTimer
+returnType boolean

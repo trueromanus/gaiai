@@ -1,0 +1,1 @@
+& "c:\Work\Repositories\flowbridger.exe" "generate" "library.schema" "-l=Embedded.Cpp.DynamicLinking:../../" "Embedded.CSharp.Import:."
