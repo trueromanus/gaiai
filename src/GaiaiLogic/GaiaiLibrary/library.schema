@@ -1,7 +1,7 @@
 version 1.0
 
-globaloption CsFileName GaiaiLogicLibrary.cs 
-globaloption CppFileName gaiailogic.h 
+globaloption CsFileName GaiaiLogicLibrary.cs
+globaloption CppFileName gaiailogic.h
 
 globalmethod InitializeGame
 Language stringansi

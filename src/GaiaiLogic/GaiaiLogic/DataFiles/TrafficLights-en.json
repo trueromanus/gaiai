@@ -2,6 +2,8 @@
   {
     "title": "Near highway",
     "district": "south",
+    "x": 0,
+    "y": 0,
     "affectedHouses": [
       "1428 Elm Street"
     ]
@@ -9,6 +11,8 @@
   {
     "title": "Turn onto Burkittsville St",
     "district": "south",
+    "x": 0,
+    "y": 0,
     "affectedHouses": [
       "1429 Elm Street",
       "10 Burkittsville St",
@@ -19,6 +23,8 @@
   {
     "title": "Turn onto L Street",
     "district": "south",
+    "x": 0,
+    "y": 0,
     "affectedHouses": [
       "1430 Elm Street",
       "1415 L Street",
@@ -29,6 +35,8 @@
   {
     "title": "Turn onto State Street",
     "district": "south",
+    "x": 0,
+    "y": 0,
     "affectedHouses": [
       "1431 Elm Street",
       "54 State Street",
@@ -41,6 +49,8 @@
   {
     "title": "Turn onto Tampico Avenue",
     "district": "south",
+    "x": 0,
+    "y": 0,
     "affectedHouses": [
       "1432 Elm Street",
       "20 Tampico Avenue",
@@ -59,6 +69,8 @@
   {
     "title": "Turn onto Big Tes DE Street",
     "district": "south",
+    "x": 0,
+    "y": 0,
     "affectedHouses": [
       "40 Big Tes DE Street",
       "41 Big Tes DE Street",
