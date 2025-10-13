@@ -4,7 +4,7 @@ using SkiaSharp;
 GameLibrary.InitializeGame ( "en" );
 
 string outputPath = "C:/work/Repositories/output_image.png";
-CreateAndSaveImage ( outputPath, 500, 400, GameLibrary.GetHouses ().Take(16) );
+CreateAndSaveImage ( outputPath, 500, 400, GameLibrary.GetHouses ().Take(21) );
 
 /*GameLibrary.RunTimer ();
 
