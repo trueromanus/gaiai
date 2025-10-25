@@ -67,8 +67,7 @@ namespace GaiaiLogicTests {
                 }
             );
             var trafficLight = new GameTrafficLight (
-                "trafficlight1",
-                ["house1"]
+                new TrafficLight { Title = "trafficlight1", AffectedHouses = ["house1"] }
             );
             trafficLight.ChangeState ( 0, 0, 0 );
             city.AddCitizen ( citizen );
@@ -97,8 +96,7 @@ namespace GaiaiLogicTests {
                 }
             );
             var trafficLight = new GameTrafficLight (
-                "trafficlight1",
-                ["house1"]
+                new TrafficLight { Title = "trafficlight1", AffectedHouses = ["house1"] }
             );
             city.AddCitizen ( citizen );
             city.AddTrafficLight ( trafficLight );
@@ -139,8 +137,7 @@ namespace GaiaiLogicTests {
                 }
             );
             var trafficLight = new GameTrafficLight (
-                "trafficlight1",
-                ["house1"]
+                new TrafficLight { Title = "trafficlight1", AffectedHouses = ["house1"] }
             );
             trafficLight.ChangeState ( 0, 0, 0 );
             city.AddCitizen ( citizen1 );
@@ -184,8 +181,7 @@ namespace GaiaiLogicTests {
                 }
             );
             var trafficLight = new GameTrafficLight (
-                "trafficlight1",
-                ["house1"]
+                new TrafficLight { Title = "trafficlight1", AffectedHouses = ["house1"] }
             );
             trafficLight.ChangeState ( 0, 0, 0 );
             city.AddCitizen ( citizen1 );
@@ -229,8 +225,7 @@ namespace GaiaiLogicTests {
                 }
             );
             var trafficLight = new GameTrafficLight (
-                "trafficlight1",
-                ["house1"]
+                new TrafficLight { Title = "trafficlight1", AffectedHouses = ["house1"] }
             );
             trafficLight.ChangeState ( 0, 0, 0 );
             city.AddCitizen ( citizen1 );
@@ -274,8 +269,7 @@ namespace GaiaiLogicTests {
                 }
             );
             var trafficLight = new GameTrafficLight (
-                "trafficlight1",
-                ["house1"]
+                new TrafficLight { Title = "trafficlight1", AffectedHouses = ["house1"] }
             );
             trafficLight.ChangeState ( 0, 0, 0 );
             city.AddCitizen ( citizen1 );

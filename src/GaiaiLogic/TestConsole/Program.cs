@@ -10,8 +10,6 @@ CreateAndSaveImage ( outputPath, 500, 400, GameLibrary.GetHouses ().Take ( 27 ) 
 
 Thread.Sleep ( 100000 );*/
 
-
-
 SKBitmap LoadShape ( string shape, Dictionary<string, SKBitmap> shapeCache ) {
     if ( shapeCache.ContainsKey ( shape ) ) return shapeCache[shape];
 

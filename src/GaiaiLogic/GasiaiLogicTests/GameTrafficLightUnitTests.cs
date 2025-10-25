@@ -1,4 +1,5 @@
 ﻿using GaiaiLogic.Interactive;
+using GaiaiLogic.Models;
 
 namespace GaiaiLogicTests {
 
@@ -9,7 +10,7 @@ namespace GaiaiLogicTests {
 
             // arrange
             // act
-            var trafficLight = new GameTrafficLight ( "arg1", new List<string> () );
+            var trafficLight = new GameTrafficLight ( new TrafficLight { Title = "arg1", AffectedHouses = [] } );
 
             //assert
             Assert.Equal ( "arg1", trafficLight.Title );
@@ -21,7 +22,7 @@ namespace GaiaiLogicTests {
         public void ChangeState_Completed_Case1 () {
 
             // arrange
-            var trafficLight = new GameTrafficLight ( "arg1", new List<string> () );
+            var trafficLight = new GameTrafficLight ( new TrafficLight { Title = "arg1", AffectedHouses = [] } );
 
             // act
             trafficLight.ChangeState ( 10, 10, 10 );
@@ -35,7 +36,7 @@ namespace GaiaiLogicTests {
         public void ParseContent_Completed_Case1 () {
 
             // arrange
-            var trafficLight = new GameTrafficLight ( "arg1", new List<string> () );
+            var trafficLight = new GameTrafficLight ( new TrafficLight { Title = "arg1", AffectedHouses = [] } );
 
             // act
             trafficLight.ParseContent (
@@ -54,7 +55,7 @@ namespace GaiaiLogicTests {
         public void ParseContent_Completed_Case2 () {
 
             // arrange
-            var trafficLight = new GameTrafficLight ( "arg1", new List<string> () );
+            var trafficLight = new GameTrafficLight ( new TrafficLight { Title = "arg1", AffectedHouses = [] } );
 
             // act
             trafficLight.ParseContent (
@@ -73,7 +74,7 @@ namespace GaiaiLogicTests {
         public void ParseContent_Completed_Case3 () {
 
             // arrange
-            var trafficLight = new GameTrafficLight ( "arg1", new List<string> () );
+            var trafficLight = new GameTrafficLight ( new TrafficLight { Title = "arg1", AffectedHouses = [] } );
 
             // act
             trafficLight.ParseContent (
@@ -91,7 +92,7 @@ namespace GaiaiLogicTests {
         public void ParseContent_Completed_Case4 () {
 
             // arrange
-            var trafficLight = new GameTrafficLight ( "arg1", new List<string> () );
+            var trafficLight = new GameTrafficLight ( new TrafficLight { Title = "arg1", AffectedHouses = [] } );
 
             // act
             trafficLight.ParseContent (
