@@ -1,51 +1,41 @@
 ﻿using GaiaiLogic;
-using SkiaSharp;
+using Raylib_cs;
+using System.Numerics;
 
-GameLibrary.InitializeGame ( "en" );
+namespace RayLibExperiment {
 
-string outputPath = "C:/work/Repositories/output_image.png";
-CreateAndSaveImage ( outputPath, 500, 400, GameLibrary.GetHouses ().Take ( 27 ) );
+    public static class Program {
 
-/*GameLibrary.RunTimer ();
+        [STAThread]
+        public static void Main () {
+            GameLibrary.InitializeGame ( "en" );
 
-Thread.Sleep ( 100000 );*/
+            Raylib.InitWindow ( 800, 480, "Hello World" );
+            Raylib.SetTargetFPS ( 60 );
 
-SKBitmap LoadShape ( string shape, Dictionary<string, SKBitmap> shapeCache ) {
-    if ( shapeCache.ContainsKey ( shape ) ) return shapeCache[shape];
+            var image = Raylib.LoadImage ( $"C:/work/Repositories/HackingGame/game/gaiai/src/Images/houseshape.simplerect.png" );
+            Texture2D texture = Raylib.LoadTextureFromImage ( image );
+            Raylib.UnloadImage ( image );
+            var houses = GameLibrary.GetHouses ().Take ( 27 );
 
-    using var stream = File.OpenRead ( $"C:/work/Repositories/HackingGame/game/gaiai/src/Images/houseshape.{shape}.png" );
-    var originalBitmap = SKBitmap.Decode ( stream );
-    shapeCache.Add ( shape, originalBitmap );
-    return originalBitmap;
-}
+            while ( !Raylib.WindowShouldClose () ) {
+                Raylib.BeginDrawing ();
+                Raylib.ClearBackground ( Color.White );
 
-void CreateAndSaveImage ( string outputPath, int width, int height, IEnumerable<(string shape, int x, int y, int rotate)> houses ) {
-    Dictionary<string, SKBitmap> shapeCache = new Dictionary<string, SKBitmap> ();
+                foreach ( var house in houses ) {
+                    Rectangle sourceRec = new Rectangle( 0.0f, 0.0f, texture.Width, texture.Height );
+                    Rectangle destRec = new Rectangle ( house.x, house.y, texture.Width, texture.Height );
+                    Vector2 origin = new Vector2( destRec.Width / 2.0f, destRec.Height / 2.0f );
 
-    using var bitmap = new SKBitmap ( new SKImageInfo ( width, height, SKColorType.Rgba8888, SKAlphaType.Premul ) );
+                    Raylib.DrawTexturePro ( texture, sourceRec, destRec, origin, house.rotate, Color.White );
+                }
 
-    using var canvas = new SKCanvas ( bitmap );
-    canvas.Clear ( SKColors.White );
+                Raylib.EndDrawing ();
+            }
 
-    foreach ( var house in houses ) {
-        var houseBitmap = LoadShape ( house.shape, shapeCache );
+            Raylib.CloseWindow ();
+        }
 
-        canvas.Save ();
-
-        var point = new SKPoint {
-            X = house.x,
-            Y = house.y,
-        };
-        canvas.Translate ( house.x + houseBitmap.Width / 2f, house.y + houseBitmap.Height / 2f );
-        canvas.RotateDegrees ( house.rotate );
-        canvas.Translate ( -houseBitmap.Width / 2f, -houseBitmap.Height / 2f );
-        canvas.DrawBitmap ( houseBitmap, SKPoint.Empty );
-
-        canvas.Restore ();
     }
 
-    using var image = SKImage.FromBitmap ( bitmap );
-    using var data = image.Encode ( SKEncodedImageFormat.Png, 100 ); // Encode as PNG with 100% quality
-    using var stream = File.OpenWrite ( outputPath );
-    data.SaveTo ( stream );
 }
