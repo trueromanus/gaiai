@@ -16,7 +16,7 @@ namespace RayLibExperiment {
             var image = Raylib.LoadImage ( $"C:/work/Repositories/HackingGame/game/gaiai/src/Images/houseshape.simplerect.png" );
             Texture2D texture = Raylib.LoadTextureFromImage ( image );
             Raylib.UnloadImage ( image );
-            var houses = GameLibrary.GetHouses ().Take ( 27 );
+            var houses = GameLibrary.GetHouses ();
 
             while ( !Raylib.WindowShouldClose () ) {
                 Raylib.BeginDrawing ();
