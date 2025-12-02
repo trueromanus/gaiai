@@ -92,12 +92,15 @@ namespace GaiaiLogic {
             m_lampPosts.Clear ();
 
             foreach ( var item in loadedStaticItems.Houses ) m_houses.Add ( item.Name, new GameHouse ( item ) );
+            foreach ( var item in loadedStaticItems.TrafficLights ) m_trafficLight.Add ( new GameTrafficLight ( item ) );
         }
 
         /// <summary>
         /// Just for tests
         /// </summary>
         public IEnumerable<GameHouse> GetHouses () => m_houses.Values.ToList ();
+
+        public IEnumerable<GameTrafficLight> GetTrafficLights () => m_trafficLight.ToList ();
 
     }
 

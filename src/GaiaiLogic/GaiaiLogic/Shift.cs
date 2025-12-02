@@ -63,6 +63,8 @@ namespace GaiaiLogic {
         /// </summary>
         public IEnumerable<GameHouse> GetHouses() => m_city.GetHouses ();
 
+        public IEnumerable<GameTrafficLight> GetTrafficLights () => m_city.GetTrafficLights ();
+
     }
 
 }

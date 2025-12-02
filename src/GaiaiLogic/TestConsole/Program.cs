@@ -17,17 +17,22 @@ namespace RayLibExperiment {
             Texture2D texture = Raylib.LoadTextureFromImage ( image );
             Raylib.UnloadImage ( image );
             var houses = GameLibrary.GetHouses ();
+            var trafficLights = GameLibrary.GetTrafficeLights ().Take ( 1 ).ToList ();
 
             while ( !Raylib.WindowShouldClose () ) {
                 Raylib.BeginDrawing ();
                 Raylib.ClearBackground ( Color.White );
 
                 foreach ( var house in houses ) {
-                    Rectangle sourceRec = new Rectangle( 0.0f, 0.0f, texture.Width, texture.Height );
+                    Rectangle sourceRec = new Rectangle ( 0.0f, 0.0f, texture.Width, texture.Height );
                     Rectangle destRec = new Rectangle ( house.x, house.y, texture.Width, texture.Height );
-                    Vector2 origin = new Vector2( destRec.Width / 2.0f, destRec.Height / 2.0f );
+                    Vector2 origin = new Vector2 ( destRec.Width / 2.0f, destRec.Height / 2.0f );
 
                     Raylib.DrawTexturePro ( texture, sourceRec, destRec, origin, house.rotate, Color.White );
+                }
+
+                foreach ( var trafficLight in trafficLights ) {
+                    Raylib.DrawCircle ( trafficLight.x, trafficLight.y, 5, Color.Black );
                 }
 
                 Raylib.EndDrawing ();

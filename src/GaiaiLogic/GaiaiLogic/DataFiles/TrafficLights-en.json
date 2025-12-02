@@ -2,8 +2,8 @@
   {
     "title": "Near highway",
     "district": "south",
-    "x": 0,
-    "y": 0,
+    "x": 25,
+    "y": 350,
     "affectedHouses": [
       "1428 Elm Street"
     ]

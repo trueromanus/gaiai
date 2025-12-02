@@ -41,6 +41,15 @@ namespace GaiaiLogic {
             return result;
         }
 
+        public static IEnumerable<(string shape, int x, int y)> GetTrafficeLights () {
+            var result = new List<(string shape, int x, int y)> ();
+            foreach ( var house in m_shift!.GetTrafficLights () ) {
+                result.Add ( ("", house.Position.x, house.Position.y) );
+            }
+
+            return result;
+        }
+
     }
 
 }
