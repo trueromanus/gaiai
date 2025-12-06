@@ -1,4 +1,5 @@
 ﻿using GaiaiLogic.Loaders;
+using System.Numerics;
 
 namespace GaiaiLogic {
 
@@ -48,6 +49,11 @@ namespace GaiaiLogic {
             }
 
             return result;
+        }
+
+        public static IEnumerable<(Vector2 start, Vector2 finish)> GetRoads ( string district ) {
+            var roads = m_shift!.GetCity ().GetRoadsForDistrict ( district );
+            return roads.Select ( a => (a.Start, a.Finish) );
         }
 
     }

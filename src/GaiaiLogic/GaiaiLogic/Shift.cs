@@ -65,6 +65,8 @@ namespace GaiaiLogic {
 
         public IEnumerable<GameTrafficLight> GetTrafficLights () => m_city.GetTrafficLights ();
 
+        public City GetCity() => m_city;
+
     }
 
 }

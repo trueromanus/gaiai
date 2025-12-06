@@ -14,11 +14,13 @@ namespace GaiaiLogic.Loaders {
             var lampPosts = LoadStaticItems<LampPost> ( "LampPosts", $"LampPosts-{language}.json" );
             var trafficLights = LoadStaticItems<TrafficLight> ( "TrafficLights", $"TrafficLights-{language}.json" );
             var houses = LoadStaticItems<House> ( "Houses", $"Houses-{language}.json" );
+            var roads = LoadStaticItems<Road> ( "Roads", $"Roads-{language}.json" );
 
             return new LoadedStaticItems {
                 LampPosts = lampPosts,
                 TrafficLights = trafficLights,
-                Houses = houses
+                Houses = houses,
+                Roads = roads,
             };
         }
 

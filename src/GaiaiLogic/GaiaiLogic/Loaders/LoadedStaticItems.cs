@@ -10,6 +10,8 @@ namespace GaiaiLogic.Loaders {
 
         public IEnumerable<House> Houses { get; init; } = Enumerable.Empty<House> ();
 
+        public IEnumerable<Road> Roads { get; init; } = Enumerable.Empty<Road> ();
+
     }
 
 }

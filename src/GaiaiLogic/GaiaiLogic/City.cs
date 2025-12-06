@@ -13,6 +13,8 @@ namespace GaiaiLogic {
 
         private List<GameLampPost> m_lampPosts = [];
 
+        private ILookup<string, GameRoad>? m_roads = null;
+
         private Random m_randomCollisions = new Random ( (int) ( DateTime.UtcNow - new DateTime ( 1970, 1, 1 ) ).TotalSeconds );
 
         private bool m_enableRandomized = true;
@@ -93,6 +95,9 @@ namespace GaiaiLogic {
 
             foreach ( var item in loadedStaticItems.Houses ) m_houses.Add ( item.Name, new GameHouse ( item ) );
             foreach ( var item in loadedStaticItems.TrafficLights ) m_trafficLight.Add ( new GameTrafficLight ( item ) );
+            m_roads = loadedStaticItems.Roads
+                .Select ( a => new { a.District, model = new GameRoad ( a ) } )
+                .ToLookup ( a => a.District, a => a.model );
         }
 
         /// <summary>
@@ -101,6 +106,13 @@ namespace GaiaiLogic {
         public IEnumerable<GameHouse> GetHouses () => m_houses.Values.ToList ();
 
         public IEnumerable<GameTrafficLight> GetTrafficLights () => m_trafficLight.ToList ();
+
+        public IEnumerable<GameRoad> GetRoadsForDistrict ( string district ) {
+            if ( m_roads == null ) return Enumerable.Empty<GameRoad> ();
+            if ( !m_roads.Contains ( district ) ) return Enumerable.Empty<GameRoad> ();
+
+            return m_roads[district];
+        }
 
     }
 
