@@ -113,7 +113,7 @@
     "name": "54 State Street",
     "district": "south",
     "shape": "simplerect",
-    "x": 210,
+    "x": 205,
     "y": 280,
     "rotation": 60,
     "fuses": []
