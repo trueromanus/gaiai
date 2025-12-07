@@ -14,6 +14,21 @@
     "y1": 200,
     "x2": 85,
     "y2": 305
+  },
+  {
+    "title": "Burkittsville St",
+    "district": "south",
+    "x1": 85,
+    "y1": 305,
+    "x2": 110,
+    "y2": 350
+  },
+  {
+    "title": "State Street",
+    "district": "south",
+    "x1": 200,
+    "y1": 248,
+    "x2": 255,
+    "y2": 340
   }
-
 ]
