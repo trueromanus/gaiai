@@ -11,8 +11,8 @@
   {
     "title": "Turn onto Burkittsville St",
     "district": "south",
-    "x": 0,
-    "y": 0,
+    "x": 90,
+    "y": 315,
     "affectedHouses": [
       "1429 Elm Street",
       "10 Burkittsville St",
@@ -23,8 +23,8 @@
   {
     "title": "Turn onto L Street",
     "district": "south",
-    "x": 0,
-    "y": 0,
+    "x": 80,
+    "y": 295,
     "affectedHouses": [
       "1430 Elm Street",
       "1415 L Street",

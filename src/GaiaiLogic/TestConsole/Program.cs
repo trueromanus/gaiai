@@ -17,7 +17,7 @@ namespace RayLibExperiment {
             Texture2D texture = Raylib.LoadTextureFromImage ( image );
             Raylib.UnloadImage ( image );
             var houses = GameLibrary.GetHouses ();
-            var trafficLights = GameLibrary.GetTrafficeLights().Take ( 1 ).ToList ();
+            var trafficLights = GameLibrary.GetTrafficeLights().Take ( 3 ).ToList ();
             var roads = GameLibrary.GetRoads ( "south" );
 
             while ( !Raylib.WindowShouldClose () ) {
@@ -32,12 +32,12 @@ namespace RayLibExperiment {
                     Raylib.DrawTexturePro ( texture, sourceRec, destRec, origin, house.rotate, Color.White );
                 }
 
-                foreach ( var trafficLight in trafficLights ) {
-                    Raylib.DrawCircle ( trafficLight.x, trafficLight.y, 4, Color.Black );
-                }
-
                 foreach ( var road in roads ) {
                     Raylib.DrawLineEx ( road.start, road.finish, 2, Color.Orange );
+                }
+
+                foreach ( var trafficLight in trafficLights ) {
+                    Raylib.DrawCircle ( trafficLight.x, trafficLight.y, 4, Color.Black );
                 }
 
                 Raylib.EndDrawing ();
