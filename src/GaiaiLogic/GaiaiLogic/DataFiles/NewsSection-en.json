@@ -1,0 +1,54 @@
+[
+  {
+    "title": "People",
+    "id": "people",
+    "subsections": [
+      {
+        "id": "citycitizen",
+        "title": "City citizens"
+      },
+      {
+        "id": "peoplelocalnews",
+        "title": "Local news"
+      }
+    ]
+  },
+  {
+    "title": "Letters",
+    "id": "letters",
+    "subsections": [
+      {
+        "id": "lettercitycitizen",
+        "title": "City citizens"
+      },
+      {
+        "id": "letterlocalnews",
+        "title": "Local news"
+      }
+    ]
+  },
+  {
+    "title": "Law",
+    "id": "law",
+    "subsections": [
+      {
+        "id": "lawincidents",
+        "title": "Incidents in the city"
+      },
+      {
+        "id": "lawcriminals",
+        "title": "Criminals"
+      }
+    ]
+  },
+  {
+    "title": "Medicine",
+    "id": "medicine",
+    "subsections": [
+      {
+        "id": "medicinelocalnews",
+        "title": "Local news"
+      }
+    ]
+  }
+]

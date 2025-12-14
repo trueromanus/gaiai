@@ -1,0 +1,21 @@
+[
+  {
+    "identifier": "onboardinginbox1",
+    "from": "stuff@temple-house.gov.th",
+    "to": "Everybody",
+    "subject": "Warm Welcome Our New System Operator!",
+    "hasAttachments": false,
+    "group": "inbox",
+    "content": "I am delighted to extend a warm welcome to newcomer as you embark on your journey with our team as a System Operator.\nCongratulations on your new position! Your expertise and\n skills will undoubtedly make a valuable contribution to our team, and we are thrilled to have you on board.\nAs newcomer settle into new role, please know that myself and\n the entire team are here to support on every step of the way.\nWe believe that experience and dedication, we will excel and newcomer be an integral part of our organization.\nI look forward to seeing newcomer contributions and witnessing his growth within our company. Welcome to the team!\n\nWarm regards,\nMayor of the city\nMr. Norton",
+    "openTrigger": "welcomeemailopened"
+  },
+  {
+    "identifier": "onboardinginbox2",
+    "from": "cooperagency@realtor.th",
+    "to": "et@temple-house.gov",
+    "subject": "New apartment for rent!",
+    "hasAttachments": false,
+    "group": "inbox",
+    "content": "At 1428 Elm Street, expect the best from every aspect of your rental experience. Our buildings are impeccably clean and environmentally efficient. We are consistently raising standards to elevate rental living to new heights of service, quality and innovation.\n\nBest regards,\nFounder of Cooper Agency\nDale Cooper"
+  }
+]
