@@ -1,0 +1,98 @@
+<html>
+<head>
+  <style>
+    .horizontal-line {
+		height: 0px;
+		
+		:first-child {
+			height: 0px;
+			border-top-width: 1px;
+			border-right-width: 0;
+			border-left-width: 0;
+			border-bottom-width: 0;
+			border-style: solid;
+			border-top-color: #85858D;			
+		}
+		:last-child {
+			height: 0px;
+			border-top-width: 1px;
+			border-right-width: 0;
+			border-left-width: 0;
+			border-bottom-width: 0;
+			border-style: solid;
+			border-color: #FAF9FF;		
+		}
+    }
+	.panel {
+		border-width: 1px;
+		border-style: solid;
+		border-top-color: #7F787F;
+		border-bottom-color: white;
+		border-right-color: white;
+		border-left-color: #7F787F;
+	}
+	.reverted-panel {
+		border-width: 1px;
+		border-style: solid;
+		border-top-color: white;
+		border-bottom-color: #7F787F;
+		border-right-color: #7F787F;
+		border-left-color: white;
+	}
+	.window-panel {
+		background-color: #BFB8BF;
+		border-width: 1px;
+		border-style: solid;
+		border-top-color: #C3C3C3;
+		border-left-color: #C3C3C3;
+		border-right-color: black;
+		border-bottom-color: black;
+		
+		> div {
+			width: calc(100% - 2px);
+			height: calc(100% - 2px);
+			border-width: 1px;
+			border-style: solid;
+			border-top-color: white;
+			border-left-color: white;
+			border-right-color: #404040;
+			border-bottom-color: #404040;
+		}
+	}
+	.window-header {
+		background-color: #00007F;
+		color: white;
+		margin-left: 1px;
+		margin-top: 1px;
+		margin-right: 1px;
+	}
+  </style>
+</head>
+<body>
+<div style="margin-top: 10px;margin-left: 10px; height: 100px; background-color: lightgray;">
+
+<!-- Horizontal line divider -->
+<div style="padding-top: 10px;" class="horizontal-line"><div></div><div></div></div>
+
+<!-- Panel -->
+<div style="margin: 10px;" class="panel">Panel content</div>
+
+<!-- Reverted Panel -->
+<div style="display: flex; flex-direction: row;">
+	<div style="width: 1px; height: 25px;" class="reverted-panel"></div>
+	<div style="margin-left: 1px; width: 1px; height: 25px;" class="reverted-panel"></div>
+</div>
+
+<!-- Window Panel -->
+<div style="margin: 10px; height: 100px;" class="window-panel">
+	<div>
+		<div class="window-header" style="height: 20px;">
+			<span style="margin-left: 4px;">Header</span>
+		</div>
+		Content
+	</div>
+</div>
+
+</div>
+</body>
+</html>

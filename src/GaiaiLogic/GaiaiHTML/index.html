@@ -1,0 +1,58 @@
+<html>
+<style>
+   .mover { overflow: hidden; display: block; width: 100%; height: 300px; position: relative; } 
+   .move { position: absolute; width: 150px; height: 150px; left: 20px; top: 20px; background-color: #333; } 
+ </style> 
+ <div class="mover"> 
+   <div class="move"></div> 
+ </div> 
+ <script> 
+   let moverclass = { 
+     __init: function () { 
+       let elem = document.querySelector('.mover'), 
+           div = document.querySelector('.move'), 
+           oldX = 0, 
+           oldY = 0, 
+           mousedown = false; 
+  
+       function start(e) { 
+         mousedown = true; 
+         let clientX = e.clientX || e.touches[0].clientX; 
+         let clientY = e.clientY || e.touches[0].clientY; 
+         oldX = clientX - div.offsetLeft; 
+         oldY = clientY - div.offsetTop; 
+       } 
+        
+       function end(e) { 
+         mousedown = false; 
+       } 
+        
+       function move(e) { 
+         if (mousedown) { 
+           let clientX = e.clientX || e.touches[0].clientX; 
+           let clientY = e.clientY || e.touches[0].clientY; 
+           let newX = clientX - oldX; 
+           let newY = clientY - oldY; 
+           if (newX >= 0 && newX <= (elem.offsetWidth - div.offsetWidth)) { 
+             div.style.left = newX + 'px'; 
+           } 
+           if (newY >= 0 && newY <= (elem.offsetHeight - div.offsetHeight)) { 
+             div.style.top = newY + 'px'; 
+           } 
+         } 
+       } 
+  
+       div.addEventListener('mousedown', start, false); 
+       div.addEventListener('touchstart', start, false); 
+        
+       window.addEventListener('mouseup', end, false); 
+       window.addEventListener('touchend', end, false); 
+        
+       elem.addEventListener('mousemove', move, false); 
+       elem.addEventListener('touchmove', move, false); 
+     } 
+   }; 
+  
+   moverclass.__init(); 
+ </script> 
+</html>
