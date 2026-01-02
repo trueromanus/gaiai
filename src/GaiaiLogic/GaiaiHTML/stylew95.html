@@ -23,6 +23,32 @@
 			border-color: #FAF9FF;		
 		}
     }
+    .vertical-line {
+		width: 0px;
+		display: flex;
+		flex-direction: row;
+
+		:first-child {
+			width: 0px;
+			height: 100%;
+			border-top-width: 0;
+			border-right-width: 0;
+			border-left-width: 1px;
+			border-bottom-width: 0;
+			border-style: solid;
+			border-top-color: #85858D;
+		}
+		:last-child {
+			width: 0px;
+			height: 100%;
+			border-top-width: 0;
+			border-right-width: 0;
+			border-left-width: 1px;
+			border-bottom-width: 0;
+			border-style: solid;
+			border-color: #FAF9FF;
+		}
+    }
 	.panel {
 		border-width: 1px;
 		border-style: solid;
@@ -59,8 +85,15 @@
 			border-bottom-color: #404040;
 		}
 	}
-	.window-header {
+	.window-active-header {
 		background-color: #00007F;
+		color: white;
+		margin-left: 1px;
+		margin-top: 1px;
+		margin-right: 1px;
+	}
+	.window-notactive-header {
+		background-color: #7F787F;
 		color: white;
 		margin-left: 1px;
 		margin-top: 1px;
@@ -86,10 +119,13 @@
 <!-- Window Panel -->
 <div style="margin: 10px; height: 100px;" class="window-panel">
 	<div>
-		<div class="window-header" style="height: 20px;">
+		<div class="window-active-header" style="height: 20px;">
 			<span style="margin-left: 4px;">Header</span>
 		</div>
-		Content
+		
+		<!-- Horizontal line divider -->
+		<div style="padding-left: 10px; height: 30px;" class="vertical-line"><div></div><div></div></div>		
+		
 	</div>
 </div>
 
