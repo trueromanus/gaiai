@@ -1,103 +1,31 @@
 <html>
 <head>
+  <link rel="stylesheet" href="w95style.css">
   <style>
-    .horizontal-line {
-		height: 0px;
-		
-		:first-child {
-			height: 0px;
-			border-top-width: 1px;
-			border-right-width: 0;
-			border-left-width: 0;
-			border-bottom-width: 0;
-			border-style: solid;
-			border-top-color: #85858D;			
-		}
-		:last-child {
-			height: 0px;
-			border-top-width: 1px;
-			border-right-width: 0;
-			border-left-width: 0;
-			border-bottom-width: 0;
-			border-style: solid;
-			border-color: #FAF9FF;		
-		}
-    }
-    .vertical-line {
-		width: 0px;
-		display: flex;
-		flex-direction: row;
-
-		:first-child {
-			width: 0px;
-			height: 100%;
-			border-top-width: 0;
-			border-right-width: 0;
-			border-left-width: 1px;
-			border-bottom-width: 0;
-			border-style: solid;
-			border-top-color: #85858D;
-		}
-		:last-child {
-			width: 0px;
-			height: 100%;
-			border-top-width: 0;
-			border-right-width: 0;
-			border-left-width: 1px;
-			border-bottom-width: 0;
-			border-style: solid;
-			border-color: #FAF9FF;
-		}
-    }
-	.panel {
-		border-width: 1px;
-		border-style: solid;
-		border-top-color: #7F787F;
-		border-bottom-color: white;
-		border-right-color: white;
-		border-left-color: #7F787F;
-	}
-	.reverted-panel {
-		border-width: 1px;
-		border-style: solid;
-		border-top-color: white;
-		border-bottom-color: #7F787F;
-		border-right-color: #7F787F;
-		border-left-color: white;
-	}
-	.window-panel {
+	.menu-outer-panel {
 		background-color: #BFB8BF;
 		border-width: 1px;
 		border-style: solid;
-		border-top-color: #C3C3C3;
-		border-left-color: #C3C3C3;
+		border-top-color: #C6DDDC;
+		border-left-color: #C6DDDC;
 		border-right-color: black;
 		border-bottom-color: black;
-		
-		> div {
-			width: calc(100% - 2px);
-			height: calc(100% - 2px);
-			border-width: 1px;
-			border-style: solid;
-			border-top-color: white;
-			border-left-color: white;
-			border-right-color: #404040;
-			border-bottom-color: #404040;
-		}
 	}
-	.window-active-header {
-		background-color: #00007F;
-		color: white;
-		margin-left: 1px;
-		margin-top: 1px;
-		margin-right: 1px;
+	.menu-middle-panel {
+		border-width: 1px;
+		border-style: solid;
+		border-top-color: white;
+		border-left-color: white;
+		border-right-color: black;
+		border-bottom-color: black;
 	}
-	.window-notactive-header {
-		background-color: #7F787F;
-		color: white;
-		margin-left: 1px;
-		margin-top: 1px;
-		margin-right: 1px;
+	.menu-inner-panel {
+		border-width: 1px;
+		border-style: solid;
+		border-top-color: #BFB8BF;
+		border-left-color: #BFB8BF;
+		border-right-color: #7B7B7B;
+		border-bottom-color: #7B7B7B;
 	}
   </style>
 </head>
@@ -126,6 +54,18 @@
 		<!-- Horizontal line divider -->
 		<div style="padding-left: 10px; height: 30px;" class="vertical-line"><div></div><div></div></div>		
 		
+	</div>
+</div>
+
+<!-- menu panel -->
+<div style="margin: 10px;" class="menu-outer-panel">
+	<div class="menu-middle-panel">
+		<div class="menu-inner-panel">
+			Line1<br>
+			Line2<br>
+			Line3<br>
+			Line4
+		</div>
 	</div>
 </div>
 
