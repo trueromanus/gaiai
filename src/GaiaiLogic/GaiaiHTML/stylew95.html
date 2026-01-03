@@ -2,30 +2,24 @@
 <head>
   <link rel="stylesheet" href="w95style.css">
   <style>
-	.menu-outer-panel {
+	.button-enabled-panel {
 		background-color: #BFB8BF;
 		border-width: 1px;
 		border-style: solid;
-		border-top-color: #C6DDDC;
-		border-left-color: #C6DDDC;
+		border-top-color: #FFF8FF;
+		border-left-color: #FFF8FF;
 		border-right-color: black;
 		border-bottom-color: black;
-	}
-	.menu-middle-panel {
-		border-width: 1px;
-		border-style: solid;
-		border-top-color: white;
-		border-left-color: white;
-		border-right-color: black;
-		border-bottom-color: black;
-	}
-	.menu-inner-panel {
-		border-width: 1px;
-		border-style: solid;
-		border-top-color: #BFB8BF;
-		border-left-color: #BFB8BF;
-		border-right-color: #7B7B7B;
-		border-bottom-color: #7B7B7B;
+		
+		> div {
+			border-top-width: 0;
+			border-left-width: 0;
+			border-right-width: 1px;
+			border-bottom-width: 1px;
+			border-style: solid;
+			border-right-color: #7B7B7B;
+			border-bottom-color: #7B7B7B;
+		}
 	}
   </style>
 </head>
@@ -66,6 +60,16 @@
 			Line3<br>
 			Line4
 		</div>
+	</div>
+</div>
+
+<!-- button active panel -->
+<div style="margin: 10px;" class="button-enabled-panel">
+	<div>
+		Line1<br>
+		Line2<br>
+		Line3<br>
+		Line4
 	</div>
 </div>
 
