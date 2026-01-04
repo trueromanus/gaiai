@@ -49,6 +49,29 @@
 	}
 }
 
+.dash-rectangle {
+	border-width: 1px;
+	border-style: dashed;
+	border-color: black;
+}
+
+.horizontal-dash-line {
+	border-top-width: 1px;
+	border-right-width: 0;
+	border-left-width: 0;
+	border-bottom-width: 0;
+	border-style: dashed;
+	border-color: black;
+}
+.vertical-dash-line {
+	border-top-width: 0;
+	border-right-width: 0;
+	border-left-width: 1px;
+	border-bottom-width: 0;
+	border-style: dashed;
+	border-color: black;
+}
+
 /* Panels */
 
 .panel {
@@ -87,6 +110,76 @@
 		border-right-color: #404040;
 		border-bottom-color: #404040;
 	}
+}
+
+.menu-outer-panel {
+	background-color: #BFB8BF;
+	border-width: 1px;
+	border-style: solid;
+	border-top-color: #C6DDDC;
+	border-left-color: #C6DDDC;
+	border-right-color: black;
+	border-bottom-color: black;
+}
+.menu-middle-panel {
+	border-width: 1px;
+	border-style: solid;
+	border-top-color: white;
+	border-left-color: white;
+	border-right-color: black;
+	border-bottom-color: black;
+}
+.menu-inner-panel {
+	border-width: 1px;
+	border-style: solid;
+	border-top-color: #BFB8BF;
+	border-left-color: #BFB8BF;
+	border-right-color: #7B7B7B;
+	border-bottom-color: #7B7B7B;
+}
+
+.button-idle-panel {
+	background-color: #BFB8BF;
+	border-width: 1px;
+	border-style: solid;
+	border-top-color: #FFF8FF;
+	border-left-color: #FFF8FF;
+	border-right-color: black;
+	border-bottom-color: black;
+	
+	> div {
+		border-top-width: 0;
+		border-left-width: 0;
+		border-right-width: 1px;
+		border-bottom-width: 1px;
+		border-style: solid;
+		border-right-color: #7B7B7B;
+		border-bottom-color: #7B7B7B;
+	}
+}
+.button-pressed-panel {
+	background-color: #BFB8BF;
+	border-width: 1px;
+	border-style: solid;
+	border-top-color: black;
+	border-left-color: black;
+	border-right-color: white;
+	border-bottom-color: white;
+	
+	> div {
+		border-top-width: 1px;
+		border-left-width: 1px;
+		border-right-width: 0;
+		border-bottom-width: 0;
+		border-style: solid;
+		border-top-color: #7f787f;
+		border-left-color: #7f787f;
+	}
+}
+
+.grid-panel {
+	background-image: url('tile2x2.png');
+	background-repeat: repeat;
 }
 
 /* Window header */
