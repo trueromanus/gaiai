@@ -101,9 +101,7 @@
 	border-right-color: black;
 	border-bottom-color: black;
 }	
-.window-panel > div {
-	width: calc(100% - 2px);
-	height: calc(100% - 2px);
+.window-panel .inner-panel {
 	border-width: 1px;
 	border-style: solid;
 	border-top-color: white;
