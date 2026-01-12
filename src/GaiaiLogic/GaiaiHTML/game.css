@@ -1,0 +1,157 @@
+
+/* Game Task Bar */
+
+.game-task-bar {
+	position: fixed;
+	bottom: 0px;
+	left: 0px;
+	width: 100%;
+	height: 32px;
+	z-index: 200;
+}
+
+.game-task-bar .smart-button {
+	width: 72px;
+	height: 24px;
+}
+
+.game-task-bar .trayicon-panel {
+	width: 84px;
+	height: 24px;
+}
+
+.game-task-bar .trayicon-panel > div {
+	height: 26px;
+}
+
+
+/* Common Layout */
+
+.flex-column {
+	display: flex;
+	flex-direction: column;
+}
+
+.flex-row {
+	display: flex;
+	flex-direction: row;
+}
+
+.item-center {
+	align-self: center;
+}
+
+.item-end {
+	align-self: end;
+}
+
+.margin-small-left {
+	margin-left: 2px;
+}
+
+.margin-left-1 {
+	margin-left: 1px;
+}
+
+.margin-left-2 {
+	margin-left: 2px;
+}
+
+.margin-left-3 {
+	margin-left: 3px;
+}
+
+.margin-left-4 {
+	margin-left: 4px;
+}
+
+.margin-left-5 {
+	margin-left: 5px;
+}
+
+.margin-left-6 {
+	margin-left: 6px;
+}
+
+.margin-left-7 {
+	margin-left: 7px;
+}
+
+.margin-left-8 {
+	margin-left: 8px;
+}
+
+.margin-left-9 {
+	margin-left: 9px;
+}
+
+.margin-left-10 {
+	margin-left: 10px;
+}
+
+.margin-top-1 {
+	margin-top: 1px;
+}
+
+.margin-top-2 {
+	margin-top: 2px;
+}
+
+.margin-top-3 {
+	margin-top: 3px;
+}
+
+.margin-top-4 {
+	margin-top: 4px;
+}
+
+.margin-top-5 {
+	margin-top: 5px;
+}
+
+.margin-top-6 {
+	margin-top: 6px;
+}
+
+.margin-top-7 {
+	margin-top: 7px;
+}
+
+.margin-top-8 {
+	margin-top: 8px;
+}
+
+.margin-top-9 {
+	margin-top: 9px;
+}
+
+.margin-top-10 {
+	margin-top: 10px;
+}
+
+.width-full {
+	width: 100%;
+}
+
+.height-full {
+	height: 100%;
+}
+
+
+/* Common text*/
+
+.text-bold {
+	font-weight: bold;
+}
+
+.text-middle-size {
+	font-size: 11px;
+}
+
+.text-middle-plus-size {
+	font-size: 12px;
+}
+
+.text-right-align {
+	text-align: right;
+}

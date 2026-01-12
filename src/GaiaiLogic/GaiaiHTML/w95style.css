@@ -202,4 +202,8 @@
 	border-top-style: solid;
 	border-top-width: 2;
 	border-top-color: #fff8ff;
-}		
+}
+
+.task-bar-background-area {
+	background-color: #00787F;
+}
