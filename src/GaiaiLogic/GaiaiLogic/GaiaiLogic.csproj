@@ -1,6 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
+		<OutputType>Exe</OutputType>
 		<TargetFramework>net10.0</TargetFramework>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
@@ -9,7 +10,6 @@
 		<IsTrimmable>true</IsTrimmable>
 		<PublishTrimmed>true</PublishTrimmed>
 		<EnableTrimAnalyzer>true</EnableTrimAnalyzer>
-		<!--<NativeLib>Static</NativeLib>-->
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -38,7 +38,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Jint" Version="4.4.1" />
+	  <PackageReference Include="EmptyFlow.SciterAPI" Version="1.2.2" />
 	</ItemGroup>
-
 </Project>

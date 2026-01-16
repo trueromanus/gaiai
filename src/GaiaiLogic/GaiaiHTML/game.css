@@ -24,6 +24,36 @@
 	height: 26px;
 }
 
+/* Smart main menu */
+
+.game-smart-main-menu {
+	position: fixed;
+	bottom: 28px;
+	left: 0px;
+	z-index: 201;
+	/*display: none;*/
+}
+
+.game-smart-main-menu.showed {
+}
+
+.game-smart-main-menu .innercontainer {
+	width: 285px;
+	height: 330px;
+	display: flex;
+	flex-direction: row;
+}
+
+.game-smart-main-menu .left-title {
+	background-color: #86878C;
+	width: 35px;
+}
+
+.game-smart-main-menu .right-menu {
+	flex: 1;
+}
+
+
 
 /* Common Layout */
 
@@ -37,16 +67,20 @@
 	flex-direction: row;
 }
 
+.flex-1 {
+	flex: 1;
+}
+
+.flex-2 {
+	flex: 2;
+}
+
 .item-center {
 	align-self: center;
 }
 
 .item-end {
 	align-self: end;
-}
-
-.margin-small-left {
-	margin-left: 2px;
 }
 
 .margin-left-1 {
@@ -152,6 +186,20 @@
 	font-size: 12px;
 }
 
+.text-os-size {
+	font-size: 24px;
+	font-weight: bold;
+	color: #BFC0C5;
+}
+
 .text-right-align {
 	text-align: right;
+}
+
+.vertical-text {
+	display: block;
+	transform: rotate(-90deg);
+	transform-origin: 0% 0%;
+	margin-right: -139px;
+	margin-bottom: -22px;
 }
