@@ -39,7 +39,7 @@
 
 .game-smart-main-menu .innercontainer {
 	width: 285px;
-	height: 330px;
+	height: 332px;
 	display: flex;
 	flex-direction: row;
 }
@@ -53,7 +53,13 @@
 	flex: 1;
 }
 
-
+.menu-hover-area {
+	height: 54px;
+}
+.menu-hover-area:hover {
+	background-color: #00007F;
+	color: white;
+}
 
 /* Common Layout */
 
@@ -123,6 +129,30 @@
 	margin-left: 10px;
 }
 
+.margin-left-11 {
+	margin-left: 11px;
+}
+
+.margin-left-12 {
+	margin-left: 12px;
+}
+
+.margin-left-13 {
+	margin-left: 13px;
+}
+
+.margin-left-14 {
+	margin-left: 14px;
+}
+
+.margin-left-15 {
+	margin-left: 15px;
+}
+
+.margin-left-16 {
+	margin-left: 16px;
+}
+
 .margin-top-1 {
 	margin-top: 1px;
 }
@@ -163,6 +193,14 @@
 	margin-top: 10px;
 }
 
+.margin-right-1 {
+	margin-right: 1px;
+}
+
+.margin-right-2 {
+	margin-right: 2px;
+}
+
 .width-full {
 	width: 100%;
 }
@@ -184,6 +222,18 @@
 
 .text-middle-plus-size {
 	font-size: 12px;
+}
+
+.text-middle-plus-plus-size {
+	font-size: 14px;
+}
+
+.text-large-size {
+	font-size: 15px;
+}
+
+.text-large-plus-size {
+	font-size: 18px;
 }
 
 .text-os-size {
