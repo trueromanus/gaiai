@@ -19,7 +19,9 @@ namespace GaiaiLogic {
 #endif
             host.SetWindowCaption(host.MainWindow, "gaiai");
             host.ShowWindow(host.MainWindow);
+#if DEBUG
             var console = new DeveloperConsole(host, host.MainWindow);
+#endif
             host.Process();
         }
 

@@ -7,7 +7,7 @@
 	left: 0px;
 	width: 100%;
 	height: 32px;
-	z-index: 200;
+	z-index: 300;
 }
 
 .game-task-bar .smart-button {
@@ -17,7 +17,7 @@
 
 .game-task-bar .trayicon-panel {
 	width: 84px;
-	height: 24px;
+	height: 25px;
 }
 
 .game-task-bar .trayicon-panel > div {
@@ -30,8 +30,8 @@
 	position: fixed;
 	bottom: 28px;
 	left: 0px;
-	z-index: 201;
-	/*display: none;*/
+	z-index: 301;
+	display: none;
 }
 
 .game-smart-main-menu.showed {
@@ -201,12 +201,24 @@
 	margin-right: 2px;
 }
 
+.margin-right-3 {
+	margin-right: 4px;
+}
+
+.margin-right-4 {
+	margin-right: 4px;
+}
+
 .width-full {
 	width: 100%;
 }
 
 .height-full {
 	height: 100%;
+}
+
+.height-screen-full {
+	height: 100hv;
 }
 
 

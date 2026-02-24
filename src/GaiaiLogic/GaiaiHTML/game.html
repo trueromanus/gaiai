@@ -11,6 +11,10 @@
 	  </style>
 	</head>
 	<body class="task-bar-background-area">
+		<!-- windows container -->
+		<div id="windows-container" class="width-full height-screen-full">
+		</div>
+		
 		<!-- task bar -->
 		<div class="game-task-bar task-bar width-full flex-row">
 			<!-- smart button -->
@@ -37,7 +41,7 @@
 			</div>
 		</div>
 		<!-- smart menu -->
-		<div class="game-smart-main-menu menu-outer-panel">
+		<div id="smartmenu" class="game-smart-main-menu menu-outer-panel">
 			<div class="menu-middle-panel">
 				<div class="menu-inner-panel innercontainer">
 					<div class="left-title flex-column">
@@ -91,26 +95,70 @@
 				</div>
 			</div>
 		</div>
+		
+		<!-- window templates -->
+		<template id="modal-window">
+			<div class="window-panel" style="position: fixed; top: {{positionY}}px; left: {{positionX}}px; z-index: {{zindex}}">
+				<div class="inner-panel">
+					<div class="window-active-header flex-row">
+						<div style="width: 2px;"></div>
+						<!-- window title -->
+						<div class="item-center" style="height: 12px;">
+							<span class="text-middle-plus-size">{{title}}</span>
+						</div>
+						<div class="flex-1"></div>
+						<!-- close window button -->
+						<div class="flex-row">							
+							<div class="button-idle-panel item-center margin-right-2" style="height: 14px;width: 15px;">
+								<img style="padding-left: 3px;" src="close.svg" width=9 height=9 />
+							</div>
+						</div>
+					</div>					
+					<div style="height: {{height}}px; width: {{width}}px;">
+						{{windowContent}}
+					</div>
+				</div>
+			</div>
+		</template>
 		<script>
+			const windowsContainer = document.getElementById('windows-container');
+			const smartmenu = document.getElementById('smartmenu');
+		
 			const taskBar = {
 				smartButtonClicked: false,
 				soundEnabled: true,
 				root: null,
 				timeFormat: 'HH:MM',
+				countWindows: 0,
 				clickOnSmartButton: function () {
 					if (taskBar.smartButtonClicked) {
 						taskBar.smartButtonClicked = false;
 						taskBar.root.classList.remove("button-pressed-panel");
 						taskBar.root.classList.add("button-idle-panel");
+						smartmenu.style.display = 'none';
 					} else {
 						taskBar.smartButtonClicked = true;
 						taskBar.root.classList.remove("button-idle-panel");
 						taskBar.root.classList.add("button-pressed-panel");
+						smartmenu.style.display = 'block';
 					}
 				},
 				registerHandlers: function () {
 					taskBar.root = document.getElementById('smart-button-root');
 					taskBar.root.addEventListener('click', taskBar.clickOnSmartButton);
+				},
+				createModalWindow: function ( title, x, y, width, height, contentCallback) {
+					const windowTemplate = document.getElementById('modal-window');
+					taskBar.countWindows++;
+					const windowTemplateContent = windowTemplate.innerHTML
+						.replace('{{positionY}}', y)
+						.replace('{{positionX}}', x)
+						.replace('{{title}}', title)
+						.replace('{{width}}', width)
+						.replace('{{height}}', height)
+						.replace('{{windowContent}}', contentCallback())
+						.replace('{{zindex}}', 10 + taskBar.countWindows);
+					windowsContainer.append(windowTemplateContent);
 				}
 			};
 			
@@ -119,6 +167,8 @@
 			};
 			
 			taskBar.registerHandlers();
+			
+			taskBar.createModalWindow('Header lalalla', 0, 0, 200, 200, () => { return ''; });
 		</script>
 	</body>
 </html>
