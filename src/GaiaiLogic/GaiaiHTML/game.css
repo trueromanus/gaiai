@@ -89,6 +89,10 @@
 	align-self: end;
 }
 
+.margin-left-0 {
+	margin-left: 0px;
+}
+
 .margin-left-1 {
 	margin-left: 1px;
 }
@@ -153,6 +157,10 @@
 	margin-left: 16px;
 }
 
+.margin-top-0 {
+	margin-top: 0px;
+}
+
 .margin-top-1 {
 	margin-top: 1px;
 }
@@ -193,6 +201,10 @@
 	margin-top: 10px;
 }
 
+.margin-right-0 {
+	margin-right: 0px;
+}
+
 .margin-right-1 {
 	margin-right: 1px;
 }
@@ -216,11 +228,6 @@
 .height-full {
 	height: 100%;
 }
-
-.height-screen-full {
-	height: 100hv;
-}
-
 
 /* Common text*/
 

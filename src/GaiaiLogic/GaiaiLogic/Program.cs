@@ -12,7 +12,7 @@ namespace GaiaiLogic {
             host.EnableDebugMode();
 #endif
             host.EnableFeatures(SciterRuntimeFeatures.ALLOW_SOCKET_IO);
-            host.CreateWindow(asMain: true);
+            host.CreateWindow(asMain: true, debugOutput: true);
 #if DEBUG
             host.LoadFile(@"C:\work\Repositories\HackingGame\game\gaiai\src\GaiaiLogic\GaiaiHTML\game.html");
             //host.LoadFile(@"C:\work\Repositories\HackingGame\game\gaiai\src\GaiaiLogic\GaiaiHTML\stylew95.html");

@@ -3,7 +3,7 @@
 	  <link rel="stylesheet" href="w95style.css">
 	  <link rel="stylesheet" href="game.css">
 	  <style>
-		.body {
+		body {
 			margin:0;
 			padding:0;
 			border-spacing: 0;
@@ -12,7 +12,7 @@
 	</head>
 	<body class="task-bar-background-area">
 		<!-- windows container -->
-		<div id="windows-container" class="width-full height-screen-full">
+		<div id="windows-container" class="width-full height-full">
 		</div>
 		
 		<!-- task bar -->
@@ -98,7 +98,7 @@
 		
 		<!-- window templates -->
 		<template id="modal-window">
-			<div class="window-panel" style="position: fixed; top: {{positionY}}px; left: {{positionX}}px; z-index: {{zindex}}">
+			<div class="window-panel" id="window{{windowindex}}" style="position: fixed; top: {{positionY}}px; left: {{positionX}}px; z-index: {{zindex}}">
 				<div class="inner-panel">
 					<div class="window-active-header flex-row">
 						<div style="width: 2px;"></div>
@@ -123,13 +123,72 @@
 		<script>
 			const windowsContainer = document.getElementById('windows-container');
 			const smartmenu = document.getElementById('smartmenu');
-		
+			
+			const windowManagement = {
+				moveX: 0,
+				moveY: 0,
+				windowMoving: false.
+				movingWindow,
+				endWindowMoving() {
+					windowManagement.windowMoving = false;
+				},
+				startWindowMoving(e) {
+					const clientX = e.clientX || e.touches[0].clientX;
+					const clientY = e.clientY || e.touches[0].clientY;
+					const windowPanel = e.target.closest('.window-panel');
+					windowManagement.moveX = clientX - windowPanel.offsetLeft; 
+					windowManagement.moveY = clientY - windowPanel.offsetTop;
+					windowManagement.windowMoving = true;
+					windowManagement.movingWindow = windowPanel;
+				},
+				handleWindowMoving(e) {
+					if (!windowManagement.windowMoving) return;
+					
+					const notTouches = !e.touches
+					const clientX = e.clientX || notTouches || e.touches[0].clientX; 
+					const clientY = e.clientY || notTouches || e.touches[0].clientY;
+					let newX = clientX - windowManagement.moveX;
+					let newY = clientY - windowManagement.moveY;
+					const currentPositionX = parseInt(windowManagement.movingWindow.style.left);
+					const currentPositionY = parseInt(windowManagement.movingWindow.style.top);
+					const rightLimit = windowsContainer.offsetWidth - windowManagement.movingWindow.offsetWidth;
+					const bottomLimit = windowsContainer.offsetHeight - windowManagement.movingWindow.offsetHeight;
+					
+					const isLeftNoLimit = newX < 0 && currentPositionX > 0;
+					const isRightNoLimit = newX > rightLimit && currentPositionX < rightLimit;
+					if (isLeftNoLimit || isRightNoLimit || (newX >= 0 && newX <= rightLimit)) {
+						if (newX < 0) newX = 0;
+						if (newX > rightLimit) newX = rightLimit;
+						
+						windowManagement.movingWindow.style.left = newX + 'px';
+					}
+					
+					const isTopNoLimit = newY < 0 && currentPositionY > 0;
+					const isBottomNoLimit = newY > bottomLimit && currentPositionY < bottomLimit;
+					if (isTopNoLimit || isBottomNoLimit || (newY >= 0 && newY <= bottomLimit)) {
+						if (newY < 0) newY = 0;
+						if (newY > bottomLimit) newY = bottomLimit;
+						
+						windowManagement.movingWindow.style.top = newY + 'px';
+					} 
+				},
+				initializeWindowManagement() {
+					window.addEventListener('mouseup', windowManagement.endWindowMoving, false); 
+					window.addEventListener('touchend', windowManagement.endWindowMoving, false);
+
+					windowsContainer.addEventListener('mousemove', windowManagement.handleWindowMoving, false); 
+					windowsContainer.addEventListener('touchmove', windowManagement.handleWindowMoving, false);
+				}
+			}
+			windowManagement.initializeWindowManagement();
+
 			const taskBar = {
 				smartButtonClicked: false,
 				soundEnabled: true,
 				root: null,
 				timeFormat: 'HH:MM',
 				countWindows: 0,
+				windowCounter: 0,
 				clickOnSmartButton: function () {
 					if (taskBar.smartButtonClicked) {
 						taskBar.smartButtonClicked = false;
@@ -150,6 +209,7 @@
 				createModalWindow: function ( title, x, y, width, height, contentCallback) {
 					const windowTemplate = document.getElementById('modal-window');
 					taskBar.countWindows++;
+					taskBar.windowCounter++;
 					const windowTemplateContent = windowTemplate.innerHTML
 						.replace('{{positionY}}', y)
 						.replace('{{positionX}}', x)
@@ -157,8 +217,14 @@
 						.replace('{{width}}', width)
 						.replace('{{height}}', height)
 						.replace('{{windowContent}}', contentCallback())
+						.replace('{{windowindex}}', taskBar.windowCounter)
 						.replace('{{zindex}}', 10 + taskBar.countWindows);
-					windowsContainer.append(windowTemplateContent);
+					windowsContainer.append(windowTemplateContent);					
+					const newlyCreatedElement = document.getElementById('window' + taskBar.windowCounter);
+
+					// handle window moving
+					newlyCreatedElement.addEventListener('mousedown', windowManagement.startWindowMoving, false); 
+					newlyCreatedElement.addEventListener('touchstart', windowManagement.startWindowMoving, false); 
 				}
 			};
 			
