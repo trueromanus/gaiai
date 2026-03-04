@@ -13,7 +13,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <None Remove="DataFiles\Roads-en.json" />
+		<None Remove="DataFiles\Roads-en.json" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -38,6 +38,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <PackageReference Include="EmptyFlow.SciterAPI" Version="1.2.3" />
+		<PackageReference Include="EmptyFlow.SciterAPI" Version="1.2.4" />
 	</ItemGroup>
 </Project>

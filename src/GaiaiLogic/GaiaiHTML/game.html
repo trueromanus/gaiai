@@ -109,7 +109,10 @@
 						<div class="flex-1"></div>
 						<!-- close window button -->
 						<div class="flex-row">							
-							<div class="button-idle-panel item-center margin-right-2" style="height: 14px;width: 15px;">
+							<div
+								class="button-idle-panel item-center margin-right-2"
+								style="height: 14px;width: 15px; behavior: actionbutton;"
+								iconbutton-script="taskBar.closeWindow({{windowindex}})">
 								<img style="padding-left: 3px;" src="close.svg" width=9 height=9 />
 							</div>
 						</div>
@@ -189,6 +192,7 @@
 				timeFormat: 'HH:MM',
 				countWindows: 0,
 				windowCounter: 0,
+				windows: {},
 				clickOnSmartButton: function () {
 					if (taskBar.smartButtonClicked) {
 						taskBar.smartButtonClicked = false;
@@ -211,20 +215,26 @@
 					taskBar.countWindows++;
 					taskBar.windowCounter++;
 					const windowTemplateContent = windowTemplate.innerHTML
-						.replace('{{positionY}}', y)
-						.replace('{{positionX}}', x)
-						.replace('{{title}}', title)
-						.replace('{{width}}', width)
-						.replace('{{height}}', height)
-						.replace('{{windowContent}}', contentCallback())
-						.replace('{{windowindex}}', taskBar.windowCounter)
-						.replace('{{zindex}}', 10 + taskBar.countWindows);
+						.replaceAll('{{positionY}}', y)
+						.replaceAll('{{positionX}}', x)
+						.replaceAll('{{title}}', title)
+						.replaceAll('{{width}}', width)
+						.replaceAll('{{height}}', height)
+						.replaceAll('{{windowContent}}', contentCallback())
+						.replaceAll('{{windowindex}}', taskBar.windowCounter)
+						.replaceAll('{{zindex}}', 10 + taskBar.countWindows);
 					windowsContainer.append(windowTemplateContent);					
 					const newlyCreatedElement = document.getElementById('window' + taskBar.windowCounter);
+					taskBar.windows[taskBar.windowCounter] = newlyCreatedElement;
 
 					// handle window moving
 					newlyCreatedElement.addEventListener('mousedown', windowManagement.startWindowMoving, false); 
-					newlyCreatedElement.addEventListener('touchstart', windowManagement.startWindowMoving, false); 
+					newlyCreatedElement.addEventListener('touchstart', windowManagement.startWindowMoving, false);					
+				},
+				closeWindow: function (windowIndex) {
+					const windowElement = taskBar.windows[windowIndex];
+					windowsContainer.removeChild(windowElement);
+					delete taskBar.windows[windowIndex];
 				}
 			};
 			
