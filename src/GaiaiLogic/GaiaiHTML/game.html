@@ -84,7 +84,10 @@
 								<div class="first-line"></div>
 								<div class="second-line"></div>
 							</div>
-							<div class="menu-hover-area flex-row margin-top-5 margin-right-1">
+							<div
+								class="menu-hover-area flex-row margin-top-5 margin-right-1"
+								style="behavior: actionbutton;"
+								iconbutton-script="mainMenu.showShutDownModal()">
 								<img class="margin-left-16 item-center" src="menushutdown.png" width="40" height="40">
 								<div style="height: 18px;" class="margin-left-16 item-center text-middle-plus-plus-size">
 									Shut Down...
@@ -100,7 +103,7 @@
 		<template id="modal-window">
 			<div class="window-panel" id="window{{windowindex}}" style="position: fixed; top: {{positionY}}px; left: {{positionX}}px; z-index: {{zindex}}">
 				<div class="inner-panel">
-					<div class="window-active-header flex-row">
+					<div class="window-active-header window-header-finder flex-row">
 						<div style="width: 2px;"></div>
 						<!-- window title -->
 						<div class="item-center" style="height: 12px;">
@@ -126,6 +129,11 @@
 		<script>
 			const windowsContainer = document.getElementById('windows-container');
 			const smartmenu = document.getElementById('smartmenu');
+			
+			function replaceClasses(element, oldClass, newClass) {
+				element.classList.remove(oldClass);
+				element.classList.add(newClass);
+			}
 			
 			const windowManagement = {
 				moveX: 0,
@@ -196,13 +204,11 @@
 				clickOnSmartButton: function () {
 					if (taskBar.smartButtonClicked) {
 						taskBar.smartButtonClicked = false;
-						taskBar.root.classList.remove("button-pressed-panel");
-						taskBar.root.classList.add("button-idle-panel");
+						replaceClasses(taskBar.root, "button-pressed-panel", "button-idle-panel");
 						smartmenu.style.display = 'none';
 					} else {
 						taskBar.smartButtonClicked = true;
-						taskBar.root.classList.remove("button-idle-panel");
-						taskBar.root.classList.add("button-pressed-panel");
+						replaceClasses(taskBar.root, "button-idle-panel", "button-pressed-panel");
 						smartmenu.style.display = 'block';
 					}
 				},
@@ -229,17 +235,39 @@
 
 					// handle window moving
 					newlyCreatedElement.addEventListener('mousedown', windowManagement.startWindowMoving, false); 
-					newlyCreatedElement.addEventListener('touchstart', windowManagement.startWindowMoving, false);					
+					newlyCreatedElement.addEventListener('touchstart', windowManagement.startWindowMoving, false);
+					
+					taskBar.activateWindow(taskBar.windowCounter);
 				},
 				closeWindow: function (windowIndex) {
 					const windowElement = taskBar.windows[windowIndex];
 					windowsContainer.removeChild(windowElement);
 					delete taskBar.windows[windowIndex];
+				},
+				activateWindow: function (windowIndex) {
+					const currentSelected = document.querySelector('.window-active-header');
+					if (currentSelected.length) {
+						for (const selectedItem of currentSelected) {
+							replaceClasses(selectedItem, "window-active-header", "window-notactive-header");
+						}
+					}
+					const windowElement = taskBar.windows[windowIndex];
+					const header = windowElement.querySelector('.window-header-finder')
+					replaceClasses(header, "window-notactive-header", "window-active-header");
 				}
 			};
 			
 			const mainMenu = {
-				
+				showShutDownModal: function () {
+					const width = windowsContainer.clientWidth;
+					const height = windowsContainer.clientHeight;
+					const modalWidth = 400;
+					const modalHeight = 200;
+					const centerWidth = (width / 2) - (modalWidth / 2);
+					const centerHeight = (height / 2) - (modalHeight / 2);
+					taskBar.createModalWindow('Shut Down SmartCityOS', centerWidth, centerHeight, modalWidth, modalHeight, () => { return ''; });
+					taskBar.clickOnSmartButton();
+				}
 			};
 			
 			taskBar.registerHandlers();

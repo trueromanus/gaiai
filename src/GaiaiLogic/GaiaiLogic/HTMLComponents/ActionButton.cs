@@ -19,6 +19,8 @@ namespace GaiaiLogic.HTMLComponents
 
         private string m_script = "";
 
+        private bool m_pressed = false;
+
         private SciterAPIHost m_host;
 
         public ActionButton(nint element, SciterAPIHost host) : base(element, host)
@@ -49,19 +51,39 @@ namespace GaiaiLogic.HTMLComponents
             m_script = m_host.GetElementAttribute(SubscribedElement, "iconbutton-script");
         }
 
+        private void PressedButton()
+        {
+            var classValue = Host.GetElementAttribute(SubscribedElement, "class");
+            Host.SetElementAttribute(SubscribedElement, "class", classValue.Replace(IdleState, PressedState));
+        }
+
+        private void UnpressedButton()
+        {
+            var classValue = Host.GetElementAttribute(SubscribedElement, "class");
+            Host.SetElementAttribute(SubscribedElement, "class", classValue.Replace(PressedState, IdleState));
+        }
+
         public override void MouseEvent(MouseEvents command, SciterPoint elementRelated, SciterPoint ViewRelated, KeyboardStates keyboardStates, DraggingType draggingMode, CursorType cursorType, nint target, nint dragging, bool isOnIcon, uint buttonState)
         {
             if (command == MouseEvents.MOUSE_DOWN)
             {
-                var classValue = Host.GetElementAttribute(SubscribedElement, "class");
-                Host.SetElementAttribute(SubscribedElement, "class", classValue.Replace(IdleState, PressedState));
+                PressedButton();
                 SetReturnState(true);
+                m_pressed = true;
+                return;
             }
 
-            if (command is MouseEvents.MOUSE_CLICK or MouseEvents.MOUSE_LEAVE)
+            if (command == MouseEvents.MOUSE_LEAVE)
             {
-                var classValue = Host.GetElementAttribute(SubscribedElement, "class");
-                Host.SetElementAttribute(SubscribedElement, "class", classValue.Replace(PressedState, IdleState));
+                m_pressed = false;
+                UnpressedButton();
+                return;
+            }
+
+            if (m_pressed == true && command is MouseEvents.MOUSE_CLICK)
+            {
+                m_pressed = false;
+                UnpressedButton();
 
                 Host.ExecuteWindowEval(Host.MainWindow, m_hasParameters ? m_parametersScript + m_script : m_script, out _);
                 SetReturnState(true);
