@@ -21,20 +21,16 @@ namespace GaiaiLogic.HTMLComponents
 
         private bool m_pressed = false;
 
-        private SciterAPIHost m_host;
-
         public ActionButton(nint element, SciterAPIHost host) : base(element, host)
         {
-            m_host = host;
-
-            var names = m_host.GetElementAttributeNames(SubscribedElement)
+            var names = Host.GetElementAttributeNames(SubscribedElement)
                 .Where(a => a.StartsWith(ArgumentAttribute))
                 .ToArray();
             var result = new List<string>(names.Length);
             foreach (var name in names)
             {
                 var attribute = name.Replace(ArgumentAttribute, "");
-                var value = m_host.GetElementAttribute(SubscribedElement, name);
+                var value = Host.GetElementAttribute(SubscribedElement, name);
                 result.Add($"\"{attribute}\": {value}");
             }
             m_hasParameters = result.Any();
@@ -48,7 +44,7 @@ namespace GaiaiLogic.HTMLComponents
                 m_parametersScript = builder.ToString();
             }
 
-            m_script = m_host.GetElementAttribute(SubscribedElement, "iconbutton-script");
+            m_script = Host.GetElementAttribute(SubscribedElement, "iconbutton-script");
         }
 
         private void PressedButton()
