@@ -72,6 +72,15 @@
 	z-index: 400;
 }
 
+/* Window routine */
+
+.horizontal-window-resizer {
+	height: 2px;
+	width: 100%;
+	background-color: transparent;
+	cursor: n-resize;
+}
+
 /* Common Layout */
 
 .flex-column {

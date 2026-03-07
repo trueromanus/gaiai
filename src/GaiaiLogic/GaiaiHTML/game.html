@@ -123,9 +123,11 @@
 							</div>
 						</div>
 					</div>					
-					<div style="height: {{height}}px; width: {{width}}px;">
+					<div class="window-content-finder" style="height: {{height}}px; width: {{width}}px;">
 						{{windowContent}}
-					</div>
+					</div>					
+					<!--<div style="width: 2px; height: 100%; background-color: green; cursor: e-resize;"></div>-->
+					<div class="horizontal-window-resizer"></div>
 				</div>
 			</div>
 		</template>
@@ -151,10 +153,15 @@
 			const windowManagement = {
 				moveX: 0,
 				moveY: 0,
-				windowMoving: false.
-				movingWindow,
+				windowMoving: false,
+				windowResize: false,
+				windowResizeDirection: '',
+				originalSizeY: 0,
+				movingWindow: null,
 				endWindowMoving() {
 					windowManagement.windowMoving = false;
+					windowManagement.windowResize = false;
+					windowManagement.windowResizeDirection = '';
 				},
 				startWindowMoving(e) {
 					const clientX = e.clientX || e.touches[0].clientX;
@@ -165,9 +172,51 @@
 					windowManagement.windowMoving = true;
 					windowManagement.movingWindow = windowPanel;
 				},
+				startWindowHorizontalResize(e) {
+					windowManagement.windowResizeDirection = 'horizontal';
+					windowManagement.startWindowResize(e);					
+				},
+				startWindowVerticalResize(e) {
+					windowManagement.windowResizeDirection = 'vertical';
+					windowManagement.startWindowResize(e);					
+				},
+				startWindowResize(e) {
+					const clientX = e.clientX || e.touches[0].clientX;
+					const clientY = e.clientY || e.touches[0].clientY;
+					const windowPanel = e.target.closest('.window-panel');
+					const contentElement = windowPanel.querySelectorAll('.window-content-finder')[0];
+					windowManagement.moveX = clientX - windowPanel.offsetLeft; 
+					windowManagement.moveY = clientY - windowPanel.clientTop;
+					windowManagement.windowResize = true;
+					windowManagement.movingWindow = contentElement;
+					windowManagement.originalSizeY = parseInt(windowManagement.movingWindow.style.height);
+				},
 				handleWindowMoving(e) {
-					if (!windowManagement.windowMoving) return;
+					if (!windowManagement.windowMoving && !windowManagement.windowResize) return;
 					
+					if (windowManagement.windowMoving) {	
+						windowManagement.windowMoveHandler(e);
+						return;
+					}
+					if (windowManagement.windowResize) {
+						windowManagement.windowResizeHandler(e);
+						return;						
+					}
+				},
+				windowResizeHandler(e) {
+					const notTouches = !e.touches
+					const clientX = e.clientX || notTouches || e.touches[0].clientX; 
+					
+					//let newX = clientX - windowManagement.moveX;
+					
+					if (windowManagement.windowResizeDirection === 'vertical') {
+						const clientY = e.clientY || notTouches || e.touches[0].clientY;
+						let newY = clientY - windowManagement.moveY;
+						const newHeight = windowManagement.originalSizeY + newY;
+						windowManagement.movingWindow.style.height = newHeight + 'px';
+					}
+				},
+				windowMoveHandler(e) {
 					const notTouches = !e.touches
 					const clientX = e.clientX || notTouches || e.touches[0].clientX; 
 					const clientY = e.clientY || notTouches || e.touches[0].clientY;
@@ -194,7 +243,7 @@
 						if (newY > bottomLimit) newY = bottomLimit;
 						
 						windowManagement.movingWindow.style.top = newY + 'px';
-					} 
+					}					
 				},
 				initializeWindowManagement() {
 					window.addEventListener('mouseup', windowManagement.endWindowMoving, false); 
@@ -238,7 +287,7 @@
 						.replaceAll('{{positionX}}', x)
 						.replaceAll('{{title}}', title)
 						.replaceAll('{{width}}', width)
-						.replaceAll('{{height}}', height)
+						.replaceAll('{{height}}', height)						
 						.replaceAll('{{windowContent}}', contentCallback())
 						.replaceAll('{{windowindex}}', taskBar.windowCounter)
 						.replaceAll('{{zindex}}', 10 + taskBar.countWindows);
@@ -254,6 +303,13 @@
 						const windowHeader = newlyCreatedElement.querySelector('.window-header-finder');
 						windowHeader.addEventListener('mousedown', windowManagement.startWindowMoving, false);
 						windowHeader.addEventListener('touchstart', windowManagement.startWindowMoving, false);
+					}
+
+					// handle window resize
+					if (!options || options.sizable) {
+						const windowHeader = newlyCreatedElement.querySelector('.horizontal-window-resizer');
+						windowHeader.addEventListener('mousedown', windowManagement.startWindowVerticalResize, false);
+						windowHeader.addEventListener('touchstart', windowManagement.startWindowVerticalResize, false);
 					}
 					
 					taskBar.activateWindow(taskBar.windowCounter);
