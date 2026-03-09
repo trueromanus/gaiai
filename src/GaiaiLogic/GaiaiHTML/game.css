@@ -81,6 +81,13 @@
 	cursor: n-resize;
 }
 
+.vertical-window-resizer {
+	width: 2px;
+	height: 100%;
+	background-color: transparent;
+	cursor: e-resize;
+}
+
 /* Common Layout */
 
 .flex-column {
