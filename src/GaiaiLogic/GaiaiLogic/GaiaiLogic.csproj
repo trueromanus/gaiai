@@ -40,4 +40,8 @@
 	<ItemGroup>
 		<PackageReference Include="EmptyFlow.SciterAPI" Version="1.2.4" />
 	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\GagagSourceGenerators\GaiaiSourceGenerators.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
+	</ItemGroup>
 </Project>
