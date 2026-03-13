@@ -99,7 +99,7 @@
 			</div>
 		</div>
 		
-		<div class="modal-black-wall" style="background-color: #d3d3d380; display: none;">
+		<div id="modal-black-wall" class="modal-black-wall" style="background-color: #d3d3d380; display: none;">
 		</div>
 		
 		<!-- window templates -->
@@ -146,6 +146,7 @@
 		<script>
 			const windowsContainer = document.getElementById('windows-container');
 			const smartmenu = document.getElementById('smartmenu');
+			const blackWall = document.getElementById('modal-black-wall');
 			
 			function replaceClasses(element, oldClass, newClass) {
 				element.classList.remove(oldClass);
@@ -285,10 +286,15 @@
 					taskBar.root = document.getElementById('smart-button-root');
 					taskBar.root.addEventListener('click', taskBar.clickOnSmartButton);
 				},
+				visibleBlackWall: function (visible) {
+					blackWall.style.display = visible ? 'block' : 'none';
+				},
 				createModalWindow: function (title, x, y, width, height, options, contentCallback) {
 					const windowTemplate = document.getElementById('modal-window');
 					taskBar.countWindows++;
 					taskBar.windowCounter++;
+					const systemTopMost = options && options.systemTopMost;
+					const zIndex = (systemTopMost ? 400 : 10) + taskBar.countWindows;
 					const windowTemplateContent = windowTemplate.innerHTML
 						.replaceAll('{{positionY}}', y)
 						.replaceAll('{{positionX}}', x)
@@ -297,7 +303,7 @@
 						.replaceAll('{{height}}', height)						
 						.replaceAll('{{windowContent}}', contentCallback())
 						.replaceAll('{{windowindex}}', taskBar.windowCounter)
-						.replaceAll('{{zindex}}', 10 + taskBar.countWindows);
+						.replaceAll('{{zindex}}', zIndex + taskBar.countWindows);
 					windowsContainer.append(windowTemplateContent);					
 					const newlyCreatedElement = document.getElementById('window' + taskBar.windowCounter);
 					taskBar.windows[taskBar.windowCounter] = newlyCreatedElement;
@@ -332,6 +338,8 @@
 					// active first window if any from it opened
 					const keys = Object.keys(taskBar.windows);
 					if (keys.length) taskBar.activateWindow(keys[keys.length - 1]);
+					
+					if (blackWall.style.display !== 'none') taskBar.visibleBlackWall(false);
 				},
 				activateWindow: function (windowIndex) {
 					const currentSelectedItems = document.querySelectorAll('.window-active-header');
@@ -341,8 +349,10 @@
 					}
 
 					const activableWindow = taskBar.windows[windowIndex];
+					
+					const isShowedSystemModal = blackWall.style.display !== 'none';
 
-					if (taskBar.windowCounter > 1 && activableWindow.style.zIndex !== taskBar.windowCounter + 10) {
+					if (!isShowedSystemModal && taskBar.windowCounter > 1 && activableWindow.style.zIndex !== taskBar.windowCounter + 10) {
 						const lastCounter = taskBar.windowCounter + 10;
 						const keys = Object.keys(taskBar.windows);
 						for (const key of keys) {
@@ -366,7 +376,13 @@
 					const modalHeight = 200;
 					const centerWidth = (width / 2) - (modalWidth / 2);
 					const centerHeight = (height / 2) - (modalHeight / 2);
-					taskBar.createModalWindow('Shut Down SmartCityOS', centerWidth, centerHeight, modalWidth, modalHeight, { movable: true, sizable: false }, () => { return ''; });
+					taskBar.visibleBlackWall(true);
+					const modalOptions = {
+						movable: false,
+						sizable: false,
+						systemTopMost: true
+					};
+					taskBar.createModalWindow('Shut Down SmartCityOS', centerWidth, centerHeight, modalWidth, modalHeight, modalOptions, () => { return ''; });
 					taskBar.clickOnSmartButton();
 				}
 			};
