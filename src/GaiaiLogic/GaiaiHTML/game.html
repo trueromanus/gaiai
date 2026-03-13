@@ -334,14 +334,26 @@
 					if (keys.length) taskBar.activateWindow(keys[keys.length - 1]);
 				},
 				activateWindow: function (windowIndex) {
-					const currentSelected = document.querySelectorAll('.window-active-header');
-					if (currentSelected.length) {
-						for (const selectedItem of currentSelected) {
-							replaceClasses(selectedItem, "window-active-header", "window-notactive-header");
-						}
+					const currentSelectedItems = document.querySelectorAll('.window-active-header');
+					if (currentSelectedItems.length) {
+						currentSelected = currentSelectedItems[0]
+						replaceClasses(currentSelected, "window-active-header", "window-notactive-header");
 					}
-					const windowElement = taskBar.windows[windowIndex];
-					const header = windowElement.querySelector('.window-header-finder')
+
+					const activableWindow = taskBar.windows[windowIndex];
+
+					if (taskBar.windowCounter > 1 && activableWindow.style.zIndex !== taskBar.windowCounter + 10) {
+						const lastCounter = taskBar.windowCounter + 10;
+						const keys = Object.keys(taskBar.windows);
+						for (const key of keys) {
+							const window = taskBar.windows[key];
+							if (window.style.zIndex > activableWindow.style.zIndex) window.style.zIndex -= 1;
+							if (window.style.zIndex === lastCounter) window.style.zIndex -= 1;
+						}
+						activableWindow.style.zIndex = 10 + taskBar.windowCounter;
+					}
+					
+					const header = activableWindow.querySelector('.window-header-finder');
 					replaceClasses(header, "window-notactive-header", "window-active-header");
 				}
 			};
@@ -354,7 +366,7 @@
 					const modalHeight = 200;
 					const centerWidth = (width / 2) - (modalWidth / 2);
 					const centerHeight = (height / 2) - (modalHeight / 2);
-					taskBar.createModalWindow('Shut Down SmartCityOS', centerWidth, centerHeight, modalWidth, modalHeight, { movable: false, sizable: false }, () => { return ''; });
+					taskBar.createModalWindow('Shut Down SmartCityOS', centerWidth, centerHeight, modalWidth, modalHeight, { movable: true, sizable: false }, () => { return ''; });
 					taskBar.clickOnSmartButton();
 				}
 			};
