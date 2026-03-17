@@ -30,13 +30,17 @@
 					</div>
 				</div>
 			</div>
-			<div style="flex: 2;">
+			<div
+				id="taskbar-buttons-container"
+				class="margin-left-2 flex-row"
+				style="flex: 2;display: flex; flex-direction: row; gap: 2px; behavior: tasbarwindows; height: 100%;" taskbakwindow-script="taskBar.activateWindow({{windowindex}});"
+			>
 			</div>
 			<!-- time panel -->
-			<div style="margin-right: 2px; margin-top: 2px;" class="panel flex-column trayicon-panel">
+			<div class="panel flex-column trayicon-panel margin-right-2 margin-top-2 flex-1">
 				<div class="flex-row">
-					<img class="margin-left-2 item-center" src="enablesound.png" width=20 height=20 />
-					<span class="text-middle-plus-size item-center text-right-align" style="height: 14px; flex: 2;margin-right: 2px;">00:00 AM</span>
+					<img class="margin-left-4 item-center" src="enablesound.png" width=20 height=20 />
+					<span class="text-middle-plus-size item-center text-right-align margin-left-4 margin-right-2" style="height: 14px; white-space: nowrap;">00:00 AM</span>
 				</div>
 			</div>
 		</div>
@@ -143,10 +147,21 @@
 			<!-- Yes /No /Help -->
 		</template>
 		
+		<template id="button-taskbar">
+			<div class="item-center task-bar-window-button button-idle-panel" window-index="{{windowindex}}">
+				<div class="flex-row" style="height: 100%; width: 100%;">
+					<!--<img style="padding-left: 3px;" src="close.svg" width=9 height=9 />-->
+					<span class="item-center margin-left-4">{{title}}</span>
+				</div>
+			</div>
+		</template>
+		
 		<script>
 			const windowsContainer = document.getElementById('windows-container');
 			const smartmenu = document.getElementById('smartmenu');
 			const blackWall = document.getElementById('modal-black-wall');
+			const taskBarButtonContainer = document.getElementById('taskbar-buttons-container');
+			const taskBarButtonTemplate = document.getElementById('button-taskbar');
 			
 			function replaceClasses(element, oldClass, newClass) {
 				element.classList.remove(oldClass);
@@ -270,6 +285,7 @@
 				timeFormat: 'HH:MM',
 				countWindows: 0,
 				windowCounter: 0,
+				activatedWindow: null,
 				windows: {},
 				clickOnSmartButton: function () {
 					if (taskBar.smartButtonClicked) {
@@ -328,6 +344,11 @@
 						verticalResizer.addEventListener('touchstart', windowManagement.startWindowHorizontalResize, false);						
 					}
 					
+					if (!systemTopMost) {
+						taskBarButtonContainer.append(taskBarButtonTemplate.innerHTML.replaceAll('{{title}}', title).replaceAll('{{windowindex}}', windowIndex));
+						taskBarButtonContainer.xcall('createWindow', windowIndex);
+					}
+					
 					taskBar.activateWindow(taskBar.windowCounter);
 				},
 				closeWindow: function (windowIndex) {
@@ -340,14 +361,25 @@
 					if (keys.length) taskBar.activateWindow(keys[keys.length - 1]);
 					
 					if (blackWall.style.display !== 'none') taskBar.visibleBlackWall(false);
+				
+					taskBarButtonContainer.xcall('closeWindow', windowIndex);
+					const buttons = taskBarButtonContainer.querySelectorAll(`[window-index=${windowIndex}]`);
+					if (buttons.length) buttons[0].remove();
 				},
-				activateWindow: function (windowIndex) {
+				deactivateWindow() {
+					if (!taskBar.activatedWindow) return;
+
 					const currentSelectedItems = document.querySelectorAll('.window-active-header');
 					if (currentSelectedItems.length) {
 						currentSelected = currentSelectedItems[0]
 						replaceClasses(currentSelected, "window-active-header", "window-notactive-header");
 					}
-
+					
+					taskBarButtonContainer.xcall('deactivateWindow', taskBar.activatedWindow);
+				},
+				activateWindow: function (windowIndex) {
+					taskBar.deactivateWindow();
+					
 					const activableWindow = taskBar.windows[windowIndex];
 					
 					const isShowedSystemModal = blackWall.style.display !== 'none';
@@ -365,8 +397,13 @@
 					
 					const header = activableWindow.querySelector('.window-header-finder');
 					replaceClasses(header, "window-notactive-header", "window-active-header");
+					
+					taskBar.activatedWindow = windowIndex;
+					
+					taskBarButtonContainer.xcall('activateWindow', windowIndex);
 				}
 			};
+			taskBar.registerHandlers();
 			
 			const mainMenu = {
 				showShutDownModal: function () {
@@ -386,8 +423,6 @@
 					taskBar.clickOnSmartButton();
 				}
 			};
-			
-			taskBar.registerHandlers();
 			
 			taskBar.createModalWindow('Header lalalla', 0, 0, 200, 200, null, () => { return ''; });
 		</script>

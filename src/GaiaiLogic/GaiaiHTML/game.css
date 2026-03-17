@@ -16,13 +16,32 @@
 }
 
 .game-task-bar .trayicon-panel {
-	width: 84px;
+	max-width: 95px;
 	height: 25px;
 }
 
 .game-task-bar .trayicon-panel > div {
 	height: 26px;
 }
+
+.task-bar-window-button {
+	height: 25px;
+	width: 220px;
+	max-width: 220px;
+	behavior: taskbarbutton;
+	display: flex;
+	flex-direction: row;
+}
+
+.task-bar-window-button-pressed {
+	background-color: white;
+	font-weight: bold;
+}
+
+.task-bar-window-button > span {
+	align-self: center;
+}
+
 
 /* Smart main menu */
 
