@@ -106,7 +106,12 @@ namespace GaiaiLogic.HTMLComponents
             var firstArgument = arguments.First();
             var windowIndex = Host.GetValueInt32(ref firstArgument);
 
-            if (m_taskBarWindows.ContainsKey(windowIndex)) m_taskBarWindows.Remove(windowIndex);
+            if (m_taskBarWindows.ContainsKey(windowIndex))
+            {
+                var element = m_taskBarWindows[windowIndex];
+                Host.OriginalApi.SciterNodeRemove(element, true);
+                m_taskBarWindows.Remove(windowIndex);
+            }
 
             return Host.CreateValue(true);
         }

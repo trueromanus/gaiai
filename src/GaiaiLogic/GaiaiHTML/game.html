@@ -363,8 +363,6 @@
 					if (blackWall.style.display !== 'none') taskBar.visibleBlackWall(false);
 				
 					taskBarButtonContainer.xcall('closeWindow', windowIndex);
-					const buttons = taskBarButtonContainer.querySelectorAll(`[window-index=${windowIndex}]`);
-					if (buttons.length) buttons[0].remove();
 				},
 				deactivateWindow() {
 					if (!taskBar.activatedWindow) return;
