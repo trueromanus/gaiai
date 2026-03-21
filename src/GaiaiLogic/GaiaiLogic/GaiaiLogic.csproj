@@ -38,7 +38,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="EmptyFlow.SciterAPI" Version="1.2.4" />
+		<PackageReference Include="EmptyFlow.SciterAPI" Version="1.2.5" />
 	</ItemGroup>
 
 	<ItemGroup>

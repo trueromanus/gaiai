@@ -42,7 +42,7 @@ namespace GaiaiLogic.HTMLComponents
 
         private SciterValue ActivateWindow(IEnumerable<SciterValue> arguments)
         {
-            if (!arguments.Any()) return Host.CreateValue(false);
+            if (!arguments.Any()) return Host.FalseValue;
 
             var firstArgument = arguments.First();
             var windowIndex = Host.GetValueInt32(ref firstArgument);
@@ -56,15 +56,15 @@ namespace GaiaiLogic.HTMLComponents
                     Host.SetElementAttribute(button, "class", valueOfClass.Replace(IdlePanel, PressedPanel) + " " + GridPanel);
                 }
 
-                return Host.CreateValue(true);
+                return Host.TrueValue;
             }
 
-            return Host.CreateValue(false);
+            return Host.FalseValue;
         }
 
         private SciterValue DeactivateWindow(IEnumerable<SciterValue> arguments)
         {
-            if (!arguments.Any()) return Host.CreateValue(false);
+            if (!arguments.Any()) return Host.FalseValue;
 
             var firstArgument = arguments.First();
             var windowIndex = Host.GetValueInt32(ref firstArgument);
@@ -78,30 +78,30 @@ namespace GaiaiLogic.HTMLComponents
                     Host.SetElementAttribute(button, "class", valueOfClass.Replace(PressedPanel, IdlePanel).Replace(GridPanel, ""));
                 }
 
-                return Host.CreateValue(true);
+                return Host.TrueValue;
             }
 
-            return Host.CreateValue(false);
+            return Host.FalseValue;
         }
 
         private SciterValue CreateWindow(IEnumerable<SciterValue> arguments)
         {
-            if (!arguments.Any()) return Host.CreateValue(false);
+            if (!arguments.Any()) return Host.FalseValue;
 
             var firstArgument = arguments.First();
             var windowIndex = Host.GetValueInt32(ref firstArgument);
 
-            if (m_taskBarWindows.ContainsKey(windowIndex)) return Host.CreateValue(false);
+            if (m_taskBarWindows.ContainsKey(windowIndex)) return Host.FalseValue;
 
             var element = Host.MakeCssSelector($"[window-index={windowIndex}]", m_subscribedElement).First();
             m_taskBarWindows.Add(windowIndex, element);
 
-            return Host.CreateValue(true);
+            return Host.TrueValue;
         }
 
         private SciterValue CloseWindow(IEnumerable<SciterValue> arguments)
         {
-            if (!arguments.Any()) return Host.CreateValue(false);
+            if (!arguments.Any()) return Host.FalseValue;
 
             var firstArgument = arguments.First();
             var windowIndex = Host.GetValueInt32(ref firstArgument);
@@ -109,11 +109,11 @@ namespace GaiaiLogic.HTMLComponents
             if (m_taskBarWindows.ContainsKey(windowIndex))
             {
                 var element = m_taskBarWindows[windowIndex];
-                Host.OriginalApi.SciterNodeRemove(element, true);
+                Host.NodeRemove(element, true);
                 m_taskBarWindows.Remove(windowIndex);
             }
 
-            return Host.CreateValue(true);
+            return Host.TrueValue;
         }
 
         public override string GetUnique() => "taskbarwindows";
