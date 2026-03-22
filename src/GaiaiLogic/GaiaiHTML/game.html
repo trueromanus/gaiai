@@ -33,7 +33,7 @@
 			<div
 				id="taskbar-buttons-container"
 				class="margin-left-2 flex-row"
-				style="flex: 2;display: flex; flex-direction: row; gap: 2px; behavior: tasbarwindows; height: 100%;" taskbakwindow-script="taskBar.activateWindow({{windowindex}});"
+				style="flex: 2; gap: 2px; behavior: tasbarwindows; height: 100%;" taskbakwindow-script="taskBar.activateWindow({{windowindex}});"
 			>
 			</div>
 			<!-- time panel -->
@@ -140,18 +140,27 @@
 		
 		<!-- shut down template -->
 		<template id="shut-down-modal">
-			<span>Are you sure you want to:</span>
-			<span>Shut down the computer?</span>
-			<span>Restart the computer?</span>
-			<span>Finish current shift?</span>
+			<div class="flex-row">
+				<div style="width: 70px; height: 100%;">
+					<img src="menushutdown.png" width="40" height="40" class="margin-top-16 margin-left-10">
+				</div>
+				<div class="flex-column">
+					<span class="margin-top-16">Are you sure you want to:</span>
+					<span>Shut down the computer?</span>
+					<span>Restart the computer?</span>
+					<span>Finish current shift?</span>
+				</div>
+			</div>
 			<!-- Yes /No /Help -->
 		</template>
 		
 		<template id="button-taskbar">
-			<div class="item-center task-bar-window-button button-idle-panel" window-index="{{windowindex}}">
-				<div class="flex-row" style="height: 100%; width: 100%;">
-					<!--<img style="padding-left: 3px;" src="close.svg" width=9 height=9 />-->
-					<span class="item-center margin-left-4">{{title}}</span>
+			<div class="task-bar-window-button button-idle-panel" window-index="{{windowindex}}">
+				<div>
+					<div class="flex-row" style="height: 25px; width: 220px; max-width: 220px;">
+						<!--<img style="padding-left: 3px;" src="close.svg" width=9 height=9 />-->
+						<span class="item-center margin-left-4">{{title}}</span>
+					</div>
 				</div>
 			</div>
 		</template>
@@ -305,7 +314,7 @@
 				visibleBlackWall: function (visible) {
 					blackWall.style.display = visible ? 'block' : 'none';
 				},
-				createModalWindow: function (title, x, y, width, height, options, contentCallback) {
+				createWindow: function (title, x, y, width, height, options, contentCallback) {
 					const windowTemplate = document.getElementById('modal-window');
 					taskBar.countWindows++;
 					taskBar.windowCounter++;
@@ -403,6 +412,8 @@
 			};
 			taskBar.registerHandlers();
 			
+			const shutDownModal = document.getElementById('shut-down-modal');
+			
 			const mainMenu = {
 				showShutDownModal: function () {
 					const width = windowsContainer.clientWidth;
@@ -417,12 +428,12 @@
 						sizable: false,
 						systemTopMost: true
 					};
-					taskBar.createModalWindow('Shut Down SmartCityOS', centerWidth, centerHeight, modalWidth, modalHeight, modalOptions, () => { return ''; });
+					taskBar.createWindow('Shut Down SmartCityOS', centerWidth, centerHeight, modalWidth, modalHeight, modalOptions, () => shutDownModal.innerHTML);
 					taskBar.clickOnSmartButton();
 				}
 			};
 			
-			taskBar.createModalWindow('Header lalalla', 0, 0, 200, 200, null, () => { return ''; });
+			taskBar.createWindow('Header lalalla', 0, 0, 200, 200, null, () => { return ''; });
 		</script>
 	</body>
 </html>
