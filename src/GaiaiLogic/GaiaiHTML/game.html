@@ -145,10 +145,12 @@
 					<img src="menushutdown.png" width="40" height="40" class="margin-top-16 margin-left-10">
 				</div>
 				<div class="flex-column">
-					<span class="margin-top-16">Are you sure you want to:</span>
-					<span>Shut down the computer?</span>
-					<span>Restart the computer?</span>
-					<span>Finish current shift?</span>
+					<span class="margin-top-16 margin-bottom-8">Are you sure you want to:</span>
+					<div style="behavior: radiobuttongroup;" radio-value="1" radio-group-changed="mainMenu.shutDownMode = ">
+						<div style="behavior: radiobutton;" radio-title="Shut down the computer?" radio-value="1"></div>
+						<div style="behavior: radiobutton;" radio-title="Restart the computer?" radio-value="2"></div>
+						<div style="behavior: radiobutton;" radio-title="Finish current shift?" radio-value="3"></div>
+					</div>
 				</div>
 			</div>
 			<!-- Yes /No /Help -->
@@ -415,6 +417,7 @@
 			const shutDownModal = document.getElementById('shut-down-modal');
 			
 			const mainMenu = {
+				shutDownMode: 1,
 				showShutDownModal: function () {
 					const width = windowsContainer.clientWidth;
 					const height = windowsContainer.clientHeight;
@@ -422,6 +425,7 @@
 					const modalHeight = 200;
 					const centerWidth = (width / 2) - (modalWidth / 2);
 					const centerHeight = (height / 2) - (modalHeight / 2);
+					mainMenu.shutDownMode = 1;
 					taskBar.visibleBlackWall(true);
 					const modalOptions = {
 						movable: false,

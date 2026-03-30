@@ -9,8 +9,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GaiaiLogicTests", "..\Gasia
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestConsole", "..\TestConsole\TestConsole.csproj", "{B6CB08FD-F1E3-4904-BB45-85428E814F74}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GaiaiSourceGenerators", "..\GagagSourceGenerators\GaiaiSourceGenerators.csproj", "{885C3763-C91F-4E0E-8923-EDDCFC0E2642}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,10 +27,6 @@ Global
 		{B6CB08FD-F1E3-4904-BB45-85428E814F74}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B6CB08FD-F1E3-4904-BB45-85428E814F74}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B6CB08FD-F1E3-4904-BB45-85428E814F74}.Release|Any CPU.Build.0 = Release|Any CPU
-		{885C3763-C91F-4E0E-8923-EDDCFC0E2642}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{885C3763-C91F-4E0E-8923-EDDCFC0E2642}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{885C3763-C91F-4E0E-8923-EDDCFC0E2642}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{885C3763-C91F-4E0E-8923-EDDCFC0E2642}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

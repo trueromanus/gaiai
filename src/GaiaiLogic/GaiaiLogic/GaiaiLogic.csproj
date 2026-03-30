@@ -10,6 +10,8 @@
 		<IsTrimmable>true</IsTrimmable>
 		<PublishTrimmed>true</PublishTrimmed>
 		<EnableTrimAnalyzer>true</EnableTrimAnalyzer>
+		<EnableNETAnalyzers>True</EnableNETAnalyzers>
+		<RunAnalyzersDuringLiveAnalysis>False</RunAnalyzersDuringLiveAnalysis>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -38,10 +40,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="EmptyFlow.SciterAPI" Version="1.2.5" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <ProjectReference Include="..\GagagSourceGenerators\GaiaiSourceGenerators.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
+		<PackageReference Include="EmptyFlow.SciterAPI" Version="1.2.6" />
 	</ItemGroup>
 </Project>
