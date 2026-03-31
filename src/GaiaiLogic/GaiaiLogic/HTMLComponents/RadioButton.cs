@@ -44,7 +44,7 @@ $"""
             fill="black"
         />
     </div>
-    {title}
+    <span class="margin-left-6">{title}</span>
 </div>
 """;
 

@@ -11,7 +11,7 @@ namespace GaiaiLogic {
 #if DEBUG
             host.EnableDebugMode();
 #endif
-            host.EnableFeatures(SciterRuntimeFeatures.ALLOW_SOCKET_IO);
+            host.EnableFeatures();
 
             RegisterSciterBehaviours.Register(host);
 
