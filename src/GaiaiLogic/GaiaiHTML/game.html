@@ -394,7 +394,10 @@
 					
 					// active first window if any from it opened
 					const keys = Object.keys(taskBar.windows);
-					if (keys.length) taskBar.activateWindow(keys[keys.length - 1]);
+					if (keys.length) {
+						const newActiveWindow = keys[keys.length - 1];
+						taskBar.activateWindow(parseInt(newActiveWindow));
+					}
 					
 					if (blackWall.style.display !== 'none') taskBar.visibleBlackWall(false);
 				
@@ -412,7 +415,7 @@
 					taskBarButtonContainer.xcall('deactivateWindow', taskBar.activatedWindow);
 				},
 				activateWindow: function (windowIndex) {
-					taskBar.deactivateWindow();
+					if (taskBar.activatedWindow !== windowIndex) taskBar.deactivateWindow();
 					
 					const activableWindow = taskBar.windows[windowIndex];
 					

@@ -18,12 +18,11 @@ namespace GaiaiLogic {
             host.CreateWindow(asMain: true, debugOutput: true);
 #if DEBUG
             host.LoadFile(@"C:\work\Repositories\HackingGame\game\gaiai\src\GaiaiLogic\GaiaiHTML\game.html");
-            //host.LoadFile(@"C:\work\Repositories\HackingGame\game\gaiai\src\GaiaiLogic\GaiaiHTML\stylew95.html");
 #endif
             host.SetWindowCaption(host.MainWindow, "gaiai");
             host.ShowWindow(host.MainWindow);
 #if DEBUG
-            var console = new DeveloperConsole(host, host.MainWindow);
+            //var console = new DeveloperConsole(host, host.MainWindow);
 #endif
             host.Process();
         }

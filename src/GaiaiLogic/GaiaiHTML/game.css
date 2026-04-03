@@ -86,6 +86,9 @@
 	bottom: 0px;
 	right: 0px;
 	z-index: 400;
+	opacity: .9;
+	background-image: url('tile2x2.png');
+	background-repeat: repeat;
 }
 
 /* Window routine */
