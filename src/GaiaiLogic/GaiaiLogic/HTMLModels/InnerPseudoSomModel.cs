@@ -2,6 +2,7 @@
 using EmptyFlow.SciterAPI.Client.PseudoSom;
 using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
+using System.Runtime.ExceptionServices;
 using System.Runtime.InteropServices.Marshalling;
 
 namespace GaiaiLogic.HTMLModels
@@ -12,6 +13,8 @@ namespace GaiaiLogic.HTMLModels
         private string m_unique = "";
 
         private Dictionary<string, PropertyInfo> m_properties = new Dictionary<string, PropertyInfo>();
+
+        private Dictionary<string, MethodInfo> m_methods = new Dictionary<string, MethodInfo>();
 
         private readonly string m_modelName = "";
 
@@ -30,6 +33,17 @@ namespace GaiaiLogic.HTMLModels
             {
                 m_properties.Add(property.Name, property);
             }
+
+            var methods = modelType.GetMethods(BindingFlags.Public | BindingFlags.Instance)
+                .Where(
+                    a =>
+                        a.GetParameters().Count() == 1 && a.GetParameters().First().ParameterType == typeof(SciterValue) &&
+                        a.ReturnType == typeof(SciterValue)
+                );
+            foreach (var method in methods)
+            {
+                m_methods.Add(method.Name, method);
+            }
         }
 
         public string Unique => m_unique;
@@ -38,13 +52,16 @@ namespace GaiaiLogic.HTMLModels
 
         public SciterValue CallMethod(string name, IEnumerable<SciterValue> parameters)
         {
-            throw new NotImplementedException();
+            if (!m_methods.ContainsKey(name)) return m_sciterAPIHost.NullValue;
+
+            var method = m_methods[name];
+            var result = method.Invoke(m_model, parameters.Cast<object>().ToArray());
+            if (result is SciterValue sciterValue) return sciterValue;
+
+            return m_sciterAPIHost.NullValue;
         }
 
-        public HashSet<string> GetMethods()
-        {
-            return [];
-        }
+        public HashSet<string> GetMethods() => m_methods.Keys.ToHashSet();
 
         public HashSet<string> GetProperties() => m_properties.Keys.ToHashSet();
 
@@ -92,6 +109,66 @@ namespace GaiaiLogic.HTMLModels
                     case Type _ when type == typeof(bool):
                         var sciterBoolean = value.d == 1;
                         property.SetValue(m_model, sciterBoolean);
+                        break;
+                    case Type _ when type == typeof(IEnumerable<int>):
+                        var sciterIntArray = m_sciterAPIHost.GetArrayOrMapCount(ref value);
+                        var list = new List<int>();
+                        for (int i = 0; i < sciterIntArray; i++)
+                        {
+                            var arrayItem = m_sciterAPIHost.GetArrayItem(ref value, i);
+                            list.Add(m_sciterAPIHost.GetValueInt32(ref arrayItem));
+                        }
+                        property.SetValue(m_model, list);
+                        break;
+                    case Type _ when type == typeof(IEnumerable<long>):
+                        var sciterLongArray = m_sciterAPIHost.GetArrayOrMapCount(ref value);
+                        var listLong = new List<long>();
+                        for (int i = 0; i < sciterLongArray; i++)
+                        {
+                            var arrayItem = m_sciterAPIHost.GetArrayItem(ref value, i);
+                            listLong.Add(m_sciterAPIHost.GetValueInt64(ref arrayItem));
+                        }
+                        property.SetValue(m_model, listLong);
+                        break;
+                    case Type _ when type == typeof(IEnumerable<double>):
+                        var sciterDoubleArray = m_sciterAPIHost.GetArrayOrMapCount(ref value);
+                        var listDouble = new List<double>();
+                        for (int i = 0; i < sciterDoubleArray; i++)
+                        {
+                            var arrayItem = m_sciterAPIHost.GetArrayItem(ref value, i);
+                            listDouble.Add(m_sciterAPIHost.GetValueDouble(ref arrayItem));
+                        }
+                        property.SetValue(m_model, listDouble);
+                        break;
+                    case Type _ when type == typeof(IEnumerable<float>):
+                        var sciterFloatArray = m_sciterAPIHost.GetArrayOrMapCount(ref value);
+                        var listFloat = new List<double>();
+                        for (int i = 0; i < sciterFloatArray; i++)
+                        {
+                            var arrayItem = m_sciterAPIHost.GetArrayItem(ref value, i);
+                            listFloat.Add(m_sciterAPIHost.GetValueDouble(ref arrayItem));
+                        }
+                        property.SetValue(m_model, listFloat);
+                        break;
+                    case Type _ when type == typeof(IEnumerable<string>):
+                        var sciterStringArray = m_sciterAPIHost.GetArrayOrMapCount(ref value);
+                        var listString = new List<string>();
+                        for (int i = 0; i < sciterStringArray; i++)
+                        {
+                            var arrayItem = m_sciterAPIHost.GetArrayItem(ref value, i);
+                            listString.Add(m_sciterAPIHost.GetValueString(ref arrayItem));
+                        }
+                        property.SetValue(m_model, listString);
+                        break;
+                    case Type _ when type == typeof(IEnumerable<bool>):
+                        var sciterBoolArray = m_sciterAPIHost.GetArrayOrMapCount(ref value);
+                        var listBool = new List<bool>();
+                        for (int i = 0; i < sciterBoolArray; i++)
+                        {
+                            var arrayItem = m_sciterAPIHost.GetArrayItem(ref value, i);
+                            listBool.Add(arrayItem.d == 1);
+                        }
+                        property.SetValue(m_model, listBool);
                         break;
                     default: return false;
                 }
