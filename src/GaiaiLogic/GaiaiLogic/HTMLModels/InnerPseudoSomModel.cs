@@ -183,6 +183,4 @@ namespace GaiaiLogic.HTMLModels
 
     }
 
-
-
 }
