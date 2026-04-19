@@ -78,7 +78,9 @@
 									Help
 								</div>
 							</div>
-							<div class="menu-hover-area flex-row margin-right-1">
+							<div class="menu-hover-area flex-row margin-right-1"
+								style="behavior: actionbutton;"
+								iconbutton-script="mainMenu.showRunModal()">
 								<img class="margin-left-16 item-center" src="menurun.png" width="40" height="40">
 								<div style="height: 18px;" class="margin-left-16 item-center text-middle-plus-plus-size">
 									Run
@@ -180,7 +182,46 @@
 					</div>
 				</div>
 			</div>
-			<!-- Yes /No /Help -->
+		</template>
+		
+		<!-- run modal -->
+		<template id="run-modal">
+			<div>
+				<div class="flex-row margin-left-10 margin-top-14">
+					<img src="menurun.png" width=38 height=38 />
+					<span class="text-middle-size margin-left-6">Type the name of a program, or document, and <br /> SmartCityOS will open it for you.</span>
+				</div>
+				<div class="flex-row margin-left-10 margin-top-10">
+					<span class="item-center text-middle-size">Open:</span>
+					<input class="item-center margin-left-8" style="width: 330px;" type="text" />
+				</div>
+				<div class="flex-row margin-top-20">
+					<div style="width: 72px;"></div>
+					<div
+						style="behavior: textbutton;"
+						button-width="100"
+						button-height="25"
+						button-title="OK"
+						button-script="mainMenu.shutDownAction()">
+					</div>
+					<div
+						class="margin-left-4"
+						style="behavior: textbutton;"
+						button-width="100"
+						button-height="25"
+						button-title="Cancel"
+						button-script="taskBar.closeWindow(taskBar.activatedWindow)">
+					</div>
+					<div
+						class="margin-left-4"
+						style="behavior: textbutton;"
+						button-width="100"
+						button-height="25"
+						button-title="Browse..."
+						button-script="taskBar.closeWindow(taskBar.activatedWindow)">
+					</div>
+				</div>
+			</div>
 		</template>
 		
 		<template id="button-taskbar">
@@ -445,6 +486,7 @@
 			taskBar.registerHandlers();
 			
 			const shutDownModal = document.getElementById('shut-down-modal');
+			const runModal = document.getElementById('run-modal');
 			
 			const mainMenu = {
 				shutDownMode: 1,
@@ -477,6 +519,19 @@
 							//close shift
 							break;
 					}
+				},
+				showRunModal: function () {
+					const modalWidth = 400;
+					const modalHeight = 150;
+					const centerWidth = (windowsContainer.clientWidth / 2) - (modalWidth / 2);
+					const centerHeight = (windowsContainer.clientHeight / 2) - (modalHeight / 2);
+					const modalOptions = {
+						movable: true,
+						sizable: false,
+						systemTopMost: false
+					};
+					taskBar.createWindow('Run', centerWidth, centerHeight, modalWidth, modalHeight, modalOptions, () => runModal.innerHTML);
+					taskBar.clickOnSmartButton();
 				}
 			};
 			
