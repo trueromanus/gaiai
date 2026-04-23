@@ -11,6 +11,8 @@
 	  </style>
 	</head>
 	<body class="task-bar-background-area">
+		<div id="triggershub" style="behavior: triggershub; width: 0px; height: 0px;"></div>
+		
 		<!-- windows container -->
 		<div id="windows-container" class="width-full height-full">
 		</div>
@@ -241,6 +243,7 @@
 			const blackWall = document.getElementById('modal-black-wall');
 			const taskBarButtonContainer = document.getElementById('taskbar-buttons-container');
 			const taskBarButtonTemplate = document.getElementById('button-taskbar');
+			const triggersHub = document.getElementById('triggershub').triggershub;
 			
 			function replaceClasses(element, oldClass, newClass) {
 				element.classList.remove(oldClass);

@@ -1,5 +1,6 @@
 ﻿using EmptyFlow.SciterAPI;
 using GaiaiLogic.HTMLComponents;
+using GaiaiLogic.HTMLModels;
 
 namespace GaiaiLogic
 {
@@ -17,6 +18,8 @@ namespace GaiaiLogic
 
             host.Callbacks.AddAttachBehaviourFactory("tasbarwindows", (element) => new TaskBarWindows(element, host));
             host.Callbacks.AddAttachBehaviourFactory("taskbarbutton", (element) => new TaskBarButton(element, host));
+
+            host.Callbacks.AddAttachBehaviourFactory("triggershub", (element) => new TriggersHubHandler(element, host));
         }
 
     }

@@ -31,18 +31,18 @@ namespace GaiaiLogic.HTMLModels
             var properties = modelType.GetProperties(BindingFlags.Public | BindingFlags.Instance);
             foreach (var property in properties)
             {
-                m_properties.Add(property.Name, property);
+                m_properties.Add(MakeCamelCase(property.Name), property);
             }
 
             var methods = modelType.GetMethods(BindingFlags.Public | BindingFlags.Instance)
                 .Where(
                     a =>
-                        a.GetParameters().Count() == 1 && a.GetParameters().First().ParameterType == typeof(SciterValue) &&
+                        a.GetParameters().Count() == 1 && a.GetParameters().First().ParameterType == typeof(IEnumerable<SciterValue>) &&
                         a.ReturnType == typeof(SciterValue)
                 );
             foreach (var method in methods)
             {
-                m_methods.Add(method.Name, method);
+                m_methods.Add(MakeCamelCase(method.Name), method);
             }
         }
 
@@ -55,7 +55,7 @@ namespace GaiaiLogic.HTMLModels
             if (!m_methods.ContainsKey(name)) return m_sciterAPIHost.NullValue;
 
             var method = m_methods[name];
-            var result = method.Invoke(m_model, parameters.Cast<object>().ToArray());
+            var result = method.Invoke(m_model, [parameters]);
             if (result is SciterValue sciterValue) return sciterValue;
 
             return m_sciterAPIHost.NullValue;
@@ -180,6 +180,12 @@ namespace GaiaiLogic.HTMLModels
         }
 
         public void SetUnique(string unique) => m_unique = unique;
+
+        private string MakeCamelCase(string name)
+        {
+            var firstChar = name[0].ToString().ToLowerInvariant();
+            return firstChar + name.Substring(1);
+        }
 
     }
 
