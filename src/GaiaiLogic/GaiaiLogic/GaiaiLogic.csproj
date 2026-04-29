@@ -40,6 +40,12 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="EmptyFlow.SciterAPI" Version="1.2.6" />
+		<EmbeddedResource Include="TemplateFiles\ShutDownModal.html">
+			<LogicalName>ShutDownModal.html</LogicalName>
+		</EmbeddedResource>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\..\..\..\..\..\SciterAPI\SciterAPI\src\EmptyFlow.SciterAPI\EmptyFlow.SciterAPI.csproj" />
 	</ItemGroup>
 </Project>

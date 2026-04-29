@@ -44,22 +44,36 @@ namespace GaiaiLogic.HTMLModels
 
     }
 
-    internal class TriggersHubHandler : SciterEventHandler
+    /// <summary>
+    /// Single pseudo model event handler.
+    /// </summary>
+    public class PseudoSomModelHandler : SciterEventHandler
     {
 
-        private InnerPseudoSomModel<TriggersHubModel> m_model;
+        readonly IPseudoSomModel m_model;
 
-        public TriggersHubHandler(nint relatedThing, SciterAPIHost sciterAPIHost) : base(relatedThing, sciterAPIHost)
+        public PseudoSomModelHandler(IPseudoSomModel model, nint relatedThing, nint window, SciterAPIHost sciterAPIHost) : base(relatedThing, sciterAPIHost)
         {
-#pragma warning disable CS8604 // Possible null reference argument.
-            var innerModel = new TriggersHubModel(GameLibrary.TriggersHub, sciterAPIHost);
-#pragma warning restore CS8604 // Possible null reference argument.
-            m_model = new InnerPseudoSomModel<TriggersHubModel>(innerModel, "triggershub", sciterAPIHost);
-            PseudoSom.RegisterModel(m_model, sciterAPIHost, Host.MainWindow, relatedThing);
+            m_model = model ?? throw new ArgumentNullException(nameof(model));
+            PseudoSom.RegisterModel(m_model, sciterAPIHost, window, relatedThing);
         }
+
+        public override EventBehaviourGroups BeforeRegisterEvent() => EventBehaviourGroups.HANDLE_SCRIPTING_METHOD_CALL | EventBehaviourGroups.HANDLE_METHOD_CALL;
+
 
         public override (SciterValue? value, bool handled) ScriptMethodCall(string name, IEnumerable<SciterValue> arguments) => PseudoSom.Handle(m_model, Host, name, arguments);
 
     }
+
+    public class InnerPseudoSomModelHandler<T> : PseudoSomModelHandler where T : class
+    {
+
+        public InnerPseudoSomModelHandler(T model, nint relatedThing, nint window, SciterAPIHost sciterAPIHost, string modelName) :
+            base(PseudoSomModelFactory.Inner(model, modelName, sciterAPIHost), relatedThing, window, sciterAPIHost)
+        {
+        }
+
+    }
+
 
 }

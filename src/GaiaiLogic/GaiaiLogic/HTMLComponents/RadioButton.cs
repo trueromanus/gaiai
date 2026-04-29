@@ -52,6 +52,15 @@ $"""
             m_image = Host.MakeCssSelector("svg", m_subscribedElement).First();
             m_group = Host.NodeParent(m_subscribedElement);
 
+            if (m_group != nint.Zero)
+            {
+                var groupHandler = Host.GetEventHandlerByPointer(m_group);
+                var group = groupHandler as RadioButtonGroup;
+                if (group != null && !string.IsNullOrEmpty(group.CurrentValue) && group.CurrentValue == m_value)
+                {
+                    ActivateRadio(false);
+                }
+            }
         }
 
         public override EventBehaviourGroups BeforeRegisterEvent() => EventBehaviourGroups.HANDLE_MOUSE | EventBehaviourGroups.HANDLE_BEHAVIOR_EVENT;

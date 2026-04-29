@@ -8,7 +8,7 @@ using System.Runtime.InteropServices.Marshalling;
 namespace GaiaiLogic.HTMLModels
 {
 
-    internal partial class InnerPseudoSomModel<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] T> : IPseudoSomModel where T : class
+    public class InnerPseudoSomModel<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] T> : IPseudoSomModel where T : class
     {
         private string m_unique = "";
 
@@ -185,6 +185,16 @@ namespace GaiaiLogic.HTMLModels
         {
             var firstChar = name[0].ToString().ToLowerInvariant();
             return firstChar + name.Substring(1);
+        }
+
+    }
+
+    public static class PseudoSomModelFactory
+    {
+
+        public static InnerPseudoSomModel<T> Inner<T>(T model, string modelName, SciterAPIHost host) where T : class
+        {
+            return new InnerPseudoSomModel<T>(model, modelName, host);
         }
 
     }

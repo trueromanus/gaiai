@@ -12,6 +12,7 @@
 	</head>
 	<body class="task-bar-background-area">
 		<div id="triggershub" style="behavior: triggershub; width: 0px; height: 0px;"></div>
+		<div id="templateloader" style="behavior: templateloader; width: 0px; height: 0px;"></div>
 		
 		<!-- windows container -->
 		<div id="windows-container" class="width-full height-full">
@@ -140,52 +141,8 @@
 					<div class="horizontal-window-resizer"></div>
 				</div>
 			</div>
-		</template>
-		
-		<!-- shut down template -->
-		<template id="shut-down-modal">
-			<div class="flex-row">
-				<div style="width: 70px; height: 100%;">
-					<img src="menushutdown.png" width="40" height="40" class="margin-top-16 margin-left-10">
-				</div>
-				<div class="flex-column">
-					<span class="margin-top-16 margin-bottom-8 text-middle-plus-size">Are you sure you want to:</span>
-					<div style="behavior: radiobuttongroup;" radio-value="1" radio-group-changed="mainMenu.shutDownMode = ">
-						<div class="margin-top-2 margin-bottom-8 text-middle-plus-size" style="behavior: radiobutton;" radio-title="Shut down the computer?" radio-value="1"></div>
-						<div class="margin-bottom-8 text-middle-plus-size" style="behavior: radiobutton;" radio-title="Restart the computer?" radio-value="2"></div>
-						<div class="margin-bottom-8 text-middle-plus-size" style="behavior: radiobutton;" radio-title="Finish current shift?" radio-value="3"></div>
-					</div>
-					<div class="margin-top-20"></div>
-					<div class="margin-top-4"></div>
-					<div class="flex-row margin-top-20">
-						<div
-							style="behavior: textbutton;"
-							button-width="100"
-							button-height="25"
-							button-title="Yes"
-							button-script="mainMenu.shutDownAction()">
-						</div>
-						<div
-							class="margin-left-4"
-							style="behavior: textbutton;"
-							button-width="100"
-							button-height="25"
-							button-title="No"
-							button-script="taskBar.closeWindow(taskBar.activatedWindow)">
-						</div>
-						<div
-							class="margin-left-4"
-							style="behavior: textbutton;"
-							button-width="100"
-							button-height="25"
-							button-title="Help"
-							button-script="taskBar.closeWindow(taskBar.activatedWindow)">
-						</div>
-					</div>
-				</div>
-			</div>
-		</template>
-		
+		</template>		
+
 		<!-- run modal -->
 		<template id="run-modal">
 			<div>
@@ -244,6 +201,7 @@
 			const taskBarButtonContainer = document.getElementById('taskbar-buttons-container');
 			const taskBarButtonTemplate = document.getElementById('button-taskbar');
 			const triggersHub = document.getElementById('triggershub').triggershub;
+			const templateLoader = document.getElementById('templateloader').model;
 			
 			function replaceClasses(element, oldClass, newClass) {
 				element.classList.remove(oldClass);
@@ -507,7 +465,9 @@
 						sizable: false,
 						systemTopMost: true
 					};
-					taskBar.createWindow('Shut Down SmartCityOS', centerWidth, centerHeight, modalWidth, modalHeight, modalOptions, () => shutDownModal.innerHTML);
+					
+					const contentModal = templateLoader.getTemplate("ShutDownModal");
+					taskBar.createWindow('Shut Down SmartCityOS', centerWidth, centerHeight, modalWidth, modalHeight, modalOptions, () => contentModal);
 					taskBar.clickOnSmartButton();
 				},
 				shutDownAction() {

@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="../../../../../../SciterAPI/SciterAPI/src/EmptyFlow.SciterAPI/EmptyFlow.SciterAPI.csproj" />
+  <Project Path="../GasiaiLogicTests/GaiaiLogicTests.csproj" />
+  <Project Path="../TestConsole/TestConsole.csproj" />
+  <Project Path="GaiaiLogic.csproj" />
+</Solution>

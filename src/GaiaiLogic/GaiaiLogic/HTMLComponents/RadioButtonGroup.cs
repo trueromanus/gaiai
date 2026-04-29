@@ -26,9 +26,11 @@ namespace GaiaiLogic.HTMLComponents
             if (!string.IsNullOrEmpty(m_initialValue)) m_currentValue = m_initialValue;
         }
 
+        public string CurrentValue => m_currentValue;
+
         public override EventBehaviourGroups BeforeRegisterEvent() => EventBehaviourGroups.HANDLE_BEHAVIOR_EVENT;
 
-        public void ActivateRadio(string value, bool fireParent = true)
+        public void ActivateRadio(string value)
         {
             var valueElement = Host.MakeCssSelector($"[radio-value=\"{m_currentValue}\"]", m_subscribedElement).FirstOrDefault();
             if (valueElement != nint.Zero)
@@ -38,19 +40,6 @@ namespace GaiaiLogic.HTMLComponents
             }
             Host.ExecuteWindowEval(Host.MainWindow, m_changedScript + value, out var _);
             m_currentValue = value;
-        }
-
-        public override void BehaviourEvent(BehaviourEvents command, nint targetElement, nint element, nint reason, SciterValue data, string name)
-        {
-            if (command == BehaviourEvents.CONTENT_CHANGED)
-            {
-                var valueElement = Host.MakeCssSelector($"[radio-value=\"{m_initialValue}\"]", m_subscribedElement).FirstOrDefault();
-                if (valueElement != nint.Zero)
-                {
-                    var button = Host.GetEventHandlerByPointer(valueElement) as RadioButton;
-                    if (button != null) button.ActivateRadio(fireParent: false);
-                }
-            }
         }
 
     }
