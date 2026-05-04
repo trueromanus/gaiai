@@ -141,67 +141,13 @@
 					<div class="horizontal-window-resizer"></div>
 				</div>
 			</div>
-		</template>		
-
-		<!-- run modal -->
-		<template id="run-modal">
-			<div>
-				<div class="flex-row margin-left-10 margin-top-14">
-					<img src="menurun.png" width=38 height=38 />
-					<span class="text-middle-size margin-left-6">Type the name of a program, or document, and <br /> SmartCityOS will open it for you.</span>
-				</div>
-				<div class="flex-row margin-left-10 margin-top-10">
-					<span class="item-center text-middle-size">Open:</span>
-					<div class="margin-left-10 editor-panel">
-						<input class="item-center" style="width: 330px; border-radius: 0; margin-top: -1px; margin-bottom: -1px; font-size: 11px;" type="text" />
-					</div>
-				</div>
-				<div class="flex-row" style="margin-top: 24px;">
-					<div style="width: 72px;"></div>
-					<div
-						style="behavior: textbutton;"
-						button-width="100"
-						button-height="25"
-						button-title="OK"
-						button-script="mainMenu.shutDownAction()">
-					</div>
-					<div
-						class="margin-left-4"
-						style="behavior: textbutton;"
-						button-width="100"
-						button-height="25"
-						button-title="Cancel"
-						button-script="taskBar.closeWindow(taskBar.activatedWindow)">
-					</div>
-					<div
-						class="margin-left-4"
-						style="behavior: textbutton;"
-						button-width="100"
-						button-height="25"
-						button-title="Browse..."
-						button-script="taskBar.closeWindow(taskBar.activatedWindow)">
-					</div>
-				</div>
-			</div>
 		</template>
-		
-		<template id="button-taskbar">
-			<div class="task-bar-window-button button-idle-panel" window-index="{{windowindex}}">
-				<div>
-					<div class="flex-row" style="height: 25px; width: 220px; max-width: 220px;">
-						<!--<img style="padding-left: 3px;" src="close.svg" width=9 height=9 />-->
-						<span class="item-center margin-left-4">{{title}}</span>
-					</div>
-				</div>
-			</div>
-		</template>
-		
+	
 		<script>
 			const windowsContainer = document.getElementById('windows-container');
 			const smartmenu = document.getElementById('smartmenu');
 			const blackWall = document.getElementById('modal-black-wall');
 			const taskBarButtonContainer = document.getElementById('taskbar-buttons-container');
-			const taskBarButtonTemplate = document.getElementById('button-taskbar');
 			const triggersHub = document.getElementById('triggershub').triggershub;
 			const templateLoader = document.getElementById('templateloader').model;
 			
@@ -349,6 +295,7 @@
 				},
 				createWindow: function (title, x, y, width, height, options, contentCallback) {
 					const windowTemplate = document.getElementById('modal-window');
+					
 					taskBar.countWindows++;
 					taskBar.windowCounter++;
 					const systemTopMost = options && options.systemTopMost;
@@ -388,7 +335,8 @@
 					}
 					
 					if (!systemTopMost && !taskbarNotVisible) {
-						taskBarButtonContainer.append(taskBarButtonTemplate.innerHTML.replaceAll('{{title}}', title).replaceAll('{{windowindex}}', windowIndex));
+						const buttonTemplate = templateLoader.getTemplate("ButtonTaskbar");
+						taskBarButtonContainer.append(buttonTemplate.replaceAll('{{title}}', title).replaceAll('{{windowindex}}', windowIndex));
 						taskBarButtonContainer.xcall('createWindow', windowIndex);
 					}
 					
@@ -448,8 +396,6 @@
 				}
 			};
 			taskBar.registerHandlers();
-			
-			const runModal = document.getElementById('run-modal');
 			
 			const mainMenu = {
 				shutDownMode: 1,
