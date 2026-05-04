@@ -1,0 +1,27 @@
+﻿<div class="window-panel" id="window{{windowindex}}" style="position: fixed; top: {{positionY}}px; left: {{positionX}}px; z-index: {{zindex}}">
+    <div class="inner-panel">
+        <div class="window-active-header window-header-finder flex-row">
+            <div style="width: 2px;"></div>
+            <!-- window title -->
+            <div class="item-center" style="height: 12px;">
+                <span class="text-middle-plus-size">{{title}}</span>
+            </div>
+            <div class="flex-1"></div>
+            <!-- close window button -->
+            <div class="flex-row">
+                <div class="button-idle-panel item-center margin-right-2"
+                     style="height: 14px;width: 15px; behavior: actionbutton;"
+                     iconbutton-script="taskBar.closeWindow({{windowindex}})">
+                    <img style="padding-left: 3px;" src="close.svg" width=9 height=9 />
+                </div>
+            </div>
+        </div>
+        <div style="display: flex; flex-direction: row;">
+            <div class="window-content-finder" style="height: {{height}}px; width: {{width}}px;">
+                {{windowContent}}
+            </div>
+            <div class="vertical-window-resizer"></div>
+        </div>
+        <div class="horizontal-window-resizer"></div>
+    </div>
+</div>

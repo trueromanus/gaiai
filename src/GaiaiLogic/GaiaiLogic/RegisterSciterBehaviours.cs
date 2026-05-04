@@ -1,4 +1,5 @@
 ﻿using EmptyFlow.SciterAPI;
+using EmptyFlow.SciterAPI.Client.PseudoSom;
 using GaiaiLogic.HTMLComponents;
 using GaiaiLogic.HTMLModels;
 
