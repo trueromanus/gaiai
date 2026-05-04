@@ -1,0 +1,35 @@
+﻿<div>
+    <div class="flex-row margin-left-10 margin-top-14">
+        <img src="menurun.png" width=38 height=38 />
+        <span class="text-middle-size margin-left-6">Type the name of a program, or document, and <br /> SmartCityOS will open it for you.</span>
+    </div>
+    <div class="flex-row margin-left-10 margin-top-10">
+        <span class="item-center text-middle-size">Open:</span>
+        <div class="margin-left-10 editor-panel">
+            <input class="item-center" style="width: 330px; border-radius: 0; margin-top: -1px; margin-bottom: -1px; font-size: 11px;" type="text" />
+        </div>
+    </div>
+    <div class="flex-row" style="margin-top: 24px;">
+        <div style="width: 72px;"></div>
+        <div style="behavior: textbutton;"
+             button-width="100"
+             button-height="25"
+             button-title="OK"
+             button-script="mainMenu.shutDownAction()">
+        </div>
+        <div class="margin-left-4"
+             style="behavior: textbutton;"
+             button-width="100"
+             button-height="25"
+             button-title="Cancel"
+             button-script="taskBar.closeWindow(taskBar.activatedWindow)">
+        </div>
+        <div class="margin-left-4"
+             style="behavior: textbutton;"
+             button-width="100"
+             button-height="25"
+             button-title="Browse..."
+             button-script="taskBar.closeWindow(taskBar.activatedWindow)">
+        </div>
+    </div>
+</div>

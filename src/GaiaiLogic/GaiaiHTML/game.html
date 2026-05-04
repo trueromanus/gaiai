@@ -352,6 +352,7 @@
 					taskBar.countWindows++;
 					taskBar.windowCounter++;
 					const systemTopMost = options && options.systemTopMost;
+					const taskbarNotVisible = options && options.taskbarNotVisible;
 					const zIndex = (systemTopMost ? 400 : 10) + taskBar.countWindows;
 					const windowTemplateContent = windowTemplate.innerHTML
 						.replaceAll('{{positionY}}', y)
@@ -386,7 +387,7 @@
 						verticalResizer.addEventListener('touchstart', windowManagement.startWindowHorizontalResize, false);						
 					}
 					
-					if (!systemTopMost) {
+					if (!systemTopMost && !taskbarNotVisible) {
 						taskBarButtonContainer.append(taskBarButtonTemplate.innerHTML.replaceAll('{{title}}', title).replaceAll('{{windowindex}}', windowIndex));
 						taskBarButtonContainer.xcall('createWindow', windowIndex);
 					}
@@ -448,7 +449,6 @@
 			};
 			taskBar.registerHandlers();
 			
-			const shutDownModal = document.getElementById('shut-down-modal');
 			const runModal = document.getElementById('run-modal');
 			
 			const mainMenu = {
@@ -493,9 +493,11 @@
 					const modalOptions = {
 						movable: true,
 						sizable: false,
-						systemTopMost: false
+						systemTopMost: false,
+						taskbarNotVisible: true
 					};
-					taskBar.createWindow('Run', centerWidth, centerHeight, modalWidth, modalHeight, modalOptions, () => runModal.innerHTML);
+					const contentModal = templateLoader.getTemplate("RunModal");
+					taskBar.createWindow('Run', centerWidth, centerHeight, modalWidth, modalHeight, modalOptions, () => contentModal);
 					taskBar.clickOnSmartButton();
 				}
 			};

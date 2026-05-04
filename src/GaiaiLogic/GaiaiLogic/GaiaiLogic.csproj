@@ -43,6 +43,9 @@
 		<EmbeddedResource Include="TemplateFiles\ShutDownModal.html">
 			<LogicalName>ShutDownModal.html</LogicalName>
 		</EmbeddedResource>
+		<EmbeddedResource Include="TemplateFiles\RunModal.html">
+			<LogicalName>RunModal.html</LogicalName>
+		</EmbeddedResource>
 	</ItemGroup>
 
 	<ItemGroup>
