@@ -37,9 +37,6 @@
 		<EmbeddedResource Include="DataFiles\Emails-en.json">
 			<LogicalName>EmailSection-en.json</LogicalName>
 		</EmbeddedResource>
-		<EmbeddedResource Include="TemplateFiles\ProgramsMenu.html">
-		  <LogicalName>ButtonTaskbar.html</LogicalName>
-		</EmbeddedResource>
 	</ItemGroup>
 
 	<ItemGroup>
@@ -54,6 +51,9 @@
 		</EmbeddedResource>
 		<EmbeddedResource Include="TemplateFiles\WindowModal.html">
 			<LogicalName>WindowModal.html</LogicalName>
+		</EmbeddedResource>
+		<EmbeddedResource Include="TemplateFiles\ProgramsMenu.html">
+			<LogicalName>ProgramsMenu.html</LogicalName>
 		</EmbeddedResource>
 	</ItemGroup>
 
