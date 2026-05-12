@@ -37,6 +37,9 @@
 		<EmbeddedResource Include="DataFiles\Emails-en.json">
 			<LogicalName>EmailSection-en.json</LogicalName>
 		</EmbeddedResource>
+		<EmbeddedResource Include="TemplateFiles\ProgramsMenu.html">
+		  <LogicalName>ButtonTaskbar.html</LogicalName>
+		</EmbeddedResource>
 	</ItemGroup>
 
 	<ItemGroup>
