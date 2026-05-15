@@ -11,11 +11,16 @@ namespace GaiaiLogic.HTMLComponents
 
         private readonly PopupMenu m_menu;
 
+        private readonly int m_menuId;
+
         public ItemPopupMenu(nint relatedThing, SciterAPIHost host) : base(relatedThing, host)
         {
             var parent = host.NodeParent(relatedThing);
             m_menu = (host.GetEventHandlerByPointer(parent) as PopupMenu) ?? throw new Exception("Parent for ItemPopupMenu not PopupMenu");
+            m_menuId = Convert.ToInt32(host.GetElementAttribute(m_subscribedElement, "menu-id"));
         }
+
+        public int MenuId => m_menuId;
 
         public override EventBehaviourGroups BeforeRegisterEvent() => EventBehaviourGroups.HANDLE_MOUSE;
 
@@ -28,12 +33,16 @@ namespace GaiaiLogic.HTMLComponents
 
             if (command == MouseEvents.MOUSE_ENTER)
             {
+                Host.SetElementStyleProperty(m_subscribedElement, "background-color", "transparent");
+                Host.SetElementStyleProperty(m_subscribedElement, "color", "black");
+
                 m_menu.HoverOnMenu(this);
             }
 
             if (command == MouseEvents.MOUSE_LEAVE)
             {
-
+                Host.SetElementStyleProperty(m_subscribedElement, "background-color", "#00007F");
+                Host.SetElementStyleProperty(m_subscribedElement, "color", "white");
             }
         }
 

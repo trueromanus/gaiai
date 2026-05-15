@@ -19,6 +19,8 @@ namespace GaiaiLogic.HTMLComponents
 
         private string m_script = "";
 
+        private string m_hoverScript = "";
+
         private bool m_pressed = false;
 
         public ActionButton(nint element, SciterAPIHost host) : base(element, host)
@@ -45,6 +47,7 @@ namespace GaiaiLogic.HTMLComponents
             }
 
             m_script = Host.GetElementAttribute(SubscribedElement, "iconbutton-script");
+            m_hoverScript = Host.GetElementAttribute(SubscribedElement, "iconbutton-hscript");
         }
 
         private void PressedButton()
@@ -73,6 +76,12 @@ namespace GaiaiLogic.HTMLComponents
             {
                 m_pressed = false;
                 UnpressedButton();
+                return;
+            }
+
+            if (command == MouseEvents.MOUSE_ENTER && !string.IsNullOrEmpty(m_hoverScript))
+            {
+                Host.ExecuteWindowEval(Host.MainWindow, m_hoverScript, out _);
                 return;
             }
 

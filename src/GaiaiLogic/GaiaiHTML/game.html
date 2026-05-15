@@ -57,7 +57,9 @@
 					</div>
 					<div class="right-menu">
 						<div class="width-full height-full flex-column">
-							<div class="menu-hover-area flex-row margin-right-1">
+							<div class="menu-hover-area flex-row margin-right-1"
+								style="behavior: actionbutton;"
+								iconbutton-hscript="mainMenu.showProgramsMenu()">
 								<img class="margin-left-16 item-center" src="menuprograms.png" width="40" height="40">
 								<div style="height: 18px;" class="margin-left-16 item-center text-middle-plus-plus-size">
 									Programs
@@ -413,6 +415,9 @@
 					const contentModal = templateLoader.getTemplate("RunModal");
 					taskBar.createWindow('Run', centerWidth, centerHeight, modalWidth, modalHeight, modalOptions, () => contentModal);
 					taskBar.clickOnSmartButton();
+				},
+				showProgramsMenu: function () {
+					console.log("showProgramsMenu");
 				}
 			};
 			

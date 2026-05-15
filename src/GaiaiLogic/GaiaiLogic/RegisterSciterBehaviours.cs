@@ -20,6 +20,9 @@ namespace GaiaiLogic
             host.Callbacks.AddAttachBehaviourFactory("tasbarwindows", (element) => new TaskBarWindows(element, host));
             host.Callbacks.AddAttachBehaviourFactory("taskbarbutton", (element) => new TaskBarButton(element, host));
 
+            host.Callbacks.AddAttachBehaviourFactory("popupmenu", (element) => new PopupMenu(element, host));
+            host.Callbacks.AddAttachBehaviourFactory("popupmenuitem", (element) => new ItemPopupMenu(element, host));
+
             host.Callbacks.AddAttachBehaviourFactory(
                 "triggershub",
                 (element) =>
