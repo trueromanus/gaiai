@@ -107,13 +107,18 @@
 			</div>
 		</div>
 
+		<div id="popup-menus-container" class="popup-menus-container" style="display: none;"></div>
+
 		<div id="modal-black-wall" class="modal-black-wall" style="background-color: #d3d3d380; display: none;">
 		</div>
 		<script src="globals.js"></script>
 		<script src="windowManagement.js"></script>
 		<script src="mainMenu.js"></script>
 		<script>
-			taskBar.createWindow('Header lalalla', 0, 0, 200, 200, null, () => { return ''; });
+			//taskBar.createWindow('Header lalalla', 0, 0, 200, 200, null, () => { return ''; });
+
+			/*const contentMenu = templateLoader.getTemplate("ProgramsPopupMenu");
+			taskBar.showPopupMenu({ width: 150, left: 20, top: 20 }, () => contentMenu);*/
 		</script>
 	</body>
 </html>

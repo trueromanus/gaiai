@@ -48,8 +48,8 @@ namespace GaiaiLogic.HTMLComponents
                 }
                 builder.AppendLine(
                     $$"""
-                    <div style="width:100%; behavior: popupmenuitem;" class="text-middle-plus-size" menu-id="{{item.Id}}">
-                        <div style="margin-left: 4px;padding-top: 2px;">{{item.Title}}</div>
+                    <div style="width:100%; height: 24px; behavior: popupmenuitem;" class="flex-row text-middle-plus-size" menu-id="{{item.Id}}">
+                        <div style="padding-left: 6px;" class="item-center">{{item.Title}}</div>
                     </div>
                     """
                 );
