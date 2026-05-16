@@ -39,8 +39,6 @@ namespace GaiaiLogic.HTMLComponents
         private void RenderMenu()
         {
             var builder = new StringBuilder();
-            builder.AppendLine("<div class=\"menu-panel\">");
-            builder.AppendLine("<div>");
             foreach (var item in m_items)
             {
                 if (item.Terminator)
@@ -50,14 +48,12 @@ namespace GaiaiLogic.HTMLComponents
                 }
                 builder.AppendLine(
                     $$"""
-                    <div style="width:100%;behavior: popupmenuitem;" class="text-middle-plus-size" menu-id="{{item.Id}}">
-                        {{item.Title}}
+                    <div style="width:100%; behavior: popupmenuitem;" class="text-middle-plus-size" menu-id="{{item.Id}}">
+                        <div style="margin-left: 4px;padding-top: 2px;">{{item.Title}}</div>
                     </div>
                     """
                 );
             }
-            builder.AppendLine("</div>");
-            builder.AppendLine("</div>");
 
             Host.SetElementHtml(m_subscribedElement, builder.ToString(), SetElementHtml.ReplaceContent);
         }

@@ -52,8 +52,11 @@
 		<EmbeddedResource Include="TemplateFiles\WindowModal.html">
 			<LogicalName>WindowModal.html</LogicalName>
 		</EmbeddedResource>
-		<EmbeddedResource Include="TemplateFiles\ProgramsMenu.html">
-			<LogicalName>ProgramsMenu.html</LogicalName>
+		<EmbeddedResource Include="TemplateFiles\ProgramsPopupMenu.html">
+			<LogicalName>ProgramsPopupMenu.html</LogicalName>
+		</EmbeddedResource>
+		<EmbeddedResource Include="TemplateFiles\PopupMenu.html">
+			<LogicalName>PopupMenu.html</LogicalName>
 		</EmbeddedResource>
 	</ItemGroup>
 

@@ -121,6 +121,7 @@ const taskBar = {
 	countWindows: 0,
 	windowCounter: 0,
 	activatedWindow: null,
+	countPopups: 0,
 	windows: {},
 	clickOnSmartButton: function () {
 		if (taskBar.smartButtonClicked) {
@@ -240,6 +241,38 @@ const taskBar = {
 		taskBar.activatedWindow = windowIndex;
 
 		taskBarButtonContainer.xcall('activateWindow', windowIndex);
+	},
+	showPopupMenu: function (options, contentCallback) {
+		let left = 0;
+		let top = 0;
+		const width = options.width || 150;
+		if (options.locatedElement) {
+			var rect = options.locatedElement.getBoundingClientRect();
+			left = rect.right;
+			top = rect.top;
+		} else {
+			left = options.left;
+			top = options.top;
+		}
+		taskBar.countPopups++;
+		const zIndex = 500;
+		const popupMenuTemplate = templateLoader.getTemplate("PopupMenu");
+		const menuTemplateContent = popupMenuTemplate
+			.replaceAll('{{width}}', width)
+			.replaceAll('{{left}}', left)
+			.replaceAll('{{top}}', top)
+			.replaceAll('{{content}}', contentCallback())
+			.replaceAll('{{popupindex}}', taskBar.countPopups)
+			.replaceAll('{{zindex}}', zIndex + taskBar.countPopups);
+		console.log(menuTemplateContent);
+
+		popupMenusContainer.append(menuTemplateContent);
+		popupMenusContainer.style.display = "block";
+	},
+	closePopupMenu: function () {
+		taskBar.countPopups -= 1;
+		popupMenusContainer.style.display = "none";
+		popupMenusContainer.innerHTML = "";
 	}
 };
 taskBar.registerHandlers();

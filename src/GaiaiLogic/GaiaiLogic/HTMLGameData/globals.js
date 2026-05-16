@@ -4,3 +4,4 @@ const blackWall = document.getElementById('modal-black-wall');
 const taskBarButtonContainer = document.getElementById('taskbar-buttons-container');
 const triggersHub = document.getElementById('triggershub').triggershub;
 const templateLoader = document.getElementById('templateloader').model;
+const popupMenusContainer = document.getElementById('popup-menus-container');

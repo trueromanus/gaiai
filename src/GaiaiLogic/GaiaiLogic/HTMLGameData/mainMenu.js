@@ -48,6 +48,8 @@ const mainMenu = {
 		taskBar.clickOnSmartButton();
 	},
 	showProgramsMenu: function () {
-		console.log("showProgramsMenu");
+		const contentMenu = templateLoader.getTemplate("ProgramsPopupMenu");
+
+		taskBar.showPopupMenu({ locatedElement: smartmenu, width: 150 }, () => contentMenu);
 	}
 };

@@ -33,16 +33,16 @@ namespace GaiaiLogic.HTMLComponents
 
             if (command == MouseEvents.MOUSE_ENTER)
             {
-                Host.SetElementStyleProperty(m_subscribedElement, "background-color", "transparent");
-                Host.SetElementStyleProperty(m_subscribedElement, "color", "black");
+                Host.SetElementStyleProperty(m_subscribedElement, "background-color", "#00007F");
+                Host.SetElementStyleProperty(m_subscribedElement, "color", "white");
 
                 m_menu.HoverOnMenu(this);
             }
 
             if (command == MouseEvents.MOUSE_LEAVE)
             {
-                Host.SetElementStyleProperty(m_subscribedElement, "background-color", "#00007F");
-                Host.SetElementStyleProperty(m_subscribedElement, "color", "white");
+                Host.SetElementStyleProperty(m_subscribedElement, "background-color", "transparent");
+                Host.SetElementStyleProperty(m_subscribedElement, "color", "black");
             }
         }
 
