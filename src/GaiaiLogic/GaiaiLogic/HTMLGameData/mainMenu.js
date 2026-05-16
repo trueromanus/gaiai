@@ -50,6 +50,6 @@ const mainMenu = {
 	showProgramsMenu: function () {
 		const contentMenu = templateLoader.getTemplate("ProgramsPopupMenu");
 
-		taskBar.showPopupMenu({ locatedElement: smartmenu, width: 150 }, () => contentMenu);
+		taskBar.showPopupMenu({ locatedElement: smartmenu, width: 180, offsetLeft: -4 }, () => contentMenu);
 	}
 };

@@ -254,6 +254,10 @@ const taskBar = {
 			left = options.left;
 			top = options.top;
 		}
+
+		if (options.offsetLeft) left += options.offsetLeft
+		if (options.offsetTop) top += options.offsetTop
+
 		taskBar.countPopups++;
 		const zIndex = 500;
 		const popupMenuTemplate = templateLoader.getTemplate("PopupMenu");
@@ -264,7 +268,6 @@ const taskBar = {
 			.replaceAll('{{content}}', contentCallback())
 			.replaceAll('{{popupindex}}', taskBar.countPopups)
 			.replaceAll('{{zindex}}', zIndex + taskBar.countPopups);
-		console.log(menuTemplateContent);
 
 		popupMenusContainer.append(menuTemplateContent);
 		popupMenusContainer.style.display = "block";
