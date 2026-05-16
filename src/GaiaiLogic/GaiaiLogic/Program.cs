@@ -20,7 +20,7 @@ namespace GaiaiLogic {
             host.CreateWindow(asMain: true, debugOutput: true);
 #if DEBUG
             //host.LoadFile(@"C:\work\Repositories\HackingGame\game\gaiai\src\GaiaiLogic\GaiaiHTML\stylew95.html");
-            host.LoadFile(@"C:\work\Repositories\HackingGame\game\gaiai\src\GaiaiLogic\GaiaiHTML\game.html");
+            host.LoadFile(@"home://game.html");
 #endif
             host.SetWindowCaption(host.MainWindow, "gaiai");
             host.ShowWindow(host.MainWindow);

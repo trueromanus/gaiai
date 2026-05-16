@@ -60,4 +60,8 @@
 	<ItemGroup>
 	  <ProjectReference Include="..\..\..\..\..\..\SciterAPI\SciterAPI\src\EmptyFlow.SciterAPI\EmptyFlow.SciterAPI.csproj" />
 	</ItemGroup>
+
+	<ItemGroup>
+		<None Include="HTMLGameData\**" CopyToOutputDirectory="PreserveNewest" Link="%(RecursiveDir)%(FileName)%(Extension)" />
+	</ItemGroup>
 </Project>
