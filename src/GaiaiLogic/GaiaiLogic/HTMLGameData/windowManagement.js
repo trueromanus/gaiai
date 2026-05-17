@@ -137,6 +137,8 @@ const taskBar = {
 	registerHandlers: function () {
 		taskBar.root = document.getElementById('smart-button-root');
 		taskBar.root.addEventListener('click', taskBar.clickOnSmartButton);
+
+		popupMenusContainer.addEventListener('click', (e) => taskBar.closePopupMenu());
 	},
 	visibleBlackWall: function (visible) {
 		blackWall.style.display = visible ? 'block' : 'none';

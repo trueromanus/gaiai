@@ -94,12 +94,13 @@
 /* Popup menu container */
 
 .popup-menus-container {
-	position: fixed;
+	position: absolute;
 	top: 0px;
 	left: 0px;
 	bottom: 0px;
 	right: 0px;
-	z-index: 500;
+	z-index: 299;
+	background-color: transparent;
 }
 
 /* Window routine */
