@@ -58,6 +58,9 @@
 		<EmbeddedResource Include="TemplateFiles\PopupMenu.html">
 			<LogicalName>PopupMenu.html</LogicalName>
 		</EmbeddedResource>
+		<EmbeddedResource Include="TemplateFiles\WelcomeModal.html">
+			<LogicalName>WelcomeModal.html</LogicalName>
+		</EmbeddedResource>
 	</ItemGroup>
 
 	<ItemGroup>

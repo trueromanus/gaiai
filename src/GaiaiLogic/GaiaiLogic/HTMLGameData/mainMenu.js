@@ -51,5 +51,26 @@ const mainMenu = {
 		const contentMenu = templateLoader.getTemplate("ProgramsPopupMenu");
 
 		taskBar.showPopupMenu({ locatedElement: smartmenu, width: 180 }, () => contentMenu);
+	},
+	showRssReaderWindow: function () {
+
+	},
+	showEmailClientWindow: function () {
+
+	},
+	showSmartTrackerWindow: function () {
+
+	},
+	showWelcomeWindow: function () {
+		const modalWidth = 480;
+		const modalHeight = 350;
+		const centerWidth = (windowsContainer.clientWidth / 2) - (modalWidth / 2);
+		const centerHeight = (windowsContainer.clientHeight / 2) - (modalHeight / 2);
+		const modalOptions = {
+			movable: true
+		};
+		const contentModal = templateLoader.getTemplate("WelcomeModal");
+		taskBar.createWindow('Welcome', centerWidth, centerHeight, modalWidth, modalHeight, modalOptions, () => contentModal);
+		taskBar.clickOnSmartButton();
 	}
 };
