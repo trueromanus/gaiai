@@ -15,10 +15,6 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<None Remove="DataFiles\Roads-en.json" />
-	</ItemGroup>
-
-	<ItemGroup>
 		<EmbeddedResource Include="DataFiles\NewsSection-en.json">
 			<LogicalName>NewsSection-en.json</LogicalName>
 		</EmbeddedResource>
@@ -69,5 +65,6 @@
 
 	<ItemGroup>
 		<None Include="HTMLGameData\**" CopyToOutputDirectory="PreserveNewest" Link="%(RecursiveDir)%(FileName)%(Extension)" />
+		<None Include="Translate\**" CopyToOutputDirectory="PreserveNewest" />
 	</ItemGroup>
 </Project>
