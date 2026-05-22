@@ -1,37 +1,48 @@
 ﻿using GaiaiLogic.Loaders;
+using GaiaiLogic.Translate;
 using System.Numerics;
 
 namespace GaiaiLogic
 {
 
-    public static class GameLibrary
+    public class GameHost
     {
 
-        private static Shift? m_shift = null;
-        private static DataLoader? m_dataLoader = null;
-        private static TriggersHub? m_triggersHub = null;
+        private readonly Shift m_shift;
+        private readonly DataLoader m_dataLoader;
+        private readonly TriggersHub m_triggersHub;
+        private readonly Translator m_translator;
 
-        public static bool InitializeGame(string language)
+        public GameHost()
         {
             m_dataLoader = new DataLoader();
             m_triggersHub = new TriggersHub();
             m_shift = new Shift(m_triggersHub);
 
+            m_translator = new Translator();
+            
+        }
+
+        public bool InitializeGame(string language)
+        {
             var staticItems = m_dataLoader.LoadStaticItems(language);
             m_shift.FillStaticItems(staticItems);
 
+            m_translator.LoadTranslation(language);
             return true;
         }
 
-        internal static TriggersHub? TriggersHub => m_triggersHub;
+        internal TriggersHub? TriggersHub => m_triggersHub;
 
-        public static bool RunTimer()
+        internal Translator Translator => m_translator;
+
+        public bool RunTimer()
         {
             m_shift?.Run();
             return true;
         }
 
-        public static bool StopTimer()
+        public bool StopTimer()
         {
             m_shift?.Stop();
             return true;
@@ -40,7 +51,7 @@ namespace GaiaiLogic
         /// <summary>
         /// Just for tests
         /// </summary>
-        public static IEnumerable<(string shape, int x, int y, int rotate)> GetHouses()
+        public IEnumerable<(string shape, int x, int y, int rotate)> GetHouses()
         {
             var result = new List<(string shape, int x, int y, int rotate)>();
             foreach (var house in m_shift!.GetHouses())
@@ -51,7 +62,7 @@ namespace GaiaiLogic
             return result;
         }
 
-        public static IEnumerable<(string shape, int x, int y)> GetTrafficeLights()
+        public IEnumerable<(string shape, int x, int y)> GetTrafficeLights()
         {
             var result = new List<(string shape, int x, int y)>();
             foreach (var house in m_shift!.GetTrafficLights())
@@ -62,7 +73,7 @@ namespace GaiaiLogic
             return result;
         }
 
-        public static IEnumerable<(Vector2 start, Vector2 finish)> GetRoads(string district)
+        public IEnumerable<(Vector2 start, Vector2 finish)> GetRoads(string district)
         {
             var roads = m_shift!.GetCity().GetRoadsForDistrict(district);
             return roads.Select(a => (a.Start, a.Finish));

@@ -27,9 +27,9 @@ namespace GaiaiLogic
                 "triggershub",
                 (element) =>
                 {
-                    if (GameLibrary.TriggersHub == null) throw new ArgumentNullException();
+                    if (Program.GameHost.TriggersHub == null) throw new ArgumentNullException();
 
-                    var hubModel = new TriggersHubModel(GameLibrary.TriggersHub, host);
+                    var hubModel = new TriggersHubModel(Program.GameHost.TriggersHub, host);
                     var model = new InnerPseudoSomModel<TriggersHubModel>(hubModel, "triggershub", host);
                     return new PseudoSomModelHandler(model, element, host.MainWindow, host);
                 }
@@ -38,7 +38,7 @@ namespace GaiaiLogic
                 "templateloader",
                 (element) =>
                 {
-                    if (GameLibrary.TriggersHub == null) throw new ArgumentNullException();
+                    if (Program.GameHost.TriggersHub == null) throw new ArgumentNullException();
 
                     return new InnerPseudoSomModelHandler<TemplateLoaderModel>(new TemplateLoaderModel(host), element, host.MainWindow, host, "model");
                 }

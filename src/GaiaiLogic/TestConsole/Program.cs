@@ -8,7 +8,8 @@ namespace RayLibExperiment {
 
         [STAThread]
         public static void Main () {
-            GameLibrary.InitializeGame ( "en" );
+            var gameHost = new GameHost ();
+            gameHost.InitializeGame ( "en" );
 
             Raylib.InitWindow ( 800, 480, "Hello World" );
             Raylib.SetTargetFPS ( 60 );
@@ -16,9 +17,9 @@ namespace RayLibExperiment {
             var image = Raylib.LoadImage ( $"C:/work/Repositories/HackingGame/game/gaiai/src/Images/houseshape.simplerect.png" );
             Texture2D texture = Raylib.LoadTextureFromImage ( image );
             Raylib.UnloadImage ( image );
-            var houses = GameLibrary.GetHouses ();
-            var trafficLights = GameLibrary.GetTrafficeLights().Take ( 3 ).ToList ();
-            var roads = GameLibrary.GetRoads ( "south" );
+            var houses = gameHost.GetHouses ();
+            var trafficLights = gameHost.GetTrafficeLights().Take ( 3 ).ToList ();
+            var roads = gameHost.GetRoads ( "south" );
 
             while ( !Raylib.WindowShouldClose () ) {
                 Raylib.BeginDrawing ();
