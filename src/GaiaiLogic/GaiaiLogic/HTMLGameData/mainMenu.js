@@ -70,7 +70,7 @@ const mainMenu = {
 			movable: true
 		};
 		const contentModal = templateLoader.getTemplate("WelcomeModal");
-		taskBar.createWindow('Welcome', centerWidth, centerHeight, modalWidth, modalHeight, modalOptions, () => contentModal);
+		taskBar.createWindow('Welcome', centerWidth, centerHeight, modalWidth, modalHeight, modalOptions, () => translator.fillTranslations(contentModal));
 		taskBar.clickOnSmartButton();
 	}
 };

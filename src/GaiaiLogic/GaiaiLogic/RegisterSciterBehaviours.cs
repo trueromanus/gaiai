@@ -43,8 +43,15 @@ namespace GaiaiLogic
                     return new InnerPseudoSomModelHandler<TemplateLoaderModel>(new TemplateLoaderModel(host), element, host.MainWindow, host, "model");
                 }
             );
+            host.Callbacks.AddAttachBehaviourFactory(
+                "translator",
+                (element) =>
+                {
+                    if (Program.GameHost.Translator == null) throw new ArgumentNullException();
 
-
+                    return new InnerPseudoSomModelHandler<TranslatorModel>(new TranslatorModel(Program.GameHost.Translator, host), element, host.MainWindow, host, "model");
+                }
+            );
         }
 
     }

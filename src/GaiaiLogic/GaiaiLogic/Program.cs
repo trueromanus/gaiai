@@ -21,16 +21,24 @@ namespace GaiaiLogic
             var host = new SciterAPIHost(Environment.CurrentDirectory);
 #if DEBUG
             host.EnableDebugMode();
-#endif
             host.EnableFeatures();
+#endif
 
             RegisterSciterBehaviours.Register(host);
 
             host.CreateWindow(asMain: true, debugOutput: true);
-#if DEBUG
-            //host.LoadFile(@"C:\work\Repositories\HackingGame\game\gaiai\src\GaiaiLogic\GaiaiHTML\stylew95.html");
-            host.LoadFile(@"home://game.html");
-#endif
+
+            var customPage = Environment.GetEnvironmentVariable("custompage");
+            if (string.IsNullOrEmpty(customPage))
+            {
+                host.LoadFile(@"home://game.html");
+            }
+            else
+            {
+                host.LoadFile(@"home://" + customPage);
+            }
+
+
             host.SetWindowCaption(host.MainWindow, "gaiai");
             host.ShowWindow(host.MainWindow);
 #if DEBUG

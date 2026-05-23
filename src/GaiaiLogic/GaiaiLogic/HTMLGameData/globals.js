@@ -5,3 +5,4 @@ const taskBarButtonContainer = document.getElementById('taskbar-buttons-containe
 const triggersHub = document.getElementById('triggershub').triggershub;
 const templateLoader = document.getElementById('templateloader').model;
 const popupMenusContainer = document.getElementById('popup-menus-container');
+const translator = document.getElementById('translator').model;
