@@ -1,4 +1,4 @@
-﻿<div>
+﻿<div class="welcome-modal-container">
     <div class="flex-row margin-left-10 margin-top-14 margin-bottom-4">
         <span class="text-large-plus-plus-size margin-left-6">{{trans_WelcomeModalWelcome}}</span>
     </div>
@@ -8,10 +8,10 @@
                 <div class="grid-panel width-full height-full grid-panel" style="opacity: 0.3;">
                 </div>
                 <div class="width-full height-full text-middle-size">
-                    <div style="margin: 20px;" id="page1">
+                    <div style="margin: 20px;" class="welcomepage1">
                         {{trans_WelcomeModalPage1}}
                     </div>
-                    <div style="margin: 20px; display: none;" id="page2">
+                    <div style="margin: 20px; display: none;" class="welcomepage2">
                         {{trans_WelcomeModalPage2}}
                     </div>
                 </div>
@@ -24,14 +24,14 @@
                  button-width="136"
                  button-height="25"
                  button-title="Next Page"
-                 button-script="mainMenu.shutDownAction()">
+                 button-script="taskBar.activeContext().nextPage()">
             </div>
             <div class="margin-left-12 margin-top-8"
                  style="behavior: textbutton;"
                  button-width="136"
                  button-height="25"
                  button-title="Previous Page"
-                 button-script="taskBar.closeWindow(taskBar.activatedWindow)">
+                 button-script="taskBar.activeContext().previousPage()">
             </div>
             <div style="margin-top: 70px; margin-left: 12px; width: 136px; height: 2px; " class="horizontal-line">
                 <div class="first-line"></div>
@@ -42,7 +42,7 @@
                  button-width="136"
                  button-height="25"
                  button-title="Close"
-                 button-script="taskBar.closeWindow(taskBar.activatedWindow)">
+                 button-script="taskBar.closeActiveWindow()">
             </div>
         </div>
     </div>

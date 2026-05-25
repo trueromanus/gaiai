@@ -123,6 +123,7 @@ const taskBar = {
 	activatedWindow: null,
 	countPopups: 0,
 	windows: {},
+	windowContexts: {},
 	clickOnSmartButton: function () {
 		if (taskBar.smartButtonClicked) {
 			taskBar.smartButtonClicked = false;
@@ -143,7 +144,7 @@ const taskBar = {
 	visibleBlackWall: function (visible) {
 		blackWall.style.display = visible ? 'block' : 'none';
 	},
-	createWindow: function (title, x, y, width, height, options, contentCallback) {
+	createWindow: function (title, x, y, width, height, options, contentCallback, contextCallback) {
 		const windowTemplate = templateLoader.getTemplate("WindowModal");
 
 		taskBar.countWindows++;
@@ -190,6 +191,11 @@ const taskBar = {
 			taskBarButtonContainer.xcall('createWindow', windowIndex);
 		}
 
+		if (contextCallback) {
+			const windowContent = contextCallback(newlyCreatedElement, windowIndex);
+			taskBar.windowContexts[windowIndex] = windowContent;
+		}
+
 		taskBar.activateWindow(taskBar.windowCounter);
 	},
 	closeWindow: function (windowIndex) {
@@ -207,6 +213,9 @@ const taskBar = {
 		if (blackWall.style.display !== 'none') taskBar.visibleBlackWall(false);
 
 		taskBarButtonContainer.xcall('closeWindow', windowIndex);
+	},
+	closeActiveWindow: function () {
+		taskBar.closeWindow(taskBar.activatedWindow);
 	},
 	deactivateWindow() {
 		if (!taskBar.activatedWindow) return;
@@ -243,6 +252,9 @@ const taskBar = {
 		taskBar.activatedWindow = windowIndex;
 
 		taskBarButtonContainer.xcall('activateWindow', windowIndex);
+	},
+	activeContext: function () {
+		return taskBar.windowContexts[taskBar.activatedWindow];
 	},
 	showPopupMenu: function (options, contentCallback) {
 		let left = 0;
