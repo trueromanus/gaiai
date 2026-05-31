@@ -64,7 +64,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<None Include="HTMLGameData\**" CopyToOutputDirectory="PreserveNewest" Link="%(RecursiveDir)%(FileName)%(Extension)" />
+		<None Include="HTMLGameData\**" CopyToOutputDirectory="PreserveNewest" />
 		<None Include="Translate\**" CopyToOutputDirectory="PreserveNewest" />
 	</ItemGroup>
 </Project>

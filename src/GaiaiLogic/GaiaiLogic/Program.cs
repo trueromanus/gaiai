@@ -31,7 +31,7 @@ namespace GaiaiLogic
             var customPage = Environment.GetEnvironmentVariable("custompage");
             if (string.IsNullOrEmpty(customPage))
             {
-                host.LoadFile(@"home://game.html");
+                host.LoadFile(@"home://HTMLGameData/game.html");
             }
             else
             {
