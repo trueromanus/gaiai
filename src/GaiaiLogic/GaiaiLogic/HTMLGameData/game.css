@@ -425,6 +425,26 @@
 	margin-right: 7px;
 }
 
+.padding-full-1 {
+	padding: 1px;
+}
+
+.padding-full-2 {
+	padding: 2px;
+}
+
+.padding-full-3 {
+	padding: 3px;
+}
+
+.padding-full-4 {
+	padding: 4px;
+}
+
+.padding-full-5 {
+	padding: 5px;
+}
+
 .width-full {
 	width: 100%;
 }

@@ -59,7 +59,35 @@ const mainMenu = {
 
     },
     showSmartTrackerWindow: function () {
+        const modalWidth = 480;
+        const modalHeight = 350;
+        const centerWidth = (windowsContainer.clientWidth / 2) - (modalWidth / 2);
+        const centerHeight = (windowsContainer.clientHeight / 2) - (modalHeight / 2);
+        const modalOptions = {
+            movable: true
+        };
+        const contentModal = templateLoader.getTemplate("SmartTrackerModal");
+        mainMenu.welcomePage = 1;
+        taskBar.createWindow(
+            'SmartTracker',
+            centerWidth,
+            centerHeight,
+            modalWidth,
+            modalHeight,
+            modalOptions,
+            () => translator.fillTranslations(contentModal),
+            (element, windowIndex) => {
+                const model = {
+                    root: element,
+                    selectedItems: [],
+                    nextPage: function () {
+                    }
+                }
 
+                return model;
+            }
+        );
+        taskBar.clickOnSmartButton();
     },
     showWelcomeWindow: function () {
         const modalWidth = 480;

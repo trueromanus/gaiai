@@ -45,6 +45,9 @@
 		<EmbeddedResource Include="TemplateFiles\ButtonTaskbar.html">
 			<LogicalName>ButtonTaskbar.html</LogicalName>
 		</EmbeddedResource>
+		<EmbeddedResource Include="TemplateFiles\SmartTrackerModal.html">
+			<LogicalName>SmartTrackerModal.html</LogicalName>
+		</EmbeddedResource>
 		<EmbeddedResource Include="TemplateFiles\WindowModal.html">
 			<LogicalName>WindowModal.html</LogicalName>
 		</EmbeddedResource>
@@ -60,7 +63,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\..\..\..\..\..\SciterAPI\SciterAPI\src\EmptyFlow.SciterAPI\EmptyFlow.SciterAPI.csproj" />
+		<ProjectReference Include="..\..\..\..\..\..\SciterAPI\SciterAPI\src\EmptyFlow.SciterAPI\EmptyFlow.SciterAPI.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>
