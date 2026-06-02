@@ -59,12 +59,13 @@ const mainMenu = {
 
     },
     showSmartTrackerWindow: function () {
-        const modalWidth = 480;
-        const modalHeight = 350;
+        const modalWidth = 520;
+        const modalHeight = 370;
         const centerWidth = (windowsContainer.clientWidth / 2) - (modalWidth / 2);
         const centerHeight = (windowsContainer.clientHeight / 2) - (modalHeight / 2);
         const modalOptions = {
-            movable: true
+            movable: true,
+            sizable: true,
         };
         const contentModal = templateLoader.getTemplate("SmartTrackerModal");
         mainMenu.welcomePage = 1;
