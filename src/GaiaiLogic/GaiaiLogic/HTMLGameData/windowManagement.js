@@ -3,6 +3,10 @@ function replaceClasses(element, oldClass, newClass) {
 	element.classList.add(newClass);
 }
 
+function closestElement(element, selector) {
+	return element.closest(selector);
+}
+
 const windowManagement = {
 	moveX: 0,
 	moveY: 0,

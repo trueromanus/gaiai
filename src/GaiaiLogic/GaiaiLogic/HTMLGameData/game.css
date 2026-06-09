@@ -25,7 +25,6 @@
 }
 
 .task-bar-window-button {
-	height: 26px;
 	behavior: taskbarbutton;
 	align-self: center;
 }
@@ -38,7 +37,6 @@
 .task-bar-window-button > span {
 	align-self: center;
 }
-
 
 /* Smart main menu */
 

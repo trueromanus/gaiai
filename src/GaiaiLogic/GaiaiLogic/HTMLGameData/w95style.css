@@ -253,7 +253,7 @@
 .task-bar {
 	background-color: #BFB8BF;
 	border-top-style: solid;
-	border-top-width: 2;
+	border-top-width: 1px;
 	border-top-color: #fff8ff;
 }
 
